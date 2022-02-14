@@ -15,7 +15,7 @@ services:
       WORDPRESS_DEBUG: '1'
     volumes:
       - wordpress_data:/var/www/html
-      - ./albamn-hskwakr:/var/www/html/wp-content/plugins/albamn-hskwakr
+      - ./${PLUGIN_NAME}:/var/www/html/wp-content/plugins/${PLUGIN_NAME}
 
   db:
     image: mysql:5.7
