@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: '1'
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./albamn-hskwakr:/var/www/html/wp-content/plugins/albamn-hskwakr
+
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress_data:
+  db:
