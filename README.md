@@ -1,6 +1,6 @@
 # albamn
 
-A wordpress plugin allows you to make a list of instagram posts searched by hashtag.
+A WordPress plugin allows you to make a list of Instagram posts searched by hashtag.
 
 ## Local Development Environment
 
