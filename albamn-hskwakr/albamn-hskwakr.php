@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       albamn
  * Plugin URI:        https://github.com/hskwakr/albamn
- * Description:       
+ * Description:       Make a list of instagram posts searched by hashtag
  * Version:           1.0.0
  * Author:            hskwakr 
  * Author URI:        https://github.com/hskwakr
