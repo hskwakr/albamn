@@ -1,6 +1,6 @@
 # albamn
 
-A wordpress plugin to use instagram posts which searched by hashtag.
+A wordpress plugin allows you to make a list of instagram posts searched by hashtag.
 
 ## Local Development Environment
 
