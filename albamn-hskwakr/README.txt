@@ -8,7 +8,7 @@ Stable tag: 4.3
 License: MIT
 License URI: 
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Make a list of instagram posts searched by hashtag.
 
 == Description ==
 
