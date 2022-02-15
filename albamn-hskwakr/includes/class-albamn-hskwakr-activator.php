@@ -20,17 +20,16 @@
  * @subpackage Albamn_Hskwakr/includes
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Activator {
-
-	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
-	 * @since    1.0.0
-	 */
-	public static function activate() {
-
-	}
-
+class Albamn_Hskwakr_Activator
+{
+    /**
+     * Short Description. (use period)
+     *
+     * Long Description.
+     *
+     * @since    1.0.0
+     */
+    public static function activate()
+    {
+    }
 }
