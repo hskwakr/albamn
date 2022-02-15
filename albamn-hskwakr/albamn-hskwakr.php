@@ -17,6 +17,7 @@
  * Plugin URI:        https://github.com/hskwakr/albamn
  * Description:       Make a list of instagram posts searched by hashtag
  * Version:           1.0.0
+ * Requires PHP:      7.4
  * Author:            hskwakr
  * Author URI:        https://github.com/hskwakr
  * License:           MIT
