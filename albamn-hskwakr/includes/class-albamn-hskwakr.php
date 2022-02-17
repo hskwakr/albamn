@@ -97,7 +97,7 @@ class Albamn_Hskwakr
      * @since    1.0.0
      * @access   private
      */
-    private function load_dependencies()
+    private function load_dependencies(): void
     {
 
         /**
@@ -135,7 +135,7 @@ class Albamn_Hskwakr
      * @since    1.0.0
      * @access   private
      */
-    private function set_locale()
+    private function set_locale(): void
     {
         $plugin_i18n = new Albamn_Hskwakr_i18n();
 
@@ -149,7 +149,7 @@ class Albamn_Hskwakr
      * @since    1.0.0
      * @access   private
      */
-    private function define_admin_hooks()
+    private function define_admin_hooks(): void
     {
         $plugin_admin = new Albamn_Hskwakr_Admin($this->get_albamn_hskwakr(), $this->get_version());
 
@@ -164,7 +164,7 @@ class Albamn_Hskwakr
      * @since    1.0.0
      * @access   private
      */
-    private function define_public_hooks()
+    private function define_public_hooks(): void
     {
         $plugin_public = new Albamn_Hskwakr_Public($this->get_albamn_hskwakr(), $this->get_version());
 
@@ -177,7 +177,7 @@ class Albamn_Hskwakr
      *
      * @since    1.0.0
      */
-    public function run()
+    public function run(): void
     {
         $this->loader->run();
     }
@@ -189,7 +189,7 @@ class Albamn_Hskwakr
      * @since     1.0.0
      * @return    string    The name of the plugin.
      */
-    public function get_albamn_hskwakr()
+    public function get_albamn_hskwakr(): string
     {
         return $this->albamn_hskwakr;
     }
@@ -200,7 +200,7 @@ class Albamn_Hskwakr
      * @since     1.0.0
      * @return    Albamn_Hskwakr_Loader    Orchestrates the hooks of the plugin.
      */
-    public function get_loader()
+    public function get_loader(): Albamn_Hskwakr_Loader
     {
         return $this->loader;
     }
@@ -211,7 +211,7 @@ class Albamn_Hskwakr
      * @since     1.0.0
      * @return    string    The version number of the plugin.
      */
-    public function get_version()
+    public function get_version(): string
     {
         return $this->version;
     }

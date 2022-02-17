@@ -42,7 +42,7 @@ define('ALBAMN_HSKWAKR_VERSION', '1.0.0');
  * The code that runs during plugin activation.
  * This action is documented in includes/class-albamn-hskwakr-activator.php
  */
-function activate_albamn_hskwakr()
+function activate_albamn_hskwakr(): void
 {
     require_once plugin_dir_path(__FILE__) . 'includes/class-albamn-hskwakr-activator.php';
     Albamn_Hskwakr_Activator::activate();
@@ -52,7 +52,7 @@ function activate_albamn_hskwakr()
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-albamn-hskwakr-deactivator.php
  */
-function deactivate_albamn_hskwakr()
+function deactivate_albamn_hskwakr(): void
 {
     require_once plugin_dir_path(__FILE__) . 'includes/class-albamn-hskwakr-deactivator.php';
     Albamn_Hskwakr_Deactivator::deactivate();
@@ -76,7 +76,7 @@ require plugin_dir_path(__FILE__) . 'includes/class-albamn-hskwakr.php';
  *
  * @since    1.0.0
  */
-function run_albamn_hskwakr()
+function run_albamn_hskwakr(): void
 {
     $plugin = new Albamn_Hskwakr();
     $plugin->run();
