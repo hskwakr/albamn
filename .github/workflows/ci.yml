@@ -31,3 +31,14 @@ jobs:
       
       - name: Run friendsofphp/php-cs-fixer
         run: ./tools/php-cs-fixer fix --dry-run --show-progress=dots --using-cache=no --verbose
+        
+  psalm:
+    name: Psalm
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Psalm
+        uses: docker://vimeo/psalm-github-actions
