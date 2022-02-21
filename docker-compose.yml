@@ -28,8 +28,20 @@ services:
       MYSQL_PASSWORD: wordpress
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - db:/var/lib/mysql
+      - db_data:/var/lib/mysql
+
+  wpcli:
+    image: wordpress:cli
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./${PLUGIN_NAME}:/var/www/html/wp-content/plugins/${PLUGIN_NAME}
+      - db_data:/var/lib/mysql
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
 
 volumes:
   wordpress_data:
-  db:
+  db_data:
