@@ -28,8 +28,8 @@ services:
       MYSQL_PASSWORD: wordpress
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - db:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
 volumes:
   wordpress_data:
-  db:
+  db_data:
