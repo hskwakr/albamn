@@ -8,5 +8,7 @@ A docker-compose based local development environment is provided.
 
 - Start server
     - `docker-compose up -d`
+- Init WordPress
+    - `./init-wp.sh`
 - End server
     - `docker-compose down -v`
