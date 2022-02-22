@@ -96,4 +96,76 @@ class Albamn_Hskwakr_Admin
 
         wp_enqueue_script($this->albamn_hskwakr, plugin_dir_url(__FILE__) . 'js/albamn-hskwakr-admin.js', array( 'jquery' ), $this->version, false);
     }
+
+    /**
+     * Add custom menu for this plugin.
+     *
+     * @since    1.0.0
+     */
+    public function admin_menu(): void
+    {
+        // slug name for general page
+        $menu_slug = 'albamn-hskwakr-general-settings.php';
+
+        // register menu page
+        add_menu_page(
+            'Albamn General Settings',
+            'Albamn',
+            'manage_options',
+            $menu_slug,
+            array( $this, 'general_settings_page' ),
+            'dashicons-tickets',
+            250
+        );
+
+        // define submenu pages
+        $sub_pages = array(
+            array(
+                'parent_slug' => $menu_slug,
+                'page_title' => 'Albamn General Settings',
+                'menu_title' => 'Settings',
+                'capability' => 'manage_options',
+                'menu_slug' => $menu_slug,
+                'callback' => array( $this, 'general_settings_page' )
+            ),
+            array(
+                'parent_slug' => $menu_slug,
+                'page_title' => 'Albamn Instagram Importer',
+                'menu_title' => 'Importer',
+                'capability' => 'manage_options',
+                'menu_slug' => 'albamn-hskwakr-instagram-importer.php',
+                'callback' => array( $this, 'instagram_importer_page' )
+            ),
+        );
+
+        // register submenu pages
+        foreach ($sub_pages as $page) {
+            add_submenu_page(
+                $page['parent_slug'],
+                $page['page_title'],
+                $page['menu_title'],
+                $page['capability'],
+                $page['menu_slug'],
+                $page['callback']
+            );
+        }
+    }
+
+    /**
+     * Load general settings page.
+     *
+     * @since    1.0.0
+     */
+    public function general_settings_page(): void
+    {
+    }
+
+    /**
+     * Load instagram importer page.
+     *
+     * @since    1.0.0
+     */
+    public function instagram_importer_page(): void
+    {
+    }
 }
