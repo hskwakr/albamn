@@ -68,7 +68,7 @@ class Albamn_Hskwakr_Admin_Menu
         );
 
         // register submenu pages
-        $submenus = $this->get_menus($this->slug);
+        $submenus = $this->get_submenus($this->slug);
         $this->register_submenus($submenus);
     }
 
