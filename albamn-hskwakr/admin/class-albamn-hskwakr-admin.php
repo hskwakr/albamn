@@ -51,6 +51,26 @@ class Albamn_Hskwakr_Admin
     {
         $this->albamn_hskwakr = $albamn_hskwakr;
         $this->version = $version;
+
+        $this->load_dependencies();
+    }
+
+    /**
+     * Load the required dependencies for this plugin.
+     *
+     * Include the following files that make up the plugin:
+     *
+     * - Albamn_Hskwakr_Admin_Menu. Custom menu of admin.
+     *
+     * @since    1.0.0
+     * @access   private
+     */
+    private function load_dependencies(): void
+    {
+        /**
+         * The class responsible for admin custom menu.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-menu.php';
     }
 
     /**
@@ -104,68 +124,7 @@ class Albamn_Hskwakr_Admin
      */
     public function admin_menu(): void
     {
-        // slug name for general page
-        $menu_slug = 'albamn-hskwakr-general-settings.php';
-
-        // register menu page
-        add_menu_page(
-            'Albamn General Settings',
-            'Albamn',
-            'manage_options',
-            $menu_slug,
-            array( $this, 'general_settings_page' ),
-            'dashicons-tickets',
-            250
-        );
-
-        // define submenu pages
-        $sub_pages = array(
-            array(
-                'parent_slug' => $menu_slug,
-                'page_title' => 'Albamn General Settings',
-                'menu_title' => 'Settings',
-                'capability' => 'manage_options',
-                'menu_slug' => $menu_slug,
-                'callback' => array( $this, 'general_settings_page' )
-            ),
-            array(
-                'parent_slug' => $menu_slug,
-                'page_title' => 'Albamn Instagram Importer',
-                'menu_title' => 'Importer',
-                'capability' => 'manage_options',
-                'menu_slug' => 'albamn-hskwakr-instagram-importer.php',
-                'callback' => array( $this, 'instagram_importer_page' )
-            ),
-        );
-
-        // register submenu pages
-        foreach ($sub_pages as $page) {
-            add_submenu_page(
-                $page['parent_slug'],
-                $page['page_title'],
-                $page['menu_title'],
-                $page['capability'],
-                $page['menu_slug'],
-                $page['callback']
-            );
-        }
-    }
-
-    /**
-     * Load general settings page.
-     *
-     * @since    1.0.0
-     */
-    public function general_settings_page(): void
-    {
-    }
-
-    /**
-     * Load instagram importer page.
-     *
-     * @since    1.0.0
-     */
-    public function instagram_importer_page(): void
-    {
+        $admin_menu = new Albamn_Hskwakr_Admin_Menu();
+        $admin_menu->register();
     }
 }
