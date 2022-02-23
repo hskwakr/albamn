@@ -143,7 +143,7 @@ class Albamn_Hskwakr_Admin
      */
     public function admin_menu(): void
     {
-        $admin_menu = new Albamn_Hskwakr_Admin_Menu();
+        $admin_menu = new Albamn_Hskwakr_Admin_Menu($this->pages);
         $admin_menu->register();
     }
 }

@@ -20,6 +20,26 @@
 class Albamn_Hskwakr_Admin_Menu
 {
     /**
+     * The pages that's responsible for admin pages.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      Albamn_Hskwakr_Admin_Pages    $pages
+     */
+    protected $pages;
+
+    /**
+     * Initialize the class and set its properties.
+     *
+     * @since    1.0.0
+     * @param    Albamn_Hskwakr_Admin_Pages    $pages
+     */
+    public function __construct($pages)
+    {
+        $this->pages = $pages;
+    }
+
+    /**
      * register admin menu of the plugin.
      *
      * @since    1.0.0
@@ -35,7 +55,7 @@ class Albamn_Hskwakr_Admin_Menu
             'Albamn',
             'manage_options',
             $menu_slug,
-            array( $this, 'general_settings_page' ),
+            array($this->pages, 'general_settings'),
             'dashicons-tickets',
             250
         );
@@ -58,7 +78,7 @@ class Albamn_Hskwakr_Admin_Menu
                 'menu_title' => 'Settings',
                 'capability' => 'manage_options',
                 'menu_slug' => $parent,
-                'callback' => array( $this, 'general_settings_page' )
+                'callback' => array($this->pages, 'general_settings')
             ),
             array(
                 'parent_slug' => $parent,
@@ -66,7 +86,7 @@ class Albamn_Hskwakr_Admin_Menu
                 'menu_title' => 'Importer',
                 'capability' => 'manage_options',
                 'menu_slug' => 'albamn-hskwakr-instagram-importer.php',
-                'callback' => array( $this, 'instagram_importer_page' )
+                'callback' => array($this->pages, 'instagram_importer')
             ),
         );
     }
@@ -88,23 +108,5 @@ class Albamn_Hskwakr_Admin_Menu
                 $p['callback']
             );
         }
-    }
-
-    /**
-     * Load general settings page.
-     *
-     * @since    1.0.0
-     */
-    public function general_settings_page(): void
-    {
-    }
-
-    /**
-     * Load instagram importer page.
-     *
-     * @since    1.0.0
-     */
-    public function instagram_importer_page(): void
-    {
     }
 }
