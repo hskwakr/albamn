@@ -29,6 +29,15 @@ class Albamn_Hskwakr_Admin_Menu
     protected $pages;
 
     /**
+     * The slug that's responsible for main admin page.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      string    $slug
+     */
+    protected $slug;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -37,6 +46,7 @@ class Albamn_Hskwakr_Admin_Menu
     public function __construct($pages)
     {
         $this->pages = $pages;
+        $this->slug = 'albamn-hskwakr-general-settings.php';
     }
 
     /**
@@ -46,30 +56,30 @@ class Albamn_Hskwakr_Admin_Menu
      */
     public function register(): void
     {
-        // slug name for general page
-        $menu_slug = 'albamn-hskwakr-general-settings.php';
-
         // register menu page
         add_menu_page(
             'Albamn General Settings',
             'Albamn',
             'manage_options',
-            $menu_slug,
+            $this->slug,
             array($this->pages, 'general_settings'),
             'dashicons-tickets',
             250
         );
 
         // register submenu pages
-        $this->register_submenu($this->get_subpages($menu_slug));
+        $submenus = $this->get_menus($this->slug);
+        $this->register_submenus($submenus);
     }
 
     /**
-     * register admin sub menu of the plugin.
+     * register admin menus of the plugin.
      *
      * @since    1.0.0
+     * @param    string    $parent    the parent slug.
+     * @return   array     a list of menus.
      */
-    private function get_subpages(string $parent): array
+    private function get_menus(string $parent): array
     {
         return array(
             array(
@@ -96,7 +106,7 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      */
-    private function register_submenu(array $pages): void
+    private function register_submenus(array $pages): void
     {
         foreach ($pages as $p) {
             add_submenu_page(
