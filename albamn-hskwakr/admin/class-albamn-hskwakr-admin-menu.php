@@ -61,15 +61,15 @@ class Albamn_Hskwakr_Admin_Menu
         );
 
         // register submenu pages
-        $this->register_submenu($this->get_subpages($menu_slug));
+        $this->register_submenu($this->get_menus($menu_slug));
     }
 
     /**
-     * register admin sub menu of the plugin.
+     * register admin menus of the plugin.
      *
      * @since    1.0.0
      */
-    private function get_subpages(string $parent): array
+    private function get_menus(string $parent): array
     {
         return array(
             array(
