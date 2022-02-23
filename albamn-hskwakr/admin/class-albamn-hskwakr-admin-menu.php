@@ -73,13 +73,13 @@ class Albamn_Hskwakr_Admin_Menu
     }
 
     /**
-     * register admin menus of the plugin.
+     * register admin submenus of the plugin.
      *
      * @since    1.0.0
      * @param    string    $parent    the parent slug.
      * @return   array     a list of menus.
      */
-    private function get_menus(string $parent): array
+    private function get_submenus(string $parent): array
     {
         return array(
             array(
