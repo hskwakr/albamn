@@ -41,8 +41,8 @@ class Albamn_Hskwakr_Admin_Enqueues
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param      string    $albamn_hskwakr       The name of this plugin.
-     * @param      string    $version    The version of this plugin.
+     * @param    string    $albamn_hskwakr    The name of the plugin.
+     * @param    string    $version           The version of this plugin.
      */
     public function __construct($albamn_hskwakr, $version)
     {
