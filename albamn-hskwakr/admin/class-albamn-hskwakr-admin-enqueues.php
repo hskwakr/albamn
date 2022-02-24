@@ -64,6 +64,15 @@ class Albamn_Hskwakr_Admin_Enqueues
             $this->version,
             'all'
         );
+
+        // bootstrap
+        wp_enqueue_style(
+            $this->albamn_hskwakr . '-bootstrap-css',
+            plugin_dir_url(__FILE__) . 'css/bootstrap.min.css',
+            array(),
+            $this->version,
+            'all'
+        );
     }
 
     /**
@@ -76,7 +85,16 @@ class Albamn_Hskwakr_Admin_Enqueues
         wp_enqueue_script(
             $this->albamn_hskwakr,
             plugin_dir_url(__FILE__) . 'js/albamn-hskwakr-admin.js',
-            array( 'jquery' ),
+            array('jquery'),
+            $this->version,
+            false
+        );
+
+        // bootstrap
+        wp_enqueue_script(
+            $this->albamn_hskwakr . '-bootstrap-js',
+            plugin_dir_url(__FILE__) . 'js/bootstrap.min.js',
+            array('jquery'),
             $this->version,
             false
         );
