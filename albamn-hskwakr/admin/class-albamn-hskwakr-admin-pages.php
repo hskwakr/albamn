@@ -26,6 +26,7 @@ class Albamn_Hskwakr_Admin_Pages
      */
     public function general_settings(): void
     {
+        require_once 'partials/albamn-hskwakr-admin-display.php';
     }
 
     /**
