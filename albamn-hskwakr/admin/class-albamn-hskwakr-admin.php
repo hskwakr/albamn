@@ -50,11 +50,20 @@ class Albamn_Hskwakr_Admin
     protected $pages;
 
     /**
+     * The pages that's responsible for admin enqueues.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      Albamn_Hskwakr_Admin_Enqueues    $enqueues
+     */
+    protected $enqueues;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param      string    $albamn_hskwakr       The name of this plugin.
-     * @param      string    $version    The version of this plugin.
+     * @param    string    $albamn_hskwakr      The name of the plugin.
+     * @param    string    $version             The version of this plugin.
      */
     public function __construct($albamn_hskwakr, $version)
     {
@@ -89,7 +98,16 @@ class Albamn_Hskwakr_Admin
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-pages.php';
 
+        /**
+         * The class responsible for admin enqueues.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-enqueues.php';
+
         $this->pages = new Albamn_Hskwakr_Admin_Pages();
+        $this->enqueues = new Albamn_Hskwakr_Admin_Enqueues(
+            $this->albamn_hskwakr,
+            $this->version
+        );
     }
 
     /**
@@ -99,7 +117,7 @@ class Albamn_Hskwakr_Admin
      */
     public function enqueue_styles(): void
     {
-        wp_enqueue_style($this->albamn_hskwakr, plugin_dir_url(__FILE__) . 'css/albamn-hskwakr-admin.css', array(), $this->version, 'all');
+        $this->enqueues->styles();
     }
 
     /**
@@ -109,7 +127,7 @@ class Albamn_Hskwakr_Admin
      */
     public function enqueue_scripts(): void
     {
-        wp_enqueue_script($this->albamn_hskwakr, plugin_dir_url(__FILE__) . 'js/albamn-hskwakr-admin.js', array( 'jquery' ), $this->version, false);
+        $this->enqueues->scripts();
     }
 
     /**
