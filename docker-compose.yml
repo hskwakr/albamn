@@ -42,6 +42,26 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
 
+  phpunit:
+    command:
+      - bash
+    container_name: phpunit
+    depends_on:
+      - testdb
+    environment:
+      DATABASE_PASSWORD: examplepass
+      DATABASE_HOST: testdb
+    image: futureys/phpunit-wordpress-plugin
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./${PLUGIN_NAME}:/plugin
+
+  testdb:
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepass
+    image: mysql:5.7
+
 volumes:
   wordpress_data:
   db_data:
