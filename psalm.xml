@@ -4,6 +4,9 @@
 >
 <projectFiles>
     <directory name="albamn-hskwakr" />
+    <ignoreFiles>
+        <directory name="albamn-hskwakr/tests" />
+    </ignoreFiles>
 </projectFiles>
 
 <issueHandlers>
