@@ -20,15 +20,6 @@
 class Albamn_Hskwakr_Admin_Menu
 {
     /**
-     * The pages that's responsible for admin pages.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Pages    $pages
-     */
-    protected $pages;
-
-    /**
      * The slug that's responsible for main admin page.
      *
      * @since    1.0.0
@@ -43,9 +34,8 @@ class Albamn_Hskwakr_Admin_Menu
      * @since    1.0.0
      * @param    Albamn_Hskwakr_Admin_Pages    $pages
      */
-    public function __construct($pages)
+    public function __construct()
     {
-        $this->pages = $pages;
         $this->slug = 'albamn-hskwakr-general-settings.php';
     }
 
@@ -62,7 +52,7 @@ class Albamn_Hskwakr_Admin_Menu
             'Albamn',
             'manage_options',
             $this->slug,
-            array($this->pages, 'general_settings'),
+            array($this, 'general_settings'),
             'dashicons-tickets',
             250
         );
@@ -88,7 +78,7 @@ class Albamn_Hskwakr_Admin_Menu
                 'menu_title' => 'Settings',
                 'capability' => 'manage_options',
                 'menu_slug' => $parent,
-                'callback' => array($this->pages, 'general_settings')
+                'callback' => array($this, 'general_settings')
             ),
             array(
                 'parent_slug' => $parent,
@@ -96,7 +86,7 @@ class Albamn_Hskwakr_Admin_Menu
                 'menu_title' => 'Importer',
                 'capability' => 'manage_options',
                 'menu_slug' => 'albamn-hskwakr-instagram-importer.php',
-                'callback' => array($this->pages, 'instagram_importer')
+                'callback' => array($this, 'instagram_importer')
             ),
         );
     }
@@ -118,5 +108,24 @@ class Albamn_Hskwakr_Admin_Menu
                 $p['callback']
             );
         }
+    }
+
+    /**
+     * Load general settings page.
+     *
+     * @since    1.0.0
+     */
+    public function general_settings(): void
+    {
+        require_once 'partials/albamn-hskwakr-admin-display.php';
+    }
+
+    /**
+     * Load instagram importer page.
+     *
+     * @since    1.0.0
+     */
+    public function instagram_importer(): void
+    {
     }
 }

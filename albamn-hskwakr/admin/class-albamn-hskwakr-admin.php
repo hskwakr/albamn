@@ -41,15 +41,6 @@ class Albamn_Hskwakr_Admin
     private $version;
 
     /**
-     * The pages that's responsible for admin pages.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Pages    $pages
-     */
-    protected $pages;
-
-    /**
      * The pages that's responsible for admin enqueues.
      *
      * @since    1.0.0
@@ -79,7 +70,6 @@ class Albamn_Hskwakr_Admin
      * Include the following files that make up the plugin:
      *
      * - Albamn_Hskwakr_Admin_Menu. Custom menu of admin.
-     * - Albamn_Hskwakr_Admin_Pages. Specific pages of admin.
      * - Albamn_Hskwakr_Admin_Enqueues. Specific enqueues of admin.
      *
      * Create an instans of pages.
@@ -95,16 +85,10 @@ class Albamn_Hskwakr_Admin
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-menu.php';
 
         /**
-         * The class responsible for admin pages.
-         */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-pages.php';
-
-        /**
          * The class responsible for admin enqueues.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-enqueues.php';
 
-        $this->pages = new Albamn_Hskwakr_Admin_Pages();
         $this->enqueues = new Albamn_Hskwakr_Admin_Enqueues(
             $this->albamn_hskwakr,
             $this->version
@@ -138,7 +122,7 @@ class Albamn_Hskwakr_Admin
      */
     public function admin_menu(): void
     {
-        $admin_menu = new Albamn_Hskwakr_Admin_Menu($this->pages);
+        $admin_menu = new Albamn_Hskwakr_Admin_Menu();
         $admin_menu->register();
     }
 }
