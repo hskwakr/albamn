@@ -123,6 +123,27 @@ class Albamn_Hskwakr_Admin
     public function admin_menu(): void
     {
         $admin_menu = new Albamn_Hskwakr_Admin_Menu();
-        $admin_menu->register();
+
+        $base = $admin_menu->base();
+        add_menu_page(
+            $base['page_title'],
+            $base['menu_title'],
+            $base['capability'],
+            $base['menu_slug'],
+            $base['callback'],
+            $base['icon'],
+            $base['position']
+        );
+
+        foreach ($admin_menu->sub() as $p) {
+            add_submenu_page(
+                $p['parent_slug'],
+                $p['page_title'],
+                $p['menu_title'],
+                $p['capability'],
+                $p['menu_slug'],
+                $p['callback']
+            );
+        }
     }
 }
