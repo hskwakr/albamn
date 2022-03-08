@@ -124,25 +124,25 @@ class Albamn_Hskwakr_Admin
     {
         $admin_menu = new Albamn_Hskwakr_Admin_Menu();
 
-        $base = $admin_menu->base();
+        $b = $admin_menu->base();
         add_menu_page(
-            $base['page_title'],
-            $base['menu_title'],
-            $base['capability'],
-            $base['menu_slug'],
-            $base['callback'],
-            $base['icon'],
-            $base['position']
+            $b->page_title,
+            $b->menu_title,
+            $b->capability,
+            $b->menu_slug,
+            $b->callback,
+            $b->icon,
+            $b->position
         );
 
-        foreach ($admin_menu->sub() as $p) {
+        foreach ($admin_menu->sub() as $s) {
             add_submenu_page(
-                $p['parent_slug'],
-                $p['page_title'],
-                $p['menu_title'],
-                $p['capability'],
-                $p['menu_slug'],
-                $p['callback']
+                $s->base,
+                $s->page_title,
+                $s->menu_title,
+                $s->capability,
+                $s->menu_slug,
+                $s->callback
             );
         }
     }
