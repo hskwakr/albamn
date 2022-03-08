@@ -44,7 +44,7 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      * @param    string    $parent    the parent slug.
-     * @return   array     a list of menus.
+     * @return   Albamn_Hskwakr_Admin_Menu_Base
      */
     public function base(): Albamn_Hskwakr_Admin_Menu_Base
     {
@@ -183,13 +183,13 @@ class Albamn_Hskwakr_Admin_Menu_Base
     public $callback;
 
     public function __construct(
-        $page_title,
-        $menu_title,
-        $capability,
-        $menu_slug,
-        $callback,
-        $icon,
-        $position
+        string $page_title,
+        string $menu_title,
+        string $capability,
+        string $menu_slug,
+        callable $callback,
+        string $icon,
+        int $position
     ) {
         $this->page_title = $page_title;
         $this->menu_title = $menu_title;
@@ -258,24 +258,6 @@ class Albamn_Hskwakr_Admin_Menu_Sub
     public $menu_slug;
 
     /**
-     * The URL to the icon to be used for this menu.
-     *
-     * @since    1.0.0
-     * @access   public
-     * @var      string
-     */
-    public $icon;
-
-    /**
-     * The position in the menu order this item should appear.
-     *
-     * @since    1.0.0
-     * @access   public
-     * @var      int
-     */
-    public $position;
-
-    /**
      * The function to be called to output the content for this page.
      *
      * @since    1.0.0
@@ -285,12 +267,12 @@ class Albamn_Hskwakr_Admin_Menu_Sub
     public $callback;
 
     public function __construct(
-        $base,
-        $page_title,
-        $menu_title,
-        $capability,
-        $menu_slug,
-        $callback
+        string $base,
+        string $page_title,
+        string $menu_title,
+        string $capability,
+        string $menu_slug,
+        callable $callback
     ) {
         $this->base = $base;
         $this->page_title = $page_title;
