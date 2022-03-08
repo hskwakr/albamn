@@ -17,7 +17,7 @@
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Enqueues
+class Albamn_Hskwakr_Admin_Enqueue
 {
     /**
      * The ID of this plugin.
