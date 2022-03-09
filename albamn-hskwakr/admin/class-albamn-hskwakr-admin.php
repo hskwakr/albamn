@@ -99,7 +99,11 @@ class Albamn_Hskwakr_Admin
      */
     public function enqueue(): void
     {
-        // styles
+        /**
+         * Style
+         *
+         * @var Albamn_Hskwakr_Admin_Enqueue_Style
+         */
         foreach ($this->enqueue->styles() as $s) {
             wp_enqueue_style(
                 $s->handle,
@@ -110,7 +114,11 @@ class Albamn_Hskwakr_Admin
             );
         }
 
-        // scripts
+        /**
+         * Script
+         *
+         * @var Albamn_Hskwakr_Admin_Enqueue_Script
+         */
         foreach ($this->enqueue->scripts() as $s) {
             wp_enqueue_script(
                 $s->handle,
@@ -131,6 +139,11 @@ class Albamn_Hskwakr_Admin
     {
         $admin_menu = new Albamn_Hskwakr_Admin_Menu();
 
+        /**
+         * Base menu
+         *
+         * @var Albamn_Hskwakr_Admin_Menu_Base
+         */
         $b = $admin_menu->base();
         add_menu_page(
             $b->page_title,
@@ -142,6 +155,11 @@ class Albamn_Hskwakr_Admin
             $b->position
         );
 
+        /**
+         * Base menu
+         *
+         * @var Albamn_Hskwakr_Admin_Menu_Sub
+         */
         foreach ($admin_menu->sub() as $s) {
             add_submenu_page(
                 $s->base,
