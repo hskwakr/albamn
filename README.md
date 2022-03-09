@@ -10,6 +10,8 @@ A docker-compose based local development environment is provided.
     - `docker-compose up -d`
 - Init WordPress ( user / password : admin / pass )
     - `./init-wp.sh`
+- Unit testing
+    - `docker-compose run phpunit phpunit`
 - Access site
     - http://localhost:8080
     - http://localhost:8080/wp-admin
