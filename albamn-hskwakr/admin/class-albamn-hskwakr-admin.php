@@ -38,15 +38,6 @@ class Albamn_Hskwakr_Admin
     private $version;
 
     /**
-     * The pages that's responsible for admin enqueue.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Enqueue    $enqueue
-     */
-    protected $enqueue;
-
-    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -85,11 +76,6 @@ class Albamn_Hskwakr_Admin
          * The class responsible for admin enqueue.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-enqueue.php';
-
-        $this->enqueue = new Albamn_Hskwakr_Admin_Enqueue(
-            $this->albamn_hskwakr,
-            $this->version
-        );
     }
 
     /**
@@ -99,12 +85,17 @@ class Albamn_Hskwakr_Admin
      */
     public function enqueue(): void
     {
+        $enqueue = new Albamn_Hskwakr_Admin_Enqueue(
+            $this->albamn_hskwakr,
+            $this->version
+        );
+
         /**
          * Style
          *
          * @var Albamn_Hskwakr_Admin_Enqueue_Style
          */
-        foreach ($this->enqueue->styles() as $s) {
+        foreach ($enqueue->styles() as $s) {
             wp_enqueue_style(
                 $s->handle,
                 $s->src,
@@ -119,7 +110,7 @@ class Albamn_Hskwakr_Admin
          *
          * @var Albamn_Hskwakr_Admin_Enqueue_Script
          */
-        foreach ($this->enqueue->scripts() as $s) {
+        foreach ($enqueue->scripts() as $s) {
             wp_enqueue_script(
                 $s->handle,
                 $s->src,
