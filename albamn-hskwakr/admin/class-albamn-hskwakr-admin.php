@@ -93,12 +93,13 @@ class Albamn_Hskwakr_Admin
     }
 
     /**
-     * Register the stylesheets for the admin area.
+     * Register the css/js for the admin area.
      *
      * @since    1.0.0
      */
-    public function enqueue_styles(): void
+    public function enqueue(): void
     {
+        // styles
         foreach ($this->enqueue->styles() as $s) {
             wp_enqueue_style(
                 $s->handle,
@@ -108,15 +109,8 @@ class Albamn_Hskwakr_Admin
                 $s->media
             );
         }
-    }
 
-    /**
-     * Register the JavaScript for the admin area.
-     *
-     * @since    1.0.0
-     */
-    public function enqueue_scripts(): void
-    {
+        // scripts
         foreach ($this->enqueue->scripts() as $s) {
             wp_enqueue_script(
                 $s->handle,
