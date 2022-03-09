@@ -13,9 +13,6 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
  * @package    Albamn_Hskwakr
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
@@ -41,13 +38,13 @@ class Albamn_Hskwakr_Admin
     private $version;
 
     /**
-     * The pages that's responsible for admin enqueues.
+     * The pages that's responsible for admin enqueue.
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Enqueues    $enqueues
+     * @var      Albamn_Hskwakr_Admin_Enqueue    $enqueue
      */
-    protected $enqueues;
+    protected $enqueue;
 
     /**
      * Initialize the class and set its properties.
@@ -70,7 +67,7 @@ class Albamn_Hskwakr_Admin
      * Include the following files that make up the plugin:
      *
      * - Albamn_Hskwakr_Admin_Menu. Custom menu of admin.
-     * - Albamn_Hskwakr_Admin_Enqueues. Specific enqueues of admin.
+     * - Albamn_Hskwakr_Admin_Enqueue. Specific enqueue of admin.
      *
      * Create an instans of pages.
      *
@@ -85,11 +82,11 @@ class Albamn_Hskwakr_Admin
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-menu.php';
 
         /**
-         * The class responsible for admin enqueues.
+         * The class responsible for admin enqueue.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-enqueues.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-enqueue.php';
 
-        $this->enqueues = new Albamn_Hskwakr_Admin_Enqueues(
+        $this->enqueue = new Albamn_Hskwakr_Admin_Enqueue(
             $this->albamn_hskwakr,
             $this->version
         );
@@ -102,7 +99,7 @@ class Albamn_Hskwakr_Admin
      */
     public function enqueue_styles(): void
     {
-        $this->enqueues->styles();
+        $this->enqueue->styles();
     }
 
     /**
@@ -112,7 +109,7 @@ class Albamn_Hskwakr_Admin
      */
     public function enqueue_scripts(): void
     {
-        $this->enqueues->scripts();
+        $this->enqueue->scripts();
     }
 
     /**
