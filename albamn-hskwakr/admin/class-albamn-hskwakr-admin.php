@@ -42,7 +42,7 @@ class Albamn_Hskwakr_Admin
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Enqueues    $enqueue
+     * @var      Albamn_Hskwakr_Admin_Enqueue    $enqueue
      */
     protected $enqueue;
 
@@ -67,7 +67,7 @@ class Albamn_Hskwakr_Admin
      * Include the following files that make up the plugin:
      *
      * - Albamn_Hskwakr_Admin_Menu. Custom menu of admin.
-     * - Albamn_Hskwakr_Admin_Enqueues. Specific enqueue of admin.
+     * - Albamn_Hskwakr_Admin_Enqueue. Specific enqueue of admin.
      *
      * Create an instans of pages.
      *
