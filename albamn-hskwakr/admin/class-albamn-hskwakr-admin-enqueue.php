@@ -54,24 +54,26 @@ class Albamn_Hskwakr_Admin_Enqueue
      * Register the stylesheets for the admin area.
      *
      * @since    1.0.0
+     * @return   array     a list of class Albamn_Hskwakr_Admin_Enqueue_Style.
      */
-    public function styles(): void
+    public function styles(): array
     {
-        wp_enqueue_style(
-            $this->albamn_hskwakr,
-            plugin_dir_url(__FILE__) . 'css/albamn-hskwakr-admin.css',
-            array(),
-            $this->version,
-            'all'
-        );
-
-        // bootstrap
-        wp_enqueue_style(
-            $this->albamn_hskwakr . '-bootstrap-css',
-            plugin_dir_url(__FILE__) . 'css/bootstrap.min.css',
-            array(),
-            $this->version,
-            'all'
+        return array(
+            new Albamn_Hskwakr_Admin_Enqueue_Style(
+                $this->albamn_hskwakr,
+                plugin_dir_url(__FILE__) . 'css/albamn-hskwakr-admin.css',
+                array(),
+                $this->version,
+                'all'
+            ),
+            // bootstrap
+            new Albamn_Hskwakr_Admin_Enqueue_Style(
+                $this->albamn_hskwakr . '-bootstrap-css',
+                plugin_dir_url(__FILE__) . 'css/bootstrap.min.css',
+                array(),
+                $this->version,
+                'all'
+            ),
         );
     }
 
@@ -79,24 +81,169 @@ class Albamn_Hskwakr_Admin_Enqueue
      * Register the JavaScript for the admin area.
      *
      * @since    1.0.0
+     * @return   array     a list of class Albamn_Hskwakr_Admin_Enqueue_Script.
      */
-    public function scripts(): void
+    public function scripts(): array
     {
-        wp_enqueue_script(
-            $this->albamn_hskwakr,
-            plugin_dir_url(__FILE__) . 'js/albamn-hskwakr-admin.js',
-            array('jquery'),
-            $this->version,
-            false
+        return array(
+            new Albamn_Hskwakr_Admin_Enqueue_Script(
+                $this->albamn_hskwakr,
+                plugin_dir_url(__FILE__) . 'js/albamn-hskwakr-admin.js',
+                array('jquery'),
+                $this->version,
+                false
+            ),
+            // bootstrap
+            new Albamn_Hskwakr_Admin_Enqueue_Script(
+                $this->albamn_hskwakr . '-bootstrap-js',
+                plugin_dir_url(__FILE__) . 'js/bootstrap.min.js',
+                array('jquery'),
+                $this->version,
+                false
+            ),
         );
+    }
+}
 
-        // bootstrap
-        wp_enqueue_script(
-            $this->albamn_hskwakr . '-bootstrap-js',
-            plugin_dir_url(__FILE__) . 'js/bootstrap.min.js',
-            array('jquery'),
-            $this->version,
-            false
-        );
+/**
+ * The style enqueue.
+ *
+ * @package    Albamn_Hskwakr
+ * @subpackage Albamn_Hskwakr/admin
+ * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
+ */
+class Albamn_Hskwakr_Admin_Enqueue_Style
+{
+    /**
+     * Name of the stylesheet. Should be unique.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string    $handle
+     */
+    public $handle;
+
+    /**
+     * Full URL of the stylesheet, or path of the stylesheet
+     * relative to the WordPress root directory.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string    $src
+     */
+    public $src;
+
+    /**
+     * An array of registered stylesheet
+     * handles this stylesheet depends on.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string[]    $deps
+     */
+    public $deps;
+
+    /**
+     * String specifying stylesheet version number.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string    $ver
+     */
+    public $ver;
+
+    /**
+     * The media for which this stylesheet has been defined.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string    $media
+     */
+    public $media;
+
+    public function __construct(
+        string $handle,
+        string $src,
+        array  $deps,
+        string $ver,
+        string $media
+    ) {
+        $this->handle = $handle;
+        $this->src    = $src;
+        $this->deps   = $deps;
+        $this->ver    = $ver;
+        $this->media  = $media;
+    }
+}
+
+/**
+ * The script enqueue.
+ *
+ * @package    Albamn_Hskwakr
+ * @subpackage Albamn_Hskwakr/admin
+ * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
+ */
+class Albamn_Hskwakr_Admin_Enqueue_Script
+{
+    /**
+     * Name of the stylesheet. Should be unique.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string    $handle
+     */
+    public $handle;
+
+    /**
+     * Full URL of the stylesheet, or path of the stylesheet
+     * relative to the WordPress root directory.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string    $src
+     */
+    public $src;
+
+    /**
+     * An array of registered stylesheet
+     * handles this stylesheet depends on.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string[]    $deps
+     */
+    public $deps;
+
+    /**
+     * String specifying stylesheet version number.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      string    $ver
+     */
+    public $ver;
+
+    /**
+     * Whether to enqueue the script
+     * before </body> instead of in the <head>.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      bool    $footer
+     */
+    public $footer;
+
+    public function __construct(
+        string $handle,
+        string $src,
+        array  $deps,
+        string $ver,
+        bool   $footer
+    ) {
+        $this->handle = $handle;
+        $this->src    = $src;
+        $this->deps   = $deps;
+        $this->ver    = $ver;
+        $this->footer = $footer;
     }
 }

@@ -99,7 +99,15 @@ class Albamn_Hskwakr_Admin
      */
     public function enqueue_styles(): void
     {
-        $this->enqueue->styles();
+        foreach ($this->enqueue->styles() as $s) {
+            wp_enqueue_style(
+                $s->handle,
+                $s->src,
+                $s->deps,
+                $s->ver,
+                $s->media
+            );
+        }
     }
 
     /**
@@ -109,7 +117,15 @@ class Albamn_Hskwakr_Admin
      */
     public function enqueue_scripts(): void
     {
-        $this->enqueue->scripts();
+        foreach ($this->enqueue->scripts() as $s) {
+            wp_enqueue_script(
+                $s->handle,
+                $s->src,
+                $s->deps,
+                $s->ver,
+                $s->footer
+            );
+        }
     }
 
     /**
