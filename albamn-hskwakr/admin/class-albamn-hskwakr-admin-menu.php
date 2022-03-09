@@ -32,7 +32,6 @@ class Albamn_Hskwakr_Admin_Menu
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Admin_Pages    $pages
      */
     public function __construct()
     {
@@ -43,7 +42,6 @@ class Albamn_Hskwakr_Admin_Menu
      * The base of admin submenus.
      *
      * @since    1.0.0
-     * @param    string    $parent    the parent slug.
      * @return   Albamn_Hskwakr_Admin_Menu_Base
      */
     public function base(): Albamn_Hskwakr_Admin_Menu_Base
@@ -63,7 +61,6 @@ class Albamn_Hskwakr_Admin_Menu
      * The admin submenus
      *
      * @since    1.0.0
-     * @param    string    $parent    the parent slug.
      * @return   array     a list of class Albamn_Hskwakr_Admin_Menu_Sub.
      */
     public function sub(): array
