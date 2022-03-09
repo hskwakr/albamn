@@ -139,7 +139,7 @@ class Albamn_Hskwakr_Admin_Enqueue_Style
      *
      * @since    1.0.0
      * @access   public
-     * @var      string[]    $deps
+     * @var      array    $deps
      */
     public $deps;
 
@@ -210,7 +210,7 @@ class Albamn_Hskwakr_Admin_Enqueue_Script
      *
      * @since    1.0.0
      * @access   public
-     * @var      string[]    $deps
+     * @var      array    $deps
      */
     public $deps;
 
