@@ -153,13 +153,25 @@ class Albamn_Hskwakr
     {
         $plugin_admin = new Albamn_Hskwakr_Admin($this->get_albamn_hskwakr(), $this->get_version());
 
-        // enqueue
+        /**
+         * Enqueue
+         *
+         * Register css/js
+         */
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue');
 
-        // menu
+        /**
+         * Menu
+         *
+         * Register menu for admin page
+         */
         $this->loader->add_action('admin_menu', $plugin_admin, 'admin_menu');
 
-        // settings
+        /**
+         * Settings
+         *
+         * Register settings for the plugin
+         */
         $this->loader->add_action('admin_init', $plugin_admin, 'register_settings');
     }
 
