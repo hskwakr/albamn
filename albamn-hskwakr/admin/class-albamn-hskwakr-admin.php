@@ -153,7 +153,7 @@ class Albamn_Hskwakr_Admin
         );
 
         /**
-         * Base menu
+         * Sub menu
          *
          * @var Albamn_Hskwakr_Admin_Menu_Sub
          */
