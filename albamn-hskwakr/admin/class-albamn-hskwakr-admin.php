@@ -59,6 +59,7 @@ class Albamn_Hskwakr_Admin
      *
      * - Albamn_Hskwakr_Admin_Menu. Custom menu of admin.
      * - Albamn_Hskwakr_Admin_Enqueue. Specific enqueue of admin.
+     * - Albamn_Hskwakr_Admin_Setting. Settings of admin.
      *
      * Create an instans of pages.
      *
@@ -76,6 +77,11 @@ class Albamn_Hskwakr_Admin
          * The class responsible for admin enqueue.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-enqueue.php';
+
+        /**
+         * The class responsible for admin setting.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-setting.php';
     }
 
     /**
@@ -160,6 +166,38 @@ class Albamn_Hskwakr_Admin
                 $s->menu_slug,
                 $s->callback
             );
+        }
+    }
+
+    /**
+     * Register settings for the plugin.
+     *
+     * @since    1.0.0
+     */
+    public function register_settings(): void
+    {
+        $setting = new Albamn_Hskwakr_Admin_Setting(
+            $this->albamn_hskwakr,
+            $this->version
+        );
+
+        /**
+         * Get a list of option groups
+         *
+         * @var Albamn_Hskwakr_Admin_Setting_Option
+         */
+        foreach ($setting->get_options() as $option) {
+            /**
+             * Get a list of setting names for a option group
+             *
+             * @var string
+             */
+            foreach ($option->group as $v) {
+                /**
+                 * Register the setting
+                 */
+                register_setting($option->name, $v);
+            }
         }
     }
 }
