@@ -156,8 +156,11 @@ class Albamn_Hskwakr
         // enqueue
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue');
 
-        // admin menu
+        // menu
         $this->loader->add_action('admin_menu', $plugin_admin, 'admin_menu');
+
+        // settings
+        $this->loader->add_action('admin_init', $plugin_admin, 'register_settings');
     }
 
     /**
