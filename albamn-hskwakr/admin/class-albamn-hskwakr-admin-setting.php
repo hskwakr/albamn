@@ -58,18 +58,24 @@ class Albamn_Hskwakr_Admin_Setting
      */
     public function get_options(): array
     {
-        /**
-         * General settings
-         */
-        $general = new Albamn_Hskwakr_Admin_Setting_Option(
+        return array(
+            $this->general(),
+        );
+    }
+
+    /**
+     * Return general setting option
+     *
+     * @since    1.0.0
+     * @return   Albamn_Hskwakr_Admin_Setting_Option
+     */
+    public function general(): Albamn_Hskwakr_Admin_Setting_Option
+    {
+        return new Albamn_Hskwakr_Admin_Setting_Option(
             $this->albamn_hskwakr . '-general',
             array(
                 'fb_api_token'
             )
-        );
-
-        return array(
-            $general,
         );
     }
 }

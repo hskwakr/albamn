@@ -41,4 +41,18 @@ class Albamn_Hskwakr_Admin_Setting_Test extends WP_UnitTestCase
             );
         }
     }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_general()
+    {
+        $setting = new Albamn_Hskwakr_Admin_Setting('', '');
+        $o = $setting->general();
+
+        $this->assertContainsOnly(
+            'string',
+            $o->group
+        );
+    }
 }
