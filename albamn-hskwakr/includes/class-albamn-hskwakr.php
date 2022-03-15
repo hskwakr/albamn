@@ -165,7 +165,7 @@ class Albamn_Hskwakr
          *
          * Register menu for admin page
          */
-        $this->loader->add_action('admin_menu', $plugin_admin, 'admin_menu');
+        $this->loader->add_action('admin_menu', $plugin_admin, 'menu');
 
         /**
          * Settings
