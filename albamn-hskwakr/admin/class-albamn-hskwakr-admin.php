@@ -55,14 +55,6 @@ class Albamn_Hskwakr_Admin
     /**
      * Load the required dependencies for this plugin.
      *
-     * Include the following files that make up the plugin:
-     *
-     * - Albamn_Hskwakr_Admin_Menu. Custom menu of admin.
-     * - Albamn_Hskwakr_Admin_Enqueue. Specific enqueue of admin.
-     * - Albamn_Hskwakr_Admin_Setting. Settings of admin.
-     *
-     * Create an instans of pages.
-     *
      * @since    1.0.0
      * @access   private
      */
@@ -82,6 +74,10 @@ class Albamn_Hskwakr_Admin
          * The class responsible for admin setting.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-setting.php';
+
+        /**
+         * Create instaces.
+         */
     }
 
     /**
