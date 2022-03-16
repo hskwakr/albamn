@@ -128,7 +128,7 @@ class Albamn_Hskwakr_Admin
      *
      * @since    1.0.0
      */
-    public function admin_menu(): void
+    public function menu(): void
     {
         $admin_menu = new Albamn_Hskwakr_Admin_Menu();
 
