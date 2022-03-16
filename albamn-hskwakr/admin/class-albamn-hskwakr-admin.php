@@ -130,14 +130,14 @@ class Albamn_Hskwakr_Admin
      */
     public function menu(): void
     {
-        $admin_menu = new Albamn_Hskwakr_Admin_Menu();
+        $menu = new Albamn_Hskwakr_Admin_Menu();
 
         /**
          * Base menu
          *
          * @var Albamn_Hskwakr_Admin_Menu_Base
          */
-        $b = $admin_menu->base();
+        $b = $menu->base();
         add_menu_page(
             $b->page_title,
             $b->menu_title,
@@ -153,7 +153,7 @@ class Albamn_Hskwakr_Admin
          *
          * @var Albamn_Hskwakr_Admin_Menu_Sub
          */
-        foreach ($admin_menu->sub() as $s) {
+        foreach ($menu->sub() as $s) {
             add_submenu_page(
                 $s->base,
                 $s->page_title,
