@@ -61,6 +61,11 @@ class Albamn_Hskwakr_Admin
     private function load_dependencies(): void
     {
         /**
+         * The interface responsible for admin displayable.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/interface-albamn-hskwakr-admin-displayable.php';
+
+        /**
          * The class responsible for admin custom menu.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-menu.php';
@@ -74,6 +79,11 @@ class Albamn_Hskwakr_Admin
          * The class responsible for admin setting.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-setting.php';
+
+        /**
+         * The class responsible for admin setting.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-setting-pager.php';
 
         /**
          * Create instaces.
@@ -130,7 +140,8 @@ class Albamn_Hskwakr_Admin
      */
     public function menu(): void
     {
-        $menu = new Albamn_Hskwakr_Admin_Menu();
+        $settings_pager = new Albamn_Hskwakr_Admin_Setting_Pager($this->albamn_hskwakr, $this->version);
+        $menu = new Albamn_Hskwakr_Admin_Menu($settings_pager);
 
         /**
          * Base menu

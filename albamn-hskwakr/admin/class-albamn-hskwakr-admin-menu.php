@@ -29,13 +29,25 @@ class Albamn_Hskwakr_Admin_Menu
     protected $slug;
 
     /**
-     * Initialize the class and set its properties.
+     * The pager for general settings page.
      *
      * @since    1.0.0
+     * @access   protected
+     * @var      Albamn_Hskwakr_Admin_Displayable   $settings_pager
      */
-    public function __construct()
-    {
+    protected $settings_pager;
+
+    /**
+     * Initialize the class and set its properties.
+     *
+     * @param    Albamn_Hskwakr_Admin_Displayable   $settings_pager
+     * @since    1.0.0
+     */
+    public function __construct(
+        Albamn_Hskwakr_Admin_Displayable $settings_pager
+    ) {
         $this->slug = 'albamn-hskwakr-general-settings.php';
+        $this->settings_pager = $settings_pager;
     }
 
     /**
@@ -92,7 +104,7 @@ class Albamn_Hskwakr_Admin_Menu
      */
     public function general_settings(): void
     {
-        require_once 'partials/albamn-hskwakr-admin-display.php';
+        $this->settings_pager->display();
     }
 
     /**
