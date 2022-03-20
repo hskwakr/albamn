@@ -76,12 +76,12 @@ class Albamn_Hskwakr_Admin
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-enqueue.php';
 
         /**
-         * The class responsible for admin setting.
+         * The class responsible for admin settings.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-setting.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-settings.php';
 
         /**
-         * The class responsible for admin setting.
+         * The class responsible for admin setting pager.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-setting-pager.php';
 
@@ -183,7 +183,7 @@ class Albamn_Hskwakr_Admin
      */
     public function settings(): void
     {
-        $setting = new Albamn_Hskwakr_Admin_Setting(
+        $setting = new Albamn_Hskwakr_Admin_Settings(
             $this->albamn_hskwakr,
             $this->version
         );

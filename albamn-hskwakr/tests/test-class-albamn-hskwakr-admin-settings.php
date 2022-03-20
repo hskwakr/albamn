@@ -16,15 +16,15 @@
  * @subpackage Albamn_Hskwakr/tests
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Setting_Test extends WP_UnitTestCase
+class Albamn_Hskwakr_Admin_Settings_Test extends WP_UnitTestCase
 {
     /**
      * Check the return has correct structure.
      */
     public function test_get_options()
     {
-        $setting = new Albamn_Hskwakr_Admin_Setting('', '');
-        $o = $setting->get_options();
+        $settings = new Albamn_Hskwakr_Admin_Settings('', '');
+        $o = $settings->get_options();
 
         $this->assertContainsOnlyInstancesOf(
             Albamn_Hskwakr_Admin_Setting_Option::class,
@@ -47,8 +47,8 @@ class Albamn_Hskwakr_Admin_Setting_Test extends WP_UnitTestCase
      */
     public function test_general()
     {
-        $setting = new Albamn_Hskwakr_Admin_Setting('', '');
-        $o = $setting->general();
+        $settings = new Albamn_Hskwakr_Admin_Settings('', '');
+        $o = $settings->general();
 
         $this->assertContainsOnly(
             'string',
