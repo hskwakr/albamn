@@ -181,7 +181,7 @@ class Albamn_Hskwakr_Admin
      *
      * @since    1.0.0
      */
-    public function register_settings(): void
+    public function settings(): void
     {
         $setting = new Albamn_Hskwakr_Admin_Setting(
             $this->albamn_hskwakr,
