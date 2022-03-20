@@ -172,7 +172,7 @@ class Albamn_Hskwakr
          *
          * Register settings for the plugin
          */
-        $this->loader->add_action('admin_init', $plugin_admin, 'register_settings');
+        $this->loader->add_action('admin_init', $plugin_admin, 'settings');
     }
 
     /**
