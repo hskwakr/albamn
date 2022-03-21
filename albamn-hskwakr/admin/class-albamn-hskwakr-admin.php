@@ -38,6 +38,15 @@ class Albamn_Hskwakr_Admin
     private $version;
 
     /**
+     * The settings for the plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Admin_Settings    $settings
+     */
+    private $settings;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -88,6 +97,10 @@ class Albamn_Hskwakr_Admin
         /**
          * Create instaces.
          */
+        $this->settings = new Albamn_Hskwakr_Admin_Settings(
+            $this->albamn_hskwakr,
+            $this->version
+        );
     }
 
     /**
@@ -140,7 +153,7 @@ class Albamn_Hskwakr_Admin
      */
     public function menu(): void
     {
-        $settings_pager = new Albamn_Hskwakr_Admin_Setting_Pager($this->albamn_hskwakr, $this->version);
+        $settings_pager = new Albamn_Hskwakr_Admin_Setting_Pager($this->settings);
         $menu = new Albamn_Hskwakr_Admin_Menu($settings_pager);
 
         /**
@@ -183,17 +196,12 @@ class Albamn_Hskwakr_Admin
      */
     public function settings(): void
     {
-        $setting = new Albamn_Hskwakr_Admin_Settings(
-            $this->albamn_hskwakr,
-            $this->version
-        );
-
         /**
          * Get a list of option groups
          *
          * @var Albamn_Hskwakr_Admin_Setting_Option
          */
-        foreach ($setting->get_options() as $option) {
+        foreach ($this->settings->get_options() as $option) {
             /**
              * Get a list of setting names for a option group
              *

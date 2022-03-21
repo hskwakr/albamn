@@ -20,34 +20,23 @@
 class Albamn_Hskwakr_Admin_Setting_Pager implements Albamn_Hskwakr_Admin_Displayable
 {
     /**
-     * The ID of this plugin.
+     * The settings for the plugin
      *
      * @since    1.0.0
      * @access   private
-     * @var      string    $albamn_hskwakr    The ID of this plugin.
+     * @var      Albamn_Hskwakr_Admin_Settings    $settings
      */
-    private $albamn_hskwakr;
-
-    /**
-     * The version of this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $version    The current version of this plugin.
-     */
-    private $version;
+    private $settings;
 
     /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    string    $albamn_hskwakr    The name of the plugin.
-     * @param    string    $version           The version of this plugin.
+     * @param    Albamn_Hskwakr_Admin_Settings    $albamn_hskwakr
      */
-    public function __construct($albamn_hskwakr, $version)
+    public function __construct(Albamn_Hskwakr_Admin_Settings $settings)
     {
-        $this->albamn_hskwakr = $albamn_hskwakr;
-        $this->version = $version;
+        $this->settings = $settings;
     }
 
     /**
