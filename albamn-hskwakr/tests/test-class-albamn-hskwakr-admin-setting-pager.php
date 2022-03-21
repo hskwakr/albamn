@@ -18,15 +18,21 @@
  */
 class Albamn_Hskwakr_Admin_Setting_Pager_Test extends WP_UnitTestCase
 {
+    private $pager;
+
+    public function setUp()
+    {
+        $settings = $this->createMock(Albamn_Hskwakr_Admin_Settings::class);
+        $this->pager = new Albamn_Hskwakr_Admin_Setting_Pager($settings);
+    }
+
     /**
      * Check the output has the necessary components.
      */
     public function test_display_header()
     {
-        $pager = new Albamn_Hskwakr_Admin_Setting_Pager('', '');
-
         $this->expectOutputRegex('<form.*>');
-        $pager->display_header();
+        $this->pager->display_header();
     }
 
     /**
@@ -34,9 +40,7 @@ class Albamn_Hskwakr_Admin_Setting_Pager_Test extends WP_UnitTestCase
      */
     public function test_display_footer()
     {
-        $pager = new Albamn_Hskwakr_Admin_Setting_Pager('', '');
-
         $this->expectOutputRegex('</form>');
-        $pager->display_footer();
+        $this->pager->display_footer();
     }
 }
