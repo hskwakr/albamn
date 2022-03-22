@@ -110,7 +110,7 @@ class Albamn_Hskwakr_Admin
          * The class responsible for admin setting pager.
          */
         require_once $path
-          . 'class-albamn-hskwakr-admin-setting-pager.php';
+          . 'view/class-albamn-hskwakr-admin-setting-pager.php';
 
         /**
          * Create instaces.
