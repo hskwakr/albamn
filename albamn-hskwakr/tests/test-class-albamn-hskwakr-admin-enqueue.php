@@ -18,13 +18,20 @@
  */
 class Albamn_Hskwakr_Admin_Enqueue_Test extends WP_UnitTestCase
 {
+    private $enqueue;
+    private $url;
+
+    public function setUp()
+    {
+        $this->enqueue = new Albamn_Hskwakr_Admin_Enqueue('', '');
+        $this->url = '';
+    }
     /**
      * Check the return has correct structure.
      */
     public function test_styles()
     {
-        $enqueue = new Albamn_Hskwakr_Admin_Enqueue('', '');
-        $s = $enqueue->styles();
+        $s = $this->enqueue->styles($this->url);
 
         $this->assertContainsOnlyInstancesOf(
             Albamn_Hskwakr_Admin_Enqueue_Style::class,
@@ -37,8 +44,7 @@ class Albamn_Hskwakr_Admin_Enqueue_Test extends WP_UnitTestCase
      */
     public function test_scripts()
     {
-        $enqueue = new Albamn_Hskwakr_Admin_Enqueue('', '');
-        $s = $enqueue->scripts();
+        $s = $this->enqueue->scripts($this->url);
 
         $this->assertContainsOnlyInstancesOf(
             Albamn_Hskwakr_Admin_Enqueue_Script::class,
