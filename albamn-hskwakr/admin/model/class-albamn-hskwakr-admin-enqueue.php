@@ -54,14 +54,15 @@ class Albamn_Hskwakr_Admin_Enqueue
      * Register the stylesheets for the admin area.
      *
      * @since    1.0.0
+     * @param    string    $url
      * @return   array     a list of class Albamn_Hskwakr_Admin_Enqueue_Style.
      */
-    public function styles(): array
+    public function styles($url): array
     {
         return array(
             new Albamn_Hskwakr_Admin_Enqueue_Style(
                 $this->albamn_hskwakr,
-                plugin_dir_url(__FILE__) . 'css/albamn-hskwakr-admin.css',
+                $url . 'css/albamn-hskwakr-admin.css',
                 array(),
                 $this->version,
                 'all'
@@ -69,7 +70,7 @@ class Albamn_Hskwakr_Admin_Enqueue
             // bootstrap
             new Albamn_Hskwakr_Admin_Enqueue_Style(
                 $this->albamn_hskwakr . '-bootstrap-css',
-                plugin_dir_url(__FILE__) . 'css/bootstrap.min.css',
+                $url . 'css/bootstrap.min.css',
                 array(),
                 $this->version,
                 'all'
@@ -81,14 +82,15 @@ class Albamn_Hskwakr_Admin_Enqueue
      * Register the JavaScript for the admin area.
      *
      * @since    1.0.0
+     * @param    string    $url
      * @return   array     a list of class Albamn_Hskwakr_Admin_Enqueue_Script.
      */
-    public function scripts(): array
+    public function scripts($url): array
     {
         return array(
             new Albamn_Hskwakr_Admin_Enqueue_Script(
                 $this->albamn_hskwakr,
-                plugin_dir_url(__FILE__) . 'js/albamn-hskwakr-admin.js',
+                $url . 'js/albamn-hskwakr-admin.js',
                 array('jquery'),
                 $this->version,
                 false
@@ -96,7 +98,7 @@ class Albamn_Hskwakr_Admin_Enqueue
             // bootstrap
             new Albamn_Hskwakr_Admin_Enqueue_Script(
                 $this->albamn_hskwakr . '-bootstrap-js',
-                plugin_dir_url(__FILE__) . 'js/bootstrap.min.js',
+                $url . 'js/bootstrap.min.js',
                 array('jquery'),
                 $this->version,
                 false

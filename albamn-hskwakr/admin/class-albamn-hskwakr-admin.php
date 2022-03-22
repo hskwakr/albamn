@@ -88,19 +88,19 @@ class Albamn_Hskwakr_Admin
          * The class responsible for admin custom menu.
          */
         require_once $path
-          . 'class-albamn-hskwakr-admin-menu.php';
+          . 'model/class-albamn-hskwakr-admin-menu.php';
 
         /**
          * The class responsible for admin enqueue.
          */
         require_once $path
-          . 'class-albamn-hskwakr-admin-enqueue.php';
+          . 'model/class-albamn-hskwakr-admin-enqueue.php';
 
         /**
          * The class responsible for admin settings.
          */
         require_once $path
-          . 'class-albamn-hskwakr-admin-settings.php';
+          . 'model/class-albamn-hskwakr-admin-settings.php';
 
         /**
          * View
@@ -132,13 +132,14 @@ class Albamn_Hskwakr_Admin
             $this->albamn_hskwakr,
             $this->version
         );
+        $url = (string)plugin_dir_url(__FILE__);
 
         /**
          * Style
          *
          * @var Albamn_Hskwakr_Admin_Enqueue_Style
          */
-        foreach ($enqueue->styles() as $s) {
+        foreach ($enqueue->styles($url) as $s) {
             wp_enqueue_style(
                 $s->handle,
                 $s->src,
@@ -153,7 +154,7 @@ class Albamn_Hskwakr_Admin
          *
          * @var Albamn_Hskwakr_Admin_Enqueue_Script
          */
-        foreach ($enqueue->scripts() as $s) {
+        foreach ($enqueue->scripts($url) as $s) {
             wp_enqueue_script(
                 $s->handle,
                 $s->src,
