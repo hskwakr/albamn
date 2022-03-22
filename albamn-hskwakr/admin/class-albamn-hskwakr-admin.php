@@ -70,29 +70,47 @@ class Albamn_Hskwakr_Admin
     private function load_dependencies(): void
     {
         /**
+         * Location of admin folder in the plugin
+         */
+        $path = plugin_dir_path(dirname(__FILE__)) . 'admin/';
+
+        /**
          * The interface responsible for admin displayable.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/interface-albamn-hskwakr-admin-displayable.php';
+        require_once $path
+          . 'interface-albamn-hskwakr-admin-displayable.php';
+
+        /**
+         * Model
+         */
 
         /**
          * The class responsible for admin custom menu.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-menu.php';
+        require_once $path
+          . 'class-albamn-hskwakr-admin-menu.php';
 
         /**
          * The class responsible for admin enqueue.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-enqueue.php';
+        require_once $path
+          . 'class-albamn-hskwakr-admin-enqueue.php';
 
         /**
          * The class responsible for admin settings.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-settings.php';
+        require_once $path
+          . 'class-albamn-hskwakr-admin-settings.php';
+
+        /**
+         * View
+         */
 
         /**
          * The class responsible for admin setting pager.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin-setting-pager.php';
+        require_once $path
+          . 'class-albamn-hskwakr-admin-setting-pager.php';
 
         /**
          * Create instaces.
