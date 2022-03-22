@@ -100,17 +100,44 @@ EOF;
 
     /**
      * Display a options
+     *
+     * The function contains Wordpress API
      */
     public function display_options(): void
     {
+        $general = $this->settings->general();
+
+        settings_fields($general->name);
+        do_settings_sections($general->name);
+        $group = $general->group;
+
+        $this->display_input($group[0], "Facebook Graph API Access Token", "Your Facebook Access Token");
+    }
+
+    /**
+     * Display a input tag with label
+     *
+     * The function contains Wordpress API
+     *
+     * @param   string    $name         the name of option.
+     * @param   string    $label        the label to describe the option.
+     * @param   string    $placeholder  the message when input is empty.
+     */
+    public function display_input(
+        string $name,
+        string $label,
+        string $placeholder = ""
+    ): void {
+        $value = get_option($name);
+
         echo <<< EOF
 
       <div class="col-sm-4">
-        <label>Facebook Graph API Access Token</label>
+        <label for="{$name}">{$label}</label>
       </div>
 
       <div class="col-sm-4">
-        <input type="text" class="form-control" />
+        <input type="text" class="form-control" id="{$name}" name="{$name}" value="{$value}" placeholder="{$placeholder}" />
       </div>
 
 EOF;
