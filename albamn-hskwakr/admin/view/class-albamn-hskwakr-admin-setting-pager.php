@@ -111,7 +111,7 @@ EOF;
         do_settings_sections($general->name);
         $group = $general->group;
 
-        $this->display_input($group[0], "Facebook Graph API Access Token", "Your Facebook Access Token");
+        $this->display_input((string)$group[0], "Facebook Graph API Access Token", "Your Facebook Access Token");
     }
 
     /**
@@ -128,7 +128,7 @@ EOF;
         string $label,
         string $placeholder = ""
     ): void {
-        $value = get_option($name);
+        $value = (string)get_option($name);
 
         echo <<< EOF
 
