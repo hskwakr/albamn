@@ -112,6 +112,35 @@ class Albamn_Hskwakr_Admin
         require_once $path
           . 'view/class-albamn-hskwakr-admin-setting-pager.php';
 
+
+        /**
+         * Instagram API
+         */
+
+        /**
+         * The class responsible for instagram api.
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig-api.php';
+
+        /**
+         * The client for http access.
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig-http-client.php';
+
+        /**
+         * The query for Instagram API.
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig-api-query.php';
+
+        /**
+         * The context for Instagram API.
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig-api-context.php';
+
         /**
          * Create instaces.
          */
