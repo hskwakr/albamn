@@ -20,16 +20,38 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
 {
     private $http;
     private $query;
+
     private $token = 'token1234';
+    private $pages_id = 'page1234';
+    private $user_id = 'user1234';
+    private $hashtag_name = 'hashtagname1234';
+    private $hashtag_id = 'hashtagid1234';
+    private $media;
+    private $error;
 
     public function setUp()
     {
+        /**
+         * Create mock
+         */
         $this->http = $this->createMock(
             Albamn_Hskwakr_Ig_Http_Client::class
         );
         $this->query = $this->createMock(
             Albamn_Hskwakr_Ig_Query::class
         );
+
+        /**
+         * Init fake values
+         */
+        $this->media = new class () {};
+        $this->media->media_type = 'type1234';
+        $this->media->media_url = 'url1234';
+        $this->media->permalink = 'link1234';
+        $this->media->id = 'id1234';
+
+        $this->error = new class () {};
+        $this->error->message = 'Something wrong';
     }
 
     /**
@@ -37,7 +59,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
      */
     public function test_user_pages_id()
     {
-        $expect = 'page1234';
+        $expect = $this->pages_id;
 
         /**
          * Create fake response
@@ -72,8 +94,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
      */
     public function test_ig_user_id()
     {
-        $page_id = 'page1234';
-        $expect = 'user1234';
+        $expect = $this->user_id;
 
         /**
          * Create fake response
@@ -99,7 +120,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         /**
          * Assert
          */
-        $actual = $ctx->ig_user_id($page_id);
+        $actual = $ctx->ig_user_id($this->pages_id);
         $this->assertSame($expect, $actual);
     }
 
@@ -108,9 +129,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
      */
     public function test_hashtag_id()
     {
-        $user_id = 'user1234';
-        $hashtag = 'hashtagname1234';
-        $expect = 'hashtagid1234';
+        $expect = $this->hashtag_id;
 
         /**
          * Create fake response
@@ -136,7 +155,10 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         /**
          * Assert
          */
-        $actual = $ctx->hashtag_id($user_id, $hashtag);
+        $actual = $ctx->hashtag_id(
+            $this->user_id,
+            $this->hashtag_name
+        );
         $this->assertSame($expect, $actual);
     }
 
@@ -145,14 +167,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
      */
     public function test_medias_recent()
     {
-        $user_id = 'user1234';
-        $hashtag = 'hashtag1234';
-
-        $expect = new class () {};
-        $expect->media_type = 'type1234';
-        $expect->media_url = 'url1234';
-        $expect->permalink = 'link1234';
-        $expect->id = 'id1234';
+        $expect = $this->media;
 
         /**
          * Create fake response
@@ -178,7 +193,10 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         /**
          * Assert
          */
-        $actual = $ctx->medias_recent($user_id, $hashtag);
+        $actual = $ctx->medias_recent(
+            $this->user_id,
+            $this->hashtag_id
+        );
         $this->assertEquals($expect, $actual[0]);
     }
 
@@ -192,8 +210,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
          * Create fake response
          */
         $response = new class () {};
-        $response->error = new class () {};
-        $response->error->message = 'Something wrong';
+        $response->error = $this->error;
 
         /**
          * Set fake response
@@ -226,8 +243,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
          * Create fake response
          */
         $response = new class () {};
-        $response->error = new class () {};
-        $response->error->message = 'Something wrong';
+        $response->error = $this->error;
 
         /**
          * Set fake response
@@ -260,8 +276,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
          * Create fake response
          */
         $response = new class () {};
-        $response->error = new class () {};
-        $response->error->message = 'Something wrong';
+        $response->error = $this->error;
 
         /**
          * Set fake response
@@ -294,8 +309,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
          * Create fake response
          */
         $response = new class () {};
-        $response->error = new class () {};
-        $response->error->message = 'Something wrong';
+        $response->error = $this->error;
 
         /**
          * Set fake response
