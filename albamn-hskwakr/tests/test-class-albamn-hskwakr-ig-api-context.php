@@ -183,9 +183,10 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
     }
 
     /**
-     * Check error handling
+     * Should be error.
+     * Should check error from request.
      */
-    public function test_user_pages_id_error_handling()
+    public function test_user_pages_id_error_from_request()
     {
         /**
          * Create fake response
@@ -216,9 +217,10 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
     }
 
     /**
-     * Check error handling
+     * Should be error.
+     * Should check error from request.
      */
-    public function test_ig_user_id_error_handling()
+    public function test_ig_user_id_error_from_request()
     {
         /**
          * Create fake response
@@ -249,9 +251,10 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
     }
 
     /**
-     * Check error handling
+     * Should be error.
+     * Should check error from request.
      */
-    public function test_hashtag_id_error_handling()
+    public function test_hashtag_id_error_from_request()
     {
         /**
          * Create fake response
@@ -282,9 +285,10 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
     }
 
     /**
-     * Check error handling
+     * Should be error.
+     * Should check error from request.
      */
-    public function test_medias_recent_error_handling()
+    public function test_medias_recent_error_from_request()
     {
         /**
          * Create fake response
