@@ -225,6 +225,16 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
 
         /**
          * Assert wrong case:
+         * id is not string
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0]->id = new class () {};
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
          * does not have id
          */
         $response = new class () {};

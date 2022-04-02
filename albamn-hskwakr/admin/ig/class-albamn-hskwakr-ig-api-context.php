@@ -259,6 +259,9 @@ class Albamn_Hskwakr_Ig_Api_Context
         if (!isset($res->data[0]->id)) {
             return false;
         }
+        if (!is_string($res->data[0]->id)) {
+            return false;
+        }
 
         return true;
     }
