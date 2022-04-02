@@ -233,6 +233,37 @@ class Albamn_Hskwakr_Ig_Api_Context
     }
 
     /**
+     * Validate the response data
+     * from user pages request.
+     *
+     * @since    1.0.0
+     * @param    object     $res        The response data.
+     * @return   bool       true        The data is expected.
+     *                      false       The data is unexpected.
+     */
+    public function validate_user_pages_response(
+        object $res
+    ): bool {
+        if (!isset($res->data)) {
+            return false;
+        }
+        if (!is_array($res->data)) {
+            return false;
+        }
+        if (!isset($res->data[0])) {
+            return false;
+        }
+        if (!is_object($res->data[0])) {
+            return false;
+        }
+        if (!isset($res->data[0]->id)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Error handling
      * Throw exception with error message
      *

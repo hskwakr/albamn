@@ -201,6 +201,65 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
     }
 
     /**
+     * Check the return has correct value.
+     */
+    public function test_validate_user_pages_response()
+    {
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->token
+        );
+
+        /**
+         * Assert proper case:
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0]->id = $this->pages_id;
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertTrue($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have id
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * missing array element
+         */
+        $response = new class () {};
+        $response->data = array();
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * data is not array
+         */
+        $response = new class () {};
+        $response->data = new class () {};
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have data
+         */
+        $response = new class () {};
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+    }
+
+    /**
      * Should be error.
      * Should check error from request.
      */
