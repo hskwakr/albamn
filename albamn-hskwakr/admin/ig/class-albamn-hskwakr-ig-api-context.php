@@ -267,6 +267,34 @@ class Albamn_Hskwakr_Ig_Api_Context
     }
 
     /**
+     * Validate the response data
+     * from ig user request.
+     *
+     * @since    1.0.0
+     * @param    object     $res        The response data.
+     * @return   bool       true        The data is expected.
+     *                      false       The data is unexpected.
+     */
+    public function validate_ig_user_response(
+        object $res
+    ): bool {
+        if (!isset($res->instagram_business_account)) {
+            return false;
+        }
+        if (!is_object($res->instagram_business_account)) {
+            return false;
+        }
+        if (!isset($res->instagram_business_account->id)) {
+            return false;
+        }
+        if (!is_string($res->instagram_business_account->id)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Error handling
      * Throw exception with error message
      *
