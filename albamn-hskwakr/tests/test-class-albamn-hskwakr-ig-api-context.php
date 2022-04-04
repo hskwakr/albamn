@@ -201,6 +201,275 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
     }
 
     /**
+     * Check the return has correct value.
+     */
+    public function test_validate_user_pages_response()
+    {
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->token
+        );
+
+        /**
+         * Assert proper case:
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0]->id = $this->pages_id;
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertTrue($actual);
+
+        /**
+         * Assert wrong case:
+         * id is not string
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0]->id = new class () {};
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have id
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * missing array element
+         */
+        $response = new class () {};
+        $response->data = array();
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * data is not array
+         */
+        $response = new class () {};
+        $response->data = new class () {};
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have data
+         */
+        $response = new class () {};
+        $actual = $ctx->validate_user_pages_response($response);
+        $this->assertFalse($actual);
+    }
+
+    /**
+     * Check the return has correct value.
+     */
+    public function test_validate_ig_user_response()
+    {
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->token
+        );
+
+        /**
+         * Assert proper case:
+         */
+        $response = new class () {};
+        $response->instagram_business_account = new class () {};
+        $response->instagram_business_account->id = $this->user_id;
+        $actual = $ctx->validate_ig_user_response($response);
+        $this->assertTrue($actual);
+
+        /**
+         * Assert wrong case:
+         * id is not string
+         */
+        $response = new class () {};
+        $response->instagram_business_account = new class () {};
+        $response->instagram_business_account->id = new class () {};
+        $actual = $ctx->validate_ig_user_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have id
+         */
+        $response = new class () {};
+        $response->instagram_business_account = new class () {};
+        $actual = $ctx->validate_ig_user_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * instagram_business_account is not object
+         */
+        $response = new class () {};
+        $response->instagram_business_account = '';
+        $actual = $ctx->validate_ig_user_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have instagram_business_account
+         */
+        $response = new class () {};
+        $actual = $ctx->validate_ig_user_response($response);
+        $this->assertFalse($actual);
+    }
+
+    /**
+     * Check the return has correct value.
+     */
+    public function test_validate_search_hashtag_response()
+    {
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->token
+        );
+
+        /**
+         * Assert proper case:
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0]->id = $this->pages_id;
+        $actual = $ctx->validate_search_hashtag_response($response);
+        $this->assertTrue($actual);
+
+        /**
+         * Assert wrong case:
+         * id is not string
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0]->id = new class () {};
+        $actual = $ctx->validate_search_hashtag_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have id
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $actual = $ctx->validate_search_hashtag_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * missing array element
+         */
+        $response = new class () {};
+        $response->data = array();
+        $actual = $ctx->validate_search_hashtag_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * data is not array
+         */
+        $response = new class () {};
+        $response->data = new class () {};
+        $actual = $ctx->validate_search_hashtag_response($response);
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have data
+         */
+        $response = new class () {};
+        $actual = $ctx->validate_search_hashtag_response($response);
+        $this->assertFalse($actual);
+    }
+
+    /**
+     * Check the return has correct value.
+     */
+    public function test_validate_recent_medias_by_hashtag_response()
+    {
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->token
+        );
+
+        /**
+         * Assert proper case:
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0] = $this->media;
+        $actual = $ctx->validate_recent_medias_by_hashtag_response(
+            $response
+        );
+        $this->assertTrue($actual);
+
+        /**
+         * Assert wrong case:
+         * media_type is not string
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0] = $this->media;
+        $response->data[0]->media_type = new class () {};
+        $actual = $ctx->validate_recent_medias_by_hashtag_response(
+            $response
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have media_type
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $actual = $ctx->validate_recent_medias_by_hashtag_response(
+            $response
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * data is not array
+         */
+        $response = new class () {};
+        $response->data = new class () {};
+        $actual = $ctx->validate_recent_medias_by_hashtag_response(
+            $response
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * does not have data
+         */
+        $response = new class () {};
+        $actual = $ctx->validate_recent_medias_by_hashtag_response(
+            $response
+        );
+        $this->assertFalse($actual);
+    }
+
+    /**
      * Should be error.
      * Should check error from request.
      */
