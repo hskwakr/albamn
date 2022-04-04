@@ -329,6 +329,40 @@ class Albamn_Hskwakr_Ig_Api_Context
     }
 
     /**
+     * Validate the response data
+     * from recent medias by hashtag request.
+     *
+     * @since    1.0.0
+     * @param    object     $res        The response data.
+     * @return   bool       true        The data is expected.
+     *                      false       The data is unexpected.
+     */
+    public function validate_recent_medias_by_hashtag_response(
+        object $res
+    ): bool {
+        if (!isset($res->data)) {
+            return false;
+        }
+        if (!is_array($res->data)) {
+            return false;
+        }
+        if (!isset($res->data[0])) {
+            return false;
+        }
+        if (!is_object($res->data[0])) {
+            return false;
+        }
+        if (!isset($res->data[0]->media_type)) {
+            return false;
+        }
+        if (!is_string($res->data[0]->media_type)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Error handling
      * Throw exception with error message
      *
