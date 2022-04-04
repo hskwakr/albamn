@@ -47,6 +47,15 @@ class Albamn_Hskwakr_Ig_Api_Context
     private $query;
 
     /**
+     * The validation for response from Instagram API
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Api_Response_Validation    $validation
+     */
+    private $validation;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -57,10 +66,12 @@ class Albamn_Hskwakr_Ig_Api_Context
     public function __construct(
         Albamn_Hskwakr_Ig_Http_Client $http,
         Albamn_Hskwakr_Ig_Query $query,
+        Albamn_Hskwakr_Ig_Api_Response_Validation $validation,
         string $token
     ) {
         $this->http = $http;
         $this->query = $query;
+        $this->validation = $validation;
         $this->access_token = $token;
     }
 

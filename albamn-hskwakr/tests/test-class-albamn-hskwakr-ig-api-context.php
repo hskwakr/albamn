@@ -20,6 +20,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
 {
     private $http;
     private $query;
+    private $validation;
 
     private $token = 'token1234';
     private $pages_id = 'page1234';
@@ -39,6 +40,9 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         );
         $this->query = $this->createMock(
             Albamn_Hskwakr_Ig_Query::class
+        );
+        $this->validation = $this->createMock(
+            Albamn_Hskwakr_Ig_Api_Response_Validation::class
         );
 
         /**
@@ -79,6 +83,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         $ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $this->http,
             $this->query,
+            $this->validation,
             $this->token
         );
 
@@ -114,6 +119,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         $ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $this->http,
             $this->query,
+            $this->validation,
             $this->token
         );
 
@@ -149,6 +155,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         $ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $this->http,
             $this->query,
+            $this->validation,
             $this->token
         );
 
@@ -187,6 +194,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         $ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $this->http,
             $this->query,
+            $this->validation,
             $this->token
         );
 
@@ -223,6 +231,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         $ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $this->http,
             $this->query,
+            $this->validation,
             $this->token
         );
 
@@ -256,6 +265,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         $ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $this->http,
             $this->query,
+            $this->validation,
             $this->token
         );
 
@@ -289,6 +299,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         $ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $this->http,
             $this->query,
+            $this->validation,
             $this->token
         );
 
@@ -322,6 +333,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         $ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $this->http,
             $this->query,
+            $this->validation,
             $this->token
         );
 
