@@ -136,6 +136,12 @@ class Albamn_Hskwakr_Admin
           . 'ig/class-albamn-hskwakr-ig-api-query.php';
 
         /**
+         * The validation for response from Instagram API.
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig-api-response-validation.php';
+
+        /**
          * The context for Instagram API.
          */
         require_once $path
