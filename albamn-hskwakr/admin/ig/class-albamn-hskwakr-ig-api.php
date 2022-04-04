@@ -86,9 +86,11 @@ class Albamn_Hskwakr_Ig_Api
             $this->fb_api_base,
             $token
         );
+        $validation = new Albamn_Hskwakr_Ig_Api_Response_Validation();
         $this->ctx = new Albamn_Hskwakr_Ig_Api_Context(
             $http,
             $query,
+            $validation,
             $token
         );
     }
