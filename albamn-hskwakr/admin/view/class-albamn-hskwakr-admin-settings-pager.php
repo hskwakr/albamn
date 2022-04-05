@@ -53,7 +53,9 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
         /**
          * Contents
          */
+        $this->display_form_header();
         $this->display_options();
+        $this->display_form_footer();
 
         /**
          * Footer
@@ -73,7 +75,32 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
     Albamn General Settings
   </h3>
 
+EOF;
+    }
+
+    /**
+     * Display header for form
+     */
+    public function display_form_header(): void
+    {
+        echo <<< EOF
+
   <form method="POST" action="options.php">
+
+EOF;
+    }
+
+    /**
+     * Display footer for form
+     */
+    public function display_form_footer(): void
+    {
+        echo <<< EOF
+
+    <button type="submit" class="btn btn-primary col-12">
+      Save
+    </button>
+  </form>
 
 EOF;
     }
@@ -85,10 +112,6 @@ EOF;
     {
         echo <<< EOF
 
-    <button type="submit" class="btn btn-primary col-12">
-      Save
-    </button>
-  </form>
 </div>
 
 EOF;
