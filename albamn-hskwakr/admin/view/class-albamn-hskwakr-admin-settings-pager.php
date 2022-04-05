@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The admin importer pager.
+ * The admin settings pager.
  *
  * @link       https://github.com/hskwakr/albamn
  * @since      1.0.0
@@ -11,13 +11,13 @@
  */
 
 /**
- * The admin importer pager.
+ * The admin settings pager.
  *
  * @package    Albamn_Hskwakr
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displayable
+class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displayable
 {
     /**
      * The settings for the plugin
@@ -70,10 +70,10 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
 
 <div class="container-sm col-sm-8" style="margin: 1rem 0rem 0rem;">
   <h3 style="margin-bottom: 1rem;">
-    Albamn Post Importer
+    Albamn General Settings
   </h3>
 
-  <form method="POST" action="">
+  <form method="POST" action="options.php">
 
 EOF;
     }
@@ -86,7 +86,7 @@ EOF;
         echo <<< EOF
 
     <button type="submit" class="btn btn-primary col-12">
-      Import
+      Save
     </button>
   </form>
 </div>
@@ -101,7 +101,13 @@ EOF;
      */
     public function display_options(): void
     {
-        $this->display_input_text("ig_hashtag", "Hashtag", "Don't need #");
+        $general = $this->settings->general();
+
+        settings_fields($general->name);
+        do_settings_sections($general->name);
+        $group = $general->group;
+
+        $this->display_input_text((string)$group[0], "Access token", "Your Facebook access token");
     }
 
     /**
@@ -118,13 +124,15 @@ EOF;
         string $label,
         string $placeholder = ""
     ): void {
+        $value = (string)get_option($name);
+
         echo <<< EOF
 
     <div class="row mb-3">
       <label class="col-sm-4 col-from-label" for="{$name}">{$label}</label>
 
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="{$name}" name="{$name}" value="" placeholder="{$placeholder}" />
+        <input type="text" class="form-control" id="{$name}" name="{$name}" value="{$value}" placeholder="{$placeholder}" />
       </div>
     </div>
 
