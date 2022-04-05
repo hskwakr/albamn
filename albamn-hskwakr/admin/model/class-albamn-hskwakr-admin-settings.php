@@ -74,7 +74,8 @@ class Albamn_Hskwakr_Admin_Settings
         return new Albamn_Hskwakr_Admin_Setting_Option(
             $this->albamn_hskwakr . '-general',
             array(
-                'fb_api_token'
+                'fb_api_token',
+                'ig_hashtag'
             )
         );
     }
