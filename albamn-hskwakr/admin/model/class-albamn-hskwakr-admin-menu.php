@@ -33,21 +33,21 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Displayable   $settings_pager
+     * @var      Albamn_Hskwakr_Admin_Displayable   $impoter_pager
      */
-    protected $settings_pager;
+    protected $impoter_pager;
 
     /**
      * Initialize the class and set its properties.
      *
-     * @param    Albamn_Hskwakr_Admin_Displayable   $settings_pager
+     * @param    Albamn_Hskwakr_Admin_Displayable   $impoter_pager
      * @since    1.0.0
      */
     public function __construct(
-        Albamn_Hskwakr_Admin_Displayable $settings_pager
+        Albamn_Hskwakr_Admin_Displayable $impoter_pager
     ) {
-        $this->slug = 'albamn-hskwakr-general-settings.php';
-        $this->settings_pager = $settings_pager;
+        $this->slug = 'albamn-hskwakr-post-importer.php';
+        $this->impoter_pager = $impoter_pager;
     }
 
     /**
@@ -59,11 +59,11 @@ class Albamn_Hskwakr_Admin_Menu
     public function base(): Albamn_Hskwakr_Admin_Menu_Base
     {
         return new Albamn_Hskwakr_Admin_Menu_Base(
-            'Albamn General Settings',
+            'Albamn Post Importer',
             'Albamn',
             'manage_options',
             $this->slug,
-            array($this, 'general_settings'),
+            array($this, 'post_importer'),
             'dashicons-tickets',
             250
         );
@@ -80,19 +80,19 @@ class Albamn_Hskwakr_Admin_Menu
         return array(
             new Albamn_Hskwakr_Admin_Menu_Sub(
                 $this->slug,
-                'Albamn General Settings',
-                'Settings',
+                'Albamn Post Importer',
+                'Importer',
                 'manage_options',
                 $this->slug,
-                array($this, 'general_settings')
+                array($this, 'post_importer'),
             ),
             new Albamn_Hskwakr_Admin_Menu_Sub(
                 $this->slug,
-                'Albamn Instagram Importer',
-                'Importer',
+                'Albamn Post Editor',
+                'Editor',
                 'manage_options',
-                'albamn-hskwakr-instagram-importer.php',
-                array($this, 'instagram_importer')
+                'albamn-hskwakr-post-editor.php',
+                array($this, 'post_editor')
             ),
         );
     }
@@ -102,9 +102,9 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      */
-    public function general_settings(): void
+    public function post_importer(): void
     {
-        $this->settings_pager->display();
+        $this->impoter_pager->display();
     }
 
     /**
@@ -112,7 +112,7 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      */
-    public function instagram_importer(): void
+    public function post_editor(): void
     {
     }
 }

@@ -110,7 +110,7 @@ class Albamn_Hskwakr_Admin
          * The class responsible for admin setting pager.
          */
         require_once $path
-          . 'view/class-albamn-hskwakr-admin-setting-pager.php';
+          . 'view/class-albamn-hskwakr-admin-importer-pager.php';
 
 
         /**
@@ -207,8 +207,10 @@ class Albamn_Hskwakr_Admin
      */
     public function menu(): void
     {
-        $settings_pager = new Albamn_Hskwakr_Admin_Setting_Pager($this->settings);
-        $menu = new Albamn_Hskwakr_Admin_Menu($settings_pager);
+        $importer = new Albamn_Hskwakr_Admin_Importer_Pager(
+            $this->settings
+        );
+        $menu = new Albamn_Hskwakr_Admin_Menu($importer);
 
         /**
          * Base menu
