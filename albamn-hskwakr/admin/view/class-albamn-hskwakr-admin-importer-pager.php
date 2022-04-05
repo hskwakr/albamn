@@ -68,13 +68,12 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     {
         echo <<< EOF
 
-<div class="container-sm" style="margin: 1rem 0rem 0rem;">
-  <h2 style="margin-bottom: 1rem;">
+<div class="container-sm col-sm-8" style="margin: 1rem 0rem 0rem;">
+  <h3 style="margin-bottom: 1rem;">
     Albamn Post Importer
-  </h2>
+  </h3>
 
   <form method="POST" action="options.php">
-    <div class="row">
 
 EOF;
     }
@@ -86,13 +85,9 @@ EOF;
     {
         echo <<< EOF
 
-    </div>
-
-    <div style="margin-top: 1rem;">
-      <button type="submit" class="btn btn-primary btn-sm">
-        Import
-      </button>
-    </div>
+    <button type="submit" class="btn btn-primary col-12">
+      Import
+    </button>
   </form>
 </div>
 
@@ -113,7 +108,7 @@ EOF;
         $group = $general->group;
 
         $this->display_input_text((string)$group[0], "Access token", "Your Facebook access token");
-        //$this->display_input_text((string)$group[1], "Hashtag", "Don't need #");
+        $this->display_input_text((string)$group[1], "Hashtag", "Don't need #");
     }
 
     /**
@@ -134,13 +129,13 @@ EOF;
 
         echo <<< EOF
 
-      <div class="col-sm-4">
-        <label for="{$name}">{$label}</label>
-      </div>
+    <div class="row mb-3">
+      <label class="col-sm-4 col-from-label" for="{$name}">{$label}</label>
 
-      <div class="col-sm-4">
+      <div class="col-sm-8">
         <input type="text" class="form-control" id="{$name}" name="{$name}" value="{$value}" placeholder="{$placeholder}" />
       </div>
+    </div>
 
 EOF;
     }
