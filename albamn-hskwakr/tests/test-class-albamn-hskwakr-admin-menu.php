@@ -22,7 +22,9 @@ class Albamn_Hskwakr_Admin_Menu_Test extends WP_UnitTestCase
 
     public function setUp()
     {
-        $pager = $this->createMock(Albamn_Hskwakr_Admin_Setting_Pager::class);
+        $pager = $this->createMock(
+            Albamn_Hskwakr_Admin_Importer_Pager::class
+        );
         $this->menu = new Albamn_Hskwakr_Admin_Menu($pager);
     }
 

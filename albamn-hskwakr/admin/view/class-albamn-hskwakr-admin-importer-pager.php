@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The admin setting pager.
+ * The admin importer pager.
  *
  * @link       https://github.com/hskwakr/albamn
  * @since      1.0.0
@@ -11,13 +11,13 @@
  */
 
 /**
- * The admin setting pager.
+ * The admin importer pager.
  *
  * @package    Albamn_Hskwakr
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Setting_Pager implements Albamn_Hskwakr_Admin_Displayable
+class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displayable
 {
     /**
      * The settings for the plugin
@@ -34,8 +34,9 @@ class Albamn_Hskwakr_Admin_Setting_Pager implements Albamn_Hskwakr_Admin_Display
      * @since    1.0.0
      * @param    Albamn_Hskwakr_Admin_Settings    $albamn_hskwakr
      */
-    public function __construct(Albamn_Hskwakr_Admin_Settings $settings)
-    {
+    public function __construct(
+        Albamn_Hskwakr_Admin_Settings $settings
+    ) {
         $this->settings = $settings;
     }
 
@@ -69,7 +70,7 @@ class Albamn_Hskwakr_Admin_Setting_Pager implements Albamn_Hskwakr_Admin_Display
 
 <div class="container-sm" style="margin: 1rem 0rem 0rem;">
   <h2 style="margin-bottom: 1rem;">
-    Albamn General Settings
+    Albamn Post Importer
   </h2>
 
   <form method="POST" action="options.php">
@@ -89,7 +90,7 @@ EOF;
 
     <div style="margin-top: 1rem;">
       <button type="submit" class="btn btn-primary btn-sm">
-        Save
+        Import
       </button>
     </div>
   </form>
@@ -111,7 +112,8 @@ EOF;
         do_settings_sections($general->name);
         $group = $general->group;
 
-        $this->display_input((string)$group[0], "Facebook Graph API Access Token", "Your Facebook Access Token");
+        $this->display_input_text((string)$group[0], "Access token", "Your Facebook access token");
+        //$this->display_input_text((string)$group[1], "Hashtag", "Don't need #");
     }
 
     /**
@@ -123,7 +125,7 @@ EOF;
      * @param   string    $label        the label to describe the option.
      * @param   string    $placeholder  the message when input is empty.
      */
-    public function display_input(
+    public function display_input_text(
         string $name,
         string $label,
         string $placeholder = ""
