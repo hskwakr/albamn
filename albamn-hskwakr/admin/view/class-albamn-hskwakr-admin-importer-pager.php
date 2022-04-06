@@ -108,7 +108,7 @@ EOF;
     {
         return <<< EOF
 
-    <button type="submit" class="btn btn-primary col-12">
+    <button type="submit" class="btn btn-danger col-12">
       Import
     </button>
   </form>
