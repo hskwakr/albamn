@@ -42,36 +42,56 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
 
     /**
      * Display settings page
+     *
+     * @since    1.0.0
      */
     public function display(): void
     {
         /**
          * Header
          */
-        $this->display_header();
+        echo $this->display_header();
 
         /**
          * Contents
          */
-        $this->display_options();
+        echo $this->display_form_header();
+        echo $this->display_options();
+        echo $this->display_form_footer();
 
         /**
          * Footer
          */
-        $this->display_footer();
+        echo $this->display_footer();
     }
 
     /**
-     * Display header
+     * The html to display header
+     *
+     * @since    1.0.0
+     * @return   string     The html
      */
-    public function display_header(): void
+    public function display_header(): string
     {
-        echo <<< EOF
+        return <<< EOF
 
 <div class="container-sm col-sm-8" style="margin: 1rem 0rem 0rem;">
   <h3 style="margin-bottom: 1rem;">
     Albamn Post Importer
   </h3>
+
+EOF;
+    }
+
+    /**
+     * The html to display header for form
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_form_header(): string
+    {
+        return <<< EOF
 
   <form method="POST" action="">
 
@@ -79,46 +99,70 @@ EOF;
     }
 
     /**
-     * Display footer
+     * The html to display footer for form
+     *
+     * @since    1.0.0
+     * @return   string     The html
      */
-    public function display_footer(): void
+    public function display_form_footer(): string
     {
-        echo <<< EOF
+        return <<< EOF
 
-    <button type="submit" class="btn btn-primary col-12">
+    <button type="submit" class="btn btn-danger col-12">
       Import
     </button>
   </form>
+
+EOF;
+    }
+
+    /**
+     * The html to display footer
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_footer(): string
+    {
+        return <<< EOF
+
 </div>
 
 EOF;
     }
 
     /**
-     * Display a options
+     * The html to display a options
      *
-     * The function contains Wordpress API
+     * @since    1.0.0
+     * @return   string     The html
      */
-    public function display_options(): void
+    public function display_options(): string
     {
-        $this->display_input_text("ig_hashtag", "Hashtag", "Don't need #");
+        $r = '';
+        $r = $r . $this->display_input_text(
+            "ig_hashtag",
+            "Hashtag",
+            "Don't need #"
+        );
+        return $r;
     }
 
     /**
-     * Display a input tag with label
+     * The html to display a input tag with label
      *
-     * The function contains Wordpress API
-     *
+     * @since    1.0.0
      * @param   string    $name         the name of option.
      * @param   string    $label        the label to describe the option.
      * @param   string    $placeholder  the message when input is empty.
+     * @return   string     The html
      */
     public function display_input_text(
         string $name,
         string $label,
         string $placeholder = ""
-    ): void {
-        echo <<< EOF
+    ): string {
+        return <<< EOF
 
     <div class="row mb-3">
       <label class="col-sm-4 col-from-label" for="{$name}">{$label}</label>
