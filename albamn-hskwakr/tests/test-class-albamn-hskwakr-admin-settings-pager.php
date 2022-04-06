@@ -31,6 +31,19 @@ class Albamn_Hskwakr_Admin_Settings_Pager_Test extends WP_UnitTestCase
     /**
      * Check the output has the necessary components.
      */
+    public function test_display_header()
+    {
+        $pattern = '<div.*class=".*container.*>';
+        $subject = $this->pager->display_header();
+
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
+    }
+
+    /**
+     * Check the output has the necessary components.
+     */
     public function test_display_form_header()
     {
         $pattern = '<form.*>';
