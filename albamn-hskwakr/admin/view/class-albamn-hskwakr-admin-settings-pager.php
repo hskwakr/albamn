@@ -160,9 +160,11 @@ EOF;
      * The html to display a input tag with label
      * The function contains Wordpress API
      *
+     * @since    1.0.0
      * @param   string    $name         the name of option.
      * @param   string    $label        the label to describe the option.
      * @param   string    $placeholder  the message when input is empty.
+     * @return   string     The html
      */
     public function display_input_text(
         string $name,
