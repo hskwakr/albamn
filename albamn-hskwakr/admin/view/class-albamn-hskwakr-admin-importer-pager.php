@@ -152,10 +152,10 @@ EOF;
      * The html to display a input tag with label
      *
      * @since    1.0.0
-     * @param   string    $name         the name of option.
-     * @param   string    $label        the label to describe the option.
-     * @param   string    $placeholder  the message when input is empty.
-     * @return   string     The html
+     * @param    string    $name         the name of option.
+     * @param    string    $label        the label to describe the option.
+     * @param    string    $placeholder  the message when input is empty.
+     * @return   string    The html
      */
     public function display_input_text(
         string $name,
@@ -171,6 +171,24 @@ EOF;
         <input type="text" class="form-control" id="{$name}" name="{$name}" value="" placeholder="{$placeholder}" />
       </div>
     </div>
+
+EOF;
+    }
+    /**
+     * The html to display a input tag with label
+     *
+     * @since    1.0.0
+     * @param    string    $name         the name of input.
+     * @param    string    $value        the value of input
+     * @return   string    The html
+     */
+    public function display_input_hidden(
+        string $name,
+        string $value
+    ): string {
+        return <<< EOF
+
+        <input type="hidden" name="{$name}" value="{$value}">
 
 EOF;
     }
