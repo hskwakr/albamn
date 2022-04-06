@@ -48,6 +48,13 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     public function display(): void
     {
         /**
+         * Check POST data from this page
+         */
+        if (!empty($_POST['ig_hashtag'])) {
+            $ig_hashtag = $_POST['ig_hashtag'];
+        }
+
+        /**
          * Header
          */
         echo $this->display_header();
