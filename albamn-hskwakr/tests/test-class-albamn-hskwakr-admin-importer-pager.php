@@ -22,25 +22,37 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
 
     public function setUp()
     {
-        $settings = $this->createMock(Albamn_Hskwakr_Admin_Settings::class);
-        $this->pager = new Albamn_Hskwakr_Admin_Importer_Pager($settings);
+        $settings = $this->createMock(
+            Albamn_Hskwakr_Admin_Settings::class
+        );
+        $this->pager = new Albamn_Hskwakr_Admin_Importer_Pager(
+            $settings
+        );
     }
 
     /**
      * Check the output has the necessary components.
      */
-    public function test_display_header()
+    public function test_display_form_header()
     {
-        $this->expectOutputRegex('<form.*>');
-        $this->pager->display();
+        $pattern = '<form.*>';
+        $subject = $this->pager->display_form_header();
+
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
     }
 
     /**
      * Check the output has the necessary components.
      */
-    public function test_display_footer()
+    public function test_display_form_footer()
     {
-        $this->expectOutputRegex('</form>');
-        $this->pager->display();
+        $pattern  = '</form>';
+        $subject  = $this->pager->display_form_footer();
+
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
     }
 }
