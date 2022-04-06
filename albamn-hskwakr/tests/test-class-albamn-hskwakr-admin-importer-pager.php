@@ -32,7 +32,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
     public function test_display_header()
     {
         $this->expectOutputRegex('<form.*>');
-        $this->pager->display_header();
+        $this->pager->display();
     }
 
     /**
@@ -41,6 +41,6 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
     public function test_display_footer()
     {
         $this->expectOutputRegex('</form>');
-        $this->pager->display_footer();
+        $this->pager->display();
     }
 }

@@ -31,18 +31,26 @@ class Albamn_Hskwakr_Admin_Settings_Pager_Test extends WP_UnitTestCase
     /**
      * Check the output has the necessary components.
      */
-    public function test_display_header()
+    public function test_display_form_header()
     {
-        $this->expectOutputRegex('<form.*>');
-        $this->pager->display_header();
+        $pattern = '<form.*>';
+        $subject = $this->pager->display_form_header();
+
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
     }
 
     /**
      * Check the output has the necessary components.
      */
-    public function test_display_footer()
+    public function test_display_form_footer()
     {
-        $this->expectOutputRegex('</form>');
-        $this->pager->display_footer();
+        $pattern  = '</form>';
+        $subject  = $this->pager->display_form_footer();
+
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
     }
 }
