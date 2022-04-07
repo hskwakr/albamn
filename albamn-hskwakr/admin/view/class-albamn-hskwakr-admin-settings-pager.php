@@ -32,7 +32,7 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Admin_Settings    $albamn_hskwakr
+     * @param    Albamn_Hskwakr_Admin_Settings    $settings
      */
     public function __construct(
         Albamn_Hskwakr_Admin_Settings $settings

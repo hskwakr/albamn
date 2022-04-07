@@ -32,7 +32,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Admin_Settings    $albamn_hskwakr
+     * @param    Albamn_Hskwakr_Admin_Settings    $settings
      */
     public function __construct(
         Albamn_Hskwakr_Admin_Settings $settings
@@ -41,7 +41,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     }
 
     /**
-     * Display settings page
+     * Display importer page
      *
      * @since    1.0.0
      */
@@ -50,6 +50,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         /**
          * Header
          */
+        $status = $this->init();
         echo $this->display_header();
 
         /**
@@ -59,10 +60,74 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         echo $this->display_options();
         echo $this->display_form_footer();
 
+        if ($status == 0) {
+            /**
+             * Get posts with Instagram API
+             */
+        } elseif ($status == 2) {
+            echo $this->display_warning('Access token required');
+        }
+
         /**
          * Footer
          */
         echo $this->display_footer();
+    }
+
+    /**
+     * The preparation for display the page
+     *
+     * Check status to import post
+     * If ready to import,
+     * set nessary values to import
+     *
+     * @since    1.0.0
+     * @return   int        The status
+     *                      0 : ready to import posts
+     *                      1 : need to set hashtag name
+     *                      2 : need to set access token
+     */
+    public function init(): int
+    {
+        /**
+         * Check POST data from this page
+         */
+        if (empty($_POST['ig_hashtag'])) {
+            return 1;
+        }
+        $ig_hashtag = (string)$_POST['ig_hashtag'];
+
+        /**
+         * Get access token from option
+         */
+        $access_token = $this->get_access_token();
+        if (empty($access_token)) {
+            return 2;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get Facebook API access token
+     * from option in wordpress DB
+     *
+     * @since    1.0.0
+     * @return   string     The access token
+     */
+    public function get_access_token(): string
+    {
+        $general = $this->settings->general();
+        settings_fields($general->name);
+        do_settings_sections($general->name);
+
+        $group = $general->group;
+        $token = (string)get_option(
+            (string)$group[0],
+            ''
+        );
+
+        return $token;
     }
 
     /**
@@ -79,6 +144,39 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
   <h3 style="margin-bottom: 1rem;">
     Albamn Post Importer
   </h3>
+
+EOF;
+    }
+
+    /**
+     * The html to display footer
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_footer(): string
+    {
+        return <<< EOF
+
+</div>
+
+EOF;
+    }
+
+    /**
+     * The html to display warning
+     *
+     * @since    1.0.0
+     * @param    string    $msg          the message.
+     * @return   string    The html
+     */
+    public function display_warning($msg): string
+    {
+        return <<< EOF
+
+  <div class="alert alert-warning mt-2" role="alert">
+    $msg
+  </div>
 
 EOF;
     }
@@ -117,21 +215,6 @@ EOF;
     }
 
     /**
-     * The html to display footer
-     *
-     * @since    1.0.0
-     * @return   string     The html
-     */
-    public function display_footer(): string
-    {
-        return <<< EOF
-
-</div>
-
-EOF;
-    }
-
-    /**
      * The html to display a options
      *
      * @since    1.0.0
@@ -152,10 +235,10 @@ EOF;
      * The html to display a input tag with label
      *
      * @since    1.0.0
-     * @param   string    $name         the name of option.
-     * @param   string    $label        the label to describe the option.
-     * @param   string    $placeholder  the message when input is empty.
-     * @return   string     The html
+     * @param    string    $name         the name of option.
+     * @param    string    $label        the label to describe the option.
+     * @param    string    $placeholder  the message when input is empty.
+     * @return   string    The html
      */
     public function display_input_text(
         string $name,
@@ -171,6 +254,25 @@ EOF;
         <input type="text" class="form-control" id="{$name}" name="{$name}" value="" placeholder="{$placeholder}" />
       </div>
     </div>
+
+EOF;
+    }
+
+    /**
+     * The html to display a input tag with label
+     *
+     * @since    1.0.0
+     * @param    string    $name         the name of input.
+     * @param    string    $value        the value of input
+     * @return   string    The html
+     */
+    public function display_input_hidden(
+        string $name,
+        string $value
+    ): string {
+        return <<< EOF
+
+        <input type="hidden" name="{$name}" value="{$value}">
 
 EOF;
     }
