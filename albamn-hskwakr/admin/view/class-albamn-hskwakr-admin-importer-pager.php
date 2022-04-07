@@ -56,13 +56,17 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         /**
          * Contents
          */
-        if ($status == 2) {
-            echo 'Need access token';
-        }
-
         echo $this->display_form_header();
         echo $this->display_options();
         echo $this->display_form_footer();
+
+        if ($status == 0) {
+            /**
+             * Get posts with Instagram API
+             */
+        } elseif ($status == 2) {
+            echo $this->display_warning('Access token required');
+        }
 
         /**
          * Footer
@@ -155,6 +159,24 @@ EOF;
         return <<< EOF
 
 </div>
+
+EOF;
+    }
+
+    /**
+     * The html to display warning
+     *
+     * @since    1.0.0
+     * @param    string    $msg          the message.
+     * @return   string    The html
+     */
+    public function display_warning($msg): string
+    {
+        return <<< EOF
+
+  <div class="alert alert-warning mt-2" role="alert">
+    $msg
+  </div>
 
 EOF;
     }
