@@ -48,20 +48,18 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     public function display(): void
     {
         /**
-         * Check POST data from this page
-         */
-        if (!empty($_POST['ig_hashtag'])) {
-            $ig_hashtag = $_POST['ig_hashtag'];
-        }
-
-        /**
          * Header
          */
+        $status = $this->init();
         echo $this->display_header();
 
         /**
          * Contents
          */
+        if ($status == 2) {
+            echo 'Need access token';
+        }
+
         echo $this->display_form_header();
         echo $this->display_options();
         echo $this->display_form_footer();
@@ -70,6 +68,62 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
          * Footer
          */
         echo $this->display_footer();
+    }
+
+    /**
+     * The preparation for display the page
+     *
+     * Check status to import post
+     * If ready to import,
+     * set nessary values to import
+     *
+     * @since    1.0.0
+     * @return   int        The status
+     *                      0 : ready to import posts
+     *                      1 : need to set hashtag name
+     *                      2 : need to set access token
+     */
+    public function init(): int
+    {
+        /**
+         * Check POST data from this page
+         */
+        if (empty($_POST['ig_hashtag'])) {
+            return 1;
+        }
+        $ig_hashtag = (string)$_POST['ig_hashtag'];
+
+        /**
+         * Get access token from option
+         */
+        $access_token = $this->get_access_token();
+        if (empty($access_token)) {
+            return 2;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get Facebook API access token
+     * from option in wordpress DB
+     *
+     * @since    1.0.0
+     * @return   string     The access token
+     */
+    public function get_access_token(): string
+    {
+        $general = $this->settings->general();
+        settings_fields($general->name);
+        do_settings_sections($general->name);
+
+        $group = $general->group;
+        $token = (string)get_option(
+            (string)$group[0],
+            ''
+        );
+
+        return $token;
     }
 
     /**
