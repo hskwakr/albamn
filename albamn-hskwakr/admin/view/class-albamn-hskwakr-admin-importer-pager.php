@@ -145,6 +145,21 @@ EOF;
     }
 
     /**
+     * The html to display footer
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_footer(): string
+    {
+        return <<< EOF
+
+</div>
+
+EOF;
+    }
+
+    /**
      * The html to display header for form
      *
      * @since    1.0.0
@@ -173,21 +188,6 @@ EOF;
       Import
     </button>
   </form>
-
-EOF;
-    }
-
-    /**
-     * The html to display footer
-     *
-     * @since    1.0.0
-     * @return   string     The html
-     */
-    public function display_footer(): string
-    {
-        return <<< EOF
-
-</div>
 
 EOF;
     }
@@ -235,6 +235,7 @@ EOF;
 
 EOF;
     }
+
     /**
      * The html to display a input tag with label
      *
