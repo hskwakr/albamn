@@ -51,12 +51,12 @@ class Albamn_Hskwakr_Admin_Settings
     }
 
     /**
-     * Return a list of settings
+     * Get a list of option groups
      *
      * @since    1.0.0
-     * @return   array    list of Albamn_Hskwakr_Admin_Setting_Option
+     * @return   array    The list of Albamn_Hskwakr_Admin_Settings_Option_Group
      */
-    public function get_options(): array
+    public function get_option_groups(): array
     {
         return array(
             $this->general(),
@@ -64,14 +64,14 @@ class Albamn_Hskwakr_Admin_Settings
     }
 
     /**
-     * Return general setting option
+     * Return general option group
      *
      * @since    1.0.0
-     * @return   Albamn_Hskwakr_Admin_Setting_Option
+     * @return   Albamn_Hskwakr_Admin_Settings_Option_Group
      */
-    public function general(): Albamn_Hskwakr_Admin_Setting_Option
-    {
-        return new Albamn_Hskwakr_Admin_Setting_Option(
+    public function general(
+    ): Albamn_Hskwakr_Admin_Settings_Option_Group {
+        return new Albamn_Hskwakr_Admin_Settings_Option_Group(
             $this->albamn_hskwakr . '-general',
             array(
                 'fb_api_token'
@@ -87,7 +87,7 @@ class Albamn_Hskwakr_Admin_Settings
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Setting_Option
+class Albamn_Hskwakr_Admin_Settings_Option_Group
 {
     /**
      * A settings group name.
@@ -99,19 +99,19 @@ class Albamn_Hskwakr_Admin_Setting_Option
     public $name;
 
     /**
-     * The list of names of an option to sanitize and save.
+     * The list of names for option to sanitize and save.
      *
      * @since    1.0.0
      * @access   public
-     * @var      array    $group
+     * @var      array    $options
      */
-    public $group;
+    public $options;
 
     public function __construct(
         string $name,
-        array  $group
+        array  $options
     ) {
         $this->name  = $name;
-        $this->group = $group;
+        $this->options = $options;
     }
 }

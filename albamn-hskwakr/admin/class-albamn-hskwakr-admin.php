@@ -269,17 +269,19 @@ class Albamn_Hskwakr_Admin
          *
          * @var Albamn_Hskwakr_Admin_Setting_Option
          */
-        foreach ($this->settings->get_options() as $option) {
+        foreach (
+            $this->settings->get_option_groups() as $og
+        ) {
             /**
-             * Get a list of setting names for a option group
+             * Get option names in each option groups
              *
              * @var string
              */
-            foreach ($option->group as $v) {
+            foreach ($og->options as $v) {
                 /**
                  * Register the setting
                  */
-                register_setting($option->name, $v);
+                register_setting($og->name, $v);
             }
         }
     }

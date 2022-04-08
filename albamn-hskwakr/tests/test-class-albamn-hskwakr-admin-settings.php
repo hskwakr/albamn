@@ -21,13 +21,13 @@ class Albamn_Hskwakr_Admin_Settings_Test extends WP_UnitTestCase
     /**
      * Check the return has correct structure.
      */
-    public function test_get_options()
+    public function test_get_option_groups()
     {
         $settings = new Albamn_Hskwakr_Admin_Settings('', '');
-        $o = $settings->get_options();
+        $o = $settings->get_option_groups();
 
         $this->assertContainsOnlyInstancesOf(
-            Albamn_Hskwakr_Admin_Setting_Option::class,
+            Albamn_Hskwakr_Admin_Settings_Option_Group::class,
             $o
         );
 
@@ -37,7 +37,7 @@ class Albamn_Hskwakr_Admin_Settings_Test extends WP_UnitTestCase
         foreach ($o as $v) {
             $this->assertContainsOnly(
                 'string',
-                $v->group
+                $v->options
             );
         }
     }
@@ -52,7 +52,7 @@ class Albamn_Hskwakr_Admin_Settings_Test extends WP_UnitTestCase
 
         $this->assertContainsOnly(
             'string',
-            $o->group
+            $o->options
         );
     }
 }
