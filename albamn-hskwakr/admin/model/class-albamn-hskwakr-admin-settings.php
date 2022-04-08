@@ -64,6 +64,30 @@ class Albamn_Hskwakr_Admin_Settings
     }
 
     /**
+     * Get the value of the option
+     *
+     * This method contains Wordpress API
+     *
+     * @since    1.0.0
+     * @param    string    $name        The name of the option.
+     * @param    string    $default     The default value if the option does not exist.
+     * @param    string    $group       The settings group name.
+     * @return   mixed     The value of option
+     */
+    public function get_option($name, $default, $group = '')
+    {
+        if (!empty($group)) {
+            settings_fields($group);
+            do_settings_sections($group);
+        }
+
+        return get_option(
+            $name,
+            $default
+        );
+    }
+
+    /**
      * Return general option group
      *
      * @since    1.0.0
