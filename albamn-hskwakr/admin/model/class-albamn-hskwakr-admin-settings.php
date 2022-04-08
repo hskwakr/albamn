@@ -70,7 +70,7 @@ class Albamn_Hskwakr_Admin_Settings
      *
      * @since    1.0.0
      * @param    string    $name        The name of the option.
-     * @param    string    $default     The default value if the option does not exist.
+     * @param    mixed     $default     The default value if the option does not exist.
      * @param    string    $group       The settings group name.
      * @return   mixed     The value of option
      */
