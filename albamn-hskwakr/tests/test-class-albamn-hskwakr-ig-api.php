@@ -55,34 +55,18 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
     public function test_init()
     {
         /**
-         * Set up mock
-         */
-        $this->ctx
-             ->method('user_pages_id')
-             ->willReturn($this->pages_id);
-        $this->ctx
-             ->method('ig_user_id')
-             ->willReturn($this->user_id);
-
-        /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api($this->token);
-        $api = $api->set_context($this->ctx);
+        $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
          */
-        $actual = $api->init();
+        $actual = $api->init($this->token)->get_context();
+        $this->assertNotNull($actual);
 
-        $this->assertSame(
-            $this->pages_id,
-            $actual->pages_id
-        );
-        $this->assertSame(
-            $this->user_id,
-            $actual->user_id
-        );
+        $actual = $api->init($this->ctx)->get_context();
+        $this->assertNotNull($actual);
     }
 
     /**
@@ -109,15 +93,22 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api($this->token);
-        $api = $api->set_context($this->ctx);
+        $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
          */
-        $actual = $api->init()
+        $actual = $api->init($this->ctx)
                       ->search_hashtag($this->hashtag_name);
 
+        $this->assertSame(
+            $this->pages_id,
+            $actual->pages_id
+        );
+        $this->assertSame(
+            $this->user_id,
+            $actual->user_id
+        );
         $this->assertSame(
             $this->hashtag_id,
             $actual->hashtag_id
@@ -135,26 +126,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
     public function test_search_hashtag_should_after_init()
     {
         /**
-         * Set up mock
-         */
-        $this->ctx
-             ->method('user_pages_id')
-             ->willReturn($this->pages_id);
-        $this->ctx
-             ->method('ig_user_id')
-             ->willReturn($this->user_id);
-        $this->ctx
-             ->method('hashtag_id')
-             ->willReturn($this->hashtag_id);
-        $this->ctx
-             ->method('medias_recent')
-             ->willReturn($this->medias);
-
-        /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api($this->token);
-        $api = $api->set_context($this->ctx);
+        $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
@@ -167,7 +141,45 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
      * Should be error.
      * Should catch error from context class.
      */
-    public function test_init_error_handle_user_pages_id()
+    public function test_init_error_handle_argument_type()
+    {
+        /**
+         * Prepare to test
+         */
+        $api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Assert
+         */
+        $arg = 0;
+        $this->expectException(Exception::class);
+        $actual = $api->init($arg);
+    }
+
+    /**
+     * Should be error.
+     * Should catch error from context class.
+     */
+    public function test_init_error_handle_object_type()
+    {
+        /**
+         * Prepare to test
+         */
+        $api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Assert
+         */
+        $arg = new class () {};
+        $this->expectException(Exception::class);
+        $actual = $api->init($arg);
+    }
+
+    /**
+     * Should be error.
+     * Should catch error from context class.
+     */
+    public function test_search_hashtag_error_handle_user_pages_id()
     {
         /**
          * Set up mock
@@ -179,25 +191,27 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api($this->token);
-        $api = $api->set_context($this->ctx);
+        $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
          */
         $this->expectException(Exception::class);
-        $api->init();
+        $api->init($this->ctx)->search_hashtag($this->hashtag_name);
     }
 
     /**
      * Should be error.
      * Should catch error from context class.
      */
-    public function test_init_error_handle_ig_user_id()
+    public function test_search_hashtag_error_handle_ig_user_id()
     {
         /**
          * Set up mock
          */
+        $this->ctx
+             ->method('user_pages_id')
+             ->willReturn($this->pages_id);
         $this->ctx
              ->method('ig_user_id')
              ->will($this->throwException(new Exception()));
@@ -205,14 +219,13 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api($this->token);
-        $api = $api->set_context($this->ctx);
+        $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
          */
         $this->expectException(Exception::class);
-        $api->init();
+        $api->init($this->ctx)->search_hashtag($this->hashtag_name);
     }
 
     /**
@@ -237,14 +250,13 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api($this->token);
-        $api = $api->set_context($this->ctx);
+        $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
          */
         $this->expectException(Exception::class);
-        $api->init()->search_hashtag($this->hashtag_name);
+        $api->init($this->ctx)->search_hashtag($this->hashtag_name);
     }
 
     /**
@@ -272,13 +284,12 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api($this->token);
-        $api = $api->set_context($this->ctx);
+        $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
          */
         $this->expectException(Exception::class);
-        $api->init()->search_hashtag($this->hashtag_name);
+        $api->init($this->ctx)->search_hashtag($this->hashtag_name);
     }
 }

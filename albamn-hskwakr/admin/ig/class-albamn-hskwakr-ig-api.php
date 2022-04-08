@@ -24,7 +24,7 @@ class Albamn_Hskwakr_Ig_Api
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Ig_Api_Context    $ctx
+     * @var      Albamn_Hskwakr_Ig_Api_Context|null    $ctx
      */
     private $ctx;
 
@@ -76,10 +76,57 @@ class Albamn_Hskwakr_Ig_Api
     /**
      * Initialize the class and set its properties.
      *
-     * @since    1.0.0
-     * @param    string                     $token
+     * @since     1.0.0
      */
-    public function __construct(string $token)
+    public function __construct()
+    {
+        $this->ctx = null;
+    }
+
+    /**
+     * Init this class.
+     *
+     * @since     1.0.0
+     * @param     mixed     $arg    The argument should be access token or api context object.
+     * @return    object    The instance of this class
+     */
+    public function init($arg): object
+    {
+        $error = 'Failed to init: ';
+
+        switch (gettype($arg)) {
+            case 'string':
+                $this->init_context($arg);
+                break;
+
+            case 'object':
+                if (
+                  ($arg instanceof Albamn_Hskwakr_Ig_Api_Context)
+                ) {
+                    /**
+                     * @var Albamn_Hskwakr_Ig_Api_Context
+                     */
+                    $this->set_context($arg);
+                } else {
+                    $this->error($error . 'unexpected object type');
+                }
+                break;
+
+            default:
+                $this->error($error . 'unexpected argument type');
+                break;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Init this class.
+     *
+     * @since     1.0.0
+     * @param     string    $token
+     */
+    private function init_context(string $token): void
     {
         $http = new Albamn_Hskwakr_Ig_Http_Client();
         $query = new Albamn_Hskwakr_Ig_Query(
@@ -97,26 +144,47 @@ class Albamn_Hskwakr_Ig_Api
 
     /**
      * Set a context of instagram api.
-     * This function is for test mostly.
-     * This function should be called before calling any methods.
      *
+     * @since     1.0.0
      * @param     Albamn_Hskwakr_Ig_Api_Context    $ctx
-     * @return    object    The instance of this class
      */
-    public function set_context(
+    private function set_context(
         Albamn_Hskwakr_Ig_Api_Context $ctx
-    ): object {
+    ): void {
         $this->ctx = $ctx;
-        return $this;
     }
 
     /**
-     * Init facebook graph api.
+     * Get the context object for Instagram API
+     * This method is for test
      *
+     * @since     1.0.0
+     * @return    Albamn_Hskwakr_Ig_Api_Context|null    The context object.
+     */
+    public function get_context()
+    {
+        return $this->ctx;
+    }
+
+    /**
+     * Search recent medias by a name of hashtag in instagram.
+     * And store the result of medias in array.
+     *
+     * @since     1.0.0
+     * @param     string    $name
      * @return    object    The instance of this class
      */
-    public function init(): object
+    public function search_hashtag(string $name): object
     {
+        /**
+         * the method should be called after init
+         */
+        if (empty($this->ctx)) {
+            throw new Exception(
+                'The method should be called after init method'
+            );
+        }
+
         try {
             /**
              * Get user pages id for facebook pages
@@ -127,32 +195,7 @@ class Albamn_Hskwakr_Ig_Api
              * Get user id for instagram business account
              */
             $this->user_id = $this->ctx->ig_user_id($this->pages_id);
-        } catch (Exception $e) {
-            $this->error('Failed to init', $e);
-        }
 
-        return $this;
-    }
-
-    /**
-     * Search recent medias by a name of hashtag in instagram.
-     * And store the result of medias in array.
-     *
-     * @param     string    $name
-     * @return    object    The instance of this class
-     */
-    public function search_hashtag(string $name): object
-    {
-        /**
-         * the method should be called after init
-         */
-        if (empty($this->pages_id) || empty($this->user_id)) {
-            throw new Exception(
-                'The method should be called after init method'
-            );
-        }
-
-        try {
             /**
              * Get hashtag id in instagram by hashtag name
              */
@@ -179,17 +222,26 @@ class Albamn_Hskwakr_Ig_Api
      * Error handling
      * Throw exception with error message
      *
+     * @since     1.0.0
      * @param     string      $msg
      * @param     Throwable   $e
      */
     private function error(
         string $msg,
-        Throwable $e
+        Throwable $e=null
     ): void {
-        throw new Exception(
-            $msg . ': ' . $e->getMessage(),
-            0,
-            $e->getPrevious()
-        );
+        if ($e == null) {
+            throw new Exception(
+                $msg,
+                0,
+                null
+            );
+        } else {
+            throw new Exception(
+                $msg . ': ' . $e->getMessage(),
+                0,
+                $e->getPrevious()
+            );
+        }
     }
 }
