@@ -267,7 +267,7 @@ class Albamn_Hskwakr_Admin
         /**
          * Get a list of option groups
          *
-         * @var Albamn_Hskwakr_Admin_Setting_Option
+         * @var Albamn_Hskwakr_Admin_Settings_Option_Group
          */
         foreach (
             $this->settings->get_option_groups() as $og
