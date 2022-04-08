@@ -29,6 +29,24 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     private $settings;
 
     /**
+     * The access token for Instagram API
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $access_token
+     */
+    private $access_token = '';
+
+    /**
+     * The hashtag name for Instagram posts
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $hashtag
+     */
+    private $hashtag = '';
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -79,7 +97,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
      *
      * Check status to import post
      * If ready to import,
-     * set nessary values to import
+     * set necessary values to import posts
      *
      * @since    1.0.0
      * @return   int        The status
@@ -95,7 +113,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         if (empty($_POST['ig_hashtag'])) {
             return 1;
         }
-        $ig_hashtag = (string)$_POST['ig_hashtag'];
+        $hashtag = (string)$_POST['ig_hashtag'];
 
         /**
          * Get access token from option
@@ -104,6 +122,12 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         if (empty($access_token)) {
             return 2;
         }
+
+        /**
+         * Set necessary values to import posts
+         */
+        $this->access_token = $access_token;
+        $this->hashtag = $hashtag;
 
         return 0;
     }
