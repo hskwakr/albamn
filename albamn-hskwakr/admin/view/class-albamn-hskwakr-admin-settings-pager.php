@@ -144,11 +144,11 @@ EOF;
 
         settings_fields($general->name);
         do_settings_sections($general->name);
-        $group = $general->group;
+        $options = $general->options;
 
         $r = '';
         $r = $r . $this->display_input_text(
-            (string)$group[0],
+            (string)$options[0],
             "Access token",
             "Your Facebook access token"
         );

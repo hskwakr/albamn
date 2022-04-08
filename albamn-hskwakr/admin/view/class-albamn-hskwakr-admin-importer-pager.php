@@ -145,9 +145,9 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         settings_fields($general->name);
         do_settings_sections($general->name);
 
-        $group = $general->group;
+        $options = $general->options;
         $token = (string)get_option(
-            (string)$group[0],
+            (string)$options[0],
             ''
         );
 
