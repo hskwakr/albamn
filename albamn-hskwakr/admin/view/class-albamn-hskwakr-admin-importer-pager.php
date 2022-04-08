@@ -134,7 +134,6 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
 
     /**
      * Get Facebook API access token
-     * from option in wordpress DB
      *
      * @since    1.0.0
      * @return   string     The access token
@@ -142,16 +141,11 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     public function get_access_token(): string
     {
         $general = $this->settings->general();
-        settings_fields($general->name);
-        do_settings_sections($general->name);
-
-        $options = $general->options;
-        $token = (string)get_option(
-            (string)$options[0],
-            ''
+        return (string)$this->settings->get_option(
+            (string)$general->options[0],
+            '',
+            $general->name
         );
-
-        return $token;
     }
 
     /**

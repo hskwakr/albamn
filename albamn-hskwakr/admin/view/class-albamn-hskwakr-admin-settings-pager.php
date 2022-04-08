@@ -133,7 +133,6 @@ EOF;
 
     /**
      * Display a options
-     * The function contains Wordpress API
      *
      * @since    1.0.0
      * @return   string     The html
@@ -141,14 +140,16 @@ EOF;
     public function display_options(): string
     {
         $general = $this->settings->general();
-
-        settings_fields($general->name);
-        do_settings_sections($general->name);
-        $options = $general->options;
+        $token = (string)$this->settings->get_option(
+            (string)$general->options[0],
+            '',
+            $general->name
+        );
 
         $r = '';
         $r = $r . $this->display_input_text(
-            (string)$options[0],
+            (string)$general->options[0],
+            $token,
             "Access token",
             "Your Facebook access token"
         );
@@ -158,7 +159,6 @@ EOF;
 
     /**
      * The html to display a input tag with label
-     * The function contains Wordpress API
      *
      * @since    1.0.0
      * @param   string    $name         the name of option.
@@ -168,11 +168,10 @@ EOF;
      */
     public function display_input_text(
         string $name,
+        string $value,
         string $label,
         string $placeholder = ""
     ): string {
-        $value = (string)get_option($name);
-
         return <<< EOF
 
     <div class="row mb-3">
