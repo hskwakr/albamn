@@ -218,7 +218,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
      * Should be error.
      * Should catch error from context class.
      */
-    public function test_search_hashtag_error_handle_user_pages_id()
+    public function test_init_error_handle_user_pages_id()
     {
         /**
          * Set up mock
@@ -236,14 +236,14 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          * Assert
          */
         $this->expectException(Exception::class);
-        $api->init($this->ctx)->search_hashtag($this->hashtag_name);
+        $api->init($this->ctx);
     }
 
     /**
      * Should be error.
      * Should catch error from context class.
      */
-    public function test_search_hashtag_error_handle_ig_user_id()
+    public function test_init_error_handle_ig_user_id()
     {
         /**
          * Set up mock
@@ -264,7 +264,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          * Assert
          */
         $this->expectException(Exception::class);
-        $api->init($this->ctx)->search_hashtag($this->hashtag_name);
+        $api->init($this->ctx);
     }
 
     /**
