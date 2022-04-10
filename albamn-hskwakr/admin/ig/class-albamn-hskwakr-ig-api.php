@@ -93,8 +93,11 @@ class Albamn_Hskwakr_Ig_Api
     public function init($arg): object
     {
         if (
-            !empty($this->validate_init_arg($arg))
+            $this->validate_init_arg($arg) != null
         ) {
+            /**
+             * @var Albamn_Hskwakr_Ig_Api_Context $this->ctx
+             */
             try {
                 /**
                  * Get user pages id for facebook pages
