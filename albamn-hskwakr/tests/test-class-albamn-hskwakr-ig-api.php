@@ -55,6 +55,16 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
     public function test_init()
     {
         /**
+         * Set up mock
+         */
+        $this->ctx
+             ->method('user_pages_id')
+             ->willReturn($this->pages_id);
+        $this->ctx
+             ->method('ig_user_id')
+             ->willReturn($this->user_id);
+
+        /**
          * Prepare to test
          */
         $api = new Albamn_Hskwakr_Ig_Api();
@@ -62,10 +72,39 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Assert
          */
-        $actual = $api->init($this->token)->get_context();
+        $actual = $api->init($this->ctx);
+        $this->assertSame(
+            $this->pages_id,
+            $actual->pages_id
+        );
+        $this->assertSame(
+            $this->user_id,
+            $actual->user_id
+        );
+    }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_validate_init_arg()
+    {
+        /**
+         * Prepare to test
+         */
+        $api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Assert
+         * with token
+         */
+        $actual = $api->validate_init_arg($this->token);
         $this->assertNotNull($actual);
 
-        $actual = $api->init($this->ctx)->get_context();
+        /**
+         * Assert
+         * with object
+         */
+        $actual = $api->validate_init_arg($this->ctx);
         $this->assertNotNull($actual);
     }
 

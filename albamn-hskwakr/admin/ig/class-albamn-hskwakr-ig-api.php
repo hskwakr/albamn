@@ -84,7 +84,7 @@ class Albamn_Hskwakr_Ig_Api
     }
 
     /**
-     * Init this class.
+     * Init this class with access token or context object.
      *
      * @since     1.0.0
      * @param     mixed     $arg    The argument should be access token or api context object.
@@ -92,18 +92,56 @@ class Albamn_Hskwakr_Ig_Api
      */
     public function init($arg): object
     {
+        if (
+            $this->validate_init_arg($arg) != null
+        ) {
+            /**
+             * @var Albamn_Hskwakr_Ig_Api_Context $this->ctx
+             */
+            try {
+                /**
+                 * Get user pages id for facebook pages
+                 */
+                $this->pages_id = $this->ctx->user_pages_id();
+
+                /**
+                 * Get user id for instagram business account
+                 */
+                $this->user_id = $this->ctx->ig_user_id($this->pages_id);
+            } catch (Exception $e) {
+                $this->error('Failed to init', $e);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Validate init argument and set or init context
+     *
+     * @since     1.0.0
+     * @param     mixed     $arg    The argument should be access token or api context object.
+     * @return    Albamn_Hskwakr_Ig_Api_Context|null    The context object.
+     */
+    public function validate_init_arg($arg)
+    {
         $error = 'Failed to init: ';
 
         switch (gettype($arg)) {
             case 'string':
+                /**
+                 * $arg should be access token
+                 */
                 $this->init_context($arg);
                 break;
 
             case 'object':
                 if (
-                  ($arg instanceof Albamn_Hskwakr_Ig_Api_Context)
+                    ($arg instanceof Albamn_Hskwakr_Ig_Api_Context)
                 ) {
                     /**
+                     * $arg should be context object
+                     *
                      * @var Albamn_Hskwakr_Ig_Api_Context
                      */
                     $this->set_context($arg);
@@ -117,7 +155,7 @@ class Albamn_Hskwakr_Ig_Api
                 break;
         }
 
-        return $this;
+        return $this->ctx;
     }
 
     /**
@@ -155,18 +193,6 @@ class Albamn_Hskwakr_Ig_Api
     }
 
     /**
-     * Get the context object for Instagram API
-     * This method is for test
-     *
-     * @since     1.0.0
-     * @return    Albamn_Hskwakr_Ig_Api_Context|null    The context object.
-     */
-    public function get_context()
-    {
-        return $this->ctx;
-    }
-
-    /**
      * Search recent medias by a name of hashtag in instagram.
      * And store the result of medias in array.
      *
@@ -186,16 +212,6 @@ class Albamn_Hskwakr_Ig_Api
         }
 
         try {
-            /**
-             * Get user pages id for facebook pages
-             */
-            $this->pages_id = $this->ctx->user_pages_id();
-
-            /**
-             * Get user id for instagram business account
-             */
-            $this->user_id = $this->ctx->ig_user_id($this->pages_id);
-
             /**
              * Get hashtag id in instagram by hashtag name
              */

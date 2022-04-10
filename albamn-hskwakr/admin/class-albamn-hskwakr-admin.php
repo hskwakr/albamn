@@ -213,12 +213,25 @@ class Albamn_Hskwakr_Admin
      */
     public function menu(): void
     {
+        /**
+         * Instantiate settings pager
+         */
         $general = new Albamn_Hskwakr_Admin_Settings_Pager(
             $this->settings
         );
+
+        /**
+         * Instantiate importer pager
+         */
+        $ig_api = new Albamn_Hskwakr_Ig_Api();
         $importer = new Albamn_Hskwakr_Admin_Importer_Pager(
-            $this->settings
+            $this->settings,
+            $ig_api
         );
+
+        /**
+         * Instantiate menu
+         */
         $menu = new Albamn_Hskwakr_Admin_Menu(
             $general,
             $importer

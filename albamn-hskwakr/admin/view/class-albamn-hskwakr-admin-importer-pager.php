@@ -29,6 +29,15 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     private $settings;
 
     /**
+     * The Instagram API
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Api    $ig_api
+     */
+    private $ig_api;
+
+    /**
      * The access token for Instagram API
      *
      * @since    1.0.0
@@ -51,11 +60,14 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
      *
      * @since    1.0.0
      * @param    Albamn_Hskwakr_Admin_Settings    $settings
+     * @param    Albamn_Hskwakr_Ig_Api            $ig_api
      */
     public function __construct(
-        Albamn_Hskwakr_Admin_Settings $settings
+        Albamn_Hskwakr_Admin_Settings $settings,
+        Albamn_Hskwakr_Ig_Api $ig_api
     ) {
         $this->settings = $settings;
+        $this->ig_api = $ig_api;
     }
 
     /**
@@ -82,6 +94,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             /**
              * Get posts with Instagram API
              */
+            $posts = $this->get_posts();
         } elseif ($status == 2) {
             echo $this->display_warning('Access token required');
         }
@@ -146,6 +159,25 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             '',
             $general->name
         );
+    }
+
+    /**
+     * Get posts with Instagram API
+     *
+     * @since    1.0.0
+     * @return   array<array-key, mixed>|null     The list of posts
+     */
+    public function get_posts()
+    {
+        try {
+            $this->ig_api->init($this->access_token);
+            $this->ig_api->search_hashtag($this->hashtag);
+            $posts = $this->ig_api->recent_medias;
+
+            return $posts;
+        } catch (Exception $e) {
+            echo $this->display_warning($e->getMessage());
+        }
     }
 
     /**
