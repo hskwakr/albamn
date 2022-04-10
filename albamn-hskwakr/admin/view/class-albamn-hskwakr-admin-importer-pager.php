@@ -94,6 +94,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             /**
              * Get posts with Instagram API
              */
+            $posts = $this->get_posts();
         } elseif ($status == 2) {
             echo $this->display_warning('Access token required');
         }
@@ -158,6 +159,25 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             '',
             $general->name
         );
+    }
+
+    /**
+     * Get posts with Instagram API
+     *
+     * @since    1.0.0
+     * @return   array<array-key, mixed>|null     The list of posts
+     */
+    public function get_posts()
+    {
+        try {
+            $this->ig_api->init($this->access_token);
+            $this->ig_api->search_hashtag($this->hashtag);
+            $posts = $this->ig_api->recent_medias;
+
+            return $posts;
+        } catch (Exception $e) {
+            echo $this->display_warning($e->getMessage());
+        }
     }
 
     /**
