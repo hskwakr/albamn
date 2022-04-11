@@ -108,6 +108,8 @@ class Albamn_Hskwakr_Ig_Api_Context
      */
     public function user_pages_id(): string
     {
+        $error = 'Failed to get user pages';
+
         /**
          * Get the response of the request
          * @var object
@@ -121,8 +123,17 @@ class Albamn_Hskwakr_Ig_Api_Context
          */
         if (isset($response->error)) {
             $this->error(
-                'Failed to get user pages',
+                $error,
                 (object)$response->error
+            );
+        }
+
+        /**
+         * Validate the response
+         */
+        if ($this->validation->validate_user_pages($response)) {
+            $this->error(
+                $error . ': Unexpected response'
             );
         }
 
@@ -142,6 +153,8 @@ class Albamn_Hskwakr_Ig_Api_Context
      */
     public function ig_user_id(string $page_id): string
     {
+        $error = 'Failed to get user id';
+
         /**
          * Get the response of the request
          * @var object
@@ -155,8 +168,17 @@ class Albamn_Hskwakr_Ig_Api_Context
          */
         if (isset($response->error)) {
             $this->error(
-                'Failed to get user id',
+                $error,
                 (object)$response->error
+            );
+        }
+
+        /**
+         * Validate the response
+         */
+        if ($this->validation->validate_ig_user($response)) {
+            $this->error(
+                $error . ': Unexpected response'
             );
         }
 
@@ -179,6 +201,8 @@ class Albamn_Hskwakr_Ig_Api_Context
         string $user_id,
         string $hashtag
     ): string {
+        $error = 'Failed to search hashtag id';
+
         /**
          * Get the response of the request
          * @var object
@@ -192,8 +216,17 @@ class Albamn_Hskwakr_Ig_Api_Context
          */
         if (isset($response->error)) {
             $this->error(
-                'Failed to search hashtag id',
+                $error,
                 (object)$response->error
+            );
+        }
+
+        /**
+         * Validate the response
+         */
+        if ($this->validation->validate_search_hashtag($response)) {
+            $this->error(
+                $error . ': Unexpected response'
             );
         }
 
@@ -216,6 +249,8 @@ class Albamn_Hskwakr_Ig_Api_Context
         string $user_id,
         string $hashtag_id
     ): array {
+        $error = 'Failed to get recent medias by hashtag';
+
         /**
          * Get the response of the request
          * @var object
@@ -232,8 +267,17 @@ class Albamn_Hskwakr_Ig_Api_Context
          */
         if (isset($response->error)) {
             $this->error(
-                'Failed to get recent medias by hashtag',
+                $error,
                 (object)$response->error
+            );
+        }
+
+        /**
+         * Validate the response
+         */
+        if ($this->validation->validate_recent_medias_by_hashtag($response)) {
+            $this->error(
+                $error . ': Unexpected response'
             );
         }
 
