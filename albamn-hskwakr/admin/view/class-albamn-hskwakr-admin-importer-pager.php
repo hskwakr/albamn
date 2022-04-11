@@ -94,7 +94,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             /**
              * Get posts with Instagram API
              */
-            $posts = $this->get_posts();
+            echo $this->get_ig_posts();
         } elseif ($status == 2) {
             echo $this->display_warning('Access token required');
         }
@@ -165,19 +165,108 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
      * Get posts with Instagram API
      *
      * @since    1.0.0
-     * @return   array<array-key, mixed>|null     The list of posts
+     * @return   string     The html posts or error
      */
-    public function get_posts()
+    public function get_ig_posts(): string
     {
         try {
             $this->ig_api->init($this->access_token);
             $this->ig_api->search_hashtag($this->hashtag);
             $posts = $this->ig_api->recent_medias;
 
-            return $posts;
+            return $this->format_ig_posts($posts);
         } catch (Exception $e) {
-            echo $this->display_warning($e->getMessage());
+            return $this->display_warning($e->getMessage());
         }
+    }
+
+    /**
+     * Get posts with Instagram API
+     *
+     * @since    1.0.0
+     * @param    array      $posts
+     * @return   string     The html
+     */
+    public function format_ig_posts(array $posts): string
+    {
+        $error = 'Failed to display Instagram posts';
+        $r = '';
+
+        foreach ($posts as $p) {
+            /**
+             * Validate argument
+             */
+            if (!is_object($p)) {
+                return $this->display_warning($error);
+            }
+            if (!isset($p->media_type)) {
+                return $this->display_warning($error);
+            }
+
+            switch ($p->media_type) {
+                case 'IMAGE':
+                    $r = $r . $this->display_ig_image_post($p);
+                    break;
+
+                case 'VIDEO':
+                    $r = $r . $this->display_ig_video_post($p);
+                    break;
+
+                default:
+
+                    break;
+            }
+        }
+
+        return $r;
+    }
+
+    /**
+     * Display the Instagram image post
+     *
+     * @since    1.0.0
+     * @param    object     $post
+     * @return   string     The html
+     */
+    public function display_ig_image_post($post): string
+    {
+        $error = 'Failed to display image post';
+
+        /**
+         * Validate argument
+         */
+        if (!isset($post->media_type)) {
+            return $this->display_warning($error);
+        }
+        if ($post->media_type != 'IMAGE') {
+            return $this->display_warning($error);
+        }
+
+        return '<p>This is image</p>';
+    }
+
+    /**
+     * Display the Instagram video post
+     *
+     * @since    1.0.0
+     * @param    object     $post
+     * @return   string     The html
+     */
+    public function display_ig_video_post($post): string
+    {
+        $error = 'Failed to display video post';
+
+        /**
+         * Validate argument
+         */
+        if (!isset($post->media_type)) {
+            return $this->display_warning($error);
+        }
+        if ($post->media_type != 'VIDEO') {
+            return $this->display_warning($error);
+        }
+
+        return '<p>This is video</p>';
     }
 
     /**
