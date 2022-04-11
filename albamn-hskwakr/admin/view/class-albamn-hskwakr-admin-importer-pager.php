@@ -200,7 +200,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
                 return $this->display_warning($error);
             }
             if (!isset($p->media_type)) {
-                return $this->display_warning($error);
+                continue;
             }
 
             switch ($p->media_type) {
@@ -241,8 +241,26 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         if ($post->media_type != 'IMAGE') {
             return $this->display_warning($error);
         }
+        if (!isset($post->media_url)) {
+            return $this->display_warning($error);
+        }
 
-        return '<p>This is image</p>';
+        /**
+         * Make html
+         */
+        $r = '';
+
+        if (isset($post->permalink)) {
+            $r = $r . '<a href="' . $post->permalink . '>';
+        }
+
+        $r = $r . '<img src="' . $post->media_url . '/>';
+
+        if (isset($post->permalink)) {
+            $r = $r . '</a>';
+        }
+
+        return $r;
     }
 
     /**

@@ -65,9 +65,35 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
      */
     public function test_display_form_footer()
     {
-        $pattern  = '</form>';
-        $subject  = $this->pager->display_form_footer();
+        $pattern = '</form>';
+        $subject = $this->pager->display_form_footer();
 
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
+    }
+
+    /**
+     * Check the output has the necessary components.
+     */
+    public function test_display_ig_image_post()
+    {
+        $post = new class () {};
+        $post->media_type = 'IMAGE';
+        $post->media_url = 'mediaurl1234';
+        $post->permalink = 'permalink1234';
+
+        /**
+         * Assert
+         */
+        $subject  = $this->pager->display_ig_image_post($post);
+
+        $pattern = '/.*' . $post->media_url . '/';
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
+
+        $pattern = '/.*' . $post->permalink . '/';
         $actual = preg_match($pattern, $subject);
         $expect = 1;
         $this->assertSame($expect, $actual);
