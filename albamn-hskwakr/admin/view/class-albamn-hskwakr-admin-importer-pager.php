@@ -213,7 +213,6 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
                     break;
 
                 default:
-
                     break;
             }
         }
@@ -241,7 +240,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         if ($post->media_type != 'IMAGE') {
             return $this->display_warning($error);
         }
-        if (!isset($post->media_url) || !is_string($post->media_url)) {
+        if (!isset($post->media_url)) {
             return $this->display_warning($error);
         }
 
@@ -253,10 +252,10 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             isset($post->permalink) && is_string($post->permalink);
 
         if ($linkable) {
-            $r = $r . '<a href="' . $post->permalink . '>';
+            $r = $r . '<a href="' . $post->permalink . '">';
         }
 
-        $r = $r . '<img src="' . $post->media_url . '/>';
+        $r = $r . '<img src="' . (string)$post->media_url . '"/>';
 
         if ($linkable) {
             $r = $r . '</a>';
@@ -285,7 +284,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         if ($post->media_type != 'VIDEO') {
             return $this->display_warning($error);
         }
-        if (!isset($post->media_url) || !is_string($post->media_url)) {
+        if (!isset($post->media_url)) {
             return $this->display_warning($error);
         }
 
@@ -297,11 +296,11 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             isset($post->permalink) && is_string($post->permalink);
 
         if ($linkable) {
-            $r = $r . '<a href="' . $post->permalink . '>';
+            $r = $r . '<a href="' . $post->permalink . '">';
         }
 
         $r = $r . '<video src="'
-                . $post->media_url
+                . (string)$post->media_url
                 . '" autoplay="" muted="" playsinline="" loop=""></video>';
 
         if ($linkable) {
