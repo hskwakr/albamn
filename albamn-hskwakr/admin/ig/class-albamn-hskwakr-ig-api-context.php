@@ -131,7 +131,7 @@ class Albamn_Hskwakr_Ig_Api_Context
         /**
          * Validate the response
          */
-        if ($this->validation->validate_user_pages($response)) {
+        if (!$this->validation->validate_user_pages($response)) {
             $this->error(
                 $error . ': Unexpected response'
             );
@@ -176,7 +176,7 @@ class Albamn_Hskwakr_Ig_Api_Context
         /**
          * Validate the response
          */
-        if ($this->validation->validate_ig_user($response)) {
+        if (!$this->validation->validate_ig_user($response)) {
             $this->error(
                 $error . ': Unexpected response'
             );
@@ -224,7 +224,7 @@ class Albamn_Hskwakr_Ig_Api_Context
         /**
          * Validate the response
          */
-        if ($this->validation->validate_search_hashtag($response)) {
+        if (!$this->validation->validate_search_hashtag($response)) {
             $this->error(
                 $error . ': Unexpected response'
             );
@@ -275,7 +275,7 @@ class Albamn_Hskwakr_Ig_Api_Context
         /**
          * Validate the response
          */
-        if ($this->validation->validate_recent_medias_by_hashtag($response)) {
+        if (!$this->validation->validate_recent_medias_by_hashtag($response)) {
             $this->error(
                 $error . ': Unexpected response'
             );
