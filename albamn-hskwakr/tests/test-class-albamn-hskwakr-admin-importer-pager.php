@@ -112,16 +112,45 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
         $post->permalink = 'permalink1234';
 
         /**
-         * Assert
+         * Execute
          */
         $subject  = $this->pager->display_ig_image_post($post);
 
+        /**
+         * Assert
+         */
         $pattern = '/.*' . $post->media_url . '/';
         $actual = preg_match($pattern, $subject);
         $expect = 1;
         $this->assertSame($expect, $actual);
 
         $pattern = '/.*' . $post->permalink . '/';
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
+    }
+
+    /**
+     * Should be error.
+     * Argument object has to have necessary property.
+     */
+    public function test_display_ig_image_post_error_handle_media_type()
+    {
+        /**
+         * Prepare
+         */
+        $post = new class () {};
+
+        /**
+         * Execute
+         */
+        $subject  = $this->pager->display_ig_image_post($post);
+
+        /**
+         * Assert
+         * Should return error html
+         */
+        $pattern = '/.*Fail/';
         $actual = preg_match($pattern, $subject);
         $expect = 1;
         $this->assertSame($expect, $actual);
