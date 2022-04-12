@@ -241,7 +241,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         if ($post->media_type != 'IMAGE') {
             return $this->display_warning($error);
         }
-        if (!isset($post->media_url)) {
+        if (!isset($post->media_url) || !is_string($post->media_url)) {
             return $this->display_warning($error);
         }
 
@@ -249,14 +249,16 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
          * Make html
          */
         $r = '';
+        $linkable =
+            isset($post->permalink) && is_string($post->permalink);
 
-        if (isset($post->permalink)) {
+        if ($linkable) {
             $r = $r . '<a href="' . $post->permalink . '>';
         }
 
         $r = $r . '<img src="' . $post->media_url . '/>';
 
-        if (isset($post->permalink)) {
+        if ($linkable) {
             $r = $r . '</a>';
         }
 
