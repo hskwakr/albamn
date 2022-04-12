@@ -210,4 +210,53 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
         $post->media_type = 'IMAGE';
         $assert($post);
     }
+
+    /**
+     * Should be error.
+     * Argument object has to have necessary property.
+     */
+    public function test_display_ig_video_post_error_handle_argument()
+    {
+        /**
+         * Prepare
+         */
+        $assert = function ($data) {
+            $subject  = $this->pager->display_ig_video_post($data);
+            $pattern = '/.*Fail/';
+            $actual = preg_match($pattern, $subject);
+            $expect = 1;
+            $this->assertSame($expect, $actual);
+        };
+
+        /**
+         * Assert wrong case:
+         * Does not have media_type
+         *
+         * Should return error html
+         */
+        $post = new class () {};
+        $post->media_url = 'mediaurl1234';
+        $assert($post);
+
+        /**
+         * Assert wrong case:
+         * media_type has wrong value
+         *
+         * Should return error html
+         */
+        $post = new class () {};
+        $post->media_type = 'IMAGE';
+        $post->media_url = 'mediaurl1234';
+        $assert($post);
+
+        /**
+         * Assert wrong case:
+         * Does not have media_url
+         *
+         * Should return error html
+         */
+        $post = new class () {};
+        $post->media_type = 'VIDEO';
+        $assert($post);
+    }
 }
