@@ -178,7 +178,6 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
 
     /**
      * Should be error.
-     * Should catch error from context class.
      */
     public function test_init_error_handle_argument_type()
     {
@@ -197,7 +196,6 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
 
     /**
      * Should be error.
-     * Should catch error from context class.
      */
     public function test_init_error_handle_object_type()
     {
