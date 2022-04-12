@@ -75,7 +75,12 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         /**
          * Set fake response
          */
-        $this->http->method('send')->willReturn($response);
+        $this->http
+             ->method('send')
+             ->willReturn($response);
+        $this->validation
+             ->method('validate_user_pages')
+             ->willReturn(true);
 
         /**
          * Init context class
@@ -111,7 +116,12 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         /**
          * Set fake response
          */
-        $this->http->method('send')->willReturn($response);
+        $this->http
+             ->method('send')
+             ->willReturn($response);
+        $this->validation
+             ->method('validate_ig_user')
+             ->willReturn(true);
 
         /**
          * Init context class
@@ -147,7 +157,12 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         /**
          * Set fake response
          */
-        $this->http->method('send')->willReturn($response);
+        $this->http
+             ->method('send')
+             ->willReturn($response);
+        $this->validation
+             ->method('validate_search_hashtag')
+             ->willReturn(true);
 
         /**
          * Init context class
@@ -186,7 +201,12 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         /**
          * Set fake response
          */
-        $this->http->method('send')->willReturn($response);
+        $this->http
+             ->method('send')
+             ->willReturn($response);
+        $this->validation
+             ->method('validate_recent_medias_by_hashtag')
+             ->willReturn(true);
 
         /**
          * Init context class
