@@ -22,12 +22,19 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
 
     public function setUp()
     {
+        /**
+         * Create mock
+         */
         $settings = $this->createMock(
             Albamn_Hskwakr_Admin_Settings::class
         );
         $api = $this->createMock(
             Albamn_Hskwakr_Ig_Api::class
         );
+
+        /**
+         * Instantiate
+         */
         $this->pager = new Albamn_Hskwakr_Admin_Importer_Pager(
             $settings,
             $api
@@ -39,9 +46,15 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
      */
     public function test_display_header()
     {
+        /**
+         * Prepare
+         */
         $pattern = '<div.*class=".*container.*>';
         $subject = $this->pager->display_header();
 
+        /**
+         * Assert
+         */
         $actual = preg_match($pattern, $subject);
         $expect = 1;
         $this->assertSame($expect, $actual);
@@ -52,9 +65,15 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
      */
     public function test_display_form_header()
     {
+        /**
+         * Prepare
+         */
         $pattern = '<form.*>';
         $subject = $this->pager->display_form_header();
 
+        /**
+         * Assert
+         */
         $actual = preg_match($pattern, $subject);
         $expect = 1;
         $this->assertSame($expect, $actual);
@@ -65,9 +84,15 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
      */
     public function test_display_form_footer()
     {
+        /**
+         * Prepare
+         */
         $pattern = '</form>';
         $subject = $this->pager->display_form_footer();
 
+        /**
+         * Assert
+         */
         $actual = preg_match($pattern, $subject);
         $expect = 1;
         $this->assertSame($expect, $actual);
@@ -78,6 +103,9 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
      */
     public function test_display_ig_image_post()
     {
+        /**
+         * Prepare
+         */
         $post = new class () {};
         $post->media_type = 'IMAGE';
         $post->media_url = 'mediaurl1234';
