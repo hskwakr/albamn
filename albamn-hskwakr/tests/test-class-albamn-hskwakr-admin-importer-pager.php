@@ -131,6 +131,38 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
     }
 
     /**
+     * Check the output has the necessary components.
+     */
+    public function test_display_ig_video_post()
+    {
+        /**
+         * Prepare
+         */
+        $post = new class () {};
+        $post->media_type = 'VIDEO';
+        $post->media_url = 'mediaurl1234';
+        $post->permalink = 'permalink1234';
+
+        /**
+         * Execute
+         */
+        $subject  = $this->pager->display_ig_video_post($post);
+
+        /**
+         * Assert
+         */
+        $pattern = '/.*' . $post->media_url . '/';
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
+
+        $pattern = '/.*' . $post->permalink . '/';
+        $actual = preg_match($pattern, $subject);
+        $expect = 1;
+        $this->assertSame($expect, $actual);
+    }
+
+    /**
      * Should be error.
      * Argument object has to have necessary property.
      */

@@ -285,8 +285,30 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         if ($post->media_type != 'VIDEO') {
             return $this->display_warning($error);
         }
+        if (!isset($post->media_url) || !is_string($post->media_url)) {
+            return $this->display_warning($error);
+        }
 
-        return '<p>This is video</p>';
+        /**
+         * Make html
+         */
+        $r = '';
+        $linkable =
+            isset($post->permalink) && is_string($post->permalink);
+
+        if ($linkable) {
+            $r = $r . '<a href="' . $post->permalink . '>';
+        }
+
+        $r = $r . '<video src="'
+                . $post->media_url
+                . '" autoplay="" muted="" playsinline="" loop=""></video>';
+
+        if ($linkable) {
+            $r = $r . '</a>';
+        }
+
+        return $r;
     }
 
     /**
