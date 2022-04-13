@@ -235,6 +235,61 @@ class Albamn_Hskwakr_Ig_Api
     }
 
     /**
+     * Filter the list of medias
+     * to make the list that only contains VIDEO or IMAGE media
+     *
+     * @since     1.0.0
+     * @param     array     $medias
+     * @return    array     The list of filtered medias
+     */
+    public function filter_medias(array $medias): array
+    {
+        $error = 'Failed to filter medias';
+
+        /**
+         * @var array<object> $r
+         */
+        $r = array();
+
+        /**
+         * @var mixed $m
+         */
+        foreach ($medias as $m) {
+            /**
+             * Validate
+             */
+            if (!is_object($m)) {
+                $this->error($error . ': Unexpected media object');
+            }
+            /**
+             * Validate
+             * @var object $m
+             */
+            if (!isset($m->media_type)) {
+                continue;
+            }
+
+            switch ((string)$m->media_type) {
+                case 'IMAGE':
+                case 'VIDEO':
+                    if (!isset($m->media_url)) {
+                        $this->error(
+                            $error . ': Object does not have media url'
+                        );
+                    }
+
+                    $r[] = $m;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        return $r;
+    }
+
+    /**
      * Error handling
      * Throw exception with error message
      *

@@ -39,14 +39,28 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Init fake objects
          */
-        $media = new class () {};
-        $media->media_type = 'type1234';
-        $media->media_url = 'url1234';
-        $media->permalink = 'link1234';
-        $media->id = 'id1234';
+        $media_image = new class () {};
+        $media_image->media_type = 'IMAGE';
+        $media_image->media_url = 'url1234';
+        $media_image->permalink = 'link1234';
+        $media_image->id = 'id1234';
 
-        $this->medias = array(new class () {});
-        $this->medias[0] = $media;
+        $media_video = new class () {};
+        $media_video->media_type = 'VIDEO';
+        $media_video->media_url = 'url1234';
+        $media_video->permalink = 'link1234';
+        $media_video->id = 'id1234';
+
+        $media_other = new class () {};
+        $media_other->media_type = 'OTHER';
+        $media_other->media_url = 'url1234';
+        $media_other->permalink = 'link1234';
+        $media_other->id = 'id1234';
+
+        $this->medias = array();
+        $this->medias[0] = $media_image;
+        $this->medias[1] = $media_video;
+        $this->medias[2] = $media_other;
     }
 
     /**
@@ -156,6 +170,33 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
             $this->medias,
             $actual->recent_medias
         );
+    }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_filter_medias()
+    {
+        /**
+         * Prepare
+         */
+        $api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Execute
+         */
+        $expect = array(
+            $this->medias[0],
+            $this->medias[1]
+        );
+        $actual = $api->filter_medias($this->medias);
+
+        /**
+         * Assert
+         */
+        foreach ($actual as $v) {
+            $this->assertContains($v, $expect);
+        }
     }
 
     /**
