@@ -51,16 +51,22 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         $media_video->permalink = 'link1234';
         $media_video->id = 'id1234';
 
-        $media_other = new class () {};
-        $media_other->media_type = 'OTHER';
-        $media_other->media_url = 'url1234';
-        $media_other->permalink = 'link1234';
-        $media_other->id = 'id1234';
+        $media_other_1 = new class () {};
+        $media_other_1->media_type = 'OTHER';
+        $media_other_1->media_url = 'url1234';
+        $media_other_1->permalink = 'link1234';
+        $media_other_1->id = 'id1234';
+
+        $media_other_2 = new class () {};
+        $media_other_2->media_type = 'IMAGE';
+        $media_other_2->permalink = 'link1234';
+        $media_other_2->id = 'id1234';
 
         $this->medias = array();
         $this->medias[0] = $media_image;
         $this->medias[1] = $media_video;
-        $this->medias[2] = $media_other;
+        $this->medias[2] = $media_other_1;
+        $this->medias[3] = $media_other_2;
     }
 
     /**
@@ -185,15 +191,15 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Execute
          */
-        $expect = array(
-            $this->medias[0],
-            $this->medias[1]
-        );
         $actual = $api->filter_medias($this->medias);
 
         /**
          * Assert
          */
+        $expect = array(
+            $this->medias[0],
+            $this->medias[1]
+        );
         foreach ($actual as $v) {
             $this->assertContains($v, $expect);
         }
@@ -369,5 +375,34 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          */
         $this->expectException(Exception::class);
         $api->init($this->ctx)->search_hashtag($this->hashtag_name);
+    }
+
+    /**
+     * Should be error.
+     */
+    public function test_filter_medias_error_handle_not_object()
+    {
+        /**
+         * Prepare
+         */
+        $media_correct = new class () {};
+        $media_correct->media_type = 'IMAGE';
+        $media_correct->media_url = 'url1234';
+        $media_correct->permalink = 'link1234';
+        $media_correct->id = 'id1234';
+
+        $media_wrong = '';
+
+        $api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Assert
+         */
+        $medias = array(
+            $media_correct,
+            $media_wrong
+        );
+        $this->expectException(Exception::class);
+        $api->filter_medias($medias);
     }
 }
