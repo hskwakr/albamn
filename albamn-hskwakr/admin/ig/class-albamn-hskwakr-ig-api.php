@@ -273,9 +273,7 @@ class Albamn_Hskwakr_Ig_Api
                 case 'IMAGE':
                 case 'VIDEO':
                     if (!isset($m->media_url)) {
-                        $this->error(
-                            $error . ': Object does not have media url'
-                        );
+                        continue;
                     }
 
                     $r[] = $m;
