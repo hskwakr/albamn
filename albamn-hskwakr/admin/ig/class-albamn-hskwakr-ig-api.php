@@ -273,7 +273,7 @@ class Albamn_Hskwakr_Ig_Api
                 case 'IMAGE':
                 case 'VIDEO':
                     if (!isset($m->media_url)) {
-                        continue;
+                        break;
                     }
 
                     $r[] = $m;
