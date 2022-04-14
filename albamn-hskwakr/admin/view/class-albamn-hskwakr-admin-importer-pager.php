@@ -173,6 +173,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             $this->ig_api->init($this->access_token);
             $this->ig_api->search_hashtag($this->hashtag);
             $posts = $this->ig_api->recent_medias;
+            $posts = $this->ig_api->filter_medias($posts);
 
             return $this->format_ig_posts($posts);
         } catch (Exception $e) {
