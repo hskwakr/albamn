@@ -118,6 +118,12 @@ class Albamn_Hskwakr_Admin
         require_once $path
           . 'view/class-albamn-hskwakr-admin-importer-pager.php';
 
+        /**
+         * The class responsible for instagram media formatter.
+         */
+        require_once $path
+          . 'view/class-albamn-hskwakr-admin-ig-formatter.php';
+
 
         /**
          * Instagram API
