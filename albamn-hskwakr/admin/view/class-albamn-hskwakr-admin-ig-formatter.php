@@ -48,10 +48,17 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
      */
     public function validate_medias(array $medias): bool
     {
+        /**
+         * @var mixed $m
+         */
         foreach ($medias as $m) {
             if (!is_object($m)) {
                 return false;
             }
+
+            /**
+             * @var object $m
+             */
             if (!isset($m->media_type)) {
                 return false;
             }
@@ -78,12 +85,16 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
      * This method don't care about error case
      *
      * @since    1.0.0
-     * @param    array      $posts
+     * @param    array      $medias
      * @return   string     The html
      */
     public function format_medias(array $medias): string
     {
         $r = '';
+
+        /**
+         * @var object $m
+         */
         foreach ($medias as $m) {
             switch ($m->media_type) {
                 case 'IMAGE':
