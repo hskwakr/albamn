@@ -24,16 +24,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
      *
      * @since    1.0.0
      */
-    public function __construct(
-    ) {
-    }
-
-    /**
-     * Display importer page
-     *
-     * @since    1.0.0
-     */
-    public function display(): void
+    public function __construct()
     {
     }
 
