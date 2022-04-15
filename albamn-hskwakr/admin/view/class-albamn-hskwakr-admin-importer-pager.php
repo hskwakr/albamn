@@ -38,6 +38,15 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     private $ig_api;
 
     /**
+     * The formatter for Instagram medias
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Admin_Ig_Formatter    $ig_formatter
+     */
+    private $ig_formatter;
+
+    /**
      * The access token for Instagram API
      *
      * @since    1.0.0
@@ -64,10 +73,12 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
      */
     public function __construct(
         Albamn_Hskwakr_Admin_Settings $settings,
-        Albamn_Hskwakr_Ig_Api $ig_api
+        Albamn_Hskwakr_Ig_Api $ig_api,
+        Albamn_Hskwakr_Admin_Ig_Formatter $ig_formatter
     ) {
         $this->settings = $settings;
         $this->ig_api = $ig_api;
+        $this->ig_formatter = $ig_formatter;
     }
 
     /**
