@@ -220,6 +220,16 @@ class Albamn_Hskwakr_Admin
     public function menu(): void
     {
         /**
+         * Instantiate Instagram API
+         */
+        $ig_api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Instantiate formatter for Instagram API
+         */
+        $ig_formatter = new Albamn_Hskwakr_Admin_Ig_Formatter();
+
+        /**
          * Instantiate settings pager
          */
         $general = new Albamn_Hskwakr_Admin_Settings_Pager(
@@ -229,10 +239,10 @@ class Albamn_Hskwakr_Admin
         /**
          * Instantiate importer pager
          */
-        $ig_api = new Albamn_Hskwakr_Ig_Api();
         $importer = new Albamn_Hskwakr_Admin_Importer_Pager(
             $this->settings,
-            $ig_api
+            $ig_api,
+            $ig_formatter
         );
 
         /**
