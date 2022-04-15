@@ -81,12 +81,26 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
      */
     public function format_medias(array $medias): string
     {
+        $count = 0;
+        $row = 4;
+        $margin = 2;
+
         $r = '';
+        $r = $r . '<div class="m-' . $margin . '">';
 
         /**
          * @var object $m
          */
         foreach ($medias as $m) {
+            if ($count % $row == 0) {
+                $r = $r . '<div class="row">';
+            }
+
+            $r = $r . '<div '
+              . 'class="col p-1" '
+              . 'style="width: 15rem; height: 16rem;'
+              . '">';
+
             switch ($m->media_type) {
                 case 'IMAGE':
                     $r = $r . $this->format_image_media($m);
@@ -99,8 +113,17 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
                 default:
                     break;
             }
+
+            $r = $r . '</div>';
+
+            if ($count % $row == $row - 1) {
+                $r = $r . '</div>';
+            }
+
+            $count++;
         }
 
+        $r = $r . '</div>';
         return $r;
     }
 
@@ -116,19 +139,32 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
     public function format_image_media($media): string
     {
         $r = '';
+        $r = $r . '<div '
+                . 'class="m-auto" '
+                . 'style="width: 15rem; height: 15rem; background: black;"'
+                . '>';
+
         $linkable =
-            isset($media->permalink) && is_string($media->permalink);
+            isset($media->permalink);
 
         if ($linkable) {
-            $r = $r . '<a href="' . $media->permalink . '">';
+            $r = $r . '<a href="'
+                    . (string)$media->permalink
+                    . '" '
+                    . '>';
         }
 
-        $r = $r . '<img src="' . (string)$media->media_url . '"/>';
+        $r = $r . '<img src="'
+                . (string)$media->media_url
+                . '" '
+                . 'style="display: block; width: 100%; height: 100%;"'
+                . '/>';
 
         if ($linkable) {
             $r = $r . '</a>';
         }
 
+        $r = $r . '</div>';
         return $r;
     }
 
@@ -144,21 +180,32 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
     public function format_video_media($media): string
     {
         $r = '';
+        $r = $r . '<div '
+                . 'class="m-auto" '
+                . 'style="width: 15rem; height: 15rem; background: black;"'
+                . '>';
+
         $linkable =
-            isset($media->permalink) && is_string($media->permalink);
+            isset($media->permalink);
 
         if ($linkable) {
-            $r = $r . '<a href="' . $media->permalink . '">';
+            $r = $r . '<a href="'
+                    . (string)$media->permalink
+                    . '" '
+                    . '>';
         }
 
         $r = $r . '<video src="'
                 . (string)$media->media_url
-                . '" autoplay="" muted="" playsinline="" loop=""></video>';
+                . '" autoplay="" muted="" playsinline="" loop="" '
+                . 'style="display: block; width: 100%; height: 100%;"'
+                . '></video>';
 
         if ($linkable) {
             $r = $r . '</a>';
         }
 
+        $r = $r . '</div>';
         return $r;
     }
 }
