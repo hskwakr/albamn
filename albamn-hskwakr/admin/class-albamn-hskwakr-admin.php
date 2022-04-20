@@ -314,4 +314,14 @@ class Albamn_Hskwakr_Admin
             }
         }
     }
+
+    /**
+     * Add custom post type for the plugin.
+     *
+     * @since    1.0.0
+     */
+    public function cpt(): void
+    {
+        // register_post_type
+    }
 }
