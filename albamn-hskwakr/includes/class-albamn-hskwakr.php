@@ -158,21 +158,44 @@ class Albamn_Hskwakr
          *
          * Register css/js
          */
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue');
+        $this->loader->add_action(
+            'admin_enqueue_scripts',
+            $plugin_admin,
+            'enqueue'
+        );
 
         /**
          * Menu
          *
          * Register menu for admin page
          */
-        $this->loader->add_action('admin_menu', $plugin_admin, 'menu');
+        $this->loader->add_action(
+            'admin_menu',
+            $plugin_admin,
+            'menu'
+        );
 
         /**
          * Settings
          *
          * Register settings for the plugin
          */
-        $this->loader->add_action('admin_init', $plugin_admin, 'settings');
+        $this->loader->add_action(
+            'admin_init',
+            $plugin_admin,
+            'settings'
+        );
+
+        /**
+         * Custom post type
+         *
+         * Register custom post type for the plugin
+         */
+        $this->loader->add_action(
+            'init',
+            $plugin_admin,
+            'cpt'
+        );
     }
 
     /**
