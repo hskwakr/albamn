@@ -308,3 +308,98 @@ class Albamn_Hskwakr_Admin_Cpt_Label_Test extends WP_UnitTestCase
         $this->assertTrue($flag);
     }
 }
+
+/**
+ * The test cases for Albamn_Hskwakr_Admin_Cpt_Support
+ *
+ * @package    Albamn_Hskwakr
+ * @subpackage Albamn_Hskwakr/tests
+ * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
+ */
+class Albamn_Hskwakr_Admin_Cpt_Support_Test extends WP_UnitTestCase
+{
+    private $support;
+
+    public function setUp()
+    {
+        /**
+         * Instantiate
+         */
+        $this->support = new Albamn_Hskwakr_Admin_Cpt_Support(
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        );
+    }
+
+    /**
+     * Check the return value has expected structure
+     */
+    public function test_get_array()
+    {
+        /**
+         * Prepare
+         */
+        $check = function (string $target, array $list): bool {
+            /**
+             * Check if there is a same name as $target in the array.
+             *
+             * true:  expected
+             * false: unexpected
+             */
+            $flag = false;
+
+            foreach ($list as $value) {
+                if ($value == $target) {
+                    $flag = true;
+                    break;
+                }
+            }
+
+            return $flag;
+        };
+        $props = get_class_vars(get_class($this->support));
+        $props = array_keys($props);
+        $props = str_replace('_', '-', $props);
+
+        /**
+         * Execute
+         * with every true param as constractor
+         */
+        $arr = $this->support->get_array();
+
+        /**
+         * Assert
+         * Check the array keys are equivalent to class properties
+         */
+        $flag = true;
+        foreach ($arr as $value) {
+            if (!$check($value, $props)) {
+                $flag = false;
+                break;
+            }
+        }
+        $this->assertTrue($flag);
+
+        /**
+         * Assert
+         * Check the class properties are equivalent to array keys
+         */
+        $flag = true;
+        foreach ($props as $value) {
+            if (!$check($value, $arr)) {
+                $flag = false;
+                break;
+            }
+        }
+        $this->assertTrue($flag);
+    }
+}
