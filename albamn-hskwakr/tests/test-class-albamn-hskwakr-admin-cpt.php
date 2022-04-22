@@ -55,3 +55,143 @@ class Albamn_Hskwakr_Admin_Cpt_Test extends WP_UnitTestCase
         $this->assertSame($expect, $actual);
     }
 }
+
+/**
+ * The test cases for Albamn_Hskwakr_Admin_Cpt_Arg
+ *
+ * @package    Albamn_Hskwakr
+ * @subpackage Albamn_Hskwakr/tests
+ * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
+ */
+class Albamn_Hskwakr_Admin_Cpt_Arg_Test extends WP_UnitTestCase
+{
+    private $arg;
+    private $keys;
+
+    public function setUp()
+    {
+        /**
+         * Prepare fake data
+         */
+        $this->keys = array(
+            'labels',
+            'supports',
+            'description',
+            'capability_type',
+            'taxonomies',
+            'hierarchical',
+            'public',
+            'show_ui',
+            'show_in_menu',
+            'show_in_nav_menus',
+            'show_in_admin_bar',
+            'can_export',
+            'has_archive',
+            'exclude_from_search',
+            'publicly_queryable',
+            'show_in_rest',
+            'menu_position',
+        );
+
+        /**
+         * Create mock
+         */
+        $labels = $this->createMock(
+            Albamn_Hskwakr_Admin_Cpt_Label::class
+        );
+        $supports = $this->createMock(
+            Albamn_Hskwakr_Admin_Cpt_Support::class
+        );
+
+        /**
+         * Instantiate
+         */
+        $this->arg = new Albamn_Hskwakr_Admin_Cpt_Arg(
+            $labels,
+            $supports,
+            '',
+            '',
+            array(),
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        );
+    }
+
+    /**
+     * Check the return value has expected structure
+     */
+    public function test_get_array()
+    {
+        /**
+         * Prepare
+         */
+        $check = function (string $target): bool {
+            /**
+             * Check the $target is in the list of expected keys
+             * true:  expected
+             * false: unexpected
+             */
+            $flag = false;
+
+            foreach ($this->keys as $value) {
+                if ($value == $target) {
+                    $flag = true;
+                    break;
+                }
+            }
+
+            return $flag;
+        };
+
+        /**
+         * Execute
+         */
+        $arr = $this->arg->get_array();
+        $keys = array_keys($arr);
+
+        /**
+         * Assert
+         */
+        $flag = true;
+        foreach ($keys as $value) {
+            if (!$check($value)) {
+                $flag = false;
+                break;
+            }
+        }
+        $this->assertTrue($flag);
+    }
+
+    /**
+     * Check the return value has expected structure
+     */
+    public function test_get_array_should_have_only_string_keys()
+    {
+        /**
+         * Execute
+         */
+        $arr = $this->arg->get_array();
+        $keys = array_keys($arr);
+
+        /**
+         * Assert
+         */
+        $flag = true;
+        foreach ($keys as $value) {
+            if (!is_string($value)) {
+                $flag = false;
+                break;
+            }
+        }
+        $this->assertTrue($flag);
+    }
+}
