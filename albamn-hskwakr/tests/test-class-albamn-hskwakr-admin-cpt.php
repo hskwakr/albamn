@@ -66,33 +66,9 @@ class Albamn_Hskwakr_Admin_Cpt_Test extends WP_UnitTestCase
 class Albamn_Hskwakr_Admin_Cpt_Arg_Test extends WP_UnitTestCase
 {
     private $arg;
-    private $keys;
 
     public function setUp()
     {
-        /**
-         * Prepare fake data
-         */
-        $this->keys = array(
-            'labels',
-            'supports',
-            'description',
-            'capability_type',
-            'taxonomies',
-            'hierarchical',
-            'public',
-            'show_ui',
-            'show_in_menu',
-            'show_in_nav_menus',
-            'show_in_admin_bar',
-            'can_export',
-            'has_archive',
-            'exclude_from_search',
-            'publicly_queryable',
-            'show_in_rest',
-            'menu_position',
-        );
-
         /**
          * Create mock
          */
@@ -134,15 +110,16 @@ class Albamn_Hskwakr_Admin_Cpt_Arg_Test extends WP_UnitTestCase
         /**
          * Prepare
          */
-        $check = function (string $target): bool {
+        $check = function (string $target, array $list): bool {
             /**
-             * Check the $target is in the list of expected keys
+             * Check if there is a same name as $target in the array.
+             *
              * true:  expected
              * false: unexpected
              */
             $flag = false;
 
-            foreach ($this->keys as $value) {
+            foreach ($list as $value) {
                 if ($value == $target) {
                     $flag = true;
                     break;
@@ -151,19 +128,35 @@ class Albamn_Hskwakr_Admin_Cpt_Arg_Test extends WP_UnitTestCase
 
             return $flag;
         };
+        $props = get_class_vars(get_class($this->arg));
+        $props = array_keys($props);
 
         /**
          * Execute
          */
         $arr = $this->arg->get_array();
-        $keys = array_keys($arr);
+        $arr = array_keys($arr);
 
         /**
          * Assert
+         * Check the array keys are equivalent to class properties
          */
         $flag = true;
-        foreach ($keys as $value) {
-            if (!$check($value)) {
+        foreach ($arr as $value) {
+            if (!$check($value, $props)) {
+                $flag = false;
+                break;
+            }
+        }
+        $this->assertTrue($flag);
+
+        /**
+         * Assert
+         * Check the class properties are equivalent to array keys
+         */
+        $flag = true;
+        foreach ($props as $value) {
+            if (!$check($value, $arr)) {
                 $flag = false;
                 break;
             }
