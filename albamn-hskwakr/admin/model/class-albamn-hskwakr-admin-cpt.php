@@ -58,9 +58,9 @@ class Albamn_Hskwakr_Admin_Cpt
      * This method contains Wordpress API
      *
      * @since    1.0.0
-     * @return   array     The array for cpt
+     * @return   Albamn_Hskwakr_Admin_Cpt_Arg     The array for cpt
      */
-    public function ig_posts(): array
+    public function ig_posts(): Albamn_Hskwakr_Admin_Cpt_Arg
     {
         $name = $this->albamn_hskwakr . 'ig-posts';
         $taxsonomies = array($this->hyphen_to_underbar($name));
@@ -95,7 +95,7 @@ class Albamn_Hskwakr_Admin_Cpt
             false
         );
 
-        $arg = new Albamn_Hskwakr_Admin_Cpt_Arg(
+        return new Albamn_Hskwakr_Admin_Cpt_Arg(
             $labels,
             $supports,
             (string)__('Instagram Posts'),
@@ -113,8 +113,6 @@ class Albamn_Hskwakr_Admin_Cpt
             true,
             true
         );
-
-        return $arg->get_array();
     }
 
     /**
