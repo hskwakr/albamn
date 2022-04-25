@@ -328,6 +328,23 @@ class Albamn_Hskwakr_Admin
      */
     public function cpt(): void
     {
-        // register_post_type
+        /**
+         * Instantiate cpt
+         */
+        $cpt = new Albamn_Hskwakr_Admin_Cpt($this->albamn_hskwakr);
+
+        /**
+         * Get a list of custom post types
+         *
+         * @var Albamn_Hskwakr_Admin_Cpt_Arg
+         */
+        foreach ($cpt->get() as $c) {
+            $name = $c->labels->name;
+
+            /**
+             * Register custom post type
+             */
+            register_post_type($name, $c->get_array());
+        }
     }
 }
