@@ -29,25 +29,14 @@ class Albamn_Hskwakr_Admin_Cpt
     private $albamn_hskwakr;
 
     /**
-     * The version of this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $version    The current version of this plugin.
-     */
-    private $version;
-
-    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
      * @param    string    $albamn_hskwakr    The name of the plugin.
-     * @param    string    $version           The version of this plugin.
      */
-    public function __construct($albamn_hskwakr, $version)
+    public function __construct($albamn_hskwakr)
     {
         $this->albamn_hskwakr = $albamn_hskwakr;
-        $this->version = $version;
     }
 
     /**
