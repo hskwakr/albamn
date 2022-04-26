@@ -56,6 +56,9 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
             if (!isset($m->media_url)) {
                 return false;
             }
+            if (!isset($m->id)) {
+                return false;
+            }
 
             switch ($m->media_type) {
                 case 'IMAGE':

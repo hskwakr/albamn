@@ -188,6 +188,19 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          */
         $api = new Albamn_Hskwakr_Ig_Api();
 
+        $data_1 = new Albamn_Hskwakr_Ig_Post(
+            $this->medias[0]->id,
+            $this->medias[0]->media_type,
+            $this->medias[0]->media_url,
+            $this->medias[0]->permalink
+        );
+        $data_2 = new Albamn_Hskwakr_Ig_Post(
+            $this->medias[1]->id,
+            $this->medias[1]->media_type,
+            $this->medias[1]->media_url,
+            $this->medias[1]->permalink
+        );
+
         /**
          * Execute
          */
@@ -196,12 +209,22 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Assert
          */
-        $expect = array(
-            $this->medias[0],
-            $this->medias[1]
+        $this->assertContainsOnlyInstancesOf(
+            Albamn_Hskwakr_Ig_Post::class,
+            $actual
+        );
+
+        /**
+         * Assert
+         */
+        $expects = array(
+            $data_1,
+            $data_2
         );
         foreach ($actual as $v) {
-            $this->assertContains($v, $expect);
+            if (!in_array($v, $expects)) {
+                $this->fail();
+            }
         }
     }
 
