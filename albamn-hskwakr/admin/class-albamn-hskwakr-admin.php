@@ -166,6 +166,12 @@ class Albamn_Hskwakr_Admin
           . 'ig/class-albamn-hskwakr-ig-api-context.php';
 
         /**
+         * The Instagram post
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig-post.php';
+
+        /**
          * Create instaces.
          */
         $this->settings = new Albamn_Hskwakr_Admin_Settings(
