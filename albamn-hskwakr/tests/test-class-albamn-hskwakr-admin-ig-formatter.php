@@ -28,17 +28,19 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
          * Prepare fake data
          * Correct values
          */
-        $correct_image = new class () {};
-        $correct_image->media_type = 'IMAGE';
-        $correct_image->media_url = 'mediaurl1234';
-        $correct_image->permalink = 'permalink1234';
-        $correct_image->id = 'id1234';
+        $correct_image = new Albamn_Hskwakr_Ig_Post(
+            'id1234',
+            'IMAGE',
+            'mediaurl1234',
+            'permalink1234'
+        );
 
-        $correct_video = new class () {};
-        $correct_video->media_type = 'VIDEO';
-        $correct_video->media_url = 'mediaurl1234';
-        $correct_video->permalink = 'permalink1234';
-        $correct_video->id = 'id1234';
+        $correct_video = new Albamn_Hskwakr_Ig_Post(
+            'id1234',
+            'VIDEO',
+            'mediaurl1234',
+            'permalink1234'
+        );
 
         $this->medias_correct = array(
             'image' => $correct_image,
@@ -51,26 +53,33 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
          */
         $wrong_array_elem = '';
 
-        $wrong_type = new class () {};
-        $wrong_type->media_type = 'OTHER';
-        $wrong_type->media_url = 'mediaurl1234';
-        $wrong_type->permalink = 'permalink1234';
-        $wrong_type->id = 'id1234';
+        $wrong_type = new Albamn_Hskwakr_Ig_Post(
+            'id1234',
+            'OTHER',
+            'mediaurl1234',
+            'permalink1234'
+        );
 
-        $wrong_prop_1 = new class () {};
-        $wrong_prop_1->media_url = 'mediaurl1234';
-        $wrong_prop_1->permalink = 'permalink1234';
-        $wrong_prop_1->id = 'id1234';
+        $wrong_prop_1 = new Albamn_Hskwakr_Ig_Post(
+            'id1234',
+            '',
+            'mediaurl1234',
+            'permalink1234'
+        );
 
-        $wrong_prop_2 = new class () {};
-        $wrong_prop_2->media_type = 'IMAGE';
-        $wrong_prop_2->permalink = 'permalink1234';
-        $wrong_prop_2->id = 'id1234';
+        $wrong_prop_2 = new Albamn_Hskwakr_Ig_Post(
+            'id1234',
+            'IMAGE',
+            '',
+            'permalink1234'
+        );
 
-        $wrong_prop_3 = new class () {};
-        $wrong_prop_3->media_type = 'IMAGE';
-        $wrong_prop_3->media_url = 'mediaurl1234';
-        $wrong_prop_3->permalink = 'permalink1234';
+        $wrong_prop_3 = new Albamn_Hskwakr_Ig_Post(
+            '',
+            'IMAGE',
+            'mediaurl1234',
+            'permalink1234'
+        );
 
         $this->medias_wrong = array(
             'elem' => $wrong_array_elem,
