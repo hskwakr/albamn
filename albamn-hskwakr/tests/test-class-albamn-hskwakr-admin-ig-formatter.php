@@ -32,11 +32,13 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $correct_image->media_type = 'IMAGE';
         $correct_image->media_url = 'mediaurl1234';
         $correct_image->permalink = 'permalink1234';
+        $correct_image->id = 'id1234';
 
         $correct_video = new class () {};
         $correct_video->media_type = 'VIDEO';
         $correct_video->media_url = 'mediaurl1234';
         $correct_video->permalink = 'permalink1234';
+        $correct_video->id = 'id1234';
 
         $this->medias_correct = array(
             'image' => $correct_image,
@@ -53,20 +55,29 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $wrong_type->media_type = 'OTHER';
         $wrong_type->media_url = 'mediaurl1234';
         $wrong_type->permalink = 'permalink1234';
+        $wrong_type->id = 'id1234';
 
         $wrong_prop_1 = new class () {};
         $wrong_prop_1->media_url = 'mediaurl1234';
         $wrong_prop_1->permalink = 'permalink1234';
+        $wrong_prop_1->id = 'id1234';
 
         $wrong_prop_2 = new class () {};
         $wrong_prop_2->media_type = 'IMAGE';
         $wrong_prop_2->permalink = 'permalink1234';
+        $wrong_prop_2->id = 'id1234';
+
+        $wrong_prop_3 = new class () {};
+        $wrong_prop_3->media_type = 'IMAGE';
+        $wrong_prop_3->media_url = 'mediaurl1234';
+        $wrong_prop_3->permalink = 'permalink1234';
 
         $this->medias_wrong = array(
             'elem' => $wrong_array_elem,
             'type' => $wrong_type,
             'lack_of_type' => $wrong_prop_1,
-            'lack_of_url' => $wrong_prop_2
+            'lack_of_url' => $wrong_prop_2,
+            'lack_of_id' => $wrong_prop_3
         );
 
         /**
@@ -138,6 +149,20 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             $this->medias_correct['image'],
             $this->medias_correct['video'],
             $this->medias_wrong['lack_of_url']
+        );
+        $actual = $this->formatter->validate_medias(
+            $medias
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Asset: Wrong case
+         * The object does not have id
+         */
+        $medias = array(
+            $this->medias_correct['image'],
+            $this->medias_correct['video'],
+            $this->medias_wrong['lack_of_id']
         );
         $actual = $this->formatter->validate_medias(
             $medias
