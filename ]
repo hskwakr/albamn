@@ -44,19 +44,19 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
          */
         foreach ($medias as $m) {
             if (!is_object($m)) {
-                return false;
+                //return false;
             }
 
             /**
              * @var object $m
              */
-            if (!isset($m->media_type) || empty($m->media_type)) {
+            if (!isset($m->media_type)) {
                 return false;
             }
-            if (!isset($m->media_url) || empty($m->media_url)) {
+            if (!isset($m->media_url)) {
                 return false;
             }
-            if (!isset($m->id) || empty($m->id)) {
+            if (!isset($m->id)) {
                 return false;
             }
 
@@ -148,17 +148,17 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
                 . 'style="width: 15rem; height: 15rem; background: black;"'
                 . '>';
 
-        $linkable = !empty($media->permalink);
+        $linkable = isset($media->permalink);
 
         if ($linkable) {
             $r = $r . '<a href="'
-                    . $media->permalink
+                    . (string)$media->permalink
                     . '" '
                     . '>';
         }
 
         $r = $r . '<img src="'
-                . $media->media_url
+                . (string)$media->media_url
                 . '" '
                 . 'style="display: block; width: 100%; height: 100%;"'
                 . '/>';
@@ -177,11 +177,11 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
      * This method don't care about error case
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Ig_Post      $media
+     * @param    object     $media
      * @return   string     The html
      */
     public function format_video_media(
-        Albamn_Hskwakr_Ig_Post $media
+        $media
     ): string {
         $r = '';
         $r = $r . '<div '
@@ -189,17 +189,17 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
                 . 'style="width: 15rem; height: 15rem; background: black;"'
                 . '>';
 
-        $linkable = !empty($media->permalink);
+        $linkable = isset($media->permalink);
 
         if ($linkable) {
             $r = $r . '<a href="'
-                    . $media->permalink
+                    . (string)$media->permalink
                     . '" '
                     . '>';
         }
 
         $r = $r . '<video src="'
-                . $media->media_url
+                . (string)$media->media_url
                 . '" autoplay="" muted="" playsinline="" loop="" '
                 . 'style="display: block; width: 100%; height: 100%;"'
                 . '></video>';
