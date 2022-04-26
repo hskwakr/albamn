@@ -245,10 +245,6 @@ class Albamn_Hskwakr_Ig_Api
     public function filter_medias(array $medias): array
     {
         $error = 'Failed to filter medias';
-
-        /**
-         * @var array<object> $r
-         */
         $r = array();
 
         /**
@@ -275,8 +271,16 @@ class Albamn_Hskwakr_Ig_Api
                     if (!isset($m->media_url)) {
                         break;
                     }
+                    if (!isset($m->id)) {
+                        break;
+                    }
 
-                    $r[] = $m;
+                    $r[] = new Albamn_Hskwakr_Ig_Post(
+                        (string)$m->id,
+                        (string)$m->media_type,
+                        (string)$m->media_url,
+                        (string)$m->permalink
+                    );
                     break;
 
                 default:
@@ -284,6 +288,9 @@ class Albamn_Hskwakr_Ig_Api
             }
         }
 
+        /**
+         * @var array<Albamn_Hskwakr_Ig_Post>
+         */
         return $r;
     }
 
