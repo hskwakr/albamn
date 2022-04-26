@@ -23,11 +23,9 @@ class Albamn_Hskwakr_Ig_Post_Repository
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    string    $albamn_hskwakr    The name of the plugin.
      */
-    public function __construct($albamn_hskwakr)
+    public function __construct()
     {
-        $this->albamn_hskwakr = $albamn_hskwakr;
     }
 
     /**
@@ -38,7 +36,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
      */
     public function save(
         Albamn_Hskwakr_Ig_Post $post
-    ) {
+    ): void {
         // wp_insert_post
         // add_post_meta
     }
