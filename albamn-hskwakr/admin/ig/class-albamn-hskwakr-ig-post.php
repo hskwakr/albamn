@@ -23,38 +23,38 @@ class Albamn_Hskwakr_Ig_Post
      * The ID of the post.
      *
      * @since    1.0.0
-     * @access   private
+     * @access   public
      * @var      string    $id
      */
-    private $id;
+    public $id;
 
     /**
      * The media type.
      * Should be IMAGE or VIDEO.
      *
      * @since    1.0.0
-     * @access   private
+     * @access   public
      * @var      string    $media_type
      */
-    private $media_type;
+    public $media_type;
 
     /**
      * The media url.
      *
      * @since    1.0.0
-     * @access   private
+     * @access   public
      * @var      string    $media_url
      */
-    private $media_url;
+    public $media_url;
 
     /**
      * The permalink for the post.
      *
      * @since    1.0.0
-     * @access   private
+     * @access   public
      * @var      string    $permalink
      */
-    private $permalink;
+    public $permalink;
 
     /**
      * Initialize the class and set its properties.
