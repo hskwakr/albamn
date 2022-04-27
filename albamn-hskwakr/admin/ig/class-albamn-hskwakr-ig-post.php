@@ -73,4 +73,35 @@ class Albamn_Hskwakr_Ig_Post
         $this->media_url = $media_url;
         $this->permalink = $permalink;
     }
+
+    /**
+     * Check the propaties in this post.
+     *
+     * @since    1.0.0
+     * @return   bool       true        Expected.
+     *                      false       Unexpected.
+     */
+    public function validate(): bool
+    {
+        if (empty($this->media_type)) {
+            return false;
+        }
+        if (empty($this->media_url)) {
+            return false;
+        }
+        if (empty($this->id)) {
+            return false;
+        }
+
+        switch ($this->media_type) {
+            case 'IMAGE':
+            case 'VIDEO':
+                break;
+
+            default:
+                return false;
+        }
+
+        return true;
+    }
 }
