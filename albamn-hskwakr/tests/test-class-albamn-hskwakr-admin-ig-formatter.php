@@ -51,7 +51,13 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
          * Prepare fake data
          * Wrong values
          */
-        $wrong_array_elem = '';
+        $wrong_array_elem_string = '';
+
+        $wrong_array_elem_object = new class () {};
+        $wrong_array_elem_object->media_type = 'IMAGE';
+        $wrong_array_elem_object->media_url = 'url1234';
+        $wrong_array_elem_object->permalink = 'link1234';
+        $wrong_array_elem_object->id = 'id1234';
 
         $wrong_type = new Albamn_Hskwakr_Ig_Post(
             'id1234',
@@ -82,7 +88,8 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         );
 
         $this->medias_wrong = array(
-            'elem' => $wrong_array_elem,
+            'elem_string' => $wrong_array_elem_string,
+            'elem_object' => $wrong_array_elem_object,
             'type' => $wrong_type,
             'lack_of_type' => $wrong_prop_1,
             'lack_of_url' => $wrong_prop_2,
@@ -110,12 +117,22 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
 
         /**
          * Asset: Wrong case
-         * The array should contains only object type
+         * The array should contains only Albamn_Hskwakr_Ig_Post type
          */
         $medias = array(
             $this->medias_correct['image'],
             $this->medias_correct['video'],
-            $this->medias_wrong['elem']
+            $this->medias_wrong['elem_string']
+        );
+        $actual = $this->formatter->validate_medias(
+            $medias
+        );
+        $this->assertFalse($actual);
+
+        $medias = array(
+            $this->medias_correct['image'],
+            $this->medias_correct['video'],
+            $this->medias_wrong['elem_object']
         );
         $actual = $this->formatter->validate_medias(
             $medias

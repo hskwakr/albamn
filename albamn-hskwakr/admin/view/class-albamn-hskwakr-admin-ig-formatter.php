@@ -50,23 +50,15 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
             /**
              * @var object $m
              */
-            if (!isset($m->media_type) || empty($m->media_type)) {
-                return false;
-            }
-            if (!isset($m->media_url) || empty($m->media_url)) {
-                return false;
-            }
-            if (!isset($m->id) || empty($m->id)) {
+            if (!($m instanceof Albamn_Hskwakr_Ig_Post)) {
                 return false;
             }
 
-            switch ($m->media_type) {
-                case 'IMAGE':
-                case 'VIDEO':
-                    break;
-
-                default:
-                    return false;
+            /**
+             * @var Albamn_Hskwakr_Ig_Post $m
+             */
+            if (!$m->validate()) {
+                return false;
             }
         }
 
