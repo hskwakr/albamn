@@ -47,6 +47,15 @@ class Albamn_Hskwakr_Admin
     private $settings;
 
     /**
+     * The custom post types for the plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Admin_Cpt    $cpt
+     */
+    private $cpt;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -177,6 +186,10 @@ class Albamn_Hskwakr_Admin
         $this->settings = new Albamn_Hskwakr_Admin_Settings(
             $this->albamn_hskwakr,
             $this->version
+        );
+
+        $this->cpt = new Albamn_Hskwakr_Admin_Cpt(
+            $this->albamn_hskwakr
         );
     }
 
@@ -335,16 +348,11 @@ class Albamn_Hskwakr_Admin
     public function cpt(): void
     {
         /**
-         * Instantiate cpt
-         */
-        $cpt = new Albamn_Hskwakr_Admin_Cpt($this->albamn_hskwakr);
-
-        /**
          * Get a list of custom post types
          *
          * @var Albamn_Hskwakr_Admin_Cpt_Arg
          */
-        foreach ($cpt->get() as $c) {
+        foreach ($this->cpt->get() as $c) {
             $name = $c->labels->name;
 
             /**
