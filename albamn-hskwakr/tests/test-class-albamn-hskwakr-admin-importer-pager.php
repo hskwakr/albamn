@@ -34,6 +34,9 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
         $formatter = $this->createMock(
             Albamn_Hskwakr_Admin_Ig_Formatter::class
         );
+        $repository = $this->createMock(
+            Albamn_Hskwakr_Ig_Post_Repository::class
+        );
 
         /**
          * Instantiate
@@ -41,7 +44,8 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
         $this->pager = new Albamn_Hskwakr_Admin_Importer_Pager(
             $settings,
             $api,
-            $formatter
+            $formatter,
+            $repository
         );
     }
 

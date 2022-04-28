@@ -74,6 +74,15 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     private $ig_posts;
 
     /**
+     * The DB access for Instagram posts
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Post_Repository    $ig_repository
+     */
+    private $ig_repository;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -83,11 +92,13 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     public function __construct(
         Albamn_Hskwakr_Admin_Settings $settings,
         Albamn_Hskwakr_Ig_Api $ig_api,
-        Albamn_Hskwakr_Admin_Ig_Formatter $ig_formatter
+        Albamn_Hskwakr_Admin_Ig_Formatter $ig_formatter,
+        Albamn_Hskwakr_Ig_Post_Repository $ig_repository
     ) {
         $this->settings = $settings;
         $this->ig_api = $ig_api;
         $this->ig_formatter = $ig_formatter;
+        $this->ig_repository = $ig_repository;
 
         $this->ig_posts = array();
     }
