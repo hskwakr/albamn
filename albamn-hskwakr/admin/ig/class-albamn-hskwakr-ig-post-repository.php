@@ -51,10 +51,57 @@ class Albamn_Hskwakr_Ig_Post_Repository
     public function add(
         Albamn_Hskwakr_Ig_Post $post
     ): bool {
-        // wp_insert_post
-        // add_post_meta
+        $flag = false;
+        $name = $this->cpt->labels->name;
 
-        return true;
+        /**
+         * Create the post data
+         */
+        $data = array(
+            'post_title' => $post->id,
+            'post_status' => 'publish',
+            'post_type' => $name
+        );
+
+        /**
+         * Add the post into DB
+         */
+        $result = wp_insert_post($data);
+
+        /**
+         * Capture the post ID
+         */
+        if ($result && ! is_wp_error($result)) {
+            $post_id = $result;
+
+            /**
+             * Add meta data
+             */
+            add_post_meta(
+                $post_id,
+                'media_id',
+                $post->id
+            );
+            add_post_meta(
+                $post_id,
+                'media_type',
+                $post->media_type
+            );
+            add_post_meta(
+                $post_id,
+                'media_url',
+                $post->media_url
+            );
+            add_post_meta(
+                $post_id,
+                'permalink',
+                $post->permalink
+            );
+
+            $flag = true;
+        }
+
+        return $flag;
     }
 
     /**
@@ -67,13 +114,30 @@ class Albamn_Hskwakr_Ig_Post_Repository
     public function get(
         int $amount
     ): array {
-        // get_posts
-        // get_post_meta
+        $r = array();
+        $name = $this->cpt->labels->name;
+
+        $posts = get_posts(array(
+            'post_type' => $name,
+            'numberposts' => $amount,
+        ));
+
+        /**
+         * @var object $post
+         */
+        foreach ($posts as $post) {
+            $r[] = new Albamn_Hskwakr_Ig_Post(
+                $post->media_id,
+                $post->media_type,
+                $post->media_url,
+                $post->permalink
+            );
+        }
 
         /**
          * @var array<Albamn_Hskwakr_Ig_Post>
          */
-        return array();
+        return $r;
     }
 
     /**
@@ -101,6 +165,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
     public function remove(
         Albamn_Hskwakr_Ig_Post $post
     ): bool {
+        // wp_delete_post
         return true;
     }
 
