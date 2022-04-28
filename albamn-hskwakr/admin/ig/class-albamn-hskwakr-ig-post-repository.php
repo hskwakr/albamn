@@ -65,6 +65,8 @@ class Albamn_Hskwakr_Ig_Post_Repository
 
         /**
          * Add the post into DB
+         *
+         * @var mixed $result
          */
         $result = wp_insert_post($data);
 
@@ -72,6 +74,9 @@ class Albamn_Hskwakr_Ig_Post_Repository
          * Capture the post ID
          */
         if ($result && ! is_wp_error($result)) {
+            /**
+             * @var int $result
+             */
             $post_id = $result;
 
             /**
@@ -117,6 +122,11 @@ class Albamn_Hskwakr_Ig_Post_Repository
         $r = array();
         $name = $this->cpt->labels->name;
 
+        /**
+         * Get posts from DB
+         *
+         * @var array<object> $posts
+         */
         $posts = get_posts(array(
             'post_type' => $name,
             'numberposts' => $amount,
@@ -127,10 +137,10 @@ class Albamn_Hskwakr_Ig_Post_Repository
          */
         foreach ($posts as $post) {
             $r[] = new Albamn_Hskwakr_Ig_Post(
-                $post->media_id,
-                $post->media_type,
-                $post->media_url,
-                $post->permalink
+                (string)$post->media_id,
+                (string)$post->media_type,
+                (string)$post->media_url,
+                (string)$post->permalink
             );
         }
 
