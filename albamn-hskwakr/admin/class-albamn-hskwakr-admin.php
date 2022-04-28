@@ -181,6 +181,12 @@ class Albamn_Hskwakr_Admin
           . 'ig/class-albamn-hskwakr-ig-post.php';
 
         /**
+         * The DB access for Instagram posts
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig-post-repository.php';
+
+        /**
          * Create instaces.
          */
         $this->settings = new Albamn_Hskwakr_Admin_Settings(
@@ -262,12 +268,20 @@ class Albamn_Hskwakr_Admin
         );
 
         /**
+         * Instantiate Instagram posts repository
+         */
+        $ig_repository = new Albamn_Hskwakr_Ig_Post_Repository(
+            $this->cpt->ig_posts()
+        );
+
+        /**
          * Instantiate importer pager
          */
         $importer = new Albamn_Hskwakr_Admin_Importer_Pager(
             $this->settings,
             $ig_api,
-            $ig_formatter
+            $ig_formatter,
+            $ig_repository
         );
 
         /**
