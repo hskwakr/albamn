@@ -65,6 +65,15 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     private $hashtag = '';
 
     /**
+     * The list of Instagram posts
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      array<Albamn_Hskwakr_Ig_Post>    $ig_posts
+     */
+    private $ig_posts;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -79,6 +88,8 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
         $this->settings = $settings;
         $this->ig_api = $ig_api;
         $this->ig_formatter = $ig_formatter;
+
+        $this->ig_posts = array();
     }
 
     /**
@@ -189,11 +200,11 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
              */
             $posts = $this->ig_api->recent_medias;
             /**
-             * @var array<Albamn_Hskwakr_Ig_Post> $posts
+             * @var array<Albamn_Hskwakr_Ig_Post>
              */
-            $posts = $this->ig_api->filter_medias($posts);
+            $this->ig_posts = $this->ig_api->filter_medias($posts);
 
-            return $this->format_ig_posts($posts);
+            return $this->format_ig_posts($this->ig_posts);
         } catch (Exception $e) {
             return $this->display_warning($e->getMessage());
         }
