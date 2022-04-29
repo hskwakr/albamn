@@ -267,7 +267,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             }
         }
 
-        return $success;
+        return $this->display_alert_green($success);
     }
 
     /**
