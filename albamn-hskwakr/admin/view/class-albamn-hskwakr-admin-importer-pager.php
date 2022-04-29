@@ -239,6 +239,38 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     }
 
     /**
+     * Save Instagram posts to DB
+     *
+     * @since    1.0.0
+     * @param    array      $posts
+     * @return   string     The html
+     */
+    public function save_ig_posts(array $posts): string
+    {
+        $error = 'Failed to save Instagram posts';
+        $success = 'Successed to save Instagram posts';
+
+        /**
+         * @var mixed $post
+         */
+        foreach ($posts as $post) {
+            if (!($post instanceof Albamn_Hskwakr_Ig_Post)) {
+                return $this->display_warning($error);
+            }
+
+            /**
+             * @var Albamn_Hskwakr_Ig_Post $post
+             */
+            $result = $this->ig_repository->add($post);
+            if (!$result) {
+                return $this->display_warning($error);
+            }
+        }
+
+        return $success;
+    }
+
+    /**
      * The html to display header
      *
      * @since    1.0.0
