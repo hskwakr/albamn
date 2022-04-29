@@ -129,7 +129,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
              */
             echo $this->get_ig_posts();
         } elseif ($status == 2) {
-            echo $this->display_warning('Access token required');
+            echo $this->display_alert_red('Access token required');
         }
 
         /**
@@ -217,7 +217,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
 
             return $this->format_ig_posts($this->ig_posts);
         } catch (Exception $e) {
-            return $this->display_warning($e->getMessage());
+            return $this->display_alert_red($e->getMessage());
         }
     }
 
@@ -232,7 +232,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
     {
         $error = 'Failed to display Instagram posts';
         if (!$this->ig_formatter->validate_medias($posts)) {
-            $this->display_warning($error);
+            $this->display_alert_red($error);
         }
 
         return $this->ig_formatter->format_medias($posts);
@@ -255,7 +255,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
          */
         foreach ($posts as $post) {
             if (!($post instanceof Albamn_Hskwakr_Ig_Post)) {
-                return $this->display_warning($error);
+                return $this->display_alert_red($error);
             }
 
             /**
@@ -263,7 +263,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
              */
             $result = $this->ig_repository->add($post);
             if (!$result) {
-                return $this->display_warning($error);
+                return $this->display_alert_red($error);
             }
         }
 
@@ -310,7 +310,7 @@ EOF;
      * @param    string    $msg          the message.
      * @return   string    The html
      */
-    public function display_warning($msg): string
+    public function display_alert_red($msg): string
     {
         return <<< EOF
 
