@@ -202,6 +202,13 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
      */
     public function get_ig_posts(): string
     {
+        /**
+         * The return value
+         *
+         * @var string $r
+         */
+        $r = '';
+
         try {
             $this->ig_api->init($this->access_token);
             $this->ig_api->search_hashtag($this->hashtag);
@@ -215,7 +222,17 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
              */
             $this->ig_posts = $this->ig_api->filter_medias($posts);
 
-            return $this->format_ig_posts($this->ig_posts);
+            /**
+             * Save to DB
+             */
+            //$r = $r . $this->save_ig_posts($this->ig_posts);
+
+            /**
+             * Display Instagram posts
+             */
+            $r = $r . $this->format_ig_posts($this->ig_posts);
+
+            return $r;
         } catch (Exception $e) {
             return $this->display_alert_red($e->getMessage());
         }
