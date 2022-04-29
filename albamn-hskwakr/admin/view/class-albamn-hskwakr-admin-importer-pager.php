@@ -304,7 +304,8 @@ EOF;
     }
 
     /**
-     * The html to display warning
+     * The html to display message
+     * with red background
      *
      * @since    1.0.0
      * @param    string    $msg          the message.
@@ -315,6 +316,25 @@ EOF;
         return <<< EOF
 
   <div class="alert alert-warning mt-2" role="alert">
+    $msg
+  </div>
+
+EOF;
+    }
+
+    /**
+     * The html to display message
+     * with green background
+     *
+     * @since    1.0.0
+     * @param    string    $msg          the message.
+     * @return   string    The html
+     */
+    public function display_alert_green($msg): string
+    {
+        return <<< EOF
+
+  <div class="alert alert-success mt-2" role="alert">
     $msg
   </div>
 
