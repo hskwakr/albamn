@@ -180,6 +180,44 @@ class Albamn_Hskwakr_Ig_Post_Repository
     }
 
     /**
+     * Remove all Instagram post in DB
+     *
+     * @since    1.0.0
+     * @return   bool      The result of success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function remove_all(
+    ): bool {
+        $result = true;
+        $posts = $this->get(-1);
+
+        /**
+         * Check all elements type in posts
+         *
+         * @var mixed $post
+         */
+        foreach ($posts as $post) {
+            if (!($post instanceof Albamn_Hskwakr_Ig_Post)) {
+                return false;
+            }
+        }
+
+        /**
+         * Remove all posts
+         *
+         * @var Albamn_Hskwakr_Ig_Post $post
+         */
+        foreach ($posts as $post) {
+            if (!$this->remove($post->id)) {
+                $result = false;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Update Instagram post in DB
      *
      * @since    1.0.0
