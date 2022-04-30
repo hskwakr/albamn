@@ -154,26 +154,26 @@ class Albamn_Hskwakr_Ig_Post_Repository
      * Find Instagram post from DB
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Ig_Post             $post
+     * @param    string    $media_id
      * @return   Albamn_Hskwakr_Ig_Post | null      The post
      */
     public function find_by(
-        Albamn_Hskwakr_Ig_Post $post
+        string $media_id
     ) {
         return null;
     }
 
     /**
-     * Remove Instagram post in DB
+     * Remove an Instagram post in DB
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Ig_Post     $post
+     * @param    string    $media_id
      * @return   bool      The result of success or failure
      *                     true:  success
      *                     false: failure
      */
     public function remove(
-        Albamn_Hskwakr_Ig_Post $post
+        string $media_id
     ): bool {
         // wp_delete_post
         return true;
@@ -183,14 +183,14 @@ class Albamn_Hskwakr_Ig_Post_Repository
      * Update Instagram post in DB
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Ig_Post     $target
+     * @param    string    $media_id
      * @param    Albamn_Hskwakr_Ig_Post     $new
      * @return   bool      The result of success or failure
      *                     true:  success
      *                     false: failure
      */
     public function update(
-        Albamn_Hskwakr_Ig_Post $target,
+        string $media_id,
         Albamn_Hskwakr_Ig_Post $new
     ): bool {
         return true;
