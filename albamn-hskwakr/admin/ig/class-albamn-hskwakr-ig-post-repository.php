@@ -190,6 +190,10 @@ class Albamn_Hskwakr_Ig_Post_Repository
     public function remove_all(
     ): bool {
         $result = true;
+
+        /**
+         * Get all posts
+         */
         $posts = $this->get(-1);
 
         /**
