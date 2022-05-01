@@ -155,11 +155,38 @@ class Albamn_Hskwakr_Ig_Post_Repository
      *
      * @since    1.0.0
      * @param    string    $media_id
-     * @return   Albamn_Hskwakr_Ig_Post | null      The post
+     * @return   Albamn_Hskwakr_Ig_Post | null      The post or null if could not find it
      */
     public function find_by(
         string $media_id
     ) {
+        /**
+         * Get all posts
+         */
+        $posts = $this->get(-1);
+
+        /**
+         * Check all elements type in posts
+         *
+         * @var mixed $post
+         */
+        foreach ($posts as $post) {
+            if (!($post instanceof Albamn_Hskwakr_Ig_Post)) {
+                return null;
+            }
+        }
+
+        /**
+         * Find the post in posts
+         *
+         * @var Albamn_Hskwakr_Ig_Post $post
+         */
+        foreach ($posts as $post) {
+            if ($post->id == $media_id) {
+                return $post;
+            }
+        }
+
         return null;
     }
 
