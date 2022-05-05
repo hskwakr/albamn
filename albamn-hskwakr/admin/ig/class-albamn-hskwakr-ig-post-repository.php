@@ -51,7 +51,18 @@ class Albamn_Hskwakr_Ig_Post_Repository
     public function add(
         Albamn_Hskwakr_Ig_Post $post
     ): bool {
-        $flag = false;
+        /**
+         * The result of success or failure to remove
+         *
+         * @var bool $success
+         */
+        $success = false;
+
+        /**
+         * The custom post type name for Instagram post
+         *
+         * @var string $name
+         */
         $name = $this->cpt->labels->name;
 
         /**
@@ -103,10 +114,10 @@ class Albamn_Hskwakr_Ig_Post_Repository
                 $post->permalink
             );
 
-            $flag = true;
+            $success = true;
         }
 
-        return $flag;
+        return $success;
     }
 
     /**
