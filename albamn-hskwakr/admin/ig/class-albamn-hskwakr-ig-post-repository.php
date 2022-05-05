@@ -274,36 +274,52 @@ class Albamn_Hskwakr_Ig_Post_Repository
      */
     public function remove_all(
     ): bool {
-        $result = true;
-
         /**
-         * Get all posts
-         */
-        $posts = $this->get(-1);
-
-        /**
-         * Check all elements type in posts
+         * The result of success or failure to remove
          *
-         * @var mixed $post
+         * @var bool $success
+         */
+        $success = true;
+
+        /**
+         * The custom post type name for Instagram post
+         *
+         * @var string $name
+         */
+        $name = $this->cpt->labels->name;
+
+        /**
+         * Get all posts from DB
+         *
+         * @var array<object> $posts
+         */
+        $posts = get_posts(array(
+            'post_type' => $name,
+            'numberposts' => -1,
+        ));
+
+        /**
+         * Remove all posts from DB
+         *
+         * @var object $post
          */
         foreach ($posts as $post) {
-            if (!($post instanceof Albamn_Hskwakr_Ig_Post)) {
-                return false;
+            /**
+             * Remove the post from DB
+             *
+             * @var mixed $result
+             */
+            $result = wp_delete_post($post->ID);
+
+            /**
+             * Failed to remove the post
+             */
+            if (empty($result)) {
+                $success  = false;
             }
         }
 
-        /**
-         * Remove all posts
-         *
-         * @var Albamn_Hskwakr_Ig_Post $post
-         */
-        foreach ($posts as $post) {
-            if (!$this->remove($post->id)) {
-                $result = false;
-            }
-        }
-
-        return $result;
+        return $success;
     }
 
     /**
