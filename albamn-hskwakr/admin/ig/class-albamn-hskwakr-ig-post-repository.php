@@ -202,14 +202,19 @@ class Albamn_Hskwakr_Ig_Post_Repository
     public function remove(
         string $media_id
     ): bool {
-        $name = $this->cpt->labels->name;
-
         /**
          * The post to remove from DB
          *
          * @var object | null $target
          */
         $target = null;
+
+        /**
+         * The custom post type name for Instagram post
+         *
+         * @var string $name
+         */
+        $name = $this->cpt->labels->name;
 
         /**
          * Get all posts from DB
