@@ -202,7 +202,60 @@ class Albamn_Hskwakr_Ig_Post_Repository
     public function remove(
         string $media_id
     ): bool {
-        // wp_delete_post
+        $name = $this->cpt->labels->name;
+
+        /**
+         * The post to remove from DB
+         *
+         * @var object | null $target
+         */
+        $target = null;
+
+        /**
+         * Get all posts from DB
+         *
+         * @var array<object> $posts
+         */
+        $posts = get_posts(array(
+            'post_type' => $name,
+            'numberposts' => -1,
+        ));
+
+        /**
+         * Find the post from DB
+         *
+         * @var object $post
+         */
+        foreach ($posts as $post) {
+            /**
+             * @var string $post->media_id
+             */
+            if ($post->media_id == $media_id) {
+                $target = $post;
+            }
+        }
+
+        /**
+         * Failed to find the post
+         */
+        if ($target == null) {
+            return false;
+        }
+
+        /**
+         * Remove the post from DB
+         *
+         * @var mixed $result
+         */
+        $result = wp_delete_post($target->ID);
+
+        /**
+         * Failed to remove the post
+         */
+        if (empty($result)) {
+            return false;
+        }
+
         return true;
     }
 
