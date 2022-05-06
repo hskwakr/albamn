@@ -181,7 +181,8 @@ EOF;
             "Your Facebook access token"
         );
         $r = $r . $this->display_form_button(
-            'Save'
+            'Save',
+            'save'
         );
 
         return $r;
@@ -197,7 +198,8 @@ EOF;
     {
         $r = '';
         $r = $r . $this->display_form_button(
-            'Remove all posts'
+            'Remove all posts',
+            'remove'
         );
 
         return $r;
@@ -235,15 +237,18 @@ EOF;
      * The html to display submit button for form
      *
      * @since    1.0.0
+     * @param    string     $label        the label for button.
+     * @param    string     $value        the pair of name and value as form data.
      * @return   string     The html
      */
     public function display_form_button(
-        string $name
+        string $label,
+        string $value
     ): string {
         return <<< EOF
 
-    <button type="submit" class="btn btn-primary col-12">
-      $name
+    <button type="submit" class="btn btn-primary col-12 mb-2" name="$value" value="$value">
+      $label
     </button>
 
 EOF;
