@@ -107,7 +107,7 @@ EOF;
         $r = '';
 
         $r = $r . $this->display_form_header();
-        $r = $r . $this->display_options();
+        $r = $r . $this->display_form_1_options();
         $r = $r . $this->display_form_footer();
 
         return $r;
@@ -149,7 +149,7 @@ EOF;
      * @since    1.0.0
      * @return   string     The html
      */
-    public function display_options(): string
+    public function display_form_1_options(): string
     {
         $general = $this->settings->general();
         $token = (string)$this->settings->get_option(
@@ -164,6 +164,9 @@ EOF;
             $token,
             "Access token",
             "Your Facebook access token"
+        );
+        $r = $r . $this->display_form_button(
+            'Save'
         );
 
         return $r;
