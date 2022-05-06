@@ -114,7 +114,7 @@ EOF;
     }
 
     /**
-     * The html to display header for form
+     * The html to display header for form to the options.php
      *
      * @since    1.0.0
      * @return   string     The html
@@ -124,6 +124,21 @@ EOF;
         return <<< EOF
 
   <form method="POST" action="options.php">
+
+EOF;
+    }
+
+    /**
+     * The html to display header for form to this page
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_self_form_header(): string
+    {
+        return <<< EOF
+
+  <form method="POST" action="">
 
 EOF;
     }
