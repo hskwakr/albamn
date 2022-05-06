@@ -188,6 +188,22 @@ EOF;
     }
 
     /**
+     * Display a options
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_form_2_options(): string
+    {
+        $r = '';
+        $r = $r . $this->display_form_button(
+            'Remove all posts'
+        );
+
+        return $r;
+    }
+
+    /**
      * The html to display a input tag with label
      *
      * @since    1.0.0
