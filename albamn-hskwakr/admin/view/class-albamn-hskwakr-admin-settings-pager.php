@@ -56,6 +56,7 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
          * Contents
          */
         echo $this->display_form_1();
+        echo $this->display_form_2();
 
         /**
          * Footer
@@ -108,6 +109,23 @@ EOF;
 
         $r = $r . $this->display_options_form_header();
         $r = $r . $this->display_form_1_options();
+        $r = $r . $this->display_form_footer();
+
+        return $r;
+    }
+
+    /**
+     * Display a form
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_form_2(): string
+    {
+        $r = '';
+
+        $r = $r . $this->display_self_form_header();
+        $r = $r . $this->display_form_2_options();
         $r = $r . $this->display_form_footer();
 
         return $r;
