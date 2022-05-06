@@ -138,9 +138,6 @@ EOF;
     {
         return <<< EOF
 
-    <button type="submit" class="btn btn-primary col-12">
-      Save
-    </button>
   </form>
 
 EOF;
@@ -196,6 +193,24 @@ EOF;
         <input type="text" class="form-control" id="{$name}" name="{$name}" value="{$value}" placeholder="{$placeholder}" />
       </div>
     </div>
+
+EOF;
+    }
+
+    /**
+     * The html to display submit button for form
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_form_button(
+        string $name
+    ): string {
+        return <<< EOF
+
+    <button type="submit" class="btn btn-primary col-12">
+      $name
+    </button>
 
 EOF;
     }
