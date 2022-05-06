@@ -55,9 +55,7 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
         /**
          * Contents
          */
-        echo $this->display_form_header();
-        echo $this->display_options();
-        echo $this->display_form_footer();
+        echo $this->display_form_1();
 
         /**
          * Footer
@@ -81,6 +79,38 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
   </h3>
 
 EOF;
+    }
+
+    /**
+     * The html to display footer for form
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_footer(): string
+    {
+        return <<< EOF
+
+</div>
+
+EOF;
+    }
+
+    /**
+     * Display a form
+     *
+     * @since    1.0.0
+     * @return   string     The html
+     */
+    public function display_form_1(): string
+    {
+        $r = '';
+
+        $r = $r . $this->display_form_header();
+        $r = $r . $this->display_options();
+        $r = $r . $this->display_form_footer();
+
+        return $r;
     }
 
     /**
@@ -112,21 +142,6 @@ EOF;
       Save
     </button>
   </form>
-
-EOF;
-    }
-
-    /**
-     * The html to display footer for form
-     *
-     * @since    1.0.0
-     * @return   string     The html
-     */
-    public function display_footer(): string
-    {
-        return <<< EOF
-
-</div>
 
 EOF;
     }
