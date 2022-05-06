@@ -106,7 +106,7 @@ EOF;
     {
         $r = '';
 
-        $r = $r . $this->display_form_header();
+        $r = $r . $this->display_options_form_header();
         $r = $r . $this->display_form_1_options();
         $r = $r . $this->display_form_footer();
 
@@ -119,7 +119,7 @@ EOF;
      * @since    1.0.0
      * @return   string     The html
      */
-    public function display_form_header(): string
+    public function display_options_form_header(): string
     {
         return <<< EOF
 
