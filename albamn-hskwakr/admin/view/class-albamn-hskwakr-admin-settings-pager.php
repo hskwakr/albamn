@@ -48,6 +48,11 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
     public function display(): void
     {
         /**
+         * Prepare to display
+         */
+        $status = $this->check_post_data();
+
+        /**
          * Header
          */
         echo $this->display_header();
@@ -57,6 +62,13 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
          */
         echo $this->display_form_1();
         echo $this->display_form_2();
+
+        if ($status == 1) {
+            /**
+             * Remove all posts
+             */
+            echo 'remove';
+        }
 
         /**
          * Footer
