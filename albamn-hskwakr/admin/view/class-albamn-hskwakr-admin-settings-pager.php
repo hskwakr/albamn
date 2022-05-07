@@ -29,15 +29,26 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
     private $settings;
 
     /**
+     * The DB access for Instagram posts
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Post_Repository    $repository
+     */
+    private $repository;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
      * @param    Albamn_Hskwakr_Admin_Settings    $settings
      */
     public function __construct(
-        Albamn_Hskwakr_Admin_Settings $settings
+        Albamn_Hskwakr_Admin_Settings $settings,
+        Albamn_Hskwakr_Ig_Post_Repository $repository
     ) {
         $this->settings = $settings;
+        $this->repository = $repository;
     }
 
     /**

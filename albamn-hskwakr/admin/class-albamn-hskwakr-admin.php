@@ -261,17 +261,18 @@ class Albamn_Hskwakr_Admin
         $ig_formatter = new Albamn_Hskwakr_Admin_Ig_Formatter();
 
         /**
-         * Instantiate settings pager
-         */
-        $general = new Albamn_Hskwakr_Admin_Settings_Pager(
-            $this->settings
-        );
-
-        /**
          * Instantiate Instagram posts repository
          */
         $ig_repository = new Albamn_Hskwakr_Ig_Post_Repository(
             $this->cpt->ig_posts()
+        );
+
+        /**
+         * Instantiate settings pager
+         */
+        $general = new Albamn_Hskwakr_Admin_Settings_Pager(
+            $this->settings,
+            $ig_repository
         );
 
         /**
