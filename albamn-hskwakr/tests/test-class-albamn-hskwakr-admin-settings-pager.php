@@ -23,8 +23,11 @@ class Albamn_Hskwakr_Admin_Settings_Pager_Test extends WP_UnitTestCase
     public function setUp()
     {
         $settings = $this->createMock(Albamn_Hskwakr_Admin_Settings::class);
+        $repository = $this->createMock(Albamn_Hskwakr_Ig_Post_Repository::class);
+
         $this->pager = new Albamn_Hskwakr_Admin_Settings_Pager(
-            $settings
+            $settings,
+            $repository
         );
     }
 
