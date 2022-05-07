@@ -65,6 +65,26 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
     }
 
     /**
+     * Check post data
+     *
+     * @since    1.0.0
+     * @return   int        The status
+     *                      0 : There is no post data sent
+     *                      1 : 'Remove all posts' button sent
+     */
+    public function check_post_data(): int
+    {
+        /**
+         * Check POST data from this page
+         */
+        if (empty($_POST['remove'])) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    /**
      * The html to display header
      *
      * @since    1.0.0
