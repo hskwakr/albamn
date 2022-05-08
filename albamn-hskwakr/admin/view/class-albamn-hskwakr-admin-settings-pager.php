@@ -100,7 +100,7 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
         /**
          * Check POST data from this page
          */
-        if (empty($_POST['remove'])) {
+        if (!empty($_POST['remove'])) {
             return 1;
         }
 
