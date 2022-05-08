@@ -171,52 +171,20 @@ class Albamn_Hskwakr_Ig_Db_Provider
      * Remove an Instagram post in DB
      *
      * @since    1.0.0
-     * @param    string    $media_id
+     * @param    int       $id    The post id for DB
      * @return   bool      Whether success or failure
      *                     true:  success
      *                     false: failure
      */
     public function remove(
-        string $media_id
+        int $id
     ): bool {
-        /**
-         * The post to remove from DB
-         *
-         * @var Albamn_Hskwakr_Ig_Db_Post | null $target
-         */
-        $target = null;
-
-        /**
-         * Get all posts from DB
-         *
-         * @var array<Albamn_Hskwakr_Ig_Db_Post> $entries
-         */
-        $entries = $this->get(-1);
-
-        /**
-         * Find the post from DB
-         *
-         * @var Albamn_Hskwakr_Ig_Db_Post $entry
-         */
-        foreach ($entries as $entry) {
-            if ($entry->post->id == $media_id) {
-                $target = $entry;
-            }
-        }
-
-        /**
-         * Failed to find the post
-         */
-        if ($target == null) {
-            return false;
-        }
-
         /**
          * Remove the post from DB
          *
          * @var mixed $result
          */
-        $result = wp_delete_post($target->id);
+        $result = wp_delete_post($id);
 
         /**
          * Failed to remove the post
@@ -226,54 +194,6 @@ class Albamn_Hskwakr_Ig_Db_Provider
         }
 
         return true;
-    }
-
-    /**
-     * Remove all Instagram post in DB
-     *
-     * @since    1.0.0
-     * @return   bool      The result of success or failure
-     *                     true:  success
-     *                     false: failure
-     */
-    public function remove_all(
-    ): bool {
-        /**
-         * The result of success or failure to remove
-         *
-         * @var bool $success
-         */
-        $success = true;
-
-        /**
-         * Get all posts from DB
-         *
-         * @var array<Albamn_Hskwakr_Ig_Db_Post> $entries
-         */
-        $entries = $this->get(-1);
-
-        /**
-         * Remove all posts from DB
-         *
-         * @var Albamn_Hskwakr_Ig_Db_Post $entry
-         */
-        foreach ($entries as $entry) {
-            /**
-             * Remove the post from DB
-             *
-             * @var mixed $result
-             */
-            $result = wp_delete_post($entry->id);
-
-            /**
-             * Failed to remove the post
-             */
-            if (empty($result)) {
-                $success  = false;
-            }
-        }
-
-        return $success;
     }
 }
 
