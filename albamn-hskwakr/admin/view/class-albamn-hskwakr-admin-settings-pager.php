@@ -108,6 +108,17 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
     }
 
     /**
+     * Remove all Instagram posts from DB
+     *
+     * @since    1.0.0
+     * @return   bool        Whather success or failure
+     */
+    public function remove_all_ig_posts(): bool
+    {
+        return $this->repository->remove_all();
+    }
+
+    /**
      * The html to display header
      *
      * @since    1.0.0
