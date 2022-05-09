@@ -74,12 +74,12 @@ class Albamn_Hskwakr_Ig_Post_Repository
         /**
          * Get posts from DB
          *
-         * @var array<Albamn_Hskwakr_Ig_Post_Db> $entries
+         * @var array<Albamn_Hskwakr_Ig_Post_Db_Entry> $entries
          */
         $entries = $this->get($amount);
 
         /**
-         * @var Albamn_Hskwakr_Ig_Post_Db $entry
+         * @var Albamn_Hskwakr_Ig_Post_Db_Entry $entry
          */
         foreach ($entries as $entry) {
             $r[] = new Albamn_Hskwakr_Ig_Post(
@@ -151,21 +151,21 @@ class Albamn_Hskwakr_Ig_Post_Repository
         /**
          * The post to remove from DB
          *
-         * @var Albamn_Hskwakr_Ig_Post_Db | null $target
+         * @var Albamn_Hskwakr_Ig_Post_Db_Entry | null $target
          */
         $target = null;
 
         /**
          * Get all posts from DB
          *
-         * @var array<Albamn_Hskwakr_Ig_Post_Db> $entries
+         * @var array<Albamn_Hskwakr_Ig_Post_Db_Entry> $entries
          */
         $entries = $this->get(-1);
 
         /**
          * Find the post from DB
          *
-         * @var Albamn_Hskwakr_Ig_Post_Db $entry
+         * @var Albamn_Hskwakr_Ig_Post_Db_Entry $entry
          */
         foreach ($entries as $entry) {
             if ($entry->post->id == $media_id) {
@@ -217,14 +217,14 @@ class Albamn_Hskwakr_Ig_Post_Repository
         /**
          * Get all posts from DB
          *
-         * @var array<Albamn_Hskwakr_Ig_Post_Db> $entries
+         * @var array<Albamn_Hskwakr_Ig_Post_Db_Entry> $entries
          */
         $entries = $this->get(-1);
 
         /**
          * Remove all posts from DB
          *
-         * @var Albamn_Hskwakr_Ig_Post_Db $entry
+         * @var Albamn_Hskwakr_Ig_Post_Db_Entry $entry
          */
         foreach ($entries as $entry) {
             /**

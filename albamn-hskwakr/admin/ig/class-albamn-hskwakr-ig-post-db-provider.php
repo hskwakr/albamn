@@ -147,7 +147,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
          * @var object $post
          */
         foreach ($posts as $post) {
-            $r[] = new Albamn_Hskwakr_Ig_Post_Db(
+            $r[] = new Albamn_Hskwakr_Ig_Post_Db_Entry(
                 (int)$post->ID,
                 (string)$post->post_title,
                 (string)$post->post_type,
@@ -162,7 +162,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
         }
 
         /**
-         * @var array<Albamn_Hskwakr_Ig_Post_Db>
+         * @var array<Albamn_Hskwakr_Ig_Post_Db_Entry>
          */
         return $r;
     }
@@ -206,7 +206,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Ig_Post_Db
+class Albamn_Hskwakr_Ig_Post_Db_Entry
 {
     /**
      * The DB entry ID of the Instagram post
