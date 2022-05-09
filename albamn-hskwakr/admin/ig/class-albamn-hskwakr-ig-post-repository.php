@@ -160,7 +160,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
          *
          * @var array<Albamn_Hskwakr_Ig_Post_Db_Entry> $entries
          */
-        $entries = $this->get(-1);
+        $entries = $this->db->get(-1);
 
         /**
          * Find the post from DB
@@ -219,7 +219,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
          *
          * @var array<Albamn_Hskwakr_Ig_Post_Db_Entry> $entries
          */
-        $entries = $this->get(-1);
+        $entries = $this->db->get(-1);
 
         /**
          * Remove all posts from DB
