@@ -55,80 +55,14 @@ class Albamn_Hskwakr_Ig_Post_Repository
      *
      * @since    1.0.0
      * @param    Albamn_Hskwakr_Ig_Post     $post
-     * @return   bool      The result of success or failure
+     * @return   bool      Whether success or failure
      *                     true:  success
      *                     false: failure
      */
     public function add(
         Albamn_Hskwakr_Ig_Post $post
     ): bool {
-        /**
-         * The result of success or failure to remove
-         *
-         * @var bool $success
-         */
-        $success = false;
-
-        /**
-         * The custom post type name for Instagram post
-         *
-         * @var string $name
-         */
-        $name = $this->cpt->labels->name;
-
-        /**
-         * Create the post data
-         */
-        $data = array(
-            'post_title' => $post->id,
-            'post_status' => 'publish',
-            'post_type' => $name
-        );
-
-        /**
-         * Add the post into DB
-         *
-         * @var mixed $result
-         */
-        $result = wp_insert_post($data);
-
-        /**
-         * Capture the post ID
-         */
-        if ($result && ! is_wp_error($result)) {
-            /**
-             * @var int $result
-             */
-            $post_id = $result;
-
-            /**
-             * Add meta data
-             */
-            add_post_meta(
-                $post_id,
-                'media_id',
-                $post->id
-            );
-            add_post_meta(
-                $post_id,
-                'media_type',
-                $post->media_type
-            );
-            add_post_meta(
-                $post_id,
-                'media_url',
-                $post->media_url
-            );
-            add_post_meta(
-                $post_id,
-                'permalink',
-                $post->permalink
-            );
-
-            $success = true;
-        }
-
-        return $success;
+        return $this->db->add($post);
     }
 
     /**
@@ -141,28 +75,29 @@ class Albamn_Hskwakr_Ig_Post_Repository
     public function get(
         int $amount
     ): array {
+        /**
+         * The list of the Instagram posts
+         *
+         * @var array<Albamn_Hskwakr_Ig_Post> $r
+         */
         $r = array();
-        $name = $this->cpt->labels->name;
 
         /**
          * Get posts from DB
          *
-         * @var array<object> $posts
+         * @var array<Albamn_Hskwakr_Ig_Post_Db> $entries
          */
-        $posts = get_posts(array(
-            'post_type' => $name,
-            'numberposts' => $amount,
-        ));
+        $entries = $this->get($amount);
 
         /**
-         * @var object $post
+         * @var Albamn_Hskwakr_Ig_Post_Db $entry
          */
-        foreach ($posts as $post) {
+        foreach ($entries as $entry) {
             $r[] = new Albamn_Hskwakr_Ig_Post(
-                (string)$post->media_id,
-                (string)$post->media_type,
-                (string)$post->media_url,
-                (string)$post->permalink
+                $entry->post->id,
+                $entry->post->media_type,
+                $entry->post->media_url,
+                $entry->post->permalink
             );
         }
 
@@ -217,7 +152,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
      *
      * @since    1.0.0
      * @param    string    $media_id
-     * @return   bool      The result of success or failure
+     * @return   bool      Whether success or failure
      *                     true:  success
      *                     false: failure
      */
@@ -227,38 +162,25 @@ class Albamn_Hskwakr_Ig_Post_Repository
         /**
          * The post to remove from DB
          *
-         * @var object | null $target
+         * @var Albamn_Hskwakr_Ig_Post_Db | null $target
          */
         $target = null;
 
         /**
-         * The custom post type name for Instagram post
-         *
-         * @var string $name
-         */
-        $name = $this->cpt->labels->name;
-
-        /**
          * Get all posts from DB
          *
-         * @var array<object> $posts
+         * @var array<Albamn_Hskwakr_Ig_Post_Db> $entries
          */
-        $posts = get_posts(array(
-            'post_type' => $name,
-            'numberposts' => -1,
-        ));
+        $entries = $this->get(-1);
 
         /**
          * Find the post from DB
          *
-         * @var object $post
+         * @var Albamn_Hskwakr_Ig_Post_Db $entry
          */
-        foreach ($posts as $post) {
-            /**
-             * @var string $post->media_id
-             */
-            if ($post->media_id == $media_id) {
-                $target = $post;
+        foreach ($entries as $entry) {
+            if ($entry->post->id == $media_id) {
+                $target = $entry;
             }
         }
 
@@ -274,7 +196,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
          *
          * @var mixed $result
          */
-        $result = wp_delete_post($target->ID);
+        $result = $this->db->remove($target->id);
 
         /**
          * Failed to remove the post
@@ -290,7 +212,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
      * Remove all Instagram post in DB
      *
      * @since    1.0.0
-     * @return   bool      The result of success or failure
+     * @return   bool      Whether success or failure
      *                     true:  success
      *                     false: failure
      */
@@ -304,34 +226,24 @@ class Albamn_Hskwakr_Ig_Post_Repository
         $success = true;
 
         /**
-         * The custom post type name for Instagram post
-         *
-         * @var string $name
-         */
-        $name = $this->cpt->labels->name;
-
-        /**
          * Get all posts from DB
          *
-         * @var array<object> $posts
+         * @var array<Albamn_Hskwakr_Ig_Post_Db> $entries
          */
-        $posts = get_posts(array(
-            'post_type' => $name,
-            'numberposts' => -1,
-        ));
+        $entries = $this->get(-1);
 
         /**
          * Remove all posts from DB
          *
-         * @var object $post
+         * @var Albamn_Hskwakr_Ig_Post_Db $entry
          */
-        foreach ($posts as $post) {
+        foreach ($entries as $entry) {
             /**
              * Remove the post from DB
              *
              * @var mixed $result
              */
-            $result = wp_delete_post($post->ID);
+            $result = $this->db->remove($entry->id);
 
             /**
              * Failed to remove the post
@@ -350,7 +262,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
      * @since    1.0.0
      * @param    string    $media_id
      * @param    Albamn_Hskwakr_Ig_Post     $new
-     * @return   bool      The result of success or failure
+     * @return   bool      Whether success or failure
      *                     true:  success
      *                     false: failure
      */
