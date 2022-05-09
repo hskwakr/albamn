@@ -187,6 +187,12 @@ class Albamn_Hskwakr_Admin
           . 'ig/class-albamn-hskwakr-ig-post-repository.php';
 
         /**
+         * The DB provider for Instagram posts
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig-post-db-provider.php';
+
+        /**
          * Create instaces.
          */
         $this->settings = new Albamn_Hskwakr_Admin_Settings(
@@ -259,6 +265,13 @@ class Albamn_Hskwakr_Admin
          * Instantiate formatter for Instagram API
          */
         $ig_formatter = new Albamn_Hskwakr_Admin_Ig_Formatter();
+
+        /**
+         * Instantiate Instagram posts DB provider
+         */
+        $ig_db_provider = new Albamn_Hskwakr_Ig_Post_Db_Provider(
+            $this->cpt->ig_posts()
+        );
 
         /**
          * Instantiate Instagram posts repository
