@@ -71,8 +71,13 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
         /**
          * Contents
          */
-        echo $this->display_form_1();
-        echo $this->display_form_2();
+        echo $this->display_options_form_header();
+        echo $this->display_form_1_options();
+        echo $this->display_form_footer();
+
+        echo $this->display_self_form_header();
+        echo $this->display_form_2_options();
+        echo $this->display_form_footer();
 
         if ($status == 1) {
             /**
@@ -152,40 +157,6 @@ EOF;
     }
 
     /**
-     * Display a form
-     *
-     * @since    1.0.0
-     * @return   string     The html
-     */
-    public function display_form_1(): string
-    {
-        $r = '';
-
-        $r = $r . $this->display_options_form_header();
-        $r = $r . $this->display_form_1_options();
-        $r = $r . $this->display_form_footer();
-
-        return $r;
-    }
-
-    /**
-     * Display a form
-     *
-     * @since    1.0.0
-     * @return   string     The html
-     */
-    public function display_form_2(): string
-    {
-        $r = '';
-
-        $r = $r . $this->display_self_form_header();
-        $r = $r . $this->display_form_2_options();
-        $r = $r . $this->display_form_footer();
-
-        return $r;
-    }
-
-    /**
      * The html to display header for form to the options.php
      *
      * @since    1.0.0
@@ -238,7 +209,14 @@ EOF;
      */
     public function display_form_1_options(): string
     {
+        /**
+         * Get the setting names
+         */
         $general = $this->settings->general();
+
+        /**
+         * Get the setting values of the option from DB
+         */
         $token = (string)$this->settings->get_option(
             (string)$general->options[0],
             '',
@@ -246,15 +224,22 @@ EOF;
         );
 
         $r = '';
+
+        /**
+         * Set input text
+         */
         $r = $r . $this->display_input_text(
             (string)$general->options[0],
             $token,
             "Access token",
             "Your Facebook access token"
         );
+
+        /**
+         * Set button text
+         */
         $r = $r . $this->display_form_button(
-            'Save',
-            'save'
+            'Save'
         );
 
         return $r;
@@ -270,8 +255,7 @@ EOF;
     {
         $r = '';
         $r = $r . $this->display_form_button(
-            'Remove all posts',
-            'remove'
+            'Remove all posts'
         );
 
         return $r;
@@ -310,16 +294,14 @@ EOF;
      *
      * @since    1.0.0
      * @param    string     $label        the label for button.
-     * @param    string     $value        the pair of name and value as form data.
      * @return   string     The html
      */
     public function display_form_button(
-        string $label,
-        string $value
+        string $label
     ): string {
         return <<< EOF
 
-    <button type="submit" class="btn btn-primary col-12 mb-2" name="$value" value="$value">
+    <button type="submit" class="btn btn-primary col-12 mb-2">
       $label
     </button>
 
