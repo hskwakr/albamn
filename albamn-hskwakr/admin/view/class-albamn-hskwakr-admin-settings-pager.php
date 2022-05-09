@@ -254,6 +254,18 @@ EOF;
     public function display_form_2_options(): string
     {
         $r = '';
+
+        /**
+         * Set input hidden
+         */
+        $r = $r . $this->display_input_hidden(
+            'remove',
+            'remove'
+        );
+
+        /**
+         * Set submit button
+         */
         $r = $r . $this->display_form_button(
             'Remove all posts'
         );
@@ -285,6 +297,25 @@ EOF;
         <input type="text" class="form-control" id="{$name}" name="{$name}" value="{$value}" placeholder="{$placeholder}" />
       </div>
     </div>
+
+EOF;
+    }
+
+    /**
+     * The html to display a input tag with label
+     *
+     * @since    1.0.0
+     * @param    string    $name         the name of input.
+     * @param    string    $value        the value of input
+     * @return   string    The html
+     */
+    public function display_input_hidden(
+        string $name,
+        string $value
+    ): string {
+        return <<< EOF
+
+        <input type="hidden" name="{$name}" value="{$value}">
 
 EOF;
     }
