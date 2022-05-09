@@ -76,7 +76,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
          *
          * @var array<Albamn_Hskwakr_Ig_Post_Db_Entry> $entries
          */
-        $entries = $this->get($amount);
+        $entries = $this->db->get($amount);
 
         /**
          * @var Albamn_Hskwakr_Ig_Post_Db_Entry $entry

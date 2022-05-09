@@ -21,21 +21,47 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
     private $repository;
     private $db;
     private $post;
+    private $entries;
 
     public function setUp()
     {
         /**
          * Prepare fake data
          */
+        $entry_id = 1234;
+        $entry_title = 'entrytitle';
+        $entry_type = 'entrytype';
+        $entry_status = 'entrystatus';
+
+        $media_id = 'mediaid1234';
+        $media_type = 'mediatype';
+        $media_url = 'mediaurl';
+        $media_permalink = 'mediapermalink ';
+
+        $this->post = new Albamn_Hskwakr_Ig_Post(
+            $media_id,
+            $media_type,
+            $media_url,
+            $media_permalink
+        );
+
+        $entry = new Albamn_Hskwakr_Ig_Post_Db_Entry(
+            $entry_id,
+            $entry_title,
+            $entry_type,
+            $entry_status,
+            $this->post
+        );
+
+        $this->entries = array(
+            $entry
+        );
 
         /**
          * Create mock
          */
         $this->db = $this->createMock(
             Albamn_Hskwakr_Ig_Post_Db_Provider::class
-        );
-        $this->post = $this->createMock(
-            Albamn_Hskwakr_Ig_Post::class
         );
 
         /**
@@ -90,5 +116,29 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
          * Assert
          */
         $this->assertFalse($actual);
+    }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_get()
+    {
+        /**
+         * Prepare
+         */
+        $amount = 1;
+        $this->db
+             ->method('get')
+             ->willReturn($this->entries);
+
+        /**
+         * Execute
+         */
+        $actual = $this->repository->get($amount);
+
+        /**
+         * Assert
+         */
+        $this->assertEquals($this->post, $actual[0]);
     }
 }
