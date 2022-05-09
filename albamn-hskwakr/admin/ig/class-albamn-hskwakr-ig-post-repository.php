@@ -20,15 +20,6 @@
 class Albamn_Hskwakr_Ig_Post_Repository
 {
     /**
-     * The custom post type
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      Albamn_Hskwakr_Admin_Cpt_Arg    $cpt
-     */
-    private $cpt;
-
-    /**
      * The DB service for the Instagram posts
      *
      * @since    1.0.0
@@ -43,10 +34,8 @@ class Albamn_Hskwakr_Ig_Post_Repository
      * @since    1.0.0
      */
     public function __construct(
-        Albamn_Hskwakr_Admin_Cpt_Arg $cpt,
         Albamn_Hskwakr_Ig_Post_Db_Provider $db
     ) {
-        $this->cpt = $cpt;
         $this->db = $db;
     }
 

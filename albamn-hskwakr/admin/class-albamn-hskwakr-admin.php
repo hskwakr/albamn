@@ -277,7 +277,6 @@ class Albamn_Hskwakr_Admin
          * Instantiate Instagram posts repository
          */
         $ig_repository = new Albamn_Hskwakr_Ig_Post_Repository(
-            $this->cpt->ig_posts(),
             $ig_db_provider
         );
 
