@@ -182,6 +182,30 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
     /**
      * Check the return has correct structure.
      */
+    public function test_find_by_with_empty_array()
+    {
+        /**
+         * Prepare
+         */
+        $this->db
+             ->method('get')
+             ->willReturn(array());
+
+        /**
+         * Execute
+         */
+        $media_id = 'mediaid1234';
+        $actual = $this->repository->find_by($media_id);
+
+        /**
+         * Assert
+         */
+        $this->assertNull($actual);
+    }
+
+    /**
+     * Check the return has correct structure.
+     */
     public function test_remove_with_true()
     {
         /**
