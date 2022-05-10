@@ -141,4 +141,41 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
          */
         $this->assertEquals($this->post, $actual[0]);
     }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_find_by()
+    {
+        /**
+         * Prepare
+         */
+        $this->db
+             ->method('get')
+             ->willReturn($this->entries);
+
+        /**
+         * Execute
+         */
+        $media_id = 'mediaid1234';
+        $actual = $this->repository->find_by($media_id);
+
+        /**
+         * Assert
+         * Proper case:
+         */
+        $this->assertTrue($actual instanceof Albamn_Hskwakr_Ig_Post);
+
+        /**
+         * Execute
+         */
+        $media_id = 'wrongid1234';
+        $actual = $this->repository->find_by($media_id);
+
+        /**
+         * Assert
+         * Wrong case:
+         */
+        $this->assertNull($actual);
+    }
 }
