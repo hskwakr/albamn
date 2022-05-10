@@ -178,4 +178,60 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
          */
         $this->assertNull($actual);
     }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_remove_with_true()
+    {
+        /**
+         * Prepare
+         */
+        $this->db
+             ->method('get')
+             ->willReturn($this->entries);
+        $this->db
+             ->method('remove')
+             ->willReturn(true);
+
+        /**
+         * Execute
+         */
+        $media_id = 'mediaid1234';
+        $actual = $this->repository->remove($media_id);
+
+        /**
+         * Assert
+         * Proper case:
+         */
+        $this->assertTrue($actual);
+    }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_remove_with_false()
+    {
+        /**
+         * Prepare
+         */
+        $this->db
+             ->method('get')
+             ->willReturn($this->entries);
+        $this->db
+             ->method('remove')
+             ->willReturn(false);
+
+        /**
+         * Execute
+         */
+        $media_id = 'mediaid1234';
+        $actual = $this->repository->remove($media_id);
+
+        /**
+         * Assert
+         * Proper case:
+         */
+        $this->assertFalse($actual);
+    }
 }
