@@ -229,6 +229,13 @@ class Albamn_Hskwakr_Ig_Post_Repository
         $entries = $this->db->get(-1);
 
         /**
+         * Could not find any entries
+         */
+        if (empty($entries)) {
+            return false;
+        }
+
+        /**
          * Remove all posts from DB
          *
          * @var Albamn_Hskwakr_Ig_Post_Db_Entry $entry
