@@ -83,7 +83,7 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
             /**
              * Remove all posts
              */
-            echo 'remove';
+            echo $this->remove_all_ig_posts();
         }
 
         /**
