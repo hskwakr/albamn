@@ -33,9 +33,9 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Ig_Post_Repository    $repository
+     * @var      Albamn_Hskwakr_Ig_Post_Repository    $ig_repository
      */
-    private $repository;
+    private $ig_repository;
 
     /**
      * Initialize the class and set its properties.
@@ -45,10 +45,10 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
      */
     public function __construct(
         Albamn_Hskwakr_Admin_Settings $settings,
-        Albamn_Hskwakr_Ig_Post_Repository $repository
+        Albamn_Hskwakr_Ig_Post_Repository $ig_repository
     ) {
         $this->settings = $settings;
-        $this->repository = $repository;
+        $this->repository = $ig_repository;
     }
 
     /**
