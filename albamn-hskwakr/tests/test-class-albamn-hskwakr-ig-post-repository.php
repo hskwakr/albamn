@@ -304,8 +304,7 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
         /**
          * Execute
          */
-        $media_id = 'mediaid1234';
-        $actual = $this->repository->remove_all($media_id);
+        $actual = $this->repository->remove_all();
 
         /**
          * Assert
@@ -332,8 +331,7 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
         /**
          * Execute
          */
-        $media_id = 'mediaid1234';
-        $actual = $this->repository->remove_all($media_id);
+        $actual = $this->repository->remove_all();
 
         /**
          * Assert
@@ -360,8 +358,7 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
         /**
          * Execute
          */
-        $media_id = 'mediaid1234';
-        $actual = $this->repository->remove_all($media_id);
+        $actual = $this->repository->remove_all();
 
         /**
          * Assert
