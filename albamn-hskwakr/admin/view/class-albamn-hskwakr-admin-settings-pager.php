@@ -48,7 +48,7 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
         Albamn_Hskwakr_Ig_Post_Repository $ig_repository
     ) {
         $this->settings = $settings;
-        $this->repository = $ig_repository;
+        $this->ig_repository = $ig_repository;
     }
 
     /**
@@ -120,7 +120,7 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
      */
     public function remove_all_ig_posts(): bool
     {
-        return $this->repository->remove_all();
+        return $this->ig_repository->remove_all();
     }
 
     /**
