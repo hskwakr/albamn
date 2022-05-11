@@ -225,7 +225,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             /**
              * Save to DB
              */
-            //$r = $r . $this->save_ig_posts($this->ig_posts);
+            $r = $r . $this->save_ig_posts($this->ig_posts);
 
             /**
              * Display Instagram posts
