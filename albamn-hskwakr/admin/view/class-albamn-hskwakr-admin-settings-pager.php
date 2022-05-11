@@ -121,9 +121,13 @@ class Albamn_Hskwakr_Admin_Settings_Pager implements Albamn_Hskwakr_Admin_Displa
     public function remove_all_ig_posts(): string
     {
         if ($this->ig_repository->remove_all()) {
-            return 'success';
+            return $this->display_alert_green(
+                'Successed to remove all posts'
+            );
         } else {
-            return 'fail';
+            return $this->display_alert_red(
+                'Failed to remove all posts'
+            );
         }
     }
 
@@ -339,6 +343,44 @@ EOF;
     <button type="submit" class="btn btn-primary col-12 mb-2">
       $label
     </button>
+
+EOF;
+    }
+
+    /**
+     * The html to display message
+     * with red background
+     *
+     * @since    1.0.0
+     * @param    string    $msg          the message.
+     * @return   string    The html
+     */
+    public function display_alert_red($msg): string
+    {
+        return <<< EOF
+
+  <div class="alert alert-warning mt-2" role="alert">
+    $msg
+  </div>
+
+EOF;
+    }
+
+    /**
+     * The html to display message
+     * with green background
+     *
+     * @since    1.0.0
+     * @param    string    $msg          the message.
+     * @return   string    The html
+     */
+    public function display_alert_green($msg): string
+    {
+        return <<< EOF
+
+  <div class="alert alert-success mt-2" role="alert">
+    $msg
+  </div>
 
 EOF;
     }
