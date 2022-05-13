@@ -20,15 +20,6 @@
 class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displayable
 {
     /**
-     * The settings for the plugin
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      Albamn_Hskwakr_Admin_Settings    $settings
-     */
-    private $settings;
-
-    /**
      * The DB access for Instagram posts
      *
      * @since    1.0.0
@@ -44,10 +35,8 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
      * @param    Albamn_Hskwakr_Admin_Settings    $settings
      */
     public function __construct(
-        Albamn_Hskwakr_Admin_Settings $settings,
         Albamn_Hskwakr_Ig_Post_Repository $ig_repository
     ) {
-        $this->settings = $settings;
         $this->ig_repository = $ig_repository;
     }
 
