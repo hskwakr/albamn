@@ -22,15 +22,26 @@ class Albamn_Hskwakr_Admin_Menu_Test extends WP_UnitTestCase
 
     public function setUp()
     {
+        /**
+         * Create mock
+         */
         $general = $this->createMock(
             Albamn_Hskwakr_Admin_Settings_Pager::class
         );
         $importer = $this->createMock(
             Albamn_Hskwakr_Admin_Importer_Pager::class
         );
+        $editor = $this->createMock(
+            Albamn_Hskwakr_Admin_Editor_Pager::class
+        );
+
+        /**
+         * Instantiate
+         */
         $this->menu = new Albamn_Hskwakr_Admin_Menu(
             $general,
-            $importer
+            $importer,
+            $editor
         );
     }
 

@@ -134,6 +134,12 @@ class Albamn_Hskwakr_Admin
           . 'view/class-albamn-hskwakr-admin-importer-pager.php';
 
         /**
+         * The class responsible for admin editor pager.
+         */
+        require_once $path
+          . 'view/class-albamn-hskwakr-admin-editor-pager.php';
+
+        /**
          * The class responsible for instagram media formatter.
          */
         require_once $path
@@ -299,11 +305,19 @@ class Albamn_Hskwakr_Admin
         );
 
         /**
+         * Instantiate editor pager
+         */
+        $editor = new Albamn_Hskwakr_Admin_Editor_Pager(
+            $ig_repository
+        );
+
+        /**
          * Instantiate menu
          */
         $menu = new Albamn_Hskwakr_Admin_Menu(
             $general,
-            $importer
+            $importer,
+            $editor
         );
 
         /**

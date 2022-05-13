@@ -47,18 +47,31 @@ class Albamn_Hskwakr_Admin_Menu
     protected $impoter_pager;
 
     /**
+     * The pager for editor page.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      Albamn_Hskwakr_Admin_Displayable   $editor_pager
+     */
+    protected $editor_pager;
+
+    /**
      * Initialize the class and set its properties.
      *
+     * @param    Albamn_Hskwakr_Admin_Displayable   $settings_pager
      * @param    Albamn_Hskwakr_Admin_Displayable   $impoter_pager
+     * @param    Albamn_Hskwakr_Admin_Displayable   $editor_pager
      * @since    1.0.0
      */
     public function __construct(
         Albamn_Hskwakr_Admin_Displayable $settings_pager,
-        Albamn_Hskwakr_Admin_Displayable $impoter_pager
+        Albamn_Hskwakr_Admin_Displayable $impoter_pager,
+        Albamn_Hskwakr_Admin_Displayable $editor_pager
     ) {
         $this->slug = 'albamn-hskwakr-general-settings.php';
         $this->settings_pager = $settings_pager;
         $this->impoter_pager = $impoter_pager;
+        $this->editor_pager = $editor_pager;
     }
 
     /**
@@ -143,6 +156,7 @@ class Albamn_Hskwakr_Admin_Menu
      */
     public function post_editor(): void
     {
+        $this->editor_pager->display();
     }
 }
 
