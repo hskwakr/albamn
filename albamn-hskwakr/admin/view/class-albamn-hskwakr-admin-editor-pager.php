@@ -47,9 +47,18 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
      */
     public function display(): void
     {
+        /********************
+         * Prepare
+         *******************/
+
         /**
-         * Prepare before display
+         * Get all Instagram posts in DB
          */
+        $ig_posts = $this->get_all_ig_posts();
+
+        /********************
+         * Display
+         *******************/
 
         /**
          * Header
@@ -57,8 +66,14 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
         echo $this->display_header();
 
         /**
-         * Contents
+         * Check exsisting Instagram posts in DB
          */
+        if (empty($ig_posts)) {
+            /**
+             * Failed to find any Instagram posts in DB
+             */
+        } else {
+        }
 
         /**
          * Footer
@@ -84,6 +99,22 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
         }
 
         return 0;
+    }
+
+    /**
+     * Get all Instagram posts in DB
+     *
+     * @since    1.0.0
+     * @return   array     The list of Instagram posts
+     */
+    public function get_all_ig_posts(): array
+    {
+        /**
+         * Get all Instagram posts
+         *
+         * @var array<Albamn_Hskwakr_Ig_Post> $r
+         */
+        return $this->ig_repository->get(-1);
     }
 
     /**
