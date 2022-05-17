@@ -86,7 +86,10 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
              */
             echo 'There is nothing';
         } else {
-            echo 'There are posts';
+            /**
+             * Display Instagram posts
+             */
+            echo $this->format_ig_posts($ig_posts);
         }
 
         /**
@@ -129,6 +132,23 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
          * @var array<Albamn_Hskwakr_Ig_Post> $r
          */
         return $this->ig_repository->get(-1);
+    }
+
+    /**
+     * Format Instagram posts
+     *
+     * @since    1.0.0
+     * @param    array      $posts
+     * @return   string     The html
+     */
+    public function format_ig_posts(array $posts): string
+    {
+        $error = 'Failed to display Instagram posts';
+        if (!$this->ig_formatter->validate_medias($posts)) {
+            $this->display_alert_red($error);
+        }
+
+        return $this->ig_formatter->format_medias($posts);
     }
 
     /**
