@@ -308,7 +308,8 @@ class Albamn_Hskwakr_Admin
          * Instantiate editor pager
          */
         $editor = new Albamn_Hskwakr_Admin_Editor_Pager(
-            $ig_repository
+            $ig_repository,
+            $ig_formatter
         );
 
         /**
