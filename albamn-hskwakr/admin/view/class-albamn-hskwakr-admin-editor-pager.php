@@ -70,9 +70,11 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
          */
         if (empty($ig_posts)) {
             /**
-             * Failed to find any Instagram posts in DB
+             * Couldn't to find any Instagram posts in DB
              */
+            echo 'There is nothing';
         } else {
+            echo 'There are posts';
         }
 
         /**
