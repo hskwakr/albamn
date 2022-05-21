@@ -76,25 +76,15 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
      */
     public function format_medias(array $medias): string
     {
-        $count = 0;
-        $row = 4;
-        $margin = 2;
-
         $r = '';
-        $r = $r . '<div class="m-' . $margin . '">';
+        $r = $r . '<div class="albamn-grid-wrapper">';
+        $r = $r . '<div class="albamn-grid">';
 
         /**
          * @var Albamn_Hskwakr_Ig_Post $m
          */
         foreach ($medias as $m) {
-            if ($count % $row == 0) {
-                $r = $r . '<div class="row">';
-            }
-
-            $r = $r . '<div '
-              . 'class="col p-1" '
-              . 'style="width: 15rem; height: 16rem;'
-              . '">';
+            $r = $r . '<div class="albamn-grid-child">';
 
             switch ($m->media_type) {
                 case 'IMAGE':
@@ -110,14 +100,9 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
             }
 
             $r = $r . '</div>';
-
-            if ($count % $row == $row - 1) {
-                $r = $r . '</div>';
-            }
-
-            $count++;
         }
 
+        $r = $r . '</div>';
         $r = $r . '</div>';
         return $r;
     }
@@ -135,10 +120,6 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
         Albamn_Hskwakr_Ig_Post $media
     ): string {
         $r = '';
-        $r = $r . '<div '
-                . 'class="m-auto" '
-                . 'style="width: 15rem; height: 15rem; background: black;"'
-                . '>';
 
         $linkable = !empty($media->permalink);
 
@@ -159,7 +140,6 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
             $r = $r . '</a>';
         }
 
-        $r = $r . '</div>';
         return $r;
     }
 
@@ -176,10 +156,6 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
         Albamn_Hskwakr_Ig_Post $media
     ): string {
         $r = '';
-        $r = $r . '<div '
-                . 'class="m-auto" '
-                . 'style="width: 15rem; height: 15rem; background: black;"'
-                . '>';
 
         $linkable = !empty($media->permalink);
 
@@ -200,7 +176,6 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
             $r = $r . '</a>';
         }
 
-        $r = $r . '</div>';
         return $r;
     }
 }
