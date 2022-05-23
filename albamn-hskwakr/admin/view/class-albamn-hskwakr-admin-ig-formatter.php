@@ -67,6 +67,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
 
     /**
      * Create html structure from instagram medias
+     * for importer page
      *
      * This method don't care about error case
      *
@@ -74,7 +75,50 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
      * @param    array      $medias
      * @return   string     The html
      */
-    public function format_medias(array $medias): string
+    public function format_medias_importer(array $medias): string
+    {
+        $r = '';
+        $r = $r . '<div class="albamn-grid-wrapper">';
+        $r = $r . '<div class="albamn-grid">';
+
+        /**
+         * @var Albamn_Hskwakr_Ig_Post $m
+         */
+        foreach ($medias as $m) {
+            $r = $r . '<div class="albamn-grid-child">';
+
+            switch ($m->media_type) {
+                case 'IMAGE':
+                    $r = $r . $this->format_image_media($m);
+                    break;
+
+                case 'VIDEO':
+                    $r = $r . $this->format_video_media($m);
+                    break;
+
+                default:
+                    break;
+            }
+
+            $r = $r . '</div>';
+        }
+
+        $r = $r . '</div>';
+        $r = $r . '</div>';
+        return $r;
+    }
+
+    /**
+     * Create html structure from instagram medias
+     * for editor page
+     *
+     * This method don't care about error case
+     *
+     * @since    1.0.0
+     * @param    array      $medias
+     * @return   string     The html
+     */
+    public function format_medias_editor(array $medias): string
     {
         $r = '';
         $r = $r . '<div class="albamn-grid-wrapper">';
