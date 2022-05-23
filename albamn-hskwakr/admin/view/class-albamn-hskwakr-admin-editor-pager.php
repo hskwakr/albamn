@@ -148,7 +148,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
             $this->display_alert_red($error);
         }
 
-        return $this->ig_formatter->format_medias($posts);
+        return $this->ig_formatter->format_medias_editor($posts);
     }
 
     /**

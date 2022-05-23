@@ -252,7 +252,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
             $this->display_alert_red($error);
         }
 
-        return $this->ig_formatter->format_medias($posts);
+        return $this->ig_formatter->format_medias_importer($posts);
     }
 
     /**
