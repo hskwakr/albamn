@@ -121,6 +121,34 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
     public function format_medias_editor(array $medias): string
     {
         $r = '';
+
+        /**
+         * Form
+         */
+        $r = $r . '<form method="POST" action="">';
+
+        /**
+         * Button
+         */
+        $r = $r . '<div class="row justify-content-around m-3">';
+
+        $r = $r . '<button type="submit"';
+        $r = $r . 'name="update_button" value="update"';
+        $r = $r . 'class="btn btn-danger col-5">';
+        $r = $r . 'Show / Hide';
+        $r = $r . '</button>';
+
+        $r = $r . '<button type="submit"';
+        $r = $r . 'name="delete_button" value="delete"';
+        $r = $r . 'class="btn btn-danger col-5">';
+        $r = $r . 'Remove';
+        $r = $r . '</button>';
+
+        $r = $r . '</div>';
+
+        /**
+         * Grid
+         */
         $r = $r . '<div class="albamn-grid-wrapper">';
         $r = $r . '<div class="albamn-grid">';
 
@@ -148,6 +176,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
 
         $r = $r . '</div>';
         $r = $r . '</div>';
+        $r = $r . '</form>';
         return $r;
     }
 
