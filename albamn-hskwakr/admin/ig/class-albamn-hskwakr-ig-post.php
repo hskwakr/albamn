@@ -57,6 +57,17 @@ class Albamn_Hskwakr_Ig_Post
     public $permalink;
 
     /**
+     * The visibility for the post.
+     * true: show
+     * false: hide
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      bool    $visibility
+     */
+    public $visibility;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -66,12 +77,14 @@ class Albamn_Hskwakr_Ig_Post
         string $id,
         string $media_type,
         string $media_url,
-        string $permalink
+        string $permalink,
+        bool $visibility
     ) {
         $this->id = $id;
         $this->media_type = $media_type;
         $this->media_url = $media_url;
         $this->permalink = $permalink;
+        $this->visibility = $visibility;
     }
 
     /**

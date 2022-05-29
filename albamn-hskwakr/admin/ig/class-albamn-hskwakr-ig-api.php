@@ -279,7 +279,8 @@ class Albamn_Hskwakr_Ig_Api
                         (string)$m->id,
                         (string)$m->media_type,
                         (string)$m->media_url,
-                        (string)$m->permalink
+                        (string)$m->permalink,
+                        true
                     );
                     break;
 

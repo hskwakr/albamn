@@ -86,7 +86,8 @@ class Albamn_Hskwakr_Ig_Post_Repository
                 $entry->post->id,
                 $entry->post->media_type,
                 $entry->post->media_url,
-                $entry->post->permalink
+                $entry->post->permalink,
+                $entry->post->visibility
             );
         }
 
