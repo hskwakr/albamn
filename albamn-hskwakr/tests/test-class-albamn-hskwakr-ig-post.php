@@ -32,12 +32,14 @@ class Albamn_Hskwakr_Ig_Post_Test extends WP_UnitTestCase
         $correct_image->media_url = 'url1234';
         $correct_image->permalink = 'link1234';
         $correct_image->id = 'id1234';
+        $correct_image->visibility = true;
 
         $correct_video = new class () {};
         $correct_video->media_type = 'VIDEO';
         $correct_video->media_url = 'url1234';
         $correct_video->permalink = 'link1234';
         $correct_video->id = 'id1234';
+        $correct_video->visibility = true;
 
         $this->medias_correct = array(
             'image' => $correct_image,
@@ -53,24 +55,28 @@ class Albamn_Hskwakr_Ig_Post_Test extends WP_UnitTestCase
         $wrong_type->media_url = 'url1234';
         $wrong_type->permalink = 'link1234';
         $wrong_type->id = 'id1234';
+        $wrong_type->visibility = true;
 
         $wrong_prop_1 = new class () {};
         $wrong_prop_1->media_type = 'IMAGE';
         $wrong_prop_1->media_url = '';
         $wrong_prop_1->permalink = 'link1234';
         $wrong_prop_1->id = 'id1234';
+        $wrong_prop_1->visibility = true;
 
         $wrong_prop_2 = new class () {};
         $wrong_prop_2->media_type = 'IMAGE';
         $wrong_prop_2->media_url = '';
         $wrong_prop_2->permalink = 'link1234';
         $wrong_prop_2->id = 'id1234';
+        $wrong_prop_2->visibility = true;
 
         $wrong_prop_3 = new class () {};
         $wrong_prop_3->media_type = 'IMAGE';
         $wrong_prop_3->media_url = 'url1234';
         $wrong_prop_3->permalink = 'link1234';
         $wrong_prop_3->id = '';
+        $wrong_prop_2->visibility = true;
 
         $this->medias_wrong = array(
             'type' => $wrong_type,
@@ -92,7 +98,8 @@ class Albamn_Hskwakr_Ig_Post_Test extends WP_UnitTestCase
             $this->medias_correct['image']->id,
             $this->medias_correct['image']->media_type,
             $this->medias_correct['image']->media_url,
-            $this->medias_correct['image']->permalink
+            $this->medias_correct['image']->permalink,
+            $this->medias_correct['image']->visibility
         );
         $actual = $post->validate();
         $this->assertTrue($actual);
@@ -104,7 +111,8 @@ class Albamn_Hskwakr_Ig_Post_Test extends WP_UnitTestCase
             $this->medias_correct['video']->id,
             $this->medias_correct['video']->media_type,
             $this->medias_correct['video']->media_url,
-            $this->medias_correct['video']->permalink
+            $this->medias_correct['video']->permalink,
+            $this->medias_correct['video']->visibility
         );
         $actual = $post->validate();
         $this->assertTrue($actual);
@@ -117,7 +125,8 @@ class Albamn_Hskwakr_Ig_Post_Test extends WP_UnitTestCase
             $this->medias_wrong['type']->id,
             $this->medias_wrong['type']->media_type,
             $this->medias_wrong['type']->media_url,
-            $this->medias_wrong['type']->permalink
+            $this->medias_wrong['type']->permalink,
+            $this->medias_wrong['type']->visibility
         );
         $actual = $post->validate();
         $this->assertFalse($actual);
@@ -130,7 +139,8 @@ class Albamn_Hskwakr_Ig_Post_Test extends WP_UnitTestCase
             $this->medias_wrong['lack_of_type']->id,
             $this->medias_wrong['lack_of_type']->media_type,
             $this->medias_wrong['lack_of_type']->media_url,
-            $this->medias_wrong['lack_of_type']->permalink
+            $this->medias_wrong['lack_of_type']->permalink,
+            $this->medias_wrong['lack_of_type']->visibility
         );
         $actual = $post->validate();
         $this->assertFalse($actual);
@@ -143,7 +153,8 @@ class Albamn_Hskwakr_Ig_Post_Test extends WP_UnitTestCase
             $this->medias_wrong['lack_of_url']->id,
             $this->medias_wrong['lack_of_url']->media_type,
             $this->medias_wrong['lack_of_url']->media_url,
-            $this->medias_wrong['lack_of_url']->permalink
+            $this->medias_wrong['lack_of_url']->permalink,
+            $this->medias_wrong['lack_of_url']->visibility
         );
         $actual = $post->validate();
         $this->assertFalse($actual);
@@ -156,7 +167,8 @@ class Albamn_Hskwakr_Ig_Post_Test extends WP_UnitTestCase
             $this->medias_wrong['lack_of_id']->id,
             $this->medias_wrong['lack_of_id']->media_type,
             $this->medias_wrong['lack_of_id']->media_url,
-            $this->medias_wrong['lack_of_id']->permalink
+            $this->medias_wrong['lack_of_id']->permalink,
+            $this->medias_wrong['lack_of_url']->visibility
         );
         $actual = $post->validate();
         $this->assertFalse($actual);

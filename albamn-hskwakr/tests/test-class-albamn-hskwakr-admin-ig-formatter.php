@@ -32,14 +32,16 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             'id1234',
             'IMAGE',
             'mediaurl1234',
-            'permalink1234'
+            'permalink1234',
+            true
         );
 
         $correct_video = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             'VIDEO',
             'mediaurl1234',
-            'permalink1234'
+            'permalink1234',
+            true
         );
 
         $this->medias_correct = array(
@@ -63,28 +65,32 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             'id1234',
             'OTHER',
             'mediaurl1234',
-            'permalink1234'
+            'permalink1234',
+            true
         );
 
         $wrong_prop_1 = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             '',
             'mediaurl1234',
-            'permalink1234'
+            'permalink1234',
+            true
         );
 
         $wrong_prop_2 = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             'IMAGE',
             '',
-            'permalink1234'
+            'permalink1234',
+            true
         );
 
         $wrong_prop_3 = new Albamn_Hskwakr_Ig_Post(
             '',
             'IMAGE',
             'mediaurl1234',
-            'permalink1234'
+            'permalink1234',
+            true
         );
 
         $this->medias_wrong = array(

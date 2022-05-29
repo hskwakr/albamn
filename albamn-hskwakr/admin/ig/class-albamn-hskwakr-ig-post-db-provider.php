@@ -156,7 +156,8 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
                     (string)$post->media_id,
                     (string)$post->media_type,
                     (string)$post->media_url,
-                    (string)$post->permalink
+                    (string)$post->permalink,
+                    true
                 )
             );
         }

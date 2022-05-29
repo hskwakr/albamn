@@ -37,12 +37,14 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
         $media_type = 'mediatype';
         $media_url = 'mediaurl';
         $media_permalink = 'mediapermalink ';
+        $media_visibility = true;
 
         $this->post = new Albamn_Hskwakr_Ig_Post(
             $media_id,
             $media_type,
             $media_url,
-            $media_permalink
+            $media_permalink,
+            $media_visibility
         );
 
         $entry = new Albamn_Hskwakr_Ig_Post_Db_Entry(
