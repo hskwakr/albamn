@@ -113,6 +113,11 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
                 'permalink',
                 $post->permalink
             );
+            add_post_meta(
+                $post_id,
+                'visibility',
+                $post->visibility
+            );
 
             $success = true;
         }
@@ -157,7 +162,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
                     (string)$post->media_type,
                     (string)$post->media_url,
                     (string)$post->permalink,
-                    true
+                    (bool)$post->visibility
                 )
             );
         }
