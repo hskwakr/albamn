@@ -36,3 +36,16 @@
   background: black;
   margin: auto;
 }
+
+.albamn-editor-media-footer {
+  width: 90%;
+  margin: auto;
+}
+
+.albamn-editor-media-footer input {
+  margin: auto;
+}
+
+.albamn-editor-media-footer label {
+  float: right;
+}
