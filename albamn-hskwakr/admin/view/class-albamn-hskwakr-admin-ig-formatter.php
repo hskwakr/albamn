@@ -166,12 +166,15 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
 
                     $r = $r . '</div>';
 
+                    $r = $r . '<div class="albamn-editor-media-footer">';
+
                     $r = $r . $this->display_checkbox(
-                        '',
+                        $m->visibility ? 'Show' : 'Hide',
                         $m->id,
                         '1'
                     );
 
+                    $r = $r . '</div>';
                     break;
 
                 case 'VIDEO':
@@ -181,11 +184,15 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
 
                     $r = $r . '</div>';
 
+                    $r = $r . '<div class="albamn-editor-media-footer">';
+
                     $r = $r . $this->display_checkbox(
-                        '',
+                        $m->visibility ? 'Show' : 'Hide',
                         $m->id,
                         '1'
                     );
+
+                    $r = $r . '</div>';
                     break;
 
                 default:
