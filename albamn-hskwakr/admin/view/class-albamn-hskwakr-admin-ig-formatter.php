@@ -156,15 +156,36 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
          * @var Albamn_Hskwakr_Ig_Post $m
          */
         foreach ($medias as $m) {
-            $r = $r . '<div class="albamn-grid-child">';
+            $r = $r . '<div class="albamn-grid-child-editor">';
 
             switch ($m->media_type) {
                 case 'IMAGE':
+                    $r = $r . '<div class="albamn-editor-media-wrapper">';
+
                     $r = $r . $this->format_image_media($m);
+
+                    $r = $r . '</div>';
+
+                    $r = $r . $this->display_checkbox(
+                        '',
+                        $m->id,
+                        '1'
+                    );
+
                     break;
 
                 case 'VIDEO':
+                    $r = $r . '<div class="albamn-editor-media-wrapper">';
+
                     $r = $r . $this->format_video_media($m);
+
+                    $r = $r . '</div>';
+
+                    $r = $r . $this->display_checkbox(
+                        '',
+                        $m->id,
+                        '1'
+                    );
                     break;
 
                 default:
@@ -250,5 +271,29 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
         }
 
         return $r;
+    }
+
+    /**
+     * Create html structure for checkbox
+     *
+     * @since    1.0.0
+     * @param    string     $label        the label of input.
+     * @param    string     $name         the name of input.
+     * @param    string     $value        the value of input.
+     * @return   string     The html
+     */
+    public function display_checkbox(
+        string $label,
+        string $name,
+        string $value
+    ): string {
+        return <<< EOF
+
+        <input type="checkbox" id="{$name}" name="{$name}" value="{$value}">
+        <label for="{$name}">
+          $label
+        </label>
+
+EOF;
     }
 }

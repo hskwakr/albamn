@@ -23,3 +23,16 @@
   background: black;
   margin: auto;
 }
+
+.albamn-grid-child-editor {
+  width: 14rem;
+  height: 15rem;
+  margin: auto;
+}
+
+.albamn-editor-media-wrapper {
+  width: 90%;
+  height: 90%;
+  background: black;
+  margin: auto;
+}
