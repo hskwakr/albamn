@@ -171,7 +171,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
                     $r = $r . $this->display_checkbox(
                         $m->visibility ? 'Show' : 'Hide',
                         $m->id,
-                        '1'
+                        'ig_post'
                     );
 
                     $r = $r . '</div>';
@@ -189,7 +189,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
                     $r = $r . $this->display_checkbox(
                         $m->visibility ? 'Show' : 'Hide',
                         $m->id,
-                        '1'
+                        'ig_post'
                     );
 
                     $r = $r . '</div>';
