@@ -170,6 +170,55 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
     }
 
     /**
+     * Find Instagram post from DB
+     *
+     * @since    1.0.0
+     * @param    string    $ig_psot_id
+     * @return   Albamn_Hskwakr_Ig_Post | null      The post or null if could not find it
+     */
+    public function find_ig_post(
+        string $ig_post_id
+    ) {
+        return $this->ig_repository->find_by($ig_post_id);
+    }
+
+
+    /**
+     * Remove an Instagram post in DB
+     *
+     * @since    1.0.0
+     * @param    string    $ig_psot_id
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function remove_ig_post(
+        string $ig_post_id
+    ): bool {
+        return $this->ig_repository->remove($ig_post_id);
+    }
+
+    /**
+     * Update Instagram post in DB
+     *
+     * @since    1.0.0
+     * @param    string    $ig_psot_id
+     * @param    Albamn_Hskwakr_Ig_Post     $new
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function update_ig_post(
+        string $ig_post_id,
+        Albamn_Hskwakr_Ig_Post $new
+    ): bool {
+        return $this->ig_repository->update(
+            $ig_post_id,
+            $new
+        );
+    }
+
+    /**
      * Get all Instagram posts in DB
      *
      * @since    1.0.0
