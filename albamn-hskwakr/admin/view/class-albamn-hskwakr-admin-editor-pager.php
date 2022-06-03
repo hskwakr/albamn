@@ -182,7 +182,6 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
         return $this->ig_repository->find_by($ig_post_id);
     }
 
-
     /**
      * Remove an Instagram post in DB
      *
