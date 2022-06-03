@@ -64,6 +64,11 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
          *******************/
 
         /**
+         * Check POST data
+         */
+        $this->check_post_data();
+
+        /**
          * Get all Instagram posts in DB
          */
         $ig_posts = $this->get_all_ig_posts();
@@ -99,23 +104,69 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
     }
 
     /**
-     * Check post data
+     * Check http post data
      *
      * @since    1.0.0
-     * @return   int        The status
-     *                      0 : There is no post data sent
-     *                      1 : 'Remove all posts' button sent
+     * @return   bool       Whether there is post data or not
      */
-    public function check_post_data(): int
+    public function check_post_data(): bool
     {
-        /**
-         * Check POST data from this page
-         */
-        if (!empty($_POST['something'])) {
-            return 1;
+        if (!empty($_POST['delete_button'])) {
+            /**
+             * Get all instagram post IDs from HTTP POST
+             *
+             * @var array<string> $ig_post_ids
+             */
+            $ig_post_ids = $this->extract_ig_post_id($_POST);
+
+            /**
+             * Delete posts by ID
+             */
+
+            return true;
         }
 
-        return 0;
+        if (!empty($_POST['update_button'])) {
+            /**
+             * Get all instagram post ids from HTTP POST
+             *
+             * @var array<string> $ig_post_ids
+             */
+            $ig_post_ids = $this->extract_ig_post_id($_POST);
+
+            /**
+             * Change visibility of posts by ID
+             */
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Extract Instagram post ID from given array
+     *
+     * @since    1.0.0
+     * @return   array     The list of Instagram post IDs
+     */
+    public function extract_ig_post_id(array $args): array
+    {
+        $r = array();
+
+        /**
+         * @var mixed $value
+         */
+        foreach ($args as $key => $value) {
+            if ($value == 'ig_post') {
+                $r[] = (string)$key;
+            }
+        }
+
+        /**
+         * @var array<string>
+         */
+        return $r;
     }
 
     /**
