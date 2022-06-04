@@ -138,6 +138,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
             /**
              * Change visibility of posts by ID
              */
+            $this->change_ig_post_visibilities($ig_post_ids);
 
             return true;
         }
@@ -212,6 +213,91 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
         }
 
         return $success;
+    }
+
+    /**
+     * Change visibilities of the Instagram post in DB
+     * by the list of media ID
+     *
+     * @since    1.0.0
+     * @param    array     $id_list
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function change_ig_post_visibilities(
+        array $id_list
+    ): bool {
+        /**
+         * The result of success or failure
+         *
+         * @var bool $success
+         */
+        $success = true;
+
+        /**
+         * The ID should be string type
+         */
+        foreach ($id_list as $id) {
+            if (!is_string($id)) {
+                return false;
+            }
+        }
+
+        /**
+         * Change visibilities
+         *
+         * @var array<string> $id_list
+         */
+        foreach ($id_list as $id) {
+            $result = $this->change_ig_post_visibility($id);
+            if (!$result) {
+                $success = false;
+            }
+        }
+
+        return $success;
+    }
+
+    /**
+     * Change visibility of the Instagram post in DB
+     * by the media ID
+     *
+     * @since    1.0.0
+     * @param    string    $ig_post_id
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function change_ig_post_visibility(
+        string $ig_post_id
+    ): bool {
+        /**
+         * The target post to update
+         *
+         * @var Albamn_Hskwakr_Ig_Post | null
+         */
+        $target = $this->find_ig_post($ig_post_id);
+
+        /**
+         * Could not find target post in DB
+         */
+        if (empty($target)) {
+            return false;
+        }
+
+        /**
+         * Change visibility of the target
+         */
+        $target->visibility = !$target->visibility;
+
+        /**
+         * Update the target
+         */
+        return $this->update_ig_post(
+            $ig_post_id,
+            $target
+        );
     }
 
     /**
