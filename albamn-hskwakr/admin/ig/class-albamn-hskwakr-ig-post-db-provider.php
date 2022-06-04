@@ -52,7 +52,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
         Albamn_Hskwakr_Ig_Post $post
     ) {
         /**
-         * The result of success or failure to remove
+         * The result of success or failure to add
          *
          * @var bool $success
          */
@@ -200,6 +200,56 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
         }
 
         return true;
+    }
+
+    /**
+     * Update Instagram post in DB
+     *
+     * @since    1.0.0
+     * @param    Albamn_Hskwakr_Ig_Post_Db_Entry      $new
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function update(
+        Albamn_Hskwakr_Ig_Post_Db_Entry $new
+    ): bool {
+        /**
+         * The result of success or failure to update
+         *
+         * @var bool $success
+         */
+        $success = true;
+
+        /**
+         * Create the post data
+         */
+        $data = array(
+            'ID' => $new->id,
+            'post_title' => $new->title,
+            'post_status' => $new->status,
+            'post_type' => $new->type,
+            'meta_input' => array(
+                'media_id' => $new->post->id,
+                'media_type' => $new->post->media_type,
+                'media_url' => $new->post->media_url,
+                'permalink' => $new->post->permalink,
+                'visibility' => $new->post->visibility
+            )
+        );
+
+        /**
+         * Update the post in DB
+         *
+         * @var mixed $result
+         */
+        $result = wp_update_post($data);
+
+        if (!$result && is_wp_error($result)) {
+            $success = false;
+        }
+
+        return $success;
     }
 }
 
