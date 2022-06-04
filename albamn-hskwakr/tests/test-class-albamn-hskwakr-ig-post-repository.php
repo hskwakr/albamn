@@ -367,4 +367,66 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
          */
         $this->assertFalse($actual);
     }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_update()
+    {
+        /**
+         * Prepare
+         */
+        $this->db
+             ->method('get')
+             ->willReturn(array(
+                 $this->entries[0]
+             ));
+        $this->db
+             ->method('update')
+             ->willReturn(true);
+
+        /**
+         * Execute
+         */
+        $media_id = 'mediaid1234';
+        $actual = $this->repository->update(
+            $media_id,
+            $this->entries[0]->post
+        );
+
+        /**
+         * Assert
+         */
+        $this->assertTrue($actual);
+    }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_update_with_emty_array()
+    {
+        /**
+         * Prepare
+         */
+        $this->db
+             ->method('get')
+             ->willReturn(array());
+        $this->db
+             ->method('update')
+             ->willReturn(true);
+
+        /**
+         * Execute
+         */
+        $media_id = 'mediaid1234';
+        $actual = $this->repository->update(
+            $media_id,
+            $this->entries[0]->post
+        );
+
+        /**
+         * Assert
+         */
+        $this->assertFalse($actual);
+    }
 }

@@ -274,6 +274,42 @@ class Albamn_Hskwakr_Ig_Post_Repository
         string $media_id,
         Albamn_Hskwakr_Ig_Post $new
     ): bool {
-        return true;
+        /**
+         * The target entry to update
+         *
+         * @var Albamn_Hskwakr_Ig_Post_Db_Entry | null
+         */
+        $target = null;
+
+        /**
+         * Find the target entry to update
+         *
+         * @var array<Albamn_Hskwakr_Ig_Post_Db_Entry>
+         */
+        $all_entries = $this->db->get(-1);
+        foreach ($all_entries as $entry) {
+            if ($entry->post->id == $media_id) {
+                $target = $entry;
+            }
+        }
+
+        /**
+         * Could not find target entry
+         */
+        if (empty($target)) {
+            return false;
+        }
+
+        /**
+         * Change the target entry's post
+         */
+        $target->post = $new;
+
+        /**
+         * Update the db entry
+         *
+         * @var bool
+         */
+        return $this->db->update($target);
     }
 }
