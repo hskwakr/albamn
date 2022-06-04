@@ -59,4 +59,44 @@ class Albamn_Hskwakr_Admin_Editor_Pager_Test extends WP_UnitTestCase
         $expect = 1;
         $this->assertSame($expect, $actual);
     }
+
+    /**
+     * Check the output has the necessary components.
+     */
+    public function test_extract_ig_post_id()
+    {
+        /**
+         * Prepare
+         */
+        $data = array();
+        $expect = array();
+
+        $correct = array(
+            'correct1234' => 'ig_post',
+            '1234correct' => 'ig_post'
+        );
+        $wrong = array(
+            'wrong1234' => 'wrong_post',
+        );
+
+        foreach ($correct as $k => $v) {
+            $data[$k] = $v;
+            $expect[] = $k;
+        }
+        foreach ($wrong as $k => $v) {
+            $data[$k] = $v;
+        }
+
+        /**
+         * Execute
+         */
+        $actual = $this->pager->extract_ig_post_id(
+            $data
+        );
+
+        /**
+         * Assert
+         */
+        $this->assertEqualsCanonicalizing($expect, $actual);
+    }
 }
