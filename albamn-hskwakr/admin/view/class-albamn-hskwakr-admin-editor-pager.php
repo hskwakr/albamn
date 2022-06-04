@@ -122,6 +122,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
             /**
              * Delete posts by ID
              */
+            $this->delete_ig_posts($ig_post_ids);
 
             return true;
         }
@@ -167,6 +168,50 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
          * @var array<string>
          */
         return $r;
+    }
+
+    /**
+     * Delete Instagram posts in DB
+     * by the list of media ID
+     *
+     * @since    1.0.0
+     * @param    array     $id_list
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function delete_ig_posts(
+        array $id_list
+    ): bool {
+        /**
+         * The result of success or failure
+         *
+         * @var bool $success
+         */
+        $success = true;
+
+        /**
+         * The ID should be string type
+         */
+        foreach ($id_list as $id) {
+            if (!is_string($id)) {
+                return false;
+            }
+        }
+
+        /**
+         * Delete the posts by ID
+         *
+         * @var array<string>
+         */
+        foreach ($id_list as $id) {
+            $result = $this->remove_ig_post($id);
+            if (!$result) {
+                $success = false;
+            }
+        }
+
+        return $success;
     }
 
     /**
