@@ -202,7 +202,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
         /**
          * Delete the posts by ID
          *
-         * @var array<string>
+         * @var array<string> $id_list
          */
         foreach ($id_list as $id) {
             $result = $this->remove_ig_post($id);
