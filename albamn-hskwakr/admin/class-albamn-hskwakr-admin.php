@@ -312,7 +312,7 @@ class Albamn_Hskwakr_Admin
          */
         $general = new Albamn_Hskwakr_Admin_Settings_Pager(
             $this->settings,
-            $ig_repository
+            $this->ig->post_repository
         );
 
         /**
@@ -320,17 +320,17 @@ class Albamn_Hskwakr_Admin
          */
         $importer = new Albamn_Hskwakr_Admin_Importer_Pager(
             $this->settings,
-            $ig_api,
-            $ig_formatter,
-            $ig_repository
+            $this->ig->api,
+            $this->ig->post_formatter,
+            $this->ig->post_repository
         );
 
         /**
          * Instantiate editor pager
          */
         $editor = new Albamn_Hskwakr_Admin_Editor_Pager(
-            $ig_repository,
-            $ig_formatter
+            $this->ig->post_repository,
+            $this->ig->post_formatter
         );
 
         /**
