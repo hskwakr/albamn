@@ -105,7 +105,7 @@ class Albamn_Hskwakr_Ig
         /**
          * Location of admin folder in the plugin
          */
-        $path = plugin_dir_path(dirname(__FILE__)) . 'admin/ig';
+        $path = plugin_dir_path(dirname(__FILE__)) . 'ig/';
 
         /**
          * Instagram API
@@ -163,7 +163,7 @@ class Albamn_Hskwakr_Ig
          * The class responsible for instagram media formatter.
          */
         require_once $path
-          . 'ig/class-albamn-hskwakr-admin-ig-formatter.php';
+          . 'class-albamn-hskwakr-admin-ig-formatter.php';
     }
 
     /**
