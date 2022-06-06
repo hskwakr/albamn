@@ -149,13 +149,6 @@ class Albamn_Hskwakr_Admin
           . 'view/class-albamn-hskwakr-admin-editor-pager.php';
 
         /**
-         * The class responsible for instagram media formatter.
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-admin-ig-formatter.php';
-
-
-        /**
          * Instagram API
          */
 
@@ -164,54 +157,6 @@ class Albamn_Hskwakr_Admin
          */
         require_once $path
           . 'ig/class-albamn-hskwakr-ig.php';
-
-        /**
-         * The class responsible for instagram api.
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig-api.php';
-
-        /**
-         * The client for http access.
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig-http-client.php';
-
-        /**
-         * The query for Instagram API.
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig-api-query.php';
-
-        /**
-         * The validation for response from Instagram API.
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig-api-response-validation.php';
-
-        /**
-         * The context for Instagram API.
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig-api-context.php';
-
-        /**
-         * The Instagram post
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig-post.php';
-
-        /**
-         * The DB access for Instagram posts
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig-post-repository.php';
-
-        /**
-         * The DB provider for Instagram posts
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig-post-db-provider.php';
 
         /**
          * Create instaces.
@@ -283,30 +228,6 @@ class Albamn_Hskwakr_Admin
      */
     public function menu(): void
     {
-        /**
-         * Instantiate Instagram API
-         */
-        $ig_api = new Albamn_Hskwakr_Ig_Api();
-
-        /**
-         * Instantiate formatter for Instagram API
-         */
-        $ig_formatter = new Albamn_Hskwakr_Admin_Ig_Formatter();
-
-        /**
-         * Instantiate Instagram posts DB provider
-         */
-        $ig_db_provider = new Albamn_Hskwakr_Ig_Post_Db_Provider(
-            $this->cpt->ig_posts()
-        );
-
-        /**
-         * Instantiate Instagram posts repository
-         */
-        $ig_repository = new Albamn_Hskwakr_Ig_Post_Repository(
-            $ig_db_provider
-        );
-
         /**
          * Instantiate settings pager
          */
