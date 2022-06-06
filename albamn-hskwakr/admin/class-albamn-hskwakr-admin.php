@@ -56,6 +56,15 @@ class Albamn_Hskwakr_Admin
     private $cpt;
 
     /**
+     * The Instagram functionality
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig    $ig
+     */
+    private $ig;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -151,6 +160,12 @@ class Albamn_Hskwakr_Admin
          */
 
         /**
+         * The class responsible for instagram functionality.
+         */
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig.php';
+
+        /**
          * The class responsible for instagram api.
          */
         require_once $path
@@ -208,6 +223,12 @@ class Albamn_Hskwakr_Admin
 
         $this->cpt = new Albamn_Hskwakr_Admin_Cpt(
             $this->albamn_hskwakr
+        );
+
+        $this->ig = new Albamn_Hskwakr_Ig(
+            $this->albamn_hskwakr,
+            $this->version,
+            $this->cpt
         );
     }
 
