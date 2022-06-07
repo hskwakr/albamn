@@ -163,7 +163,7 @@ class Albamn_Hskwakr_Ig
          * The class responsible for instagram media formatter.
          */
         require_once $path
-          . 'class-albamn-hskwakr-admin-ig-formatter.php';
+          . 'class-albamn-hskwakr-ig-formatter.php';
     }
 
     /**
