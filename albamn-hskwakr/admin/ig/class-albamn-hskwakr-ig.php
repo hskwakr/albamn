@@ -42,7 +42,7 @@ class Albamn_Hskwakr_Ig
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Admin_Cpt    $cpt
+     * @var      Albamn_Hskwakr_Cpt    $cpt
      */
     private $cpt;
 
@@ -79,12 +79,12 @@ class Albamn_Hskwakr_Ig
      * @since    1.0.0
      * @param    string    $albamn_hskwakr    The name of the plugin.
      * @param    string    $version           The version of this plugin.
-     * @param    Albamn_Hskwakr_Admin_Cpt     $cpt               The custom post type of this plugin.
+     * @param    Albamn_Hskwakr_Cpt     $cpt               The custom post type of this plugin.
      */
     public function __construct(
         string $albamn_hskwakr,
         string $version,
-        Albamn_Hskwakr_Admin_Cpt $cpt
+        Albamn_Hskwakr_Cpt $cpt
     ) {
         $this->albamn_hskwakr = $albamn_hskwakr;
         $this->version = $version;
