@@ -40,6 +40,24 @@ class Albamn_Hskwakr
     protected $loader;
 
     /**
+     * The custom post types for the plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Cpt    $cpt
+     */
+    private $cpt;
+
+    /**
+     * The Instagram functionality
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig    $ig
+     */
+    private $ig;
+
+    /**
      * The unique identifier of this plugin.
      *
      * @since    1.0.0
@@ -90,6 +108,7 @@ class Albamn_Hskwakr
      * - Albamn_Hskwakr_i18n. Defines internationalization functionality.
      * - Albamn_Hskwakr_Admin. Defines all hooks for the admin area.
      * - Albamn_Hskwakr_Public. Defines all hooks for the public side of the site.
+     * - Albamn_Hskwakr_Ig. Defines all Instagram functionalities for the plugin.
      *
      * Create an instance of the loader which will be used to register the hooks
      * with WordPress.
@@ -99,7 +118,6 @@ class Albamn_Hskwakr
      */
     private function load_dependencies(): void
     {
-
         /**
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
@@ -123,7 +141,25 @@ class Albamn_Hskwakr
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-albamn-hskwakr-public.php';
 
+        /**
+         * The class responsible for defining all custom post types for the plugin.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-cpt.php';
+
+        /**
+         * The class responsible for defining all Instagram functionalities.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'ig/class-albamn-hskwakr-ig.php';
+
         $this->loader = new Albamn_Hskwakr_Loader();
+        $this->cpt = new Albamn_Hskwakr_Cpt(
+            $this->get_albamn_hskwakr()
+        );
+        $this->ig = new Albamn_Hskwakr_Ig(
+            $this->get_albamn_hskwakr(),
+            $this->get_version(),
+            $this->cpt
+        );
     }
 
     /**
@@ -151,7 +187,12 @@ class Albamn_Hskwakr
      */
     private function define_admin_hooks(): void
     {
-        $plugin_admin = new Albamn_Hskwakr_Admin($this->get_albamn_hskwakr(), $this->get_version());
+        $plugin_admin = new Albamn_Hskwakr_Admin(
+            $this->get_albamn_hskwakr(),
+            $this->get_version(),
+            $this->cpt,
+            $this->ig
+        );
 
         /**
          * Enqueue

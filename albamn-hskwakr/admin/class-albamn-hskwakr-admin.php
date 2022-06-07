@@ -70,11 +70,19 @@ class Albamn_Hskwakr_Admin
      * @since    1.0.0
      * @param    string    $albamn_hskwakr    The name of the plugin.
      * @param    string    $version           The version of this plugin.
+     * @param    Albamn_Hskwakr_Cpt   $cpt    The custom post type of this plugin.
+     * @param    Albamn_Hskwakr_Ig    $ig     The Instagram functionality of this plugin.
      */
-    public function __construct($albamn_hskwakr, $version)
-    {
+    public function __construct(
+        string $albamn_hskwakr,
+        string $version,
+        Albamn_Hskwakr_Cpt $cpt,
+        Albamn_Hskwakr_Ig $ig
+    ) {
         $this->albamn_hskwakr = $albamn_hskwakr;
         $this->version = $version;
+        $this->cpt = $cpt;
+        $this->ig = $ig;
 
         $this->load_dependencies();
     }
@@ -121,12 +129,6 @@ class Albamn_Hskwakr_Admin
           . 'model/class-albamn-hskwakr-admin-settings.php';
 
         /**
-         * The class responsible for custom post type.
-         */
-        require_once $path
-          . 'model/class-albamn-hskwakr-cpt.php';
-
-        /**
          * View
          */
 
@@ -149,31 +151,11 @@ class Albamn_Hskwakr_Admin
           . 'view/class-albamn-hskwakr-admin-editor-pager.php';
 
         /**
-         * Instagram API
-         */
-
-        /**
-         * The class responsible for instagram functionality.
-         */
-        require_once $path
-          . 'ig/class-albamn-hskwakr-ig.php';
-
-        /**
          * Create instaces.
          */
         $this->settings = new Albamn_Hskwakr_Admin_Settings(
             $this->albamn_hskwakr,
             $this->version
-        );
-
-        $this->cpt = new Albamn_Hskwakr_Cpt(
-            $this->albamn_hskwakr
-        );
-
-        $this->ig = new Albamn_Hskwakr_Ig(
-            $this->albamn_hskwakr,
-            $this->version,
-            $this->cpt
         );
     }
 
