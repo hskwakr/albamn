@@ -124,7 +124,7 @@ class Albamn_Hskwakr_Admin
          * The class responsible for custom post type.
          */
         require_once $path
-          . 'model/class-albamn-hskwakr-admin-cpt.php';
+          . 'model/class-albamn-hskwakr-cpt.php';
 
         /**
          * View
