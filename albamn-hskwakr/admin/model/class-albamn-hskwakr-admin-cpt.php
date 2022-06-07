@@ -17,7 +17,7 @@
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Cpt
+class Albamn_Hskwakr_Cpt
 {
     /**
      * The ID of this plugin.
@@ -58,14 +58,14 @@ class Albamn_Hskwakr_Admin_Cpt
      * This method contains Wordpress API
      *
      * @since    1.0.0
-     * @return   Albamn_Hskwakr_Admin_Cpt_Arg     The array for cpt
+     * @return   Albamn_Hskwakr_Cpt_Arg     The array for cpt
      */
-    public function ig_posts(): Albamn_Hskwakr_Admin_Cpt_Arg
+    public function ig_posts(): Albamn_Hskwakr_Cpt_Arg
     {
         $name = $this->albamn_hskwakr . 'ig-posts';
         $taxsonomies = array($this->hyphen_to_underbar($name));
 
-        $labels = new Albamn_Hskwakr_Admin_Cpt_Label(
+        $labels = new Albamn_Hskwakr_Cpt_Label(
             (string)_x('Instagram Posts', 'Post Type General Name'),
             (string)_x('Instagram Post', 'Post Type Singular Name'),
             (string)__('Add New'),
@@ -81,7 +81,7 @@ class Albamn_Hskwakr_Admin_Cpt
             (string)__('Update'),
         );
 
-        $supports = new Albamn_Hskwakr_Admin_Cpt_Support(
+        $supports = new Albamn_Hskwakr_Cpt_Support(
             true,
             true,
             true,
@@ -95,7 +95,7 @@ class Albamn_Hskwakr_Admin_Cpt
             false
         );
 
-        return new Albamn_Hskwakr_Admin_Cpt_Arg(
+        return new Albamn_Hskwakr_Cpt_Arg(
             $labels,
             $supports,
             (string)__('Instagram Posts'),
@@ -137,14 +137,14 @@ class Albamn_Hskwakr_Admin_Cpt
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Cpt_Arg
+class Albamn_Hskwakr_Cpt_Arg
 {
     /**
      * The labels for this post type.
      *
      * @since    1.0.0
      * @access   public
-     * @var      Albamn_Hskwakr_Admin_Cpt_Label     $labels
+     * @var      Albamn_Hskwakr_Cpt_Label     $labels
      */
     public $labels;
 
@@ -153,7 +153,7 @@ class Albamn_Hskwakr_Admin_Cpt_Arg
      *
      * @since    1.0.0
      * @access   public
-     * @var      Albamn_Hskwakr_Admin_Cpt_Support     $supports
+     * @var      Albamn_Hskwakr_Cpt_Support     $supports
      */
     public $supports;
 
@@ -305,8 +305,8 @@ class Albamn_Hskwakr_Admin_Cpt_Arg
     public $menu_position;
 
     public function __construct(
-        Albamn_Hskwakr_Admin_Cpt_Label $labels,
-        Albamn_Hskwakr_Admin_Cpt_Support $supports,
+        Albamn_Hskwakr_Cpt_Label $labels,
+        Albamn_Hskwakr_Cpt_Support $supports,
         string $description,
         string $capability_type,
         array $taxonomies,
@@ -383,7 +383,7 @@ class Albamn_Hskwakr_Admin_Cpt_Arg
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Cpt_Label
+class Albamn_Hskwakr_Cpt_Label
 {
     /**
      * General name for the post type, usually plural.
@@ -571,7 +571,7 @@ class Albamn_Hskwakr_Admin_Cpt_Label
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Cpt_Support
+class Albamn_Hskwakr_Cpt_Support
 {
     public $title;
     public $editor;

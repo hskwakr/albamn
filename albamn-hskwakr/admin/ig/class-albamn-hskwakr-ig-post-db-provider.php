@@ -24,7 +24,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Admin_Cpt_Arg    $cpt
+     * @var      Albamn_Hskwakr_Cpt_Arg    $cpt
      */
     private $cpt;
 
@@ -34,7 +34,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
      * @since    1.0.0
      */
     public function __construct(
-        Albamn_Hskwakr_Admin_Cpt_Arg $cpt
+        Albamn_Hskwakr_Cpt_Arg $cpt
     ) {
         $this->cpt = $cpt;
     }

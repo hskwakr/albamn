@@ -51,7 +51,7 @@ class Albamn_Hskwakr_Admin
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Admin_Cpt    $cpt
+     * @var      Albamn_Hskwakr_Cpt    $cpt
      */
     private $cpt;
 
@@ -166,7 +166,7 @@ class Albamn_Hskwakr_Admin
             $this->version
         );
 
-        $this->cpt = new Albamn_Hskwakr_Admin_Cpt(
+        $this->cpt = new Albamn_Hskwakr_Cpt(
             $this->albamn_hskwakr
         );
 
@@ -335,7 +335,7 @@ class Albamn_Hskwakr_Admin
         /**
          * Get a list of custom post types
          *
-         * @var Albamn_Hskwakr_Admin_Cpt_Arg
+         * @var Albamn_Hskwakr_Cpt_Arg
          */
         foreach ($this->cpt->get() as $c) {
             $name = $c->labels->name;

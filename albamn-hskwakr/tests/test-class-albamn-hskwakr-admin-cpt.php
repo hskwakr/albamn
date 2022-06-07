@@ -1,6 +1,6 @@
 <?php
 /**
- * The test cases for Albamn_Hskwakr_Admin_Cpt
+ * The test cases for Albamn_Hskwakr_Cpt
  *
  * @link       https://github.com/hskwakr/albamn
  * @since      1.0.0
@@ -10,13 +10,13 @@
  */
 
 /**
- * The test cases for Albamn_Hskwakr_Admin_Cpt
+ * The test cases for Albamn_Hskwakr_Cpt
  *
  * @package    Albamn_Hskwakr
  * @subpackage Albamn_Hskwakr/tests
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Cpt_Test extends WP_UnitTestCase
+class Albamn_Hskwakr_Cpt_Test extends WP_UnitTestCase
 {
     private $cpt;
     private $id;
@@ -26,7 +26,7 @@ class Albamn_Hskwakr_Admin_Cpt_Test extends WP_UnitTestCase
     {
         $this->id = 'id-1234';
         $this->version = 'version1234';
-        $this->cpt = new Albamn_Hskwakr_Admin_Cpt(
+        $this->cpt = new Albamn_Hskwakr_Cpt(
             $this->id,
             $this->version
         );
@@ -57,13 +57,13 @@ class Albamn_Hskwakr_Admin_Cpt_Test extends WP_UnitTestCase
 }
 
 /**
- * The test cases for Albamn_Hskwakr_Admin_Cpt_Arg
+ * The test cases for Albamn_Hskwakr_Cpt_Arg
  *
  * @package    Albamn_Hskwakr
  * @subpackage Albamn_Hskwakr/tests
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Cpt_Arg_Test extends WP_UnitTestCase
+class Albamn_Hskwakr_Cpt_Arg_Test extends WP_UnitTestCase
 {
     private $arg;
 
@@ -73,16 +73,16 @@ class Albamn_Hskwakr_Admin_Cpt_Arg_Test extends WP_UnitTestCase
          * Create mock
          */
         $labels = $this->createMock(
-            Albamn_Hskwakr_Admin_Cpt_Label::class
+            Albamn_Hskwakr_Cpt_Label::class
         );
         $supports = $this->createMock(
-            Albamn_Hskwakr_Admin_Cpt_Support::class
+            Albamn_Hskwakr_Cpt_Support::class
         );
 
         /**
          * Instantiate
          */
-        $this->arg = new Albamn_Hskwakr_Admin_Cpt_Arg(
+        $this->arg = new Albamn_Hskwakr_Cpt_Arg(
             $labels,
             $supports,
             '',
@@ -190,13 +190,13 @@ class Albamn_Hskwakr_Admin_Cpt_Arg_Test extends WP_UnitTestCase
 }
 
 /**
- * The test cases for Albamn_Hskwakr_Admin_Cpt_Label
+ * The test cases for Albamn_Hskwakr_Cpt_Label
  *
  * @package    Albamn_Hskwakr
  * @subpackage Albamn_Hskwakr/tests
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Cpt_Label_Test extends WP_UnitTestCase
+class Albamn_Hskwakr_Cpt_Label_Test extends WP_UnitTestCase
 {
     private $label;
 
@@ -205,7 +205,7 @@ class Albamn_Hskwakr_Admin_Cpt_Label_Test extends WP_UnitTestCase
         /**
          * Instantiate
          */
-        $this->label = new Albamn_Hskwakr_Admin_Cpt_Label(
+        $this->label = new Albamn_Hskwakr_Cpt_Label(
             '',
             '',
             '',
@@ -310,13 +310,13 @@ class Albamn_Hskwakr_Admin_Cpt_Label_Test extends WP_UnitTestCase
 }
 
 /**
- * The test cases for Albamn_Hskwakr_Admin_Cpt_Support
+ * The test cases for Albamn_Hskwakr_Cpt_Support
  *
  * @package    Albamn_Hskwakr
  * @subpackage Albamn_Hskwakr/tests
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Cpt_Support_Test extends WP_UnitTestCase
+class Albamn_Hskwakr_Cpt_Support_Test extends WP_UnitTestCase
 {
     private $support;
 
@@ -325,7 +325,7 @@ class Albamn_Hskwakr_Admin_Cpt_Support_Test extends WP_UnitTestCase
         /**
          * Instantiate
          */
-        $this->support = new Albamn_Hskwakr_Admin_Cpt_Support(
+        $this->support = new Albamn_Hskwakr_Cpt_Support(
             true,
             true,
             true,
