@@ -248,7 +248,11 @@ class Albamn_Hskwakr
      */
     private function define_public_hooks(): void
     {
-        $plugin_public = new Albamn_Hskwakr_Public($this->get_albamn_hskwakr(), $this->get_version());
+        $plugin_public = new Albamn_Hskwakr_Public(
+            $this->get_albamn_hskwakr(),
+            $this->get_version(),
+            $this->ig
+        );
 
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
