@@ -143,12 +143,25 @@ class Albamn_Hskwakr_Loader
      */
     public function run(): void
     {
+        /**
+         * @var array $hook
+         */
         foreach ($this->filters as $hook) {
             add_filter($hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args']);
         }
 
+        /**
+         * @var array $hook
+         */
         foreach ($this->actions as $hook) {
             add_action($hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args']);
+        }
+
+        /**
+         * @var array $hook
+         */
+        foreach ($this->shortcodes as $hook) {
+            add_shortcode($hook['hook'], array( $hook['component'], $hook['callback'] ));
         }
     }
 }
