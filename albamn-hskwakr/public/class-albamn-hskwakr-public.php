@@ -41,16 +41,30 @@ class Albamn_Hskwakr_Public
     private $version;
 
     /**
+     * The Instagram functionality
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig    $ig
+     */
+    private $ig;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param      string    $albamn_hskwakr       The name of the plugin.
-     * @param      string    $version    The version of this plugin.
+     * @param    string    $albamn_hskwakr    The name of the plugin.
+     * @param    string    $version           The version of this plugin.
+     * @param    Albamn_Hskwakr_Ig    $ig     The Instagram functionality of this plugin.
      */
-    public function __construct($albamn_hskwakr, $version)
-    {
+    public function __construct(
+        string $albamn_hskwakr,
+        string $version,
+        Albamn_Hskwakr_Ig $ig
+    ) {
         $this->albamn_hskwakr = $albamn_hskwakr;
         $this->version = $version;
+        $this->ig = $ig;
     }
 
     /**
