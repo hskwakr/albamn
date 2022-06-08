@@ -96,4 +96,15 @@ class Albamn_Hskwakr_Public
 
         wp_enqueue_script($this->albamn_hskwakr, plugin_dir_url(__FILE__) . 'js/albamn-hskwakr-public.js', array( 'jquery' ), $this->version, false);
     }
+
+    /**
+     * The shortcode of the plugin
+     *
+     * @since    1.0.0
+     * @return   string
+     */
+    public function shortcode(): string
+    {
+        return '';
+    }
 }
