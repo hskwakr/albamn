@@ -41,12 +41,13 @@ class Albamn_Hskwakr_Ig_Shortcode
     }
 
     /**
-     * Run the shortcode of the plugin
+     * Run the shortcode
+     * to display list of Instagram posts
      *
      * @since    1.0.0
      * @return   string
      */
-    public function run_shortcode(): string
+    public function run(): string
     {
         return '';
     }
