@@ -86,8 +86,10 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Admin_Settings    $settings
-     * @param    Albamn_Hskwakr_Ig_Api            $ig_api
+     * @param    Albamn_Hskwakr_Admin_Settings      $settings
+     * @param    Albamn_Hskwakr_Ig_Api              $ig_api
+     * @param    Albamn_Hskwakr_Admin_Ig_Formatter  $ig_formatter
+     * @param    Albamn_Hskwakr_Ig_Post_Repository  $ig_repository
      */
     public function __construct(
         Albamn_Hskwakr_Admin_Settings $settings,
