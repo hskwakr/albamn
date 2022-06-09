@@ -44,8 +44,8 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
         $this->pager = new Albamn_Hskwakr_Admin_Importer_Pager(
             $settings,
             $api,
-            $formatter,
-            $repository
+            $repository,
+            $formatter
         );
     }
 
