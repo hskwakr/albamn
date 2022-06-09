@@ -119,6 +119,6 @@ class Albamn_Hskwakr_Public
      */
     public function shortcode(): string
     {
-        return '';
+        return 'Hello';
     }
 }
