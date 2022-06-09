@@ -224,8 +224,8 @@ class Albamn_Hskwakr_Admin
         $importer = new Albamn_Hskwakr_Admin_Importer_Pager(
             $this->settings,
             $this->ig->api,
-            $this->ig->post_formatter,
-            $this->ig->post_repository
+            $this->ig->post_repository,
+            $this->ig->post_formatter
         );
 
         /**

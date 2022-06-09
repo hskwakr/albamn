@@ -88,19 +88,19 @@ class Albamn_Hskwakr_Admin_Importer_Pager implements Albamn_Hskwakr_Admin_Displa
      * @since    1.0.0
      * @param    Albamn_Hskwakr_Admin_Settings      $settings
      * @param    Albamn_Hskwakr_Ig_Api              $ig_api
-     * @param    Albamn_Hskwakr_Admin_Ig_Formatter  $ig_formatter
      * @param    Albamn_Hskwakr_Ig_Post_Repository  $ig_repository
+     * @param    Albamn_Hskwakr_Admin_Ig_Formatter  $ig_formatter
      */
     public function __construct(
         Albamn_Hskwakr_Admin_Settings $settings,
         Albamn_Hskwakr_Ig_Api $ig_api,
-        Albamn_Hskwakr_Admin_Ig_Formatter $ig_formatter,
-        Albamn_Hskwakr_Ig_Post_Repository $ig_repository
+        Albamn_Hskwakr_Ig_Post_Repository $ig_repository,
+        Albamn_Hskwakr_Admin_Ig_Formatter $ig_formatter
     ) {
         $this->settings = $settings;
         $this->ig_api = $ig_api;
-        $this->ig_formatter = $ig_formatter;
         $this->ig_repository = $ig_repository;
+        $this->ig_formatter = $ig_formatter;
 
         $this->ig_posts = array();
     }
