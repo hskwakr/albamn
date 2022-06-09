@@ -20,6 +20,15 @@
 class Albamn_Hskwakr_Ig_Shortcode
 {
     /**
+     * The DB access for Instagram posts
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Post_Repository    $repository
+     */
+    private $repository;
+
+    /**
      * The formatter for Instagram medias
      *
      * @since    1.0.0
@@ -32,11 +41,14 @@ class Albamn_Hskwakr_Ig_Shortcode
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
+     * @param    Albamn_Hskwakr_Ig_Post_Repository    $repository
      * @param    Albamn_Hskwakr_Admin_Ig_Formatter    $formatter
      */
     public function __construct(
+        Albamn_Hskwakr_Ig_Post_Repository $repository,
         Albamn_Hskwakr_Admin_Ig_Formatter $formatter
     ) {
+        $this->repository = $repository;
         $this->formatter = $formatter;
     }
 

@@ -205,6 +205,7 @@ class Albamn_Hskwakr_Ig
             $db
         );
         $this->shortcode = new Albamn_Hskwakr_Ig_Shortcode(
+            $this->post_repository,
             $this->post_formatter
         );
     }
