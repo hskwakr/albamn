@@ -74,6 +74,15 @@ class Albamn_Hskwakr_Ig
     public $post_formatter;
 
     /**
+     * The shortcode to display list of posts in Instagram
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      Albamn_Hskwakr_Ig_Shortcode    $shortcode
+     */
+    public $shortcode;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -164,6 +173,12 @@ class Albamn_Hskwakr_Ig
          */
         require_once $path
           . 'class-albamn-hskwakr-ig-formatter.php';
+
+        /**
+         * The class responsible for shortcode.
+         */
+        require_once $path
+          . 'class-albamn-hskwakr-ig-shortcode.php';
     }
 
     /**
@@ -188,6 +203,9 @@ class Albamn_Hskwakr_Ig
         $this->post_formatter = new Albamn_Hskwakr_Admin_Ig_Formatter();
         $this->post_repository = new Albamn_Hskwakr_Ig_Post_Repository(
             $db
+        );
+        $this->shortcode = new Albamn_Hskwakr_Ig_Shortcode(
+            $this->post_formatter
         );
     }
 }
