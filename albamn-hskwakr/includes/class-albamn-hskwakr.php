@@ -254,8 +254,32 @@ class Albamn_Hskwakr
             $this->ig
         );
 
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+        /**
+         * Enqueue styles
+         */
+        $this->loader->add_action(
+            'wp_enqueue_scripts',
+            $plugin_public,
+            'enqueue_styles'
+        );
+
+        /**
+         * Enqueue scripts
+         */
+        $this->loader->add_action(
+            'wp_enqueue_scripts',
+            $plugin_public,
+            'enqueue_scripts'
+        );
+
+        /**
+         * Register shortcode
+         */
+        $this->loader->add_shortcode(
+            'albamn-ig',
+            $plugin_public,
+            'shortcode'
+        );
     }
 
     /**
