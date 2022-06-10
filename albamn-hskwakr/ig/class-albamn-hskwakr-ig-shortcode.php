@@ -100,8 +100,8 @@ class Albamn_Hskwakr_Ig_Shortcode
         /**
          * Validate the posts
          */
-        if ($this->formatter->validate_medias($posts)) {
-            return '';
+        if (!$this->formatter->validate_medias($posts)) {
+            return 'Filed to format';
         }
 
         /**
