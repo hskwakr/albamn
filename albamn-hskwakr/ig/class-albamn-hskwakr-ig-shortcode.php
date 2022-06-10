@@ -61,6 +61,52 @@ class Albamn_Hskwakr_Ig_Shortcode
      */
     public function run(): string
     {
-        return '';
+        /**
+         * Get Instagram posts
+         *
+         * @var array<Albamn_Hskwakr_Ig_Post> $posts
+         */
+        $posts = $this->get_all_posts();
+
+        /**
+         * Formatt Instagram posts to HTML
+         */
+        return $this->format_posts($posts);
+    }
+
+    /**
+     * Get all Instagram posts
+     *
+     * @since    1.0.0
+     * @return   array<Albamn_Hskwakr_Ig_Post>
+     */
+    public function get_all_posts(): array
+    {
+        /**
+         * @var array<Albamn_Hskwakr_Ig_Post>
+         */
+        return $this->repository->get(-1);
+    }
+
+    /**
+     * Formatt Instagram posts data to HTML
+     *
+     * @since    1.0.0
+     * @param    array<Albamn_Hskwakr_Ig_Post>    $posts
+     * @return   string
+     */
+    public function format_posts(array $posts): string
+    {
+        /**
+         * Validate the posts
+         */
+        if ($this->formatter->validate_medias($posts)) {
+            return '';
+        }
+
+        /**
+         * Format the posts
+         */
+        return $this->formatter->format_medias_importer($posts);
     }
 }
