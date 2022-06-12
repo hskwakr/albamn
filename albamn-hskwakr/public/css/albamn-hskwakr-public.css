@@ -2,3 +2,24 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+/**
+ * Grid
+ */
+.albamn-grid-wrapper {
+  padding: 2px;
+}
+
+.albamn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  grid-auto-rows: 9rem;
+  gap: 0.5rem;
+}
+
+.albamn-grid-child {
+  width: 8rem;
+  height: 9rem;
+  background: black;
+  margin: auto;
+}
