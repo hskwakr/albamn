@@ -26,7 +26,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager_Test extends WP_UnitTestCase
          * Create mock
          */
         $settings = $this->createMock(
-            Albamn_Hskwakr_Admin_Settings::class
+            Albamn_Hskwakr_Settings::class
         );
         $api = $this->createMock(
             Albamn_Hskwakr_Ig_Api::class

@@ -17,7 +17,7 @@
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Settings
+class Albamn_Hskwakr_Settings
 {
     /**
      * The ID of this plugin.
@@ -54,7 +54,7 @@ class Albamn_Hskwakr_Admin_Settings
      * Get a list of option groups
      *
      * @since    1.0.0
-     * @return   array    The list of Albamn_Hskwakr_Admin_Settings_Option_Group
+     * @return   array    The list of Albamn_Hskwakr_Settings_Option_Group
      */
     public function get_option_groups(): array
     {
@@ -91,11 +91,11 @@ class Albamn_Hskwakr_Admin_Settings
      * Return general option group
      *
      * @since    1.0.0
-     * @return   Albamn_Hskwakr_Admin_Settings_Option_Group
+     * @return   Albamn_Hskwakr_Settings_Option_Group
      */
     public function general(
-    ): Albamn_Hskwakr_Admin_Settings_Option_Group {
-        return new Albamn_Hskwakr_Admin_Settings_Option_Group(
+    ): Albamn_Hskwakr_Settings_Option_Group {
+        return new Albamn_Hskwakr_Settings_Option_Group(
             $this->albamn_hskwakr . '-general',
             array(
                 'fb_api_token'
@@ -111,7 +111,7 @@ class Albamn_Hskwakr_Admin_Settings
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_Settings_Option_Group
+class Albamn_Hskwakr_Settings_Option_Group
 {
     /**
      * A settings group name.
