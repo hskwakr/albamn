@@ -126,7 +126,7 @@ class Albamn_Hskwakr_Admin
          * The class responsible for admin settings.
          */
         require_once $path
-          . 'model/class-albamn-hskwakr-admin-settings.php';
+          . 'model/class-albamn-hskwakr-settings.php';
 
         /**
          * View
