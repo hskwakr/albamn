@@ -42,7 +42,7 @@ class Albamn_Hskwakr_Admin
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Admin_Settings    $settings
+     * @var      Albamn_Hskwakr_Settings    $settings
      */
     private $settings;
 
@@ -153,7 +153,7 @@ class Albamn_Hskwakr_Admin
         /**
          * Create instaces.
          */
-        $this->settings = new Albamn_Hskwakr_Admin_Settings(
+        $this->settings = new Albamn_Hskwakr_Settings(
             $this->albamn_hskwakr,
             $this->version
         );
@@ -288,7 +288,7 @@ class Albamn_Hskwakr_Admin
         /**
          * Get a list of option groups
          *
-         * @var Albamn_Hskwakr_Admin_Settings_Option_Group
+         * @var Albamn_Hskwakr_Settings_Option_Group
          */
         foreach (
             $this->settings->get_option_groups() as $og
