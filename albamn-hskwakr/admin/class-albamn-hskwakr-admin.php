@@ -77,11 +77,13 @@ class Albamn_Hskwakr_Admin
         string $albamn_hskwakr,
         string $version,
         Albamn_Hskwakr_Cpt $cpt,
+        Albamn_Hskwakr_Settings $settings,
         Albamn_Hskwakr_Ig $ig
     ) {
         $this->albamn_hskwakr = $albamn_hskwakr;
         $this->version = $version;
         $this->cpt = $cpt;
+        $this->settings = $settings;
         $this->ig = $ig;
 
         $this->load_dependencies();
@@ -123,12 +125,6 @@ class Albamn_Hskwakr_Admin
           . 'model/class-albamn-hskwakr-admin-enqueue.php';
 
         /**
-         * The class responsible for admin settings.
-         */
-        require_once $path
-          . 'model/class-albamn-hskwakr-settings.php';
-
-        /**
          * View
          */
 
@@ -149,14 +145,6 @@ class Albamn_Hskwakr_Admin
          */
         require_once $path
           . 'view/class-albamn-hskwakr-admin-editor-pager.php';
-
-        /**
-         * Create instaces.
-         */
-        $this->settings = new Albamn_Hskwakr_Settings(
-            $this->albamn_hskwakr,
-            $this->version
-        );
     }
 
     /**

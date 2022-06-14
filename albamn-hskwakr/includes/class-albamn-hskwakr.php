@@ -49,6 +49,15 @@ class Albamn_Hskwakr
     private $cpt;
 
     /**
+     * The settings for the plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Settings    $settings
+     */
+    private $settings;
+
+    /**
      * The Instagram functionality
      *
      * @since    1.0.0
@@ -147,6 +156,11 @@ class Albamn_Hskwakr
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-cpt.php';
 
         /**
+         * The class responsible for settings of the plugin.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-settings.php';
+
+        /**
          * The class responsible for defining all Instagram functionalities.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'ig/class-albamn-hskwakr-ig.php';
@@ -154,6 +168,10 @@ class Albamn_Hskwakr
         $this->loader = new Albamn_Hskwakr_Loader();
         $this->cpt = new Albamn_Hskwakr_Cpt(
             $this->get_albamn_hskwakr()
+        );
+        $this->settings = new Albamn_Hskwakr_Settings(
+            $this->albamn_hskwakr,
+            $this->version
         );
         $this->ig = new Albamn_Hskwakr_Ig(
             $this->get_albamn_hskwakr(),
@@ -191,6 +209,7 @@ class Albamn_Hskwakr
             $this->get_albamn_hskwakr(),
             $this->get_version(),
             $this->cpt,
+            $this->settings,
             $this->ig
         );
 
