@@ -95,13 +95,6 @@ class Albamn_Hskwakr
      */
     public function __construct()
     {
-        if (defined('ALBAMN_HSKWAKR_VERSION')) {
-            $this->version = ALBAMN_HSKWAKR_VERSION;
-        } else {
-            $this->version = '1.0.0';
-        }
-        $this->albamn_hskwakr = 'albamn-hskwakr';
-
         $this->load_dependencies();
         $this->set_locale();
         $this->define_admin_hooks();
@@ -127,6 +120,11 @@ class Albamn_Hskwakr
      */
     private function load_dependencies(): void
     {
+        /**
+         * The class responsible for context of the plugin.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-context.php';
+
         /**
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
@@ -165,13 +163,23 @@ class Albamn_Hskwakr
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'ig/class-albamn-hskwakr-ig.php';
 
+        /**
+         * Instantiate context class
+         */
+        $context = new Albamn_Hskwakr_Context();
+        $this->albamn_hskwakr = $context->get_plugin_name();
+        $this->version = $context->get_version();
+
+        /**
+         * Instantiate any class
+         */
         $this->loader = new Albamn_Hskwakr_Loader();
         $this->cpt = new Albamn_Hskwakr_Cpt(
             $this->get_albamn_hskwakr()
         );
         $this->settings = new Albamn_Hskwakr_Settings(
             $this->albamn_hskwakr,
-            $this->version
+            $this->get_version(),
         );
         $this->ig = new Albamn_Hskwakr_Ig(
             $this->get_albamn_hskwakr(),
