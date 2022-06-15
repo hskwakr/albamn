@@ -121,47 +121,60 @@ class Albamn_Hskwakr
     private function load_dependencies(): void
     {
         /**
+         * Location of the plugin
+         */
+        $path = (string)plugin_dir_path(dirname(__FILE__));
+
+        /**
          * The class responsible for context of the plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-context.php';
+        require_once $path
+          . 'includes/class-albamn-hskwakr-context.php';
 
         /**
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-loader.php';
+        require_once $path
+          . 'includes/class-albamn-hskwakr-loader.php';
 
         /**
          * The class responsible for defining internationalization functionality
          * of the plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-i18n.php';
+        require_once $path
+          . 'includes/class-albamn-hskwakr-i18n.php';
 
         /**
          * The class responsible for defining all actions that occur in the admin area.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-albamn-hskwakr-admin.php';
+        require_once $path
+          . 'admin/class-albamn-hskwakr-admin.php';
 
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-albamn-hskwakr-public.php';
+        require_once $path
+          . 'public/class-albamn-hskwakr-public.php';
 
         /**
          * The class responsible for defining all custom post types for the plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-cpt.php';
+        require_once $path
+          . 'includes/class-albamn-hskwakr-cpt.php';
 
         /**
          * The class responsible for settings of the plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-albamn-hskwakr-settings.php';
+        require_once $path
+          . 'includes/class-albamn-hskwakr-settings.php';
 
         /**
          * The class responsible for defining all Instagram functionalities.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'ig/class-albamn-hskwakr-ig.php';
+        require_once $path
+          . 'ig/class-albamn-hskwakr-ig.php';
 
         /**
          * Instantiate context class
