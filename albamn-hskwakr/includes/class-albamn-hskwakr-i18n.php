@@ -36,7 +36,7 @@ class Albamn_Hskwakr_i18n
         load_plugin_textdomain(
             'albamn-hskwakr',
             false,
-            dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
+            dirname(dirname((string)plugin_basename(__FILE__))) . '/languages/'
         );
     }
 }
