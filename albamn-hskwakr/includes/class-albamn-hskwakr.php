@@ -192,7 +192,7 @@ class Albamn_Hskwakr
         );
         $this->settings = new Albamn_Hskwakr_Settings(
             $this->albamn_hskwakr,
-            $this->get_version(),
+            $this->get_version()
         );
         $this->ig = new Albamn_Hskwakr_Ig(
             $this->get_albamn_hskwakr(),
