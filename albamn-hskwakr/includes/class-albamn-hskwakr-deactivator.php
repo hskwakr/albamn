@@ -78,7 +78,7 @@ class Albamn_Hskwakr_Deactivator
 
     /**
      * Load the required dependencies for this plugin.
-     * Create an instance of the loader which will be used to register the hooks with WordPress.
+     * Create an instances.
      *
      * @since    1.0.0
      * @access   private
@@ -141,7 +141,7 @@ class Albamn_Hskwakr_Deactivator
     /**
      * Clean DB data for the plugin
      *
-     * This method calls after load_dependencies
+     * This method should call after load_dependencies
      *
      * @since    1.0.0
      * @access   private
@@ -156,7 +156,8 @@ class Albamn_Hskwakr_Deactivator
     /**
      * Clean settings for the plugin
      *
-     * This method calls after load_dependencies
+     * This method should call after load_dependencies
+     * This method contains Wordpress API
      *
      * @since    1.0.0
      * @access   private
@@ -164,7 +165,26 @@ class Albamn_Hskwakr_Deactivator
      */
     private static function clean_settings(
         Albamn_Hskwakr_Settings $settings
-    ): bool {
-        return true;
+    ): void {
+        /**
+         * Get a list of option groups
+         *
+         * @var Albamn_Hskwakr_Settings_Option_Group
+         */
+        foreach (
+            $settings->get_option_groups() as $og
+        ) {
+            /**
+             * Get option names in each option groups
+             *
+             * @var string $v
+             */
+            foreach ($og->options as $v) {
+                /**
+                 * Delete the option
+                 */
+                delete_option($v);
+            }
+        }
     }
 }
