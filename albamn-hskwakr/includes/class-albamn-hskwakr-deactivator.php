@@ -49,7 +49,31 @@ class Albamn_Hskwakr_Deactivator
      */
     public static function deactivate(): void
     {
+        /**
+         * Load dependencies
+         */
         self::load_dependencies();
+
+        /**
+         * Validate
+         */
+        if (empty(self::$ig)) {
+            return;
+        }
+
+        if (empty(self::$settings)) {
+            return;
+        }
+
+        /**
+         * Clean DB before cleaning settings
+         */
+        self::clean_db(self::$ig);
+
+        /**
+         * Clean settings
+         */
+        self::clean_settings(self::$settings);
     }
 
     /**
@@ -112,5 +136,35 @@ class Albamn_Hskwakr_Deactivator
             $context->get_version(),
             $cpt
         );
+    }
+
+    /**
+     * Clean DB data for the plugin
+     *
+     * This method calls after load_dependencies
+     *
+     * @since    1.0.0
+     * @access   private
+     * @param    Albamn_Hskwakr_Ig    $ig
+     */
+    private static function clean_db(
+        Albamn_Hskwakr_Ig $ig
+    ): bool {
+        return $ig->post_repository->remove_all();
+    }
+
+    /**
+     * Clean settings for the plugin
+     *
+     * This method calls after load_dependencies
+     *
+     * @since    1.0.0
+     * @access   private
+     * @param    Albamn_Hskwakr_Settings    $settings
+     */
+    private static function clean_settings(
+        Albamn_Hskwakr_Settings $settings
+    ): bool {
+        return true;
     }
 }
