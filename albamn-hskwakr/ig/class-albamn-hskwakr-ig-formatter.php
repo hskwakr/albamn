@@ -209,6 +209,56 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
     }
 
     /**
+     * Create html structure from instagram medias
+     * for shortcode
+     *
+     * This method don't care about error case
+     *
+     * @since    1.0.0
+     * @param    array      $medias
+     * @return   string     The html
+     */
+    public function format_medias_shortcode(array $medias): string
+    {
+        $r = '';
+        $r = $r . '<div class="albamn-grid-wrapper">';
+        $r = $r . '<div class="albamn-grid">';
+
+        /**
+         * @var Albamn_Hskwakr_Ig_Post $m
+         */
+        foreach ($medias as $m) {
+            /**
+             * Check visibility
+             */
+            if (!$m->visibility) {
+                continue;
+            }
+
+            $r = $r . '<div class="albamn-grid-child">';
+
+            switch ($m->media_type) {
+                case 'IMAGE':
+                    $r = $r . $this->format_image_media($m);
+                    break;
+
+                case 'VIDEO':
+                    $r = $r . $this->format_video_media($m);
+                    break;
+
+                default:
+                    break;
+            }
+
+            $r = $r . '</div>';
+        }
+
+        $r = $r . '</div>';
+        $r = $r . '</div>';
+        return $r;
+    }
+
+    /**
      * Create html structure from image media
      *
      * This method don't care about error case

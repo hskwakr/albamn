@@ -107,6 +107,6 @@ class Albamn_Hskwakr_Ig_Shortcode
         /**
          * Format the posts
          */
-        return $this->formatter->format_medias_importer($posts);
+        return $this->formatter->format_medias_shortcode($posts);
     }
 }
