@@ -89,7 +89,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager implements Albamn_Hskwakr_Admin_Displaya
             /**
              * Couldn't to find any Instagram posts in DB
              */
-            echo 'There is nothing';
+            echo $this->display_alert_red('No data');
         } else {
             /**
              * Display Instagram posts
