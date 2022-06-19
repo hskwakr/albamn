@@ -130,6 +130,15 @@ class Albamn_Hskwakr_Admin_Menu
     }
 
     /**
+     * Load about page.
+     *
+     * @since    1.0.0
+     */
+    public function about(): void
+    {
+    }
+
+    /**
      * Load general settings page.
      *
      * @since    1.0.0
