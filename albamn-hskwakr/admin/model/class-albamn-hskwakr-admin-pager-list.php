@@ -49,6 +49,7 @@ class Albamn_Hskwakr_Admin_Pager_List
         string $name,
         Albamn_Hskwakr_Admin_Displayable $pager
     ): void {
+        $this->list[$name] = $pager;
     }
 
     /**
