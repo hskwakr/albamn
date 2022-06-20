@@ -44,16 +44,18 @@ class Albamn_Hskwakr_Admin_Pager_List
      * @since    1.0.0
      * @param    string     $name
      * @param    Albamn_Hskwakr_Admin_Displayable     $pager
+     * @return   Albamn_Hskwakr_Admin_Displayable
      */
     public function add(
         string $name,
         Albamn_Hskwakr_Admin_Displayable $pager
-    ): void {
+    ) {
         $this->list[$name] = $pager;
+        return $pager;
     }
 
     /**
-     * Add a pager to the list
+     * Get a list of pager
      *
      * @since    1.0.0
      * @return   array<string, Albamn_Hskwakr_Admin_Displayable>
