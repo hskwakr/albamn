@@ -125,6 +125,12 @@ class Albamn_Hskwakr_Admin
           . 'model/class-albamn-hskwakr-admin-enqueue.php';
 
         /**
+         * The class responsible for admin pager lsit.
+         */
+        require_once $path
+          . 'model/class-albamn-hskwakr-admin-pager-list.php';
+
+        /**
          * View
          */
 
