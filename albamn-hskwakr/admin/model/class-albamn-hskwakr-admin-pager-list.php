@@ -73,6 +73,25 @@ class Albamn_Hskwakr_Admin_Pager_List
     public function find_by(
         string $name
     ) {
-        return null;
+        /**
+         * The target that looking for
+         *
+         * @var Albamn_Hskwakr_Admin_Displayable | null $target
+         */
+        $target = null;
+
+        /**
+         * Find the target
+         *
+         * @var string $key
+         * @var Albamn_Hskwakr_Admin_Displayable $value
+         */
+        foreach ($this->list as $key => $value) {
+            if ($key == $name) {
+                $target = $value;
+            }
+        }
+
+        return $target;
     }
 }
