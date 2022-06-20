@@ -144,4 +144,26 @@ class Albamn_Hskwakr_Admin_Pager_List_Test extends WP_UnitTestCase
          */
         $this->assertSame($expect, $actual);
     }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_find_by_with_empty_list()
+    {
+        /**
+         * Prepare
+         */
+        $name = 'general';
+        $expect = null;
+
+        /**
+         * Execute
+         */
+        $actual = $this->list->find_by($name);
+
+        /**
+         * Assert
+         */
+        $this->assertSame($expect, $actual);
+    }
 }
