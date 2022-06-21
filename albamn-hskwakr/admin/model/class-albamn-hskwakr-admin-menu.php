@@ -142,7 +142,7 @@ class Albamn_Hskwakr_Admin_Menu
             ),
             new Albamn_Hskwakr_Admin_Menu_Sub(
                 $this->slug,
-                'Albamn about',
+                'Albamn About',
                 'About',
                 'manage_options',
                 'albamn-hskwakr-about.php',
