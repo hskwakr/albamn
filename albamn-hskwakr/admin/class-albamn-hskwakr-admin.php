@@ -151,6 +151,12 @@ class Albamn_Hskwakr_Admin
          */
         require_once $path
           . 'view/class-albamn-hskwakr-admin-editor-pager.php';
+
+        /**
+         * The class responsible for admin about pager.
+         */
+        require_once $path
+          . 'view/class-albamn-hskwakr-admin-about-pager.php';
     }
 
     /**
@@ -231,12 +237,18 @@ class Albamn_Hskwakr_Admin
         );
 
         /**
+         * Instantiate about pager
+         */
+        $about = new Albamn_Hskwakr_Admin_About_Pager();
+
+        /**
          * Instantiate pager list
          */
         $pager_list = new Albamn_Hskwakr_Admin_Pager_List();
         $pager_list->add('general', $general);
         $pager_list->add('importer', $importer);
         $pager_list->add('editor', $editor);
+        $pager_list->add('about', $about);
 
         /**
          * Instantiate menu
