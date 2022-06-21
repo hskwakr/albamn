@@ -29,11 +29,20 @@ class Albamn_Hskwakr_Admin_Menu
     protected $slug;
 
     /**
+     * The list of pager
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      Albamn_Hskwakr_Admin_Pager_List    $pager_list
+     */
+    protected $pager_list;
+
+    /**
      * The pager for general settings page.
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Displayable   $settings_pager
+     * @var      Albamn_Hskwakr_Admin_Displayable | null   $settings_pager
      */
     protected $settings_pager;
 
@@ -42,7 +51,7 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Displayable   $impoter_pager
+     * @var      Albamn_Hskwakr_Admin_Displayable | null   $impoter_pager
      */
     protected $impoter_pager;
 
@@ -51,27 +60,23 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Displayable   $editor_pager
+     * @var      Albamn_Hskwakr_Admin_Displayable | null   $editor_pager
      */
     protected $editor_pager;
 
     /**
      * Initialize the class and set its properties.
      *
-     * @param    Albamn_Hskwakr_Admin_Displayable   $settings_pager
-     * @param    Albamn_Hskwakr_Admin_Displayable   $impoter_pager
-     * @param    Albamn_Hskwakr_Admin_Displayable   $editor_pager
+     * @param    Albamn_Hskwakr_Admin_Pager_List   $pager_list
      * @since    1.0.0
      */
     public function __construct(
-        Albamn_Hskwakr_Admin_Displayable $settings_pager,
-        Albamn_Hskwakr_Admin_Displayable $impoter_pager,
-        Albamn_Hskwakr_Admin_Displayable $editor_pager
+        Albamn_Hskwakr_Admin_Pager_List $pager_list
     ) {
         $this->slug = 'albamn-hskwakr-general-settings.php';
-        $this->settings_pager = $settings_pager;
-        $this->impoter_pager = $impoter_pager;
-        $this->editor_pager = $editor_pager;
+
+        $this->pager_list = $pager_list;
+        $this->init_pager();
     }
 
     /**
@@ -130,6 +135,38 @@ class Albamn_Hskwakr_Admin_Menu
     }
 
     /**
+     *
+     *
+     * @since    1.0.0
+     */
+    private function init_pager(): void
+    {
+        /**
+         * Get array
+         *
+         * @var array<string, Albamn_Hskwakr_Admin_Displayable> $list
+         */
+        $list = $this->pager_list->get();
+
+        /**
+         * Set pager
+         */
+        foreach ($list as $key => $value) {
+            if ($key == 'general') {
+                $this->settings_pager = $value;
+            }
+
+            if ($key == 'importer') {
+                $this->impoter_pager = $value;
+            }
+
+            if ($key == 'editor') {
+                $this->editor_pager = $value;
+            }
+        }
+    }
+
+    /**
      * Load about page.
      *
      * @since    1.0.0
@@ -145,7 +182,9 @@ class Albamn_Hskwakr_Admin_Menu
      */
     public function general_settings(): void
     {
-        $this->settings_pager->display();
+        if (!empty($this->settings_pager)) {
+            $this->settings_pager->display();
+        }
     }
 
     /**
@@ -155,7 +194,9 @@ class Albamn_Hskwakr_Admin_Menu
      */
     public function post_importer(): void
     {
-        $this->impoter_pager->display();
+        if (!empty($this->impoter_pager)) {
+            $this->impoter_pager->display();
+        }
     }
 
     /**
@@ -165,7 +206,9 @@ class Albamn_Hskwakr_Admin_Menu
      */
     public function post_editor(): void
     {
-        $this->editor_pager->display();
+        if (!empty($this->editor_pager)) {
+            $this->editor_pager->display();
+        }
     }
 }
 

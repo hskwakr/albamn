@@ -242,9 +242,7 @@ class Albamn_Hskwakr_Admin
          * Instantiate menu
          */
         $menu = new Albamn_Hskwakr_Admin_Menu(
-            $general,
-            $importer,
-            $editor
+            $pager_list
         );
 
         /**
