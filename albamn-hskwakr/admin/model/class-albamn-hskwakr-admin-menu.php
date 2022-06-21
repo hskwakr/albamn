@@ -135,14 +135,14 @@ class Albamn_Hskwakr_Admin_Menu
     }
 
     /**
-     *
+     * Init pagers
      *
      * @since    1.0.0
      */
     private function init_pager(): void
     {
         /**
-         * Get array
+         * Get list of pager
          *
          * @var array<string, Albamn_Hskwakr_Admin_Displayable> $list
          */
