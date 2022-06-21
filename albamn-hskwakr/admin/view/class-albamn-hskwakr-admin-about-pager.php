@@ -56,7 +56,7 @@ class Albamn_Hskwakr_Admin_About_Pager implements Albamn_Hskwakr_Admin_Displayab
         /**
          * Location of admin folder in the plugin
          */
-        $path = plugin_dir_path(dirname(__FILE__));
+        $path = (string)plugin_dir_path(dirname(__FILE__));
 
         switch ($status) {
             case 1:
