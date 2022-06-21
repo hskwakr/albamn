@@ -231,6 +231,14 @@ class Albamn_Hskwakr_Admin
         );
 
         /**
+         * Instantiate pager list
+         */
+        $pager_list = new Albamn_Hskwakr_Admin_Pager_List();
+        $pager_list->add('general', $general);
+        $pager_list->add('importer', $importer);
+        $pager_list->add('editor', $editor);
+
+        /**
          * Instantiate menu
          */
         $menu = new Albamn_Hskwakr_Admin_Menu(
