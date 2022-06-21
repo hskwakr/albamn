@@ -113,7 +113,7 @@ class Albamn_Hskwakr_Admin_About_Pager implements Albamn_Hskwakr_Admin_Displayab
 
 <div class="container-sm col-sm-8" style="margin: 1rem 0rem 0rem;">
   <h3 style="margin-bottom: 1rem;">
-    Albamn General Settings
+    Albamn About
   </h3>
 
 EOF;
