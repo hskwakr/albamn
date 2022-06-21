@@ -54,20 +54,23 @@ class Albamn_Hskwakr_Admin_About_Pager implements Albamn_Hskwakr_Admin_Displayab
         echo $this->display_header();
 
         /**
-         * Content
+         * Location of admin folder in the plugin
          */
+        $path = plugin_dir_path(dirname(__FILE__));
+
         switch ($status) {
-          case 1:
+            case 1:
 
-            break;
+                break;
 
-          case 2:
+            case 2:
 
-            break;
+                break;
 
-          default:
-
-            break;
+            default:
+                require_once $path .
+                    'partials/albamn-hskwakr-admin-display-about-jp.php';
+                break;
         }
 
         /**
