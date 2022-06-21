@@ -65,6 +65,15 @@ class Albamn_Hskwakr_Admin_Menu
     protected $editor_pager;
 
     /**
+     * The pager for about page.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      Albamn_Hskwakr_Admin_Displayable | null   $about_pager
+     */
+    protected $about_pager;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @param    Albamn_Hskwakr_Admin_Pager_List   $pager_list
@@ -131,6 +140,14 @@ class Albamn_Hskwakr_Admin_Menu
                 'albamn-hskwakr-post-editor.php',
                 array($this, 'post_editor')
             ),
+            new Albamn_Hskwakr_Admin_Menu_Sub(
+                $this->slug,
+                'Albamn about',
+                'About',
+                'manage_options',
+                'albamn-hskwakr-about.php',
+                array($this, 'about')
+            ),
         );
     }
 
@@ -163,6 +180,10 @@ class Albamn_Hskwakr_Admin_Menu
             if ($key == 'editor') {
                 $this->editor_pager = $value;
             }
+
+            if ($key == 'about') {
+                $this->about_pager = $value;
+            }
         }
     }
 
@@ -173,6 +194,9 @@ class Albamn_Hskwakr_Admin_Menu
      */
     public function about(): void
     {
+        if (!empty($this->about_pager)) {
+            $this->about_pager->display();
+        }
     }
 
     /**
