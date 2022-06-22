@@ -14,3 +14,6 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<p>Instagramの投稿をWordPressで利用できるようにするプラグインです。</p>
+
+<h5>使い方</h5>
