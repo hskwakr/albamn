@@ -82,7 +82,7 @@ class Albamn_Hskwakr_Admin_Menu
     public function __construct(
         Albamn_Hskwakr_Admin_Pager_List $pager_list
     ) {
-        $this->slug = 'albamn-hskwakr-general-settings.php';
+        $this->slug = 'albamn-hskwakr-about.php';
 
         $this->pager_list = $pager_list;
         $this->init_pager();
@@ -97,11 +97,11 @@ class Albamn_Hskwakr_Admin_Menu
     public function base(): Albamn_Hskwakr_Admin_Menu_Base
     {
         return new Albamn_Hskwakr_Admin_Menu_Base(
-            'Albamn General Settings',
+            'Albamn About',
             'Albamn',
             'manage_options',
             $this->slug,
-            array($this, 'general_settings'),
+            array($this, 'about'),
             'dashicons-tickets',
             250
         );
@@ -118,10 +118,18 @@ class Albamn_Hskwakr_Admin_Menu
         return array(
             new Albamn_Hskwakr_Admin_Menu_Sub(
                 $this->slug,
+                'Albamn About',
+                'About',
+                'manage_options',
+                $this->slug,
+                array($this, 'about')
+            ),
+            new Albamn_Hskwakr_Admin_Menu_Sub(
+                $this->slug,
                 'Albamn General Settings',
                 'Settings',
                 'manage_options',
-                $this->slug,
+                'albamn-hskwakr-general-settings.php',
                 array($this, 'general_settings'),
             ),
             new Albamn_Hskwakr_Admin_Menu_Sub(
@@ -139,14 +147,6 @@ class Albamn_Hskwakr_Admin_Menu
                 'manage_options',
                 'albamn-hskwakr-post-editor.php',
                 array($this, 'post_editor')
-            ),
-            new Albamn_Hskwakr_Admin_Menu_Sub(
-                $this->slug,
-                'Albamn About',
-                'About',
-                'manage_options',
-                'albamn-hskwakr-about.php',
-                array($this, 'about')
             ),
         );
     }
