@@ -17,7 +17,7 @@
  * @subpackage Albamn_Hskwakr/admin
  * @author     hskwakr <33633391+hskwakr@users.noreply.github.com>
  */
-class Albamn_Hskwakr_Admin_About_Pager implements Albamn_Hskwakr_Admin_Displayable
+class Albamn_Hskwakr_Admin_About_Pager extends Albamn_Hskwakr_Admin_Pager
 {
     /**
      * Initialize the class and set its properties.
@@ -51,7 +51,7 @@ class Albamn_Hskwakr_Admin_About_Pager implements Albamn_Hskwakr_Admin_Displayab
         /**
          * Header
          */
-        echo $this->display_header();
+        echo $this->display_header('About Albamn');
 
         /**
          * Location of admin folder in the plugin
@@ -102,38 +102,5 @@ class Albamn_Hskwakr_Admin_About_Pager implements Albamn_Hskwakr_Admin_Displayab
         }
 
         return 0;
-    }
-
-    /**
-     * The html to display header
-     *
-     * @since    1.0.0
-     * @return   string     The html
-     */
-    public function display_header(): string
-    {
-        return <<< EOF
-
-<div class="container-sm col-sm-8" style="margin: 1rem 0rem 0rem;">
-  <h3 style="margin-bottom: 1rem;">
-    About Albamn
-  </h3>
-
-EOF;
-    }
-
-    /**
-     * The html to display footer for form
-     *
-     * @since    1.0.0
-     * @return   string     The html
-     */
-    public function display_footer(): string
-    {
-        return <<< EOF
-
-</div>
-
-EOF;
     }
 }

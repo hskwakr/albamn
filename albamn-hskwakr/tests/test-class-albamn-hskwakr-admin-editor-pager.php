@@ -44,25 +44,6 @@ class Albamn_Hskwakr_Admin_Editor_Pager_Test extends WP_UnitTestCase
     /**
      * Check the output has the necessary components.
      */
-    public function test_display_header()
-    {
-        /**
-         * Prepare
-         */
-        $pattern = '<div.*class=".*container.*>';
-        $subject = $this->pager->display_header();
-
-        /**
-         * Assert
-         */
-        $actual = preg_match($pattern, $subject);
-        $expect = 1;
-        $this->assertSame($expect, $actual);
-    }
-
-    /**
-     * Check the output has the necessary components.
-     */
     public function test_extract_ig_post_id()
     {
         /**
