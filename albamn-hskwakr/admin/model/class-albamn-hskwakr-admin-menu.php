@@ -42,7 +42,7 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Displayable | null   $settings_pager
+     * @var      Albamn_Hskwakr_Admin_Pager | null   $settings_pager
      */
     protected $settings_pager;
 
@@ -51,7 +51,7 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Displayable | null   $impoter_pager
+     * @var      Albamn_Hskwakr_Admin_Pager | null   $impoter_pager
      */
     protected $impoter_pager;
 
@@ -60,7 +60,7 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Displayable | null   $editor_pager
+     * @var      Albamn_Hskwakr_Admin_Pager | null   $editor_pager
      */
     protected $editor_pager;
 
@@ -69,7 +69,7 @@ class Albamn_Hskwakr_Admin_Menu
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Albamn_Hskwakr_Admin_Displayable | null   $about_pager
+     * @var      Albamn_Hskwakr_Admin_Pager | null   $about_pager
      */
     protected $about_pager;
 
@@ -161,7 +161,7 @@ class Albamn_Hskwakr_Admin_Menu
         /**
          * Get list of pager
          *
-         * @var array<string, Albamn_Hskwakr_Admin_Displayable> $list
+         * @var array<string, Albamn_Hskwakr_Admin_Pager> $list
          */
         $list = $this->pager_list->get();
 
