@@ -24,7 +24,7 @@ class Albamn_Hskwakr_Admin_Pager_List
      *
      * @since    1.0.0
      * @access   private
-     * @var      array<string, Albamn_Hskwakr_Admin_Displayable>   $list
+     * @var      array<string, Albamn_Hskwakr_Admin_Pager>   $list
      */
     private $list;
 
@@ -43,12 +43,12 @@ class Albamn_Hskwakr_Admin_Pager_List
      *
      * @since    1.0.0
      * @param    string     $name
-     * @param    Albamn_Hskwakr_Admin_Displayable     $pager
-     * @return   Albamn_Hskwakr_Admin_Displayable
+     * @param    Albamn_Hskwakr_Admin_Pager     $pager
+     * @return   Albamn_Hskwakr_Admin_Pager
      */
     public function add(
         string $name,
-        Albamn_Hskwakr_Admin_Displayable $pager
+        Albamn_Hskwakr_Admin_Pager $pager
     ) {
         $this->list[$name] = $pager;
         return $pager;
@@ -58,7 +58,7 @@ class Albamn_Hskwakr_Admin_Pager_List
      * Get a list of pager
      *
      * @since    1.0.0
-     * @return   array<string, Albamn_Hskwakr_Admin_Displayable>
+     * @return   array<string, Albamn_Hskwakr_Admin_Pager>
      */
     public function get(
     ): array {
@@ -70,7 +70,7 @@ class Albamn_Hskwakr_Admin_Pager_List
      *
      * @since    1.0.0
      * @param    string     $name
-     * @return   Albamn_Hskwakr_Admin_Displayable | null
+     * @return   Albamn_Hskwakr_Admin_Pager | null
      */
     public function find_by(
         string $name
@@ -78,7 +78,7 @@ class Albamn_Hskwakr_Admin_Pager_List
         /**
          * The target that looking for
          *
-         * @var Albamn_Hskwakr_Admin_Displayable | null $target
+         * @var Albamn_Hskwakr_Admin_Pager | null $target
          */
         $target = null;
 
@@ -86,7 +86,7 @@ class Albamn_Hskwakr_Admin_Pager_List
          * Find the target
          *
          * @var string $key
-         * @var Albamn_Hskwakr_Admin_Displayable $value
+         * @var Albamn_Hskwakr_Admin_Pager $value
          */
         foreach ($this->list as $key => $value) {
             if ($key == $name) {
