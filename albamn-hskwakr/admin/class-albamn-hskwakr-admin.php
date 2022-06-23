@@ -135,6 +135,12 @@ class Albamn_Hskwakr_Admin
          */
 
         /**
+         * The class responsible for admin abstract pager.
+         */
+        require_once $path
+          . 'view/class-albamn-hskwakr-admin-pager.php';
+
+        /**
          * The class responsible for admin setting pager.
          */
         require_once $path
