@@ -103,12 +103,6 @@ class Albamn_Hskwakr_Admin
         $path = plugin_dir_path(dirname(__FILE__)) . 'admin/';
 
         /**
-         * The interface responsible for admin displayable.
-         */
-        require_once $path
-          . 'interface-albamn-hskwakr-admin-displayable.php';
-
-        /**
          * Model
          */
 
