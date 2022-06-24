@@ -124,7 +124,7 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation
      * @return   bool       true        The data is expected.
      *                      false       The data is unexpected.
      */
-    public function validate_recent_medias_by_hashtag(
+    public function validate_medias_by_hashtag(
         object $res
     ): bool {
         if (!isset($res->data)) {

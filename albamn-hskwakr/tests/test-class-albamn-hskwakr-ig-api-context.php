@@ -205,7 +205,7 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
              ->method('send')
              ->willReturn($response);
         $this->validation
-             ->method('validate_recent_medias_by_hashtag')
+             ->method('validate_medias_by_hashtag')
              ->willReturn(true);
 
         /**
