@@ -178,7 +178,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         );
         $this->assertEquals(
             $this->medias,
-            $actual->recent_medias
+            $actual->medias
         );
     }
 
