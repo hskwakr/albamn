@@ -226,7 +226,7 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation_Test extends WP_UnitTestCase
     /**
      * Check the return has correct value.
      */
-    public function test_validate_recent_medias_by_hashtag()
+    public function test_validate_medias_by_hashtag()
     {
         /**
          * Init validation class
@@ -239,7 +239,7 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation_Test extends WP_UnitTestCase
         $response = new class () {};
         $response->data = array(new class () {});
         $response->data[0] = $this->media;
-        $actual = $validation->validate_recent_medias_by_hashtag(
+        $actual = $validation->validate_medias_by_hashtag(
             $response
         );
         $this->assertTrue($actual);
@@ -250,7 +250,7 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation_Test extends WP_UnitTestCase
          */
         $response = new class () {};
         $response->data = array();
-        $actual = $validation->validate_recent_medias_by_hashtag(
+        $actual = $validation->validate_medias_by_hashtag(
             $response
         );
         $this->assertTrue($actual);
@@ -263,7 +263,7 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation_Test extends WP_UnitTestCase
         $response->data = array(new class () {});
         $response->data[0] = $this->media;
         $response->data[0]->media_type = new class () {};
-        $actual = $validation->validate_recent_medias_by_hashtag(
+        $actual = $validation->validate_medias_by_hashtag(
             $response
         );
         $this->assertFalse($actual);
@@ -274,7 +274,7 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation_Test extends WP_UnitTestCase
          */
         $response = new class () {};
         $response->data = array(new class () {});
-        $actual = $validation->validate_recent_medias_by_hashtag(
+        $actual = $validation->validate_medias_by_hashtag(
             $response
         );
         $this->assertFalse($actual);
@@ -285,7 +285,7 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation_Test extends WP_UnitTestCase
          */
         $response = new class () {};
         $response->data = new class () {};
-        $actual = $validation->validate_recent_medias_by_hashtag(
+        $actual = $validation->validate_medias_by_hashtag(
             $response
         );
         $this->assertFalse($actual);
@@ -295,7 +295,7 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation_Test extends WP_UnitTestCase
          * does not have data
          */
         $response = new class () {};
-        $actual = $validation->validate_recent_medias_by_hashtag(
+        $actual = $validation->validate_medias_by_hashtag(
             $response
         );
         $this->assertFalse($actual);
