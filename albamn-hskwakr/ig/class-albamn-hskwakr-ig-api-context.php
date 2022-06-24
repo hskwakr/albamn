@@ -288,6 +288,56 @@ class Albamn_Hskwakr_Ig_Api_Context
     }
 
     /**
+     * Get the list of the most top media objects
+     *
+     * @since    1.0.0
+     * @param    string     $user_id      The instagram account id.
+     * @param    string     $hashtag_id   The hashtag id.
+     * @return   array      The list of the most recent media objects.
+     */
+    public function medias_top(
+        string $user_id,
+        string $hashtag_id
+    ): array {
+        $error = 'Failed to get recent medias by hashtag';
+
+        /**
+         * Get the response of the request
+         * @var object
+         */
+        $response = $this->send_request(
+            $this->query->top_medias_by_hashtag(
+                $user_id,
+                $hashtag_id
+            )
+        );
+
+        /**
+         * Check request error
+         */
+        if (isset($response->error)) {
+            $this->error(
+                $error,
+                (object)$response->error
+            );
+        }
+
+        /**
+         * Validate the response
+         */
+        if (!$this->validation->validate_medias_by_hashtag($response)) {
+            $this->error(
+                $error . ': Unexpected response'
+            );
+        }
+
+        /**
+         * @var array
+         */
+        return $response->data;
+    }
+
+    /**
      * Error handling
      * Throw exception with error message
      *
