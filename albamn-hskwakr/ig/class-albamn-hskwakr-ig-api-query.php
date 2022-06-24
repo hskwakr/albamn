@@ -130,4 +130,27 @@ class Albamn_Hskwakr_Ig_Query
         $query = $this->base_url . $endpoint . $options;
         return $query;
     }
+
+    /**
+     * The query string to get top posts
+     * searched by hashtag in instagram.
+     *
+     * @since    1.0.0
+     * @param    string    $user       The instagram user id.
+     * @param    string    $hashtag    The hashtag id.
+     * @return   string    The query string.
+     */
+    public function top_medias_by_hashtag(
+        string $user,
+        string $hashtag
+    ): string {
+        $endpoint = '/' . $hashtag . '/top_media?';
+        $options =
+        'access_token=' . $this->access_token .
+        '&user_id=' . $user .
+        '&fields=media_type,media_url,permalink';
+
+        $query = $this->base_url . $endpoint . $options;
+        return $query;
+    }
 }
