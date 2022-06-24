@@ -245,6 +245,17 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation_Test extends WP_UnitTestCase
         $this->assertTrue($actual);
 
         /**
+         * Assert proper case:
+         * data is empty
+         */
+        $response = new class () {};
+        $response->data = array();
+        $actual = $validation->validate_recent_medias_by_hashtag(
+            $response
+        );
+        $this->assertTrue($actual);
+
+        /**
          * Assert wrong case:
          * media_type is not string
          */

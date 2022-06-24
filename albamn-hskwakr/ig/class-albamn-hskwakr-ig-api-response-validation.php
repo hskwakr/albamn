@@ -133,17 +133,17 @@ class Albamn_Hskwakr_Ig_Api_Response_Validation
         if (!is_array($res->data)) {
             return false;
         }
-        if (!isset($res->data[0])) {
-            return false;
-        }
-        if (!is_object($res->data[0])) {
-            return false;
-        }
-        if (!isset($res->data[0]->media_type)) {
-            return false;
-        }
-        if (!is_string($res->data[0]->media_type)) {
-            return false;
+
+        foreach ($res->data as $v) {
+            if (!is_object($v)) {
+                return false;
+            }
+            if (!isset($v->media_type)) {
+                return false;
+            }
+            if (!is_string($v->media_type)) {
+                return false;
+            }
         }
 
         return true;
