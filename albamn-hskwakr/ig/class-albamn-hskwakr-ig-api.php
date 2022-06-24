@@ -69,9 +69,9 @@ class Albamn_Hskwakr_Ig_Api
      *
      * @since    1.0.0
      * @access   public
-     * @var      array    $recent_medias
+     * @var      array    $medias
      */
-    public $recent_medias = array();
+    public $medias = array();
 
     /**
      * Initialize the class and set its properties.
@@ -222,7 +222,7 @@ class Albamn_Hskwakr_Ig_Api
              * Get recent medias
              * that has specific hashtag in instagram
              */
-            $this->recent_medias =
+            $this->medias =
                 $this->ctx->medias_recent(
                     $this->user_id,
                     $this->hashtag_id

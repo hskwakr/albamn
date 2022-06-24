@@ -218,7 +218,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
             /**
              * @var array<object> $posts
              */
-            $posts = $this->ig_api->recent_medias;
+            $posts = $this->ig_api->medias;
             /**
              * @var array<Albamn_Hskwakr_Ig_Post>
              */
