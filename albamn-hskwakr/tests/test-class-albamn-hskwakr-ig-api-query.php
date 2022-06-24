@@ -168,4 +168,47 @@ class Albamn_Hskwakr_Ig_Query_Test extends WP_UnitTestCase
             $actual
         );
     }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_top_medias_by_hashtag()
+    {
+        $user_id = 'user1234';
+        $hashtag_id = 'hashtag1234';
+
+        $actual = $this->query->top_medias_by_hashtag(
+            $user_id,
+            $hashtag_id
+        );
+
+        /**
+         * Should contain base url
+         */
+        $this->assertStringContainsStringIgnoringCase(
+            $this->base,
+            $actual
+        );
+        /**
+         * Should contain access token
+         */
+        $this->assertStringContainsStringIgnoringCase(
+            $this->token,
+            $actual
+        );
+        /**
+         * Should contain user id
+         */
+        $this->assertStringContainsStringIgnoringCase(
+            $user_id,
+            $actual
+        );
+        /**
+         * Should contain hashtag id
+         */
+        $this->assertStringContainsStringIgnoringCase(
+            $hashtag_id,
+            $actual
+        );
+    }
 }
