@@ -135,7 +135,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
     /**
      * Check the return has correct structure.
      */
-    public function test_search_hashtag()
+    public function test_search_hashtag_with_top_method()
     {
         /**
          * Set up mock
@@ -156,13 +156,65 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
+        $method = 'top';
         $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
          */
         $actual = $api->init($this->ctx)
-                      ->search_hashtag($this->hashtag_name);
+                      ->search_hashtag($this->hashtag_name, $method);
+
+        $this->assertSame(
+            $this->pages_id,
+            $actual->pages_id
+        );
+        $this->assertSame(
+            $this->user_id,
+            $actual->user_id
+        );
+        $this->assertSame(
+            $this->hashtag_id,
+            $actual->hashtag_id
+        );
+        $this->assertEquals(
+            $this->medias,
+            $actual->medias
+        );
+    }
+
+    /**
+     * Check the return has correct structure.
+     */
+    public function test_search_hashtag_with_recent_method()
+    {
+        /**
+         * Set up mock
+         */
+        $this->ctx
+             ->method('user_pages_id')
+             ->willReturn($this->pages_id);
+        $this->ctx
+             ->method('ig_user_id')
+             ->willReturn($this->user_id);
+        $this->ctx
+             ->method('hashtag_id')
+             ->willReturn($this->hashtag_id);
+        $this->ctx
+             ->method('medias_recent')
+             ->willReturn($this->medias);
+
+        /**
+         * Prepare to test
+         */
+        $method = 'recent';
+        $api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Assert
+         */
+        $actual = $api->init($this->ctx)
+                      ->search_hashtag($this->hashtag_name, $method);
 
         $this->assertSame(
             $this->pages_id,
@@ -397,13 +449,51 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
+        $method = 'top';
         $api = new Albamn_Hskwakr_Ig_Api();
 
         /**
          * Assert
          */
         $this->expectException(Exception::class);
-        $api->init($this->ctx)->search_hashtag($this->hashtag_name);
+        $api->init($this->ctx)
+            ->search_hashtag($this->hashtag_name, $method);
+    }
+
+    /**
+     * Should be error.
+     * Should catch error from context class.
+     */
+    public function test_search_hashtag_error_handle_medias_recent()
+    {
+        /**
+         * Set up mock
+         */
+        $this->ctx
+             ->method('user_pages_id')
+             ->willReturn($this->pages_id);
+        $this->ctx
+             ->method('ig_user_id')
+             ->willReturn($this->user_id);
+        $this->ctx
+             ->method('hashtag_id')
+             ->willReturn($this->hashtag_id);
+        $this->ctx
+             ->method('medias_recent')
+             ->will($this->throwException(new Exception()));
+
+        /**
+         * Prepare to test
+         */
+        $method = 'recent';
+        $api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Assert
+         */
+        $this->expectException(Exception::class);
+        $api->init($this->ctx)
+            ->search_hashtag($this->hashtag_name, $method);
     }
 
     /**
