@@ -150,7 +150,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
              ->method('hashtag_id')
              ->willReturn($this->hashtag_id);
         $this->ctx
-             ->method('medias_recent')
+             ->method('medias_top')
              ->willReturn($this->medias);
 
         /**
@@ -376,7 +376,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
      * Should be error.
      * Should catch error from context class.
      */
-    public function test_search_hashtag_error_handle_medias_recent()
+    public function test_search_hashtag_error_handle_medias_top()
     {
         /**
          * Set up mock
@@ -391,7 +391,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
              ->method('hashtag_id')
              ->willReturn($this->hashtag_id);
         $this->ctx
-             ->method('medias_recent')
+             ->method('medias_top')
              ->will($this->throwException(new Exception()));
 
         /**

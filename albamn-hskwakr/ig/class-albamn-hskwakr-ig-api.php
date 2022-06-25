@@ -223,7 +223,7 @@ class Albamn_Hskwakr_Ig_Api
              * that has specific hashtag in instagram
              */
             $this->medias =
-                $this->ctx->medias_recent(
+                $this->ctx->medias_top(
                     $this->user_id,
                     $this->hashtag_id
                 );
