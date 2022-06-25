@@ -197,11 +197,14 @@ class Albamn_Hskwakr_Ig_Api
      * And store the result of medias in array.
      *
      * @since     1.0.0
-     * @param     string    $name
+     * @param     string    $name     The name of hashtag
+     * @param     string    $method   The method to search medias by hashtag
      * @return    object    The instance of this class
      */
-    public function search_hashtag(string $name): object
-    {
+    public function search_hashtag(
+        string $name,
+        string $method = 'top'
+    ): object {
         /**
          * the method should be called after init
          */
@@ -219,14 +222,37 @@ class Albamn_Hskwakr_Ig_Api
                 $this->ctx->hashtag_id($this->user_id, $name);
 
             /**
-             * Get recent medias
+             * Get medias
              * that has specific hashtag in instagram
              */
-            $this->medias =
-                $this->ctx->medias_top(
-                    $this->user_id,
-                    $this->hashtag_id
-                );
+            switch ($method) {
+                case 'top':
+                    $this->medias =
+                        $this->ctx->medias_top(
+                            $this->user_id,
+                            $this->hashtag_id
+                        );
+
+                    break;
+
+                case 'recent':
+                    $this->medias =
+                        $this->ctx->medias_recent(
+                            $this->user_id,
+                            $this->hashtag_id
+                        );
+
+                    break;
+
+                default:
+                    $this->medias =
+                        $this->ctx->medias_top(
+                            $this->user_id,
+                            $this->hashtag_id
+                        );
+
+                    break;
+            }
         } catch (Exception $e) {
             $this->error('Failed to search hashtag', $e);
         }
