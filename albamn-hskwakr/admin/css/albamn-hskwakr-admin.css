@@ -30,6 +30,9 @@
   margin: auto;
 }
 
+/**
+ * Editor
+ */
 .albamn-editor-media-wrapper {
   width: 90%;
   height: 90%;
@@ -48,4 +51,37 @@
 
 .albamn-editor-media-footer label {
   float: right;
+}
+
+/**
+ * Button
+ */
+.albamn-btn {
+  display: inline-block;
+  width: 100%;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  padding: .375rem .75rem;
+  margin-bottom: .5rem;
+
+  text-align: center;
+  vertical-align: middle;
+
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.albamn-btn-blue {
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.albamn-btn-blue:hover {
+  color: #fff;
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
 }

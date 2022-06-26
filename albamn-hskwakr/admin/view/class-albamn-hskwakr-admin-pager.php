@@ -163,7 +163,7 @@ EOF;
     ): string {
         return <<< EOF
 
-    <button type="submit" class="btn btn-primary col-12 mb-2">
+    <button type="submit" class="albamn-btn albamn-btn-blue">
       $label
     </button>
 
