@@ -121,11 +121,11 @@ EOF;
     ): string {
         return <<< EOF
 
-    <div class="row mb-3">
-      <label class="col-sm-4 col-from-label" for="{$name}">{$label}</label>
+    <div class="albamn-input albamn-mb">
+      <label class="albamn-input-label" for="{$name}">{$label}</label>
 
-      <div class="col-sm-8">
-        <input type="text" class="form-control" id="{$name}" name="{$name}" value="{$value}" placeholder="{$placeholder}" />
+      <div class="albamn-input-text">
+        <input type="text" id="{$name}" name="{$name}" value="{$value}" placeholder="{$placeholder}" />
       </div>
     </div>
 
@@ -163,7 +163,7 @@ EOF;
     ): string {
         return <<< EOF
 
-    <button type="submit" class="albamn-btn albamn-btn-blue">
+    <button type="submit" class="albamn-btn albamn-btn-blue albamn-mb">
       $label
     </button>
 

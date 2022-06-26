@@ -54,6 +54,13 @@
 }
 
 /**
+ * Margin
+ */
+.albamn-mb {
+  margin-bottom: .5rem;
+}
+
+/**
  * Button
  */
 .albamn-btn {
@@ -65,7 +72,6 @@
   line-height: 1.5;
 
   padding: .375rem .75rem;
-  margin-bottom: .5rem;
 
   text-align: center;
   vertical-align: middle;
@@ -84,4 +90,31 @@
   color: #fff;
   background-color: #0b5ed7;
   border-color: #0a58ca;
+}
+
+/**
+ * Form Input
+ */
+.albamn-input {
+  display: flex;
+}
+
+.albamn-input > * {
+  max-width: 100%;
+}
+
+.albamn-input .albamn-input-label {
+  width: 33%;
+  flex: 0 0 auto;
+  margin: auto 0;
+}
+
+.albamn-input .albamn-input-text {
+  width: 66%;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.albamn-input-text input {
+  width: 100%;
 }
