@@ -36,8 +36,8 @@ abstract class Albamn_Hskwakr_Admin_Pager
     ): string {
         return <<< EOF
 
-<div class="container-sm col-sm-8" style="margin: 1rem 0rem 0rem;">
-  <h3 style="margin-bottom: 1rem;">
+<div class="albamn-container albamn-mt">
+  <h3 class="albamn-mb">
     $msg
   </h3>
 
