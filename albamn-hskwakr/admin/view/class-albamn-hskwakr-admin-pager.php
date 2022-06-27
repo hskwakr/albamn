@@ -183,7 +183,7 @@ EOF;
     ): string {
         return <<< EOF
 
-  <div class="alert alert-warning mt-2" role="alert">
+  <div class="albamn-alert albamn-alert-yellow albamn-mt" role="alert">
     $msg
   </div>
 
@@ -203,7 +203,7 @@ EOF;
     ): string {
         return <<< EOF
 
-  <div class="alert alert-success mt-2" role="alert">
+  <div class="albamn-alert albamn-alert-green albamn-mt albamn-mb" role="alert">
     $msg
   </div>
 
