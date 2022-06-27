@@ -98,6 +98,27 @@
 }
 
 /**
+ * Alert
+ */
+.albamn-alert {
+  padding: 1rem 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.albamn-alert-green {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+.albamn-alert-yellow {
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+}
+
+/**
  * Button
  */
 .albamn-btn {
