@@ -4,6 +4,50 @@
  */
 
 /**
+ * Container
+ */
+@media (min-width: 576px)
+{
+  .albamn-container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px)
+{
+  .albamn-container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px)
+{
+  .albamn-container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1400px)
+{
+  .albamn-container {
+    max-width: 1320px;
+  }
+}
+
+.albamn-container {
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+
+/**
+ * Margin
+ */
+.albamn-mb {
+  margin-bottom: .5rem;
+}
+
+.albamn-mt {
+  margin-top: .5rem;
+}
+
+/**
  * Grid
  */
 .albamn-grid-wrapper {
@@ -51,13 +95,6 @@
 
 .albamn-editor-media-footer label {
   float: right;
-}
-
-/**
- * Margin
- */
-.albamn-mb {
-  margin-bottom: .5rem;
 }
 
 /**
