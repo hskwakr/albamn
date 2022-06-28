@@ -39,6 +39,10 @@
 /**
  * Margin
  */
+.albamn-m {
+  margin: .5rem;
+}
+
 .albamn-mb {
   margin-bottom: .5rem;
 }
@@ -60,6 +64,31 @@
  */
 .albamn-fs {
   font-size: 1rem;
+}
+
+/**
+ * Row
+ */
+.albamn-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.almamn-justify {
+  justify-content: space-around;
+}
+
+/**
+ * col
+ */
+.albamn-col-5 {
+ flex: 0 0 auto;
+ width: 40% !important;
+}
+
+.albamn-col-6 {
+ flex: 0 0 auto;
+ width: 50% !important;
 }
 
 /**
