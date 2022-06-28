@@ -48,6 +48,21 @@
 }
 
 /**
+ * Padding
+ */
+.albamn-px {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/**
+ * Font
+ */
+.albamn-fs {
+  font-size: 1rem;
+}
+
+/**
  * Alert
  */
 .albamn-alert {
@@ -152,6 +167,21 @@
   width: 14rem;
   height: 15rem;
   margin: auto;
+}
+
+/**
+ * Code
+ */
+.albamn-code {
+  color: #d63384;
+  background: #f0f0f1;
+
+  padding: 3px 5px 2px 5px;
+  margin: 0 1px;
+
+  font-size: .875rem;
+  word-wrap: break-word;
+  direction: ltr;
 }
 
 /**
