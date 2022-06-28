@@ -37,6 +37,24 @@
 }
 
 /**
+ * h
+ */
+.albamn-container h3 {
+  font-size: 1.75rem;
+}
+
+.albamn-container h5 {
+  font-size: 1.25rem;
+}
+
+/**
+ * ol
+ */
+.albamn-container ol {
+  font-size: 1rem;
+}
+
+/**
  * Margin
  */
 .albamn-m {
