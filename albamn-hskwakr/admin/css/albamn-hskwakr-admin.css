@@ -115,6 +115,18 @@
   border-color: #0a58ca;
 }
 
+.albamn-btn-red {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.albamn-btn-red:hover {
+  color: #fff;
+  background-color: #bb2d3b;
+  border-color: #b02a37;
+}
+
 /**
  * Form Input
  */

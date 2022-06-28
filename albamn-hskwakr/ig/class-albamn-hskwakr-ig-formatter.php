@@ -134,13 +134,13 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
 
         $r = $r . '<button type="submit"';
         $r = $r . 'name="update_button" value="update"';
-        $r = $r . 'class="btn btn-danger col-5">';
+        $r = $r . 'class="albamn-btn albamn-btn-red col-5">';
         $r = $r . 'Show / Hide';
         $r = $r . '</button>';
 
         $r = $r . '<button type="submit"';
         $r = $r . 'name="delete_button" value="delete"';
-        $r = $r . 'class="btn btn-danger col-5">';
+        $r = $r . 'class="albamn-btn albamn-btn-red col-5">';
         $r = $r . 'Remove';
         $r = $r . '</button>';
 
