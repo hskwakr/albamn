@@ -130,17 +130,17 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
         /**
          * Button
          */
-        $r = $r . '<div class="row justify-content-around m-3">';
+        $r = $r . '<div class="albamn-row almamn-justify albamn-m">';
 
         $r = $r . '<button type="submit"';
         $r = $r . 'name="update_button" value="update"';
-        $r = $r . 'class="albamn-btn albamn-btn-red col-5">';
+        $r = $r . 'class="albamn-btn albamn-btn-red albamn-col-5">';
         $r = $r . 'Show / Hide';
         $r = $r . '</button>';
 
         $r = $r . '<button type="submit"';
         $r = $r . 'name="delete_button" value="delete"';
-        $r = $r . 'class="albamn-btn albamn-btn-red col-5">';
+        $r = $r . 'class="albamn-btn albamn-btn-red albamn-col-5">';
         $r = $r . 'Remove';
         $r = $r . '</button>';
 
