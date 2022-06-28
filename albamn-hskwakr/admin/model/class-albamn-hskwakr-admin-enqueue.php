@@ -67,14 +67,6 @@ class Albamn_Hskwakr_Admin_Enqueue
                 $this->version,
                 'all'
             ),
-            // bootstrap
-            new Albamn_Hskwakr_Admin_Enqueue_Style(
-                $this->albamn_hskwakr . '-bootstrap-css',
-                $url . 'css/bootstrap.min.css',
-                array(),
-                $this->version,
-                'all'
-            ),
         );
     }
 
@@ -91,14 +83,6 @@ class Albamn_Hskwakr_Admin_Enqueue
             new Albamn_Hskwakr_Admin_Enqueue_Script(
                 $this->albamn_hskwakr,
                 $url . 'js/albamn-hskwakr-admin.js',
-                array('jquery'),
-                $this->version,
-                false
-            ),
-            // bootstrap
-            new Albamn_Hskwakr_Admin_Enqueue_Script(
-                $this->albamn_hskwakr . '-bootstrap-js',
-                $url . 'js/bootstrap.min.js',
                 array('jquery'),
                 $this->version,
                 false
