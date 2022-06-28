@@ -185,6 +185,20 @@
   max-width: 100%;
 }
 
+.albamn-input-label, .albamn-input-text {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.albamn-input-label {
+  line-height: 1.5;
+}
+
+.albamn-input-text {
+  line-height: 2;
+  padding: 0 8px;
+}
+
 .albamn-input .albamn-input-label {
   width: 33%;
   flex: 0 0 auto;
@@ -199,6 +213,7 @@
 
 .albamn-input-text input {
   width: 100%;
+  font-size: inherit;
 }
 
 /**
@@ -233,7 +248,7 @@
  */
 .albamn-code {
   color: #d63384;
-  background: #f0f0f1;
+  background: #fff;
 
   padding: 3px 5px 2px 5px;
   margin: 0 1px;
