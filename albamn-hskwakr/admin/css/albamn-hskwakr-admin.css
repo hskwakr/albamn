@@ -48,56 +48,6 @@
 }
 
 /**
- * Grid
- */
-.albamn-grid-wrapper {
-  padding: 2px;
-}
-
-.albamn-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  grid-auto-rows: 15rem;
-  gap: 0.5rem;
-}
-
-.albamn-grid-child {
-  width: 14rem;
-  height: 15rem;
-  background: black;
-  margin: auto;
-}
-
-.albamn-grid-child-editor {
-  width: 14rem;
-  height: 15rem;
-  margin: auto;
-}
-
-/**
- * Editor
- */
-.albamn-editor-media-wrapper {
-  width: 90%;
-  height: 90%;
-  background: black;
-  margin: auto;
-}
-
-.albamn-editor-media-footer {
-  width: 90%;
-  margin: auto;
-}
-
-.albamn-editor-media-footer input {
-  margin: auto;
-}
-
-.albamn-editor-media-footer label {
-  float: right;
-}
-
-/**
  * Alert
  */
 .albamn-alert {
@@ -175,4 +125,54 @@
 
 .albamn-input-text input {
   width: 100%;
+}
+
+/**
+ * Grid
+ */
+.albamn-grid-wrapper {
+  padding: 2px;
+}
+
+.albamn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  grid-auto-rows: 15rem;
+  gap: 0.5rem;
+}
+
+.albamn-grid-child {
+  width: 14rem;
+  height: 15rem;
+  background: black;
+  margin: auto;
+}
+
+.albamn-grid-child-editor {
+  width: 14rem;
+  height: 15rem;
+  margin: auto;
+}
+
+/**
+ * Editor
+ */
+.albamn-editor-media-wrapper {
+  width: 90%;
+  height: 90%;
+  background: black;
+  margin: auto;
+}
+
+.albamn-editor-media-footer {
+  width: 90%;
+  margin: auto;
+}
+
+.albamn-editor-media-footer input {
+  margin: auto;
+}
+
+.albamn-editor-media-footer label {
+  float: right;
 }
