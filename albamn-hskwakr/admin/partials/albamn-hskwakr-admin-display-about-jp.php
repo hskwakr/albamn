@@ -51,3 +51,94 @@
     </li>
   </ol>
 </div>
+
+<h5>アクセストークンについて</h5>
+
+<div class="albamn-mt">
+  <p class="albamn-fs">
+    Instagram Graph APIに利用するアクセストークンを取得するための方法について説明します。
+  </p>
+
+  <ol class="albamn-px">
+    <li>
+      <p class="albamn-fs">
+        Instagram Business / Creatorアカウントを用意する。
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        Facebook Pageを用意してInstagramアカウントと連携する。
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        Meta for developersにFacebookアカウントでログインする。
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        アプリを作る。（Businessを選択）
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        App Dashboardの画面上部のToolsからGraph Api Explorerに移動する。
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        Permissionsの欄のAdd a permissionから<code class="albamn-code">pages_show_list</code>と<code class="albamn-code">instagram_basic</code>を追加してGenerate Access Tokenを選択
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        認証ウィンドウで使用するInstagramアカウントなどの設定をする。
+      </p>
+    </li>
+  </ol>
+
+  <p class="albamn-fs">
+    この時点でアクセストークンが機能するか試してみることをお勧めします。
+    <br>
+    エラーがなく動作する場合、アクセストークンの有効期限の延長をお勧めします。（延長しない場合の有効期限は１時間程です）
+  </p>
+
+  <p class="albamn-fs">
+  </p>
+
+  <ol class="albamn-px">
+    <li>
+      <p class="albamn-fs">
+        App Dashboardの画面上部のToolsからAccess token debuggerに移動する。
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        テキストフィールドにアクセストークンをコピーペーストしてDebugボタンを選択。
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        Infoの表の中のExpires（有効期限を意味する項目）を確認する。
+        <br>
+        表の下にExtend Access Tokenというボタンがある場合、有効期限の延長ができる。
+      </p>
+    </li>
+
+    <li>
+      <p class="albamn-fs">
+        ボタンを選択すると下に新しいアクセストークンが表示される。
+        <br>
+        右側にあるDebugボタンで新しいアクセストークンの情報を確認できる。
+      </p>
+    </li>
+  </ol>
+</div>
