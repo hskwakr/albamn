@@ -125,7 +125,7 @@ class Albamn_Hskwakr_Ig_Query
         $options =
         'access_token=' . $this->access_token .
         '&user_id=' . $user .
-        '&fields=media_type,media_url,permalink';
+        '&fields=media_type,media_url,permalink,children';
 
         $query = $this->base_url . $endpoint . $options;
         return $query;
@@ -148,7 +148,7 @@ class Albamn_Hskwakr_Ig_Query
         $options =
         'access_token=' . $this->access_token .
         '&user_id=' . $user .
-        '&fields=media_type,media_url,permalink';
+        '&fields=media_type,media_url,permalink,children';
 
         $query = $this->base_url . $endpoint . $options;
         return $query;
