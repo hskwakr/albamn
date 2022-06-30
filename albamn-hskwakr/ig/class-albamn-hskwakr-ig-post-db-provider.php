@@ -115,6 +115,11 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
             );
             add_post_meta(
                 $post_id,
+                'albam',
+                array('a', 'b')
+            );
+            add_post_meta(
+                $post_id,
                 'visibility',
                 $post->visibility
             );
@@ -152,6 +157,11 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
          * @var object $post
          */
         foreach ($posts as $post) {
+            //echo var_dump($post->albam);
+
+            /**
+             * Create Entry
+             */
             $r[] = new Albamn_Hskwakr_Ig_Post_Db_Entry(
                 (int)$post->ID,
                 (string)$post->post_title,
