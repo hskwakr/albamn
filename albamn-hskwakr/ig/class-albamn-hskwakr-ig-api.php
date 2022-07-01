@@ -262,7 +262,7 @@ class Albamn_Hskwakr_Ig_Api
 
     /**
      * Filter the list of medias
-     * to make the list that only contains VIDEO or IMAGE media
+     * only contains VIDEO or IMAGE or CAROUSEL_ALBUM media
      *
      * @since     1.0.0
      * @param     array     $medias
@@ -290,6 +290,9 @@ class Albamn_Hskwakr_Ig_Api
             if (!isset($m->media_type)) {
                 continue;
             }
+            if (!isset($m->id)) {
+                continue;
+            }
 
             switch ((string)$m->media_type) {
                 case 'IMAGE':
@@ -297,14 +300,63 @@ class Albamn_Hskwakr_Ig_Api
                     if (!isset($m->media_url)) {
                         break;
                     }
-                    if (!isset($m->id)) {
-                        break;
-                    }
 
-                    $r[] = new Albamn_Hskwakr_Ig_Post(
+                    /**
+                     * Create Instagram post1
+                     */
+                    $r[] = $this->create_ig_post(
                         (string)$m->id,
                         (string)$m->media_type,
                         (string)$m->media_url,
+                        array(),
+                        (string)$m->permalink,
+                        true
+                    );
+                    break;
+
+                case 'CAROUSEL_ALBUM':
+                    /**
+                     * Validate children
+                     */
+                    if (!isset($m->children)) {
+                        break;
+                    }
+                    if (!is_object($m->children)) {
+                        break;
+                    }
+                    if (!isset($m->children->data)) {
+                        break;
+                    }
+
+                    /**
+                     * Get list of media_url in children
+                     *
+                     * @var array<string> $children
+                     */
+                    $children = array();
+
+                    /**
+                     * @var object $v
+                     */
+                    foreach ($m->children->data as $v) {
+                        if (isset($v->media_url)) {
+                            if (is_string($v->media_url)) {
+                                /**
+                                 * @var string $v->media_url
+                                 */
+                                $children[] = $v->media_url;
+                            }
+                        }
+                    }
+
+                    /**
+                     * Create Instagram post1
+                     */
+                    $r[] = $this->create_ig_post(
+                        (string)$m->id,
+                        (string)$m->media_type,
+                        '',
+                        $children,
                         (string)$m->permalink,
                         true
                     );
@@ -319,6 +371,35 @@ class Albamn_Hskwakr_Ig_Api
          * @var array<Albamn_Hskwakr_Ig_Post>
          */
         return $r;
+    }
+
+    /**
+     * Create an object for a Instagram post
+     *
+     * @since     1.0.0
+     * @param     string    $id
+     * @param     string    $media_type
+     * @param     string    $media_url
+     * @param     array     $media_url_list
+     * @param     string    $permalink
+     * @param     bool      $visibility
+     * @return    Albamn_Hskwakr_Ig_Post      The object
+     */
+    public function create_ig_post(
+        string $id,
+        string $media_type,
+        string $media_url,
+        array  $media_url_list,
+        string $permalink,
+        bool   $visibility
+    ): Albamn_Hskwakr_Ig_Post {
+        return new Albamn_Hskwakr_Ig_Post(
+            $id,
+            $media_type,
+            $media_url,
+            $permalink,
+            $visibility
+        );
     }
 
     /**
