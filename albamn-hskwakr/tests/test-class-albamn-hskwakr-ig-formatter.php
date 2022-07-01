@@ -46,9 +46,19 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             true
         );
 
+        $correct_album = new Albamn_Hskwakr_Ig_Post(
+            'id1234',
+            'CAROUSEL_ALBUM',
+            '',
+            array('list1234'),
+            'permalink1234',
+            true
+        );
+
         $this->medias_correct = array(
             'image' => $correct_image,
-            'video' => $correct_video
+            'video' => $correct_video,
+            'album' => $correct_album
         );
 
         /**
@@ -99,13 +109,23 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             true
         );
 
+        $wrong_prop_4 = new Albamn_Hskwakr_Ig_Post(
+            '',
+            'CAROUSEL_ALBUM',
+            '',
+            array(),
+            'permalink1234',
+            true
+        );
+
         $this->medias_wrong = array(
             'elem_string' => $wrong_array_elem_string,
             'elem_object' => $wrong_array_elem_object,
             'type' => $wrong_type,
             'lack_of_type' => $wrong_prop_1,
             'lack_of_url' => $wrong_prop_2,
-            'lack_of_id' => $wrong_prop_3
+            'lack_of_id' => $wrong_prop_3,
+            'lack_of_url_list' => $wrong_prop_4,
         );
 
         /**
@@ -187,6 +207,20 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             $this->medias_correct['image'],
             $this->medias_correct['video'],
             $this->medias_wrong['lack_of_url']
+        );
+        $actual = $this->formatter->validate_medias(
+            $medias
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Asset: Wrong case
+         * The object does not have media_url_list
+         */
+        $medias = array(
+            $this->medias_correct['image'],
+            $this->medias_correct['video'],
+            $this->medias_wrong['lack_of_url_list']
         );
         $actual = $this->formatter->validate_medias(
             $medias

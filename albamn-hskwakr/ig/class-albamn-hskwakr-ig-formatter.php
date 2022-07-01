@@ -96,6 +96,10 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
                     $r = $r . $this->format_video_media($m);
                     break;
 
+                case 'CAROUSEL_ALBUM':
+                    $r = $r . $this->format_album_media($m);
+                    break;
+
                 default:
                     break;
             }
@@ -195,6 +199,24 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
                     $r = $r . '</div>';
                     break;
 
+                case 'CAROUSEL_ALBUM':
+                    $r = $r . '<div class="albamn-editor-media-wrapper">';
+
+                    $r = $r . $this->format_album_media($m);
+
+                    $r = $r . '</div>';
+
+                    $r = $r . '<div class="albamn-editor-media-footer">';
+
+                    $r = $r . $this->display_checkbox(
+                        $m->visibility ? 'Show' : 'Hide',
+                        $m->id,
+                        'ig_post'
+                    );
+
+                    $r = $r . '</div>';
+                    break;
+
                 default:
                     break;
             }
@@ -244,6 +266,10 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
 
                 case 'VIDEO':
                     $r = $r . $this->format_video_media($m);
+                    break;
+
+                case 'CAROUSEL_ALBUM':
+                    $r = $r . $this->format_album_media($m);
                     break;
 
                 default:
@@ -326,6 +352,42 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
         if ($linkable) {
             $r = $r . '</a>';
         }
+
+        return $r;
+    }
+
+    /**
+     * Create html structure from album media
+     *
+     * This method don't care about error case
+     *
+     * @since    1.0.0
+     * @param    Albamn_Hskwakr_Ig_Post      $media
+     * @return   string     The html
+     */
+    public function format_album_media(
+        Albamn_Hskwakr_Ig_Post $media
+    ): string {
+        $r = '';
+
+        $r = $r . '<div class="albamn-slider-group">';
+
+        /**
+         * @var string $v
+         */
+        foreach ($media->media_url_list as $v) {
+            $r = $r . '<div class="albamn-slider-item">';
+
+            $r = $r . '<img src="'
+                    . $v
+                    . '" '
+                    . 'class="albamn-slider-content"'
+                    . '/>';
+
+            $r = $r . '</div>';
+        }
+
+        $r = $r . '</div>';
 
         return $r;
     }
