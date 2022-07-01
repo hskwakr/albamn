@@ -30,3 +30,36 @@
 	 */
 
 })( jQuery );
+
+window.addEventListener('load', albamnSlider);
+
+function albamnSlider() {
+  let groups = document.getElementsByClassName("albamn-slider-group");
+
+  for (let i = 0, len = groups.length; i < len; i++) {
+    albamnSliderAnimation(groups[i], 0);
+  }
+}
+
+function albamnSliderAnimation(el, n) {
+  let items = el.getElementsByClassName("albamn-slider-item");
+
+  if (n === items.length) {
+    n = 0;
+  }
+
+  // Remove
+  if (n === 0) {
+    items[items.length - 1].classList.remove("albamn-slider-show");
+  } else {
+    items[n - 1].classList.remove("albamn-slider-show");
+  }
+
+  // Add
+  items[n].classList.add("albamn-slider-show");
+
+  // Repeat
+  setTimeout(function () {
+    albamnSliderAnimation(el, n + 1)
+  }, 9000);
+}
