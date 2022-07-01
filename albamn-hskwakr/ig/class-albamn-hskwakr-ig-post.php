@@ -30,7 +30,7 @@ class Albamn_Hskwakr_Ig_Post
 
     /**
      * The media type.
-     * Should be IMAGE or VIDEO.
+     * Should be IMAGE or VIDEO or CAROUSEL_ALBUM.
      *
      * @since    1.0.0
      * @access   public
@@ -46,6 +46,15 @@ class Albamn_Hskwakr_Ig_Post
      * @var      string    $media_url
      */
     public $media_url;
+
+    /**
+     * The list of media urls for CAROUSEL_ALBUM.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      array    $media_url_list
+     */
+    public $media_url_list;
 
     /**
      * The permalink for the post.
@@ -71,18 +80,19 @@ class Albamn_Hskwakr_Ig_Post
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    string    $albamn_hskwakr    The name of the plugin.
      */
     public function __construct(
         string $id,
         string $media_type,
         string $media_url,
+        array  $media_url_list,
         string $permalink,
-        bool $visibility
+        bool   $visibility
     ) {
         $this->id = $id;
         $this->media_type = $media_type;
         $this->media_url = $media_url;
+        $this->media_url_list = $media_url_list;
         $this->permalink = $permalink;
         $this->visibility = $visibility;
     }
@@ -109,6 +119,7 @@ class Albamn_Hskwakr_Ig_Post
         switch ($this->media_type) {
             case 'IMAGE':
             case 'VIDEO':
+            case 'CAROUSEL_ALBUM':
                 break;
 
             default:

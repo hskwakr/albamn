@@ -42,6 +42,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         $media_image = new class () {};
         $media_image->media_type = 'IMAGE';
         $media_image->media_url = 'url1234';
+        $media_image->media_url_link = array();
         $media_image->permalink = 'link1234';
         $media_image->visibility = true;
         $media_image->id = 'id1234';
@@ -49,6 +50,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         $media_video = new class () {};
         $media_video->media_type = 'VIDEO';
         $media_video->media_url = 'url1234';
+        $media_video->media_url_link = array();
         $media_video->permalink = 'link1234';
         $media_video->visibility = true;
         $media_video->id = 'id1234';
@@ -56,12 +58,14 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         $wrong_media_1 = new class () {};
         $wrong_media_1->media_type = 'OTHER';
         $wrong_media_1->media_url = 'url1234';
+        $wrong_media_1->media_url_link = array();
         $wrong_media_1->permalink = 'link1234';
         $wrong_media_1->visibility = true;
         $wrong_media_1->id = 'id1234';
 
         $wrong_media_2 = new class () {};
         $wrong_media_2->media_type = 'IMAGE';
+        $wrong_media_2->media_url_link = array();
         $wrong_media_2->permalink = 'link1234';
         $wrong_media_2->visibility = true;
         $wrong_media_2->id = 'id1234';
@@ -248,6 +252,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
             $this->medias[0]->id,
             $this->medias[0]->media_type,
             $this->medias[0]->media_url,
+            $this->medias[0]->media_url_link,
             $this->medias[0]->permalink,
             $this->medias[0]->visibility
         );
@@ -255,6 +260,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
             $this->medias[1]->id,
             $this->medias[1]->media_type,
             $this->medias[1]->media_url,
+            $this->medias[1]->media_url_link,
             $this->medias[1]->permalink,
             $this->medias[1]->visibility
         );

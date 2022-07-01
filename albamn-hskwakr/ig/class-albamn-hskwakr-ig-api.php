@@ -397,6 +397,7 @@ class Albamn_Hskwakr_Ig_Api
             $id,
             $media_type,
             $media_url,
+            $media_url_list,
             $permalink,
             $visibility
         );

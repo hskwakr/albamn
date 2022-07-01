@@ -32,6 +32,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             'id1234',
             'IMAGE',
             'mediaurl1234',
+            array(),
             'permalink1234',
             true
         );
@@ -40,6 +41,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             'id1234',
             'VIDEO',
             'mediaurl1234',
+            array(),
             'permalink1234',
             true
         );
@@ -65,6 +67,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             'id1234',
             'OTHER',
             'mediaurl1234',
+            array(),
             'permalink1234',
             true
         );
@@ -73,6 +76,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             'id1234',
             '',
             'mediaurl1234',
+            array(),
             'permalink1234',
             true
         );
@@ -81,6 +85,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             'id1234',
             'IMAGE',
             '',
+            array(),
             'permalink1234',
             true
         );
@@ -89,6 +94,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             '',
             'IMAGE',
             'mediaurl1234',
+            array(),
             'permalink1234',
             true
         );

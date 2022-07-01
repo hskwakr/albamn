@@ -36,6 +36,7 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
         $media_id = 'mediaid1234';
         $media_type = 'mediatype';
         $media_url = 'mediaurl';
+        $media_url_list = array();
         $media_permalink = 'mediapermalink ';
         $media_visibility = true;
 
@@ -43,6 +44,7 @@ class Albamn_Hskwakr_Ig_Post_Repository_Test extends WP_UnitTestCase
             $media_id,
             $media_type,
             $media_url,
+            $media_url_list,
             $media_permalink,
             $media_visibility
         );

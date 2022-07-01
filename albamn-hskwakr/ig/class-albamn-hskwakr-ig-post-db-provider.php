@@ -110,13 +110,13 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
             );
             add_post_meta(
                 $post_id,
-                'permalink',
-                $post->permalink
+                'media_url_list',
+                $post->media_url_list
             );
             add_post_meta(
                 $post_id,
-                'albam',
-                array('a', 'b')
+                'permalink',
+                $post->permalink
             );
             add_post_meta(
                 $post_id,
@@ -157,8 +157,6 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
          * @var object $post
          */
         foreach ($posts as $post) {
-            //echo var_dump($post->albam);
-
             /**
              * Create Entry
              */
@@ -171,6 +169,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
                     (string)$post->media_id,
                     (string)$post->media_type,
                     (string)$post->media_url,
+                    (array)$post->media_url_list,
                     (string)$post->permalink,
                     (bool)$post->visibility
                 )
