@@ -177,6 +177,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         $wrong_media_data_elm_1 = new class () {};
         $wrong_media_data_elm_1->children = new class () {};
         $wrong_media_data_elm_1->children->data = array();
+        $wrong_media_data_elm_1->children->data[0] = '';
 
         /**
          * Wrong data
@@ -214,6 +215,16 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          * Assert
          * Wrong case:
          */
+        $actual = $api->validate_album_media($wrong_media_children_1);
+        $this->assertFalse($actual);
+        $actual = $api->validate_album_media($wrong_media_data_1);
+        $this->assertFalse($actual);
+        $actual = $api->validate_album_media($wrong_media_data_elm_1);
+        $this->assertFalse($actual);
+        $actual = $api->validate_album_media($wrong_media_media_url_1);
+        $this->assertFalse($actual);
+        $actual = $api->validate_album_media($wrong_media_media_type_1);
+        $this->assertFalse($actual);
     }
 
     /**
