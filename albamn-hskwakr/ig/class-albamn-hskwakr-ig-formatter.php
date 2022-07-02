@@ -370,6 +370,14 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
     ): string {
         $r = '';
 
+        $linkable = !empty($media->permalink);
+
+        if ($linkable) {
+            $r = $r . '<a href="'
+                    . $media->permalink
+                    . '" '
+                    . '>';
+        }
         $r = $r . '<div class="albamn-slider-group">';
 
         /**
@@ -388,6 +396,9 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
         }
 
         $r = $r . '</div>';
+        if ($linkable) {
+            $r = $r . '</a>';
+        }
 
         return $r;
     }
