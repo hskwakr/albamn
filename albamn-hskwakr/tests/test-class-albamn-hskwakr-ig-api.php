@@ -139,6 +139,86 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
     /**
      * Check the return has correct structure.
      */
+    public function test_validate_album_media()
+    {
+        /**
+         * Prepare
+         */
+
+        /**
+         * Correct data
+         */
+        $correct_media = new class () {};
+        $correct_media->children = new class () {};
+        $correct_media->children->data = array();
+        $correct_media->children->data[0] = new class () {};
+        $correct_media->children->data[0]->media_type = 'mediatype1234';
+        $correct_media->children->data[0]->media_url = 'mediaurl1234';
+
+        /**
+         * Wrong data
+         * children is not object
+         */
+        $wrong_media_children_1 = new class () {};
+        $wrong_media_children_1->children = '';
+
+        /**
+         * Wrong data
+         * data is not array
+         */
+        $wrong_media_data_1 = new class () {};
+        $wrong_media_data_1->children = new class () {};
+        $wrong_media_data_1->children->data = '';
+
+        /**
+         * Wrong data
+         * element of data is not object
+         */
+        $wrong_media_data_elm_1 = new class () {};
+        $wrong_media_data_elm_1->children = new class () {};
+        $wrong_media_data_elm_1->children->data = array();
+
+        /**
+         * Wrong data
+         * media_type is not exist
+         */
+        $wrong_media_media_type_1 = new class () {};
+        $wrong_media_media_type_1->children = new class () {};
+        $wrong_media_media_type_1->children->data = array();
+        $wrong_media_media_type_1->children->data[0] = new class () {};
+        $wrong_media_media_type_1->children->data[0]->media_url = 'mediaurl1234';
+
+        /**
+         * Wrong data
+         * media_url is not exist
+         */
+        $wrong_media_media_url_1 = new class () {};
+        $wrong_media_media_url_1->children = new class () {};
+        $wrong_media_media_url_1->children->data = array();
+        $wrong_media_media_url_1->children->data[0] = new class () {};
+        $wrong_media_media_url_1->children->data[0]->media_type = 'mediatype1234';
+
+        /**
+         * Execute
+         */
+        $api = new Albamn_Hskwakr_Ig_Api();
+
+        /**
+         * Assert
+         * Proper case:
+         */
+        $actual = $api->validate_album_media($correct_media);
+        $this->assertTrue($actual);
+
+        /**
+         * Assert
+         * Wrong case:
+         */
+    }
+
+    /**
+     * Check the return has correct structure.
+     */
     public function test_search_hashtag_with_top_method()
     {
         /**

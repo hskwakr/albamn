@@ -302,7 +302,7 @@ class Albamn_Hskwakr_Ig_Api
                     }
 
                     /**
-                     * Create Instagram post1
+                     * Create Instagram post
                      */
                     $r[] = $this->create_ig_post(
                         (string)$m->id,
@@ -316,47 +316,46 @@ class Albamn_Hskwakr_Ig_Api
 
                 case 'CAROUSEL_ALBUM':
                     /**
-                     * Validate children
+                     * Validate ALBUM type media
                      */
-                    if (!isset($m->children)) {
+                    if (!$this->validate_album_media($m)) {
                         break;
                     }
-                    if (!is_object($m->children)) {
-                        break;
-                    }
-                    if (!isset($m->children->data)) {
-                        break;
-                    }
+
+                    /**
+                     * @var object $m->children
+                     * @var array $data
+                     */
+                    $data = $m->children->data;
+
+                    /**
+                     * The list of media url
+                     *
+                     * @var array<string> $media_url_list
+                     */
+                    $media_url_list = array();
 
                     /**
                      * Get list of media_url in children
                      *
-                     * @var array<string> $children
-                     */
-                    $children = array();
-
-                    /**
                      * @var object $v
                      */
-                    foreach ($m->children->data as $v) {
+                    foreach ($data as $v) {
                         if (isset($v->media_url)) {
                             if (is_string($v->media_url)) {
-                                /**
-                                 * @var string $v->media_url
-                                 */
-                                $children[] = $v->media_url;
+                                $media_url_list[] = $v->media_url;
                             }
                         }
                     }
 
                     /**
-                     * Create Instagram post1
+                     * Create Instagram post
                      */
                     $r[] = $this->create_ig_post(
                         (string)$m->id,
                         (string)$m->media_type,
                         '',
-                        $children,
+                        $media_url_list,
                         (string)$m->permalink,
                         true
                     );
@@ -401,6 +400,45 @@ class Albamn_Hskwakr_Ig_Api
             $permalink,
             $visibility
         );
+    }
+
+    /**
+     * Validate CAROUSEL_ALBUM type media
+     *
+     * @since     1.0.0
+     * @param     object     $media      The media data.
+     * @return    bool       true        The data is expected.
+     *                       false       The data is unexpected.
+     */
+    public function validate_album_media(
+        object $media
+    ): bool {
+        if (!isset($media->children)) {
+            return false;
+        }
+        if (!is_object($media->children)) {
+            return false;
+        }
+        if (!isset($media->children->data)) {
+            return false;
+        }
+        if (!is_array($media->children->data)) {
+            return false;
+        }
+
+        foreach ($media->children->data as $v) {
+            if (!is_object($v)) {
+                return false;
+            }
+            if (!isset($v->media_type)) {
+                return false;
+            }
+            if (!isset($v->media_url)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
