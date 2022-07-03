@@ -307,6 +307,7 @@ class Albamn_Hskwakr_Ig_Api
                     $r[] = $this->create_ig_post(
                         (string)$m->id,
                         (string)$m->media_type,
+                        array(),
                         (string)$m->media_url,
                         array(),
                         (string)$m->permalink,
@@ -355,6 +356,7 @@ class Albamn_Hskwakr_Ig_Api
                     $r[] = $this->create_ig_post(
                         (string)$m->id,
                         (string)$m->media_type,
+                        array(),
                         '',
                         $media_url_list,
                         (string)$m->permalink,
@@ -388,6 +390,7 @@ class Albamn_Hskwakr_Ig_Api
     public function create_ig_post(
         string $id,
         string $media_type,
+        array  $media_type_list,
         string $media_url,
         array  $media_url_list,
         string $permalink,
