@@ -330,6 +330,13 @@ class Albamn_Hskwakr_Ig_Api
                     $data = $m->children->data;
 
                     /**
+                     * The list of media type
+                     *
+                     * @var array $media_type_list
+                     */
+                    $media_type_list = array();
+
+                    /**
                      * The list of media url
                      *
                      * @var array $media_url_list
@@ -344,6 +351,9 @@ class Albamn_Hskwakr_Ig_Api
                     foreach ($data as $v) {
                         if (!is_string($v->id)) {
                             break;
+                        }
+                        if (is_string($v->media_type)) {
+                            $media_type_list[$v->id] = $v->media_type;
                         }
                         if (is_string($v->media_url)) {
                             $media_url_list[$v->id] = $v->media_url;
