@@ -44,12 +44,16 @@
   position: relative;
 }
 
-.albamn-slider-item img {
+.albamn-slider-item img,
+.albamn-slider-item video
+{
   opacity: 0;
   transition: opacity 1.2s;
 }
 
-.albamn-slider-show img {
+.albamn-slider-show img,
+.albamn-slider-show video
+{
   opacity: 1;
 }
 

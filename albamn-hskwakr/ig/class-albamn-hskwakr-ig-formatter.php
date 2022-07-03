@@ -370,6 +370,29 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
     ): string {
         $r = '';
 
+        /**
+         * Functions
+         */
+        $image = function (
+            string $url
+        ): string {
+            return '<img src="'
+                 . $url
+                 . '" '
+                 . 'class="albamn-slider-content"'
+                 . '/>';
+        };
+
+        $video = function (
+            string $url
+        ): string {
+            return '<video src="'
+                 . $url
+                 . '" autoplay="" muted="" playsinline="" loop="" '
+                 . 'class="albamn-slider-content"'
+                 . '></video>';
+        };
+
         $linkable = !empty($media->permalink);
 
         if ($linkable) {
@@ -381,16 +404,29 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
         $r = $r . '<div class="albamn-slider-group">';
 
         /**
-         * @var string $v
+         * @var string $url
          */
-        foreach ($media->media_url_list as $v) {
+        foreach ($media->media_url_list as $key => $url) {
+            $type = (string)$media->media_type_list[$key];
+            if (empty($type)) {
+                continue;
+            }
+
             $r = $r . '<div class="albamn-slider-item">';
 
-            $r = $r . '<img src="'
-                    . $v
-                    . '" '
-                    . 'class="albamn-slider-content"'
-                    . '/>';
+            switch ($type) {
+              case 'IMAGE':
+                $r = $r . $image($url);
+                break;
+
+              case 'VIDEO':
+                $r = $r . $video($url);
+                break;
+
+              default:
+
+                break;
+            }
 
             $r = $r . '</div>';
         }
