@@ -105,6 +105,11 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
             );
             add_post_meta(
                 $post_id,
+                'media_type_list',
+                array()
+            );
+            add_post_meta(
+                $post_id,
                 'media_url',
                 $post->media_url
             );
