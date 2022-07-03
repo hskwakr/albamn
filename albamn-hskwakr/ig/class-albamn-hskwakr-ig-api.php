@@ -331,7 +331,7 @@ class Albamn_Hskwakr_Ig_Api
                     /**
                      * The list of media url
                      *
-                     * @var array<string> $media_url_list
+                     * @var array $media_url_list
                      */
                     $media_url_list = array();
 
@@ -341,10 +341,11 @@ class Albamn_Hskwakr_Ig_Api
                      * @var object $v
                      */
                     foreach ($data as $v) {
-                        if (isset($v->media_url)) {
-                            if (is_string($v->media_url)) {
-                                $media_url_list[] = $v->media_url;
-                            }
+                        if (!is_string($v->id)) {
+                            break;
+                        }
+                        if (is_string($v->media_url)) {
+                            $media_url_list[$v->id] = $v->media_url;
                         }
                     }
 
@@ -428,6 +429,9 @@ class Albamn_Hskwakr_Ig_Api
 
         foreach ($media->children->data as $v) {
             if (!is_object($v)) {
+                return false;
+            }
+            if (!isset($v->id)) {
                 return false;
             }
             if (!isset($v->media_type)) {

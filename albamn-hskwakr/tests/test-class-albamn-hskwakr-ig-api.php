@@ -152,6 +152,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         $correct_media->children = new class () {};
         $correct_media->children->data = array();
         $correct_media->children->data[0] = new class () {};
+        $correct_media->children->data[0]->id = 'id1234';
         $correct_media->children->data[0]->media_type = 'mediatype1234';
         $correct_media->children->data[0]->media_url = 'mediaurl1234';
 
@@ -183,21 +184,34 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          * Wrong data
          * media_type is not exist
          */
-        $wrong_media_media_type_1 = new class () {};
-        $wrong_media_media_type_1->children = new class () {};
-        $wrong_media_media_type_1->children->data = array();
-        $wrong_media_media_type_1->children->data[0] = new class () {};
-        $wrong_media_media_type_1->children->data[0]->media_url = 'mediaurl1234';
+        $wrong_media_type_1 = new class () {};
+        $wrong_media_type_1->children = new class () {};
+        $wrong_media_type_1->children->data = array();
+        $wrong_media_type_1->children->data[0] = new class () {};
+        $wrong_media_type_1->children->data[0]->id = 'id1234';
+        $wrong_media_type_1->children->data[0]->media_url = 'mediaurl1234';
 
         /**
          * Wrong data
          * media_url is not exist
          */
-        $wrong_media_media_url_1 = new class () {};
-        $wrong_media_media_url_1->children = new class () {};
-        $wrong_media_media_url_1->children->data = array();
-        $wrong_media_media_url_1->children->data[0] = new class () {};
-        $wrong_media_media_url_1->children->data[0]->media_type = 'mediatype1234';
+        $wrong_media_url_1 = new class () {};
+        $wrong_media_url_1->children = new class () {};
+        $wrong_media_url_1->children->data = array();
+        $wrong_media_url_1->children->data[0] = new class () {};
+        $wrong_media_url_1->children->data[0]->id = 'id1234';
+        $wrong_media_url_1->children->data[0]->media_type = 'mediatype1234';
+
+        /**
+         * Wrong data
+         * id is not exist
+         */
+        $wrong_media_id_1 = new class () {};
+        $wrong_media_id_1->children = new class () {};
+        $wrong_media_id_1->children->data = array();
+        $wrong_media_id_1->children->data[0] = new class () {};
+        $wrong_media_id_1->children->data[0]->media_type = 'mediatype1234';
+        $wrong_media_id_1->children->data[0]->media_url = 'mediaurl1234';
 
         /**
          * Execute
@@ -221,9 +235,11 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         $this->assertFalse($actual);
         $actual = $api->validate_album_media($wrong_media_data_elm_1);
         $this->assertFalse($actual);
-        $actual = $api->validate_album_media($wrong_media_media_url_1);
+        $actual = $api->validate_album_media($wrong_media_url_1);
         $this->assertFalse($actual);
-        $actual = $api->validate_album_media($wrong_media_media_type_1);
+        $actual = $api->validate_album_media($wrong_media_type_1);
+        $this->assertFalse($actual);
+        $actual = $api->validate_album_media($wrong_media_id_1);
         $this->assertFalse($actual);
     }
 
