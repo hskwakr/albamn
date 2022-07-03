@@ -106,7 +106,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
             add_post_meta(
                 $post_id,
                 'media_type_list',
-                array()
+                $post->media_type_list
             );
             add_post_meta(
                 $post_id,
@@ -173,6 +173,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
                 new Albamn_Hskwakr_Ig_Post(
                     (string)$post->media_id,
                     (string)$post->media_type,
+                    (array)$post->media_type_list,
                     (string)$post->media_url,
                     (array)$post->media_url_list,
                     (string)$post->permalink,
