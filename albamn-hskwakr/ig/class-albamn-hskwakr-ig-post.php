@@ -39,6 +39,15 @@ class Albamn_Hskwakr_Ig_Post
     public $media_type;
 
     /**
+     * The list of media types for CAROUSEL_ALBUM.
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      array    $media_type_list
+     */
+    public $media_type_list;
+
+    /**
      * The media url.
      *
      * @since    1.0.0
@@ -84,6 +93,7 @@ class Albamn_Hskwakr_Ig_Post
     public function __construct(
         string $id,
         string $media_type,
+        array  $media_type_list,
         string $media_url,
         array  $media_url_list,
         string $permalink,
@@ -91,6 +101,7 @@ class Albamn_Hskwakr_Ig_Post
     ) {
         $this->id = $id;
         $this->media_type = $media_type;
+        $this->media_type_list = $media_type_list;
         $this->media_url = $media_url;
         $this->media_url_list = $media_url_list;
         $this->permalink = $permalink;

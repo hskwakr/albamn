@@ -85,6 +85,7 @@ class Albamn_Hskwakr_Ig_Post_Repository
             $r[] = new Albamn_Hskwakr_Ig_Post(
                 $entry->post->id,
                 $entry->post->media_type,
+                $entry->post->media_type_list,
                 $entry->post->media_url,
                 $entry->post->media_url_list,
                 $entry->post->permalink,

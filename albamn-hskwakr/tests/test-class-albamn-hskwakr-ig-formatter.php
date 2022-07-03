@@ -31,6 +31,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $correct_image = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             'IMAGE',
+            array(),
             'mediaurl1234',
             array(),
             'permalink1234',
@@ -40,6 +41,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $correct_video = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             'VIDEO',
+            array(),
             'mediaurl1234',
             array(),
             'permalink1234',
@@ -49,6 +51,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $correct_album = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             'CAROUSEL_ALBUM',
+            array('type1234'),
             '',
             array('list1234'),
             'permalink1234',
@@ -76,6 +79,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $wrong_type = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             'OTHER',
+            array(),
             'mediaurl1234',
             array(),
             'permalink1234',
@@ -85,6 +89,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $wrong_prop_1 = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             '',
+            array(),
             'mediaurl1234',
             array(),
             'permalink1234',
@@ -94,6 +99,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $wrong_prop_2 = new Albamn_Hskwakr_Ig_Post(
             'id1234',
             'IMAGE',
+            array(),
             '',
             array(),
             'permalink1234',
@@ -103,6 +109,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $wrong_prop_3 = new Albamn_Hskwakr_Ig_Post(
             '',
             'IMAGE',
+            array(),
             'mediaurl1234',
             array(),
             'permalink1234',
@@ -112,8 +119,19 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
         $wrong_prop_4 = new Albamn_Hskwakr_Ig_Post(
             '',
             'CAROUSEL_ALBUM',
+            array('type'),
             '',
             array(),
+            'permalink1234',
+            true
+        );
+
+        $wrong_prop_5 = new Albamn_Hskwakr_Ig_Post(
+            '',
+            'CAROUSEL_ALBUM',
+            array(),
+            '',
+            array('url1234'),
             'permalink1234',
             true
         );
@@ -126,6 +144,7 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             'lack_of_url' => $wrong_prop_2,
             'lack_of_id' => $wrong_prop_3,
             'lack_of_url_list' => $wrong_prop_4,
+            'lack_of_type_list' => $wrong_prop_5,
         );
 
         /**
@@ -193,6 +212,20 @@ class Albamn_Hskwakr_Admin_Ig_Formatter_Test extends WP_UnitTestCase
             $this->medias_correct['image'],
             $this->medias_correct['video'],
             $this->medias_wrong['lack_of_type']
+        );
+        $actual = $this->formatter->validate_medias(
+            $medias
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Asset: Wrong case
+         * The object does not have media_type_list
+         */
+        $medias = array(
+            $this->medias_correct['image'],
+            $this->medias_correct['video'],
+            $this->medias_wrong['lack_of_type_list']
         );
         $actual = $this->formatter->validate_medias(
             $medias

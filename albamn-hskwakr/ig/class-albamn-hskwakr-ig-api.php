@@ -399,6 +399,7 @@ class Albamn_Hskwakr_Ig_Api
         return new Albamn_Hskwakr_Ig_Post(
             $id,
             $media_type,
+            $media_type_list,
             $media_url,
             $media_url_list,
             $permalink,
