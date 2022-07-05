@@ -15,7 +15,7 @@ services:
       WORDPRESS_DEBUG: '1'
     volumes:
       - wordpress_data:/var/www/html
-      - ./${PLUGIN_NAME}:/var/www/html/wp-content/plugins/${PLUGIN_NAME}
+      - ./${SOURCE_DIR}:/var/www/html/wp-content/plugins/${PLUGIN_NAME}
 
   db:
     image: mysql:5.7
@@ -34,7 +34,7 @@ services:
     image: wordpress:cli
     volumes:
       - wordpress_data:/var/www/html
-      - ./${PLUGIN_NAME}:/var/www/html/wp-content/plugins/${PLUGIN_NAME}
+      - ./${SOURCE_DIR}:/var/www/html/wp-content/plugins/${PLUGIN_NAME}
       - db_data:/var/lib/mysql
     environment:
       WORDPRESS_DB_HOST: db
@@ -55,7 +55,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./${PLUGIN_NAME}:/plugin
+      - ./${SOURCE_DIR}:/plugin
 
   testdb:
     environment:
