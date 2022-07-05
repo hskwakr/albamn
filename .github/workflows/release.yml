@@ -16,12 +16,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - uses: up9cloud/action-rsync@master
+      - name: Copy src directory without unnecessary files
+        uses: up9cloud/action-rsync@master
         env:
           MODE: local
           SOURCE: ./src/
           TARGET: ./dist
           ARGS: -rc --exclude-from=./src/.distignore --delete --delete-excluded
+
+      - name: Compression
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r albamn-hskwakr.zip dist
           
       - name: Run a one-line script
-        run: ls -al ./dist
+        run: ls -al .
