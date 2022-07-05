@@ -29,5 +29,8 @@ jobs:
         with:
           args: zip -qq -r albamn-hskwakr.zip dist
           
-      - name: Run a one-line script
-        run: ls -al .
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            albamn-hskwakr.zip
