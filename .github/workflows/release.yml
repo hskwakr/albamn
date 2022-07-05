@@ -19,7 +19,7 @@ jobs:
       - uses: up9cloud/action-rsync@master
         env:
           MODE: local
-          SOURCE: ./src
+          SOURCE: ./src/
           TARGET: ./dist
           ARGS: -rc --exclude-from=./src/.distignore --delete --delete-excluded
           
