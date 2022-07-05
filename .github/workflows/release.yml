@@ -24,6 +24,9 @@ jobs:
           TARGET: ./dist
           ARGS: -rc --exclude-from=./src/.distignore --delete --delete-excluded
 
+      - name: Run a one-line script
+        run: ls -al ./dist
+
       - name: Compression
         uses: montudor/action-zip@v1
         with:
