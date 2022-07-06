@@ -8,6 +8,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  plugin_name: albamn-hskwakr
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,17 +24,17 @@ jobs:
         env:
           MODE: local
           SOURCE: ./src/
-          TARGET: ./albamn-hskwakr
+          TARGET: ./${{ env.plugin_name }}
           ARGS: -rc --exclude-from=./src/.distignore --delete --delete-excluded
 
       - name: Compression
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r albamn-hskwakr.zip albamn-hskwakr
+          args: zip -qq -r ${{ env.plugin_name }}.zip ${{ env.plugin_name }}
           
       - name: Create release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            albamn-hskwakr.zip
+            ${{ env.plugin_name }}.zip
