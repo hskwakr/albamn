@@ -298,13 +298,14 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
     ): string {
         $r = '';
 
+        /**
+         * Create a link
+         */
         $linkable = !empty($media->permalink);
-
         if ($linkable) {
-            $r = $r . '<a href="'
-                    . $media->permalink
-                    . '" '
-                    . '>';
+            $r = $r . $this->display_anchor_header(
+                $media->permalink
+            );
         }
 
         $r = $r . '<img src="'
@@ -334,13 +335,14 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
     ): string {
         $r = '';
 
+        /**
+         * Create a link
+         */
         $linkable = !empty($media->permalink);
-
         if ($linkable) {
-            $r = $r . '<a href="'
-                    . $media->permalink
-                    . '" '
-                    . '>';
+            $r = $r . $this->display_anchor_header(
+                $media->permalink
+            );
         }
 
         $r = $r . '<video src="'
@@ -393,14 +395,16 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
                  . '></video>';
         };
 
+        /**
+         * Create a link
+         */
         $linkable = !empty($media->permalink);
-
         if ($linkable) {
-            $r = $r . '<a href="'
-                    . $media->permalink
-                    . '" '
-                    . '>';
+            $r = $r . $this->display_anchor_header(
+                $media->permalink
+            );
         }
+
         $r = $r . '<div class="albamn-slider-group">';
 
         /**
@@ -437,6 +441,21 @@ class Albamn_Hskwakr_Admin_Ig_Formatter
         }
 
         return $r;
+    }
+
+    /**
+     * Create html structure for anchor element
+     *
+     * @since    1.0.0
+     * @param    string     $link        the link.
+     * @return   string     The html
+     */
+    public function display_anchor_header(
+        string $link
+    ): string {
+        return <<< EOF
+        <a href="{$link}" target="_blank" rel="noopener noreferrer">
+EOF;
     }
 
     /**
