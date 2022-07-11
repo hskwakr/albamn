@@ -77,6 +77,9 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
         /**
          * Add the post into DB
          *
+         * The post ID on success.
+         * The value 0 or WP_Error on failure.
+         *
          * @var mixed $result
          */
         $result = wp_insert_post($data);
@@ -93,41 +96,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
             /**
              * Add meta data
              */
-            add_post_meta(
-                $post_id,
-                'media_id',
-                $post->id
-            );
-            add_post_meta(
-                $post_id,
-                'media_type',
-                $post->media_type
-            );
-            add_post_meta(
-                $post_id,
-                'media_type_list',
-                $post->media_type_list
-            );
-            add_post_meta(
-                $post_id,
-                'media_url',
-                $post->media_url
-            );
-            add_post_meta(
-                $post_id,
-                'media_url_list',
-                $post->media_url_list
-            );
-            add_post_meta(
-                $post_id,
-                'permalink',
-                $post->permalink
-            );
-            add_post_meta(
-                $post_id,
-                'visibility',
-                $post->visibility
-            );
+            $this->set_post_meta($post_id, $post);
 
             $success = true;
         }
@@ -234,7 +203,7 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
          *
          * @var bool $success
          */
-        $success = true;
+        $success = false;
 
         /**
          * Create the post data
@@ -244,13 +213,6 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
             'post_title' => $new->title,
             'post_status' => $new->status,
             'post_type' => $new->type,
-            'meta_input' => array(
-                'media_id' => $new->post->id,
-                'media_type' => $new->post->media_type,
-                'media_url' => $new->post->media_url,
-                'permalink' => $new->post->permalink,
-                'visibility' => $new->post->visibility
-            )
         );
 
         /**
@@ -260,11 +222,80 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
          */
         $result = wp_update_post($data);
 
-        if (!$result && is_wp_error($result)) {
-            $success = false;
+        /**
+         * Capture the post ID
+         */
+        if ($result && ! is_wp_error($result)) {
+            /**
+             * @var int $result
+             */
+            $post_id = $result;
+
+            /**
+             * Update meta data
+             */
+            $this->set_post_meta($post_id, $new->post);
+
+            $success = true;
         }
 
         return $success;
+    }
+
+    /**
+     * Set a post meta field based on the given post ID.
+     *
+     * https://developer.wordpress.org/reference/functions/update_post_meta/
+     *
+     * @since    1.0.0
+     * @param    int    $id
+     * @param    Albamn_Hskwakr_Ig_Post   $post
+     */
+    public function set_post_meta(
+        int $id,
+        Albamn_Hskwakr_Ig_Post $post
+    ): void {
+        update_post_meta(
+            $id,
+            'media_id',
+            $post->id
+        );
+
+        update_post_meta(
+            $id,
+            'media_type',
+            $post->media_type
+        );
+
+        update_post_meta(
+            $id,
+            'media_type_list',
+            $post->media_type_list
+        );
+
+        update_post_meta(
+            $id,
+            'media_url',
+            $post->media_url
+        );
+
+        update_post_meta(
+            $id,
+            'media_url_list',
+            $post->media_url_list
+        );
+
+        update_post_meta(
+            $id,
+            'permalink',
+            $post->permalink
+        );
+
+        update_post_meta(
+            $id,
+            'visibility',
+            $post->visibility
+        );
     }
 }
 
