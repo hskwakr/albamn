@@ -37,7 +37,7 @@ abstract class Albamn_Hskwakr_Admin_Pager
         return <<< EOF
 
 <div class="albamn-container albamn-mt">
-  <h3 class="albamn-mb">
+  <h3 class="albamn-mb-3">
     $msg
   </h3>
 
@@ -121,7 +121,7 @@ EOF;
     ): string {
         return <<< EOF
 
-    <div class="albamn-input albamn-mb">
+    <div class="albamn-input albamn-mb-2">
       <label class="albamn-input-label" for="{$name}">{$label}</label>
 
       <div class="albamn-input-text">
@@ -163,7 +163,7 @@ EOF;
     ): string {
         return <<< EOF
 
-    <button type="submit" class="albamn-btn albamn-btn-blue albamn-mb">
+    <button type="submit" class="albamn-btn albamn-btn-blue albamn-mb-2">
       $label
     </button>
 
@@ -203,7 +203,7 @@ EOF;
     ): string {
         return <<< EOF
 
-  <div class="albamn-alert albamn-alert-green albamn-mt albamn-mb" role="alert">
+  <div class="albamn-alert albamn-alert-green albamn-mt albamn-mb-2" role="alert">
     $msg
   </div>
 
