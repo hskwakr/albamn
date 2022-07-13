@@ -299,7 +299,7 @@ class Albamn_Hskwakr_Ig_Api_Context
         string $user_id,
         string $hashtag_id
     ): array {
-        $error = 'Failed to get recent medias by hashtag';
+        $error = 'Failed to get top medias by hashtag';
 
         /**
          * Get the response of the request
@@ -329,6 +329,65 @@ class Albamn_Hskwakr_Ig_Api_Context
             $this->error(
                 $error . ': Unexpected response'
             );
+        }
+
+        /**
+         * @var array
+         */
+        return $response->data;
+    }
+
+    /**
+     * Get the list of the next media objects
+     *
+     * @since    1.0.0
+     * @param    string     $next      The instagram account id.
+     * @return   array      The list of the most recent media objects.
+     */
+    public function medias_next(
+        string $query
+    ): array {
+        $error = 'Failed to get next medias by hashtag';
+
+        /**
+         * Get the response of the request
+         * @var object
+         */
+        $response = $this->send_request(
+            $query
+        );
+
+        /**
+         * Check request error
+         */
+        if (isset($response->error)) {
+            $this->error(
+                $error,
+                (object)$response->error
+            );
+        }
+
+        /**
+         * Validate the response
+         */
+        if (!$this->validation->validate_medias_by_hashtag($response)) {
+            $this->error(
+                $error . ': Unexpected response'
+            );
+        }
+
+        /**
+         * Check request paging
+         */
+        if (isset($response->paging)) {
+            if (is_object($response->paging)) {
+                if (isset($response->paging->next)) {
+                    /**
+                     * Read next page
+                     */
+                    $this->medias_next((string)$response->paging->next);
+                }
+            }
         }
 
         /**
