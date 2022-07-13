@@ -366,7 +366,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
             $this->medias[0]->media_url,
             $this->medias[0]->media_url_list,
             $this->medias[0]->permalink,
-            $this->medias[0]->visibility
+            false
         );
         $data_2 = new Albamn_Hskwakr_Ig_Post(
             $this->medias[1]->id,
@@ -375,7 +375,7 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
             $this->medias[1]->media_url,
             $this->medias[1]->media_url_list,
             $this->medias[1]->permalink,
-            $this->medias[1]->visibility
+            false
         );
 
         /**
