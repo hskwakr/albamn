@@ -273,6 +273,50 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
     }
 
     /**
+     * Check the return has correct value.
+     */
+    public function test_medias_next()
+    {
+        $query = 'query1234';
+        $expect = $this->media;
+
+        /**
+         * Create fake response
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0] = $expect;
+
+        /**
+         * Set fake response
+         */
+        $this->http
+             ->method('send')
+             ->willReturn($response);
+        $this->validation
+             ->method('validate_medias_by_hashtag')
+             ->willReturn(true);
+
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->validation,
+            $this->token
+        );
+
+        /**
+         * Assert
+         */
+        $actual = $ctx->medias_next(
+            $query
+        );
+        $this->assertEquals($expect, $actual[0]);
+    }
+
+    /**
      * Should be error.
      * Should check error from request.
      */
@@ -440,5 +484,39 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
          */
         $this->expectException(Exception::class);
         $ctx->medias_top('', '');
+    }
+
+    /**
+     * Should be error.
+     * Should check error from request.
+     */
+    public function test_medias_next_error_from_request()
+    {
+        /**
+         * Create fake response
+         */
+        $response = new class () {};
+        $response->error = $this->error;
+
+        /**
+         * Set fake response
+         */
+        $this->http->method('send')->willReturn($response);
+
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->validation,
+            $this->token
+        );
+
+        /**
+         * Expect exception thrown
+         */
+        $this->expectException(Exception::class);
+        $ctx->medias_next('');
     }
 }
