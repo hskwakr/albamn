@@ -293,7 +293,7 @@ class Albamn_Hskwakr_Ig_Api_Context
      * @since    1.0.0
      * @param    string     $user_id      The instagram account id.
      * @param    string     $hashtag_id   The hashtag id.
-     * @return   array      The list of the most recent media objects.
+     * @return   array      The list of the most top media objects.
      */
     public function medias_top(
         string $user_id,
@@ -342,11 +342,19 @@ class Albamn_Hskwakr_Ig_Api_Context
      *
      * @since    1.0.0
      * @param    string     $next      The instagram account id.
-     * @return   array      The list of the most recent media objects.
+     * @return   array      The list of next page media objects.
      */
     public function medias_next(
         string $query
     ): array {
+        /**
+         * The list of media objects.
+         */
+        $medias = array();
+
+        /**
+         * Error message
+         */
         $error = 'Failed to get next medias by hashtag';
 
         /**
@@ -377,22 +385,31 @@ class Albamn_Hskwakr_Ig_Api_Context
         }
 
         /**
+         * Set medias
+         *
+         * @var array $response->data
+         */
+        $medias = $response->data;
+
+        /**
          * Check request paging
          */
         if ($this->check_paging_field($response)) {
             /**
-             * Read next page
+             * Get next page medias
              *
              * @var object $response->paging
              * @var string $response->paging->next
              */
-            $this->medias_next($response->paging->next);
+            $result = $this->medias_next($response->paging->next);
+
+            /**
+             * Set medias
+             */
+            $medias = array_merge($medias, $result);
         }
 
-        /**
-         * @var array
-         */
-        return $response->data;
+        return $medias;
     }
 
     /**
