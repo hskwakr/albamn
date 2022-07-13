@@ -249,6 +249,14 @@ class Albamn_Hskwakr_Ig_Api_Context
         string $user_id,
         string $hashtag_id
     ): array {
+        /**
+         * The list of media objects.
+         */
+        $medias = array();
+
+        /**
+         * Error message
+         */
         $error = 'Failed to get recent medias by hashtag';
 
         /**
@@ -282,9 +290,31 @@ class Albamn_Hskwakr_Ig_Api_Context
         }
 
         /**
-         * @var array
+         * Set medias
+         *
+         * @var array $response->data
          */
-        return $response->data;
+        $medias = $response->data;
+
+        /**
+         * Check request paging
+         */
+        if ($this->check_paging_field($response)) {
+            /**
+             * Get next page medias
+             *
+             * @var object $response->paging
+             * @var string $response->paging->next
+             */
+            $result = $this->medias_next($response->paging->next);
+
+            /**
+             * Set medias
+             */
+            $medias = array_merge($medias, $result);
+        }
+
+        return $medias;
     }
 
     /**
@@ -299,6 +329,14 @@ class Albamn_Hskwakr_Ig_Api_Context
         string $user_id,
         string $hashtag_id
     ): array {
+        /**
+         * The list of media objects.
+         */
+        $medias = array();
+
+        /**
+         * Error message
+         */
         $error = 'Failed to get top medias by hashtag';
 
         /**
@@ -332,9 +370,31 @@ class Albamn_Hskwakr_Ig_Api_Context
         }
 
         /**
-         * @var array
+         * Set medias
+         *
+         * @var array $response->data
          */
-        return $response->data;
+        $medias = $response->data;
+
+        /**
+         * Check request paging
+         */
+        if ($this->check_paging_field($response)) {
+            /**
+             * Get next page medias
+             *
+             * @var object $response->paging
+             * @var string $response->paging->next
+             */
+            $result = $this->medias_next($response->paging->next);
+
+            /**
+             * Set medias
+             */
+            $medias = array_merge($medias, $result);
+        }
+
+        return $medias;
     }
 
     /**
