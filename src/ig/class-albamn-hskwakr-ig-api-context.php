@@ -249,6 +249,14 @@ class Albamn_Hskwakr_Ig_Api_Context
         string $user_id,
         string $hashtag_id
     ): array {
+        /**
+         * The list of media objects.
+         */
+        $medias = array();
+
+        /**
+         * Error message
+         */
         $error = 'Failed to get recent medias by hashtag';
 
         /**
@@ -282,9 +290,31 @@ class Albamn_Hskwakr_Ig_Api_Context
         }
 
         /**
-         * @var array
+         * Set medias
+         *
+         * @var array $response->data
          */
-        return $response->data;
+        $medias = $response->data;
+
+        /**
+         * Check request paging
+         */
+        if ($this->check_paging_field($response)) {
+            /**
+             * Get next page medias
+             *
+             * @var object $response->paging
+             * @var string $response->paging->next
+             */
+            $result = $this->medias_next($response->paging->next);
+
+            /**
+             * Set medias
+             */
+            $medias = array_merge($medias, $result);
+        }
+
+        return $medias;
     }
 
     /**
@@ -293,13 +323,21 @@ class Albamn_Hskwakr_Ig_Api_Context
      * @since    1.0.0
      * @param    string     $user_id      The instagram account id.
      * @param    string     $hashtag_id   The hashtag id.
-     * @return   array      The list of the most recent media objects.
+     * @return   array      The list of the most top media objects.
      */
     public function medias_top(
         string $user_id,
         string $hashtag_id
     ): array {
-        $error = 'Failed to get recent medias by hashtag';
+        /**
+         * The list of media objects.
+         */
+        $medias = array();
+
+        /**
+         * Error message
+         */
+        $error = 'Failed to get top medias by hashtag';
 
         /**
          * Get the response of the request
@@ -332,9 +370,133 @@ class Albamn_Hskwakr_Ig_Api_Context
         }
 
         /**
-         * @var array
+         * Set medias
+         *
+         * @var array $response->data
          */
-        return $response->data;
+        $medias = $response->data;
+
+        /**
+         * Check request paging
+         */
+        if ($this->check_paging_field($response)) {
+            /**
+             * Get next page medias
+             *
+             * @var object $response->paging
+             * @var string $response->paging->next
+             */
+            $result = $this->medias_next($response->paging->next);
+
+            /**
+             * Set medias
+             */
+            $medias = array_merge($medias, $result);
+        }
+
+        return $medias;
+    }
+
+    /**
+     * Get the list of the next media objects
+     *
+     * @since    1.0.0
+     * @param    string     $next      The instagram account id.
+     * @return   array      The list of next page media objects.
+     */
+    public function medias_next(
+        string $query
+    ): array {
+        /**
+         * The list of media objects.
+         */
+        $medias = array();
+
+        /**
+         * Error message
+         */
+        $error = 'Failed to get next medias by hashtag';
+
+        /**
+         * Get the response of the request
+         * @var object
+         */
+        $response = $this->send_request(
+            $query
+        );
+
+        /**
+         * Check request error
+         */
+        if (isset($response->error)) {
+            $this->error(
+                $error,
+                (object)$response->error
+            );
+        }
+
+        /**
+         * Validate the response
+         */
+        if (!$this->validation->validate_medias_by_hashtag($response)) {
+            $this->error(
+                $error . ': Unexpected response'
+            );
+        }
+
+        /**
+         * Set medias
+         *
+         * @var array $response->data
+         */
+        $medias = $response->data;
+
+        /**
+         * Check request paging
+         */
+        if ($this->check_paging_field($response)) {
+            /**
+             * Get next page medias
+             *
+             * @var object $response->paging
+             * @var string $response->paging->next
+             */
+            $result = $this->medias_next($response->paging->next);
+
+            /**
+             * Set medias
+             */
+            $medias = array_merge($medias, $result);
+        }
+
+        return $medias;
+    }
+
+    /**
+     * Check the paging field in the response data
+     *
+     * @since    1.0.0
+     * @param    object     $res        The response data.
+     * @return   bool       true        The data is expected.
+     *                      false       The data is unexpected.
+     */
+    public function check_paging_field(
+        object $res
+    ): bool {
+        if (!isset($res->paging)) {
+            return false;
+        }
+        if (!is_object($res->paging)) {
+            return false;
+        }
+        if (!isset($res->paging->next)) {
+            return false;
+        }
+        if (!is_string($res->paging->next)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

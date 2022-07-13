@@ -273,6 +273,129 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
     }
 
     /**
+     * Check the return has correct value.
+     */
+    public function test_medias_next()
+    {
+        $query = 'query1234';
+        $expect = $this->media;
+
+        /**
+         * Create fake response
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0] = $expect;
+
+        /**
+         * Set fake response
+         */
+        $this->http
+             ->method('send')
+             ->willReturn($response);
+        $this->validation
+             ->method('validate_medias_by_hashtag')
+             ->willReturn(true);
+
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->validation,
+            $this->token
+        );
+
+        /**
+         * Assert
+         */
+        $actual = $ctx->medias_next(
+            $query
+        );
+        $this->assertEquals($expect, $actual[0]);
+    }
+
+    /**
+     * Check the return has correct value.
+     */
+    public function test_check_paging_field()
+    {
+        /**
+         * Create fake response
+         */
+        $correct = new class () {};
+        $correct->paging = new class () {};
+        $correct->paging->next = 'query1234';
+
+        $wrong_1 = new class () {};
+
+        $wrong_2 = new class () {};
+        $wrong_2->paging = '';
+
+        $wrong_3 = new class () {};
+        $wrong_3->paging = new class () {};
+
+        $wrong_4 = new class () {};
+        $wrong_4->paging = new class () {};
+        $wrong_4->paging->next = new class () {};
+
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->validation,
+            $this->token
+        );
+
+        /**
+         * Assert proper case:
+         */
+        $actual = $ctx->check_paging_field(
+            $correct
+        );
+        $this->assertTrue($actual);
+
+        /**
+         * Assert wrong case:
+         * paging does not exist
+         */
+        $actual = $ctx->check_paging_field(
+            $wrong_1
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * paging does not object
+         */
+        $actual = $ctx->check_paging_field(
+            $wrong_2
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * next does not exist
+         */
+        $actual = $ctx->check_paging_field(
+            $wrong_3
+        );
+        $this->assertFalse($actual);
+
+        /**
+         * Assert wrong case:
+         * next does not string
+         */
+        $actual = $ctx->check_paging_field(
+            $wrong_4
+        );
+        $this->assertFalse($actual);
+    }
+
+    /**
      * Should be error.
      * Should check error from request.
      */
@@ -440,5 +563,39 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
          */
         $this->expectException(Exception::class);
         $ctx->medias_top('', '');
+    }
+
+    /**
+     * Should be error.
+     * Should check error from request.
+     */
+    public function test_medias_next_error_from_request()
+    {
+        /**
+         * Create fake response
+         */
+        $response = new class () {};
+        $response->error = $this->error;
+
+        /**
+         * Set fake response
+         */
+        $this->http->method('send')->willReturn($response);
+
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->validation,
+            $this->token
+        );
+
+        /**
+         * Expect exception thrown
+         */
+        $this->expectException(Exception::class);
+        $ctx->medias_next('');
     }
 }

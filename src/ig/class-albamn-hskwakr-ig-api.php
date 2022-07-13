@@ -311,7 +311,7 @@ class Albamn_Hskwakr_Ig_Api
                         (string)$m->media_url,
                         array(),
                         (string)$m->permalink,
-                        true
+                        false
                     );
                     break;
 
@@ -370,7 +370,7 @@ class Albamn_Hskwakr_Ig_Api
                         '',
                         $media_url_list,
                         (string)$m->permalink,
-                        true
+                        false
                     );
                     break;
 
