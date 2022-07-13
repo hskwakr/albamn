@@ -379,21 +379,47 @@ class Albamn_Hskwakr_Ig_Api_Context
         /**
          * Check request paging
          */
-        if (isset($response->paging)) {
-            if (is_object($response->paging)) {
-                if (isset($response->paging->next)) {
-                    /**
-                     * Read next page
-                     */
-                    $this->medias_next((string)$response->paging->next);
-                }
-            }
+        if ($this->check_paging_field($response)) {
+            /**
+             * Read next page
+             *
+             * @var object $response->paging
+             * @var string $response->paging->next
+             */
+            $this->medias_next($response->paging->next);
         }
 
         /**
          * @var array
          */
         return $response->data;
+    }
+
+    /**
+     * Check the paging field in the response data
+     *
+     * @since    1.0.0
+     * @param    object     $res        The response data.
+     * @return   bool       true        The data is expected.
+     *                      false       The data is unexpected.
+     */
+    public function check_paging_field(
+        object $res
+    ): bool {
+        if (!isset($res->paging)) {
+            return false;
+        }
+        if (!is_object($res->paging)) {
+            return false;
+        }
+        if (!isset($res->paging->next)) {
+            return false;
+        }
+        if (!is_string($res->paging->next)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
