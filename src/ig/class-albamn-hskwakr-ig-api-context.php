@@ -247,7 +247,8 @@ class Albamn_Hskwakr_Ig_Api_Context
      */
     public function medias_recent(
         string $user_id,
-        string $hashtag_id
+        string $hashtag_id,
+        int $max = 200
     ): array {
         /**
          * The list of media objects.
@@ -306,7 +307,11 @@ class Albamn_Hskwakr_Ig_Api_Context
              * @var object $response->paging
              * @var string $response->paging->next
              */
-            $result = $this->medias_next($response->paging->next);
+            $result = $this->medias_next(
+                $response->paging->next,
+                $max,
+                count($medias)
+            );
 
             /**
              * Set medias
@@ -327,7 +332,8 @@ class Albamn_Hskwakr_Ig_Api_Context
      */
     public function medias_top(
         string $user_id,
-        string $hashtag_id
+        string $hashtag_id,
+        int $max = 200
     ): array {
         /**
          * The list of media objects.
@@ -386,7 +392,11 @@ class Albamn_Hskwakr_Ig_Api_Context
              * @var object $response->paging
              * @var string $response->paging->next
              */
-            $result = $this->medias_next($response->paging->next);
+            $result = $this->medias_next(
+                $response->paging->next,
+                $max,
+                count($medias)
+            );
 
             /**
              * Set medias
@@ -402,10 +412,14 @@ class Albamn_Hskwakr_Ig_Api_Context
      *
      * @since    1.0.0
      * @param    string     $next      The instagram account id.
+     * @param    int        $max       The max amount of posts to get.
+     * @param    int        $count     The current amount of posts.
      * @return   array      The list of next page media objects.
      */
     public function medias_next(
-        string $query
+        string $query,
+        int $max,
+        int $count
     ): array {
         /**
          * The list of media objects.
@@ -452,6 +466,26 @@ class Albamn_Hskwakr_Ig_Api_Context
         $medias = $response->data;
 
         /**
+         * Calc current amount we have
+         */
+        $current_amount = $count + count($medias);
+
+        /**
+         * Calc the amount to remove
+         */
+        $remove_amount = $current_amount - $max;
+        if ($remove_amount > 0) {
+            /**
+             * Remove elements from the array
+             */
+            for ($i = 0; $i < $remove_amount; $i++) {
+                array_pop($medias);
+            }
+
+            return $medias;
+        }
+
+        /**
          * Check request paging
          */
         if ($this->check_paging_field($response)) {
@@ -461,7 +495,11 @@ class Albamn_Hskwakr_Ig_Api_Context
              * @var object $response->paging
              * @var string $response->paging->next
              */
-            $result = $this->medias_next($response->paging->next);
+            $result = $this->medias_next(
+                $response->paging->next,
+                $max,
+                $current_amount
+            );
 
             /**
              * Set medias

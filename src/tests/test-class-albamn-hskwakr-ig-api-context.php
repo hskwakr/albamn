@@ -277,8 +277,14 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
      */
     public function test_medias_next()
     {
-        $query = 'query1234';
         $expect = $this->media;
+
+        /**
+         * Create fake data
+         */
+        $query = 'query1234';
+        $max = 200;
+        $count = 0;
 
         /**
          * Create fake response
@@ -308,11 +314,17 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
         );
 
         /**
-         * Assert
+         * Execute
          */
         $actual = $ctx->medias_next(
-            $query
+            $query,
+            $max,
+            $count
         );
+
+        /**
+         * Assert
+         */
         $this->assertEquals($expect, $actual[0]);
     }
 
@@ -596,6 +608,64 @@ class Albamn_Hskwakr_Ig_Api_Context_Test extends WP_UnitTestCase
          * Expect exception thrown
          */
         $this->expectException(Exception::class);
-        $ctx->medias_next('');
+        $ctx->medias_next(
+            '',
+            0,
+            0
+        );
+    }
+
+    /**
+     * Check the return has correct value.
+     */
+    public function test_medias_next_with_count_than_max()
+    {
+        /**
+         * Create fake data
+         */
+        $query = 'query1234';
+        $max = 0;
+        $count = 10;
+
+        /**
+         * Create fake response
+         */
+        $response = new class () {};
+        $response->data = array(new class () {});
+        $response->data[0] = $this->media;
+
+        /**
+         * Set fake response
+         */
+        $this->http
+             ->method('send')
+             ->willReturn($response);
+        $this->validation
+             ->method('validate_medias_by_hashtag')
+             ->willReturn(true);
+
+        /**
+         * Init context class
+         */
+        $ctx = new Albamn_Hskwakr_Ig_Api_Context(
+            $this->http,
+            $this->query,
+            $this->validation,
+            $this->token
+        );
+
+        /**
+         * Execute
+         */
+        $actual = $ctx->medias_next(
+            $query,
+            $max,
+            $count
+        );
+
+        /**
+         * Assert
+         */
+        $this->assertTrue(empty($actual));
     }
 }
