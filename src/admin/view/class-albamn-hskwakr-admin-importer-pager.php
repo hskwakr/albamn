@@ -212,17 +212,31 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
         $r = '';
 
         try {
-            $this->ig_api->init($this->access_token);
-            $this->ig_api->search_hashtag($this->hashtag);
-
             /**
+             * Get posts by Instagram API
+             *
              * @var array<object> $posts
              */
+            $this->ig_api->init($this->access_token);
+            $this->ig_api->search_hashtag($this->hashtag);
             $posts = $this->ig_api->medias;
+
             /**
+             * Filter posts
+             *
              * @var array<Albamn_Hskwakr_Ig_Post>
              */
-            $this->ig_posts = $this->ig_api->filter_medias($posts);
+            $filtered_posts = $this->ig_api->filter_medias($posts);
+
+            /**
+             * Arrange posts
+             *
+             * @var array<Albamn_Hskwakr_Ig_Post>
+             */
+            $this->ig_posts = $this->remove_duplicate($filtered_posts);
+            if (empty($this->ig_posts)) {
+                return $this->display_alert_red('No new data');
+            }
 
             /**
              * Save to DB
@@ -287,6 +301,58 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
         }
 
         return $this->display_alert_green($success);
+    }
+
+    /**
+     * Remove duplicate posts between DB and posts
+     * from posts
+     *
+     * @since    1.0.0
+     * @param    array      $posts
+     * @return   array      The arranged posts
+     */
+    public function remove_duplicate(
+        array $posts
+    ): array {
+        /**
+         * The arranged posts
+         */
+        $arranged = array();
+
+        /**
+         * @var Albamn_Hskwakr_Ig_Post $post
+         */
+        foreach ($posts as $post) {
+            if (!$this->is_in_db($post)) {
+                $arranged[] = $post;
+            }
+        }
+
+        return $arranged;
+    }
+
+    /**
+     * Check the post is in db
+     *
+     * @since    1.0.0
+     * @param    Albamn_Hskwakr_Ig_Post     $post
+     * @return   bool      Whether is in DB or not
+     *                     true: is in DB
+     *                     false: is not in DB
+     */
+    public function is_in_db(
+        Albamn_Hskwakr_Ig_Post $post
+    ): bool {
+        /**
+         * Find post in DB
+         */
+        $result = $this->ig_repository->find_by($post->id);
+
+        if ($result == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
