@@ -300,24 +300,24 @@ class Albamn_Hskwakr_Ig_Api_Context
         /**
          * Check request paging
          */
-        if ($this->check_paging_field($response)) {
-            /**
-             * Get next page medias
-             *
-             * @var object $response->paging
-             * @var string $response->paging->next
-             */
-            $result = $this->medias_next(
-                $response->paging->next,
-                $max,
-                count($medias)
-            );
+        //if ($this->check_paging_field($response)) {
+        //    /**
+        //     * Get next page medias
+        //     *
+        //     * @var object $response->paging
+        //     * @var string $response->paging->next
+        //     */
+        //    $result = $this->medias_next(
+        //        $response->paging->next,
+        //        $max,
+        //        count($medias)
+        //    );
 
-            /**
-             * Set medias
-             */
-            $medias = array_merge($medias, $result);
-        }
+        //    /**
+        //     * Set medias
+        //     */
+        //    $medias = array_merge($medias, $result);
+        //}
 
         return $medias;
     }
@@ -385,24 +385,24 @@ class Albamn_Hskwakr_Ig_Api_Context
         /**
          * Check request paging
          */
-        if ($this->check_paging_field($response)) {
-            /**
-             * Get next page medias
-             *
-             * @var object $response->paging
-             * @var string $response->paging->next
-             */
-            $result = $this->medias_next(
-                $response->paging->next,
-                $max,
-                count($medias)
-            );
+        //if ($this->check_paging_field($response)) {
+        //    /**
+        //     * Get next page medias
+        //     *
+        //     * @var object $response->paging
+        //     * @var string $response->paging->next
+        //     */
+        //    $result = $this->medias_next(
+        //        $response->paging->next,
+        //        $max,
+        //        count($medias)
+        //    );
 
-            /**
-             * Set medias
-             */
-            $medias = array_merge($medias, $result);
-        }
+        //    /**
+        //     * Set medias
+        //     */
+        //    $medias = array_merge($medias, $result);
+        //}
 
         return $medias;
     }
