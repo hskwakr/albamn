@@ -35,7 +35,7 @@ class Albamn_Hskwakr_Ig_Api
      * @access   public
      * @var      string    $fb_api_base
      */
-    public $fb_api_base = 'https://graph.facebook.com/v12.0';
+    public $fb_api_base = 'https://graph.facebook.com/v14.0';
 
     /**
      * The user pages id for Facebook pages.
