@@ -125,6 +125,7 @@ class Albamn_Hskwakr_Ig_Query
         $options =
         'access_token=' . $this->access_token .
         '&user_id=' . $user .
+        '&limit=' . '50' .
         '&fields=media_type,media_url,permalink,children{media_type,media_url}';
 
         $query = $this->base_url . $endpoint . $options;
@@ -148,6 +149,7 @@ class Albamn_Hskwakr_Ig_Query
         $options =
         'access_token=' . $this->access_token .
         '&user_id=' . $user .
+        '&limit=' . '50' .
         '&fields=media_type,media_url,permalink,children{media_type,media_url}';
 
         $query = $this->base_url . $endpoint . $options;
