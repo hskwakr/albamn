@@ -157,6 +157,12 @@ class Albamn_Hskwakr_Ig
           . 'class-albamn-hskwakr-ig-post.php';
 
         /**
+         * The data access for Instagram media file
+         */
+        require_once $path
+          . 'class-albamn-hskwakr-ig-media-repository.php';
+
+        /**
          * The DB access for Instagram posts
          */
         require_once $path
