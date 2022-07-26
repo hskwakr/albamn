@@ -296,6 +296,24 @@ class Albamn_Hskwakr_Ig_Api
 
             switch ((string)$m->media_type) {
                 case 'IMAGE':
+                    if (!isset($m->media_url)) {
+                        break;
+                    }
+
+                    /**
+                     * Create Instagram post
+                     */
+                    $r[] = $this->create_ig_post(
+                        (string)$m->id,
+                        (string)$m->media_type,
+                        array(),
+                        (string)$m->media_url,
+                        array(),
+                        (string)$m->permalink,
+                        false
+                    );
+                    break;
+
                 case 'VIDEO':
                     if (!isset($m->media_url)) {
                         break;
