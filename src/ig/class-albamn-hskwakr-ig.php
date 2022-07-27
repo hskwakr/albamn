@@ -201,11 +201,11 @@ class Albamn_Hskwakr_Ig
         $db = new Albamn_Hskwakr_Ig_Post_Db_Provider(
             $this->cpt->ig_posts()
         );
+        $media_repository = new Albamn_Hskwakr_Ig_Media_Repository();
 
         /**
          * Public instance
          */
-        $this->api = new Albamn_Hskwakr_Ig_Api();
         $this->post_formatter = new Albamn_Hskwakr_Admin_Ig_Formatter();
         $this->post_repository = new Albamn_Hskwakr_Ig_Post_Repository(
             $db
@@ -213,6 +213,9 @@ class Albamn_Hskwakr_Ig
         $this->shortcode = new Albamn_Hskwakr_Ig_Shortcode(
             $this->post_repository,
             $this->post_formatter
+        );
+        $this->api = new Albamn_Hskwakr_Ig_Api(
+            $media_repository
         );
     }
 }

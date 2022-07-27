@@ -29,6 +29,15 @@ class Albamn_Hskwakr_Ig_Api
     private $ctx;
 
     /**
+     * The data access for media file.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Media_Repository    $media_repository
+     */
+    private $media_repository;
+
+    /**
      * The base url of the API.
      *
      * @since    1.0.0
@@ -78,9 +87,11 @@ class Albamn_Hskwakr_Ig_Api
      *
      * @since     1.0.0
      */
-    public function __construct()
-    {
+    public function __construct(
+        Albamn_Hskwakr_Ig_Media_Repository $media_repository
+    ) {
         $this->ctx = null;
+        $this->media_repository = $media_repository;
     }
 
     /**
