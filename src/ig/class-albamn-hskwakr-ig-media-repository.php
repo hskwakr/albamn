@@ -35,7 +35,8 @@ class Albamn_Hskwakr_Ig_Media_Repository
      */
     public function __construct(
     ) {
-        $this->base_dir = (string)plugin_dir_path(dirname(__FILE__));
+        $this->base_dir =
+            (string)plugin_dir_path(dirname(__FILE__)) . 'medias/';
     }
 
     /**
