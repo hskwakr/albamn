@@ -53,18 +53,24 @@ class Albamn_Hskwakr_Ig_Media_Repository
         string $url,
         string $path
     ): bool {
-        $curl = curl_init($url);
-        $fp = fopen($path, 'wb');
+        $timeout = 300;
 
-        curl_setopt($curl, CURLOPT_FILE, $fp);
-        curl_setopt($curl, CURLOPT_HEADER, 0);
+        $res = wp_remote_request(
+            $url,
+            array(
+                'timeout' => $timeout,
+                'stream' => true,
+                'filename' => $path,
+            )
+        );
 
-        $r = curl_exec($curl);
-        curl_close($curl);
+        echo '<pre>';
+        echo var_dump($res);
+        echo '</pre>';
 
-        fclose($fp);
+        $res_code = (int)wp_remote_retrieve_response_code($res);
 
-        if ($r === true) {
+        if ($res_code == 200) {
             return true;
         } else {
             return false;

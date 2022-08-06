@@ -331,6 +331,18 @@ class Albamn_Hskwakr_Ig_Api
                     }
 
                     /**
+                     * Download media file
+                     */
+                    $path =
+                        $this->media_repository->base_dir .
+                        $m->id .
+                        '.mp4';
+                    $this->media_repository->download(
+                        (string)$m->media_url,
+                        $path
+                    );
+
+                    /**
                      * Create Instagram post
                      */
                     $r[] = $this->create_ig_post(
