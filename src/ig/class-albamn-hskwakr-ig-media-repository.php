@@ -64,10 +64,6 @@ class Albamn_Hskwakr_Ig_Media_Repository
             )
         );
 
-        echo '<pre>';
-        echo var_dump($res);
-        echo '</pre>';
-
         $res_code = (int)wp_remote_retrieve_response_code($res);
 
         if ($res_code == 200) {

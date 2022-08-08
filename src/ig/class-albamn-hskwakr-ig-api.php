@@ -337,10 +337,16 @@ class Albamn_Hskwakr_Ig_Api
                         $this->media_repository->base_dir .
                         $m->id .
                         '.mp4';
-                    $this->media_repository->download(
+                    /**
+                     * @var bool $success
+                     */
+                    $success = $this->media_repository->download(
                         (string)$m->media_url,
                         $path
                     );
+                    if (!$success) {
+                        break;
+                    }
 
                     /**
                      * Create Instagram post
