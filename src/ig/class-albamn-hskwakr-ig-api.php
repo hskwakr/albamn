@@ -335,7 +335,7 @@ class Albamn_Hskwakr_Ig_Api
                      */
                     $path =
                         $this->media_repository->base_dir .
-                        $m->id .
+                        (string)$m->id .
                         '.mp4';
                     /**
                      * @var bool $success

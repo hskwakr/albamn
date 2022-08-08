@@ -55,6 +55,9 @@ class Albamn_Hskwakr_Ig_Media_Repository
     ): bool {
         $timeout = 300;
 
+        /**
+         * @var object $res
+         */
         $res = wp_remote_request(
             $url,
             array(
