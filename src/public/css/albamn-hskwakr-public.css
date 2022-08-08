@@ -19,7 +19,7 @@
 
 .albamn-grid-child {
   width: 8rem;
-  height: 9rem;
+  height: 8rem;
   background: black;
   margin: auto;
 }
@@ -29,15 +29,11 @@
  */
 .albamn-slider-group {
   position: relative;
-  width: 100%;
-  height: 100%;
 }
 
 .albamn-slider-item {
   position: absolute;
   top: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .albamn-slider-group .albamn-slider-item:first-child {
@@ -58,6 +54,11 @@
 }
 
 .albamn-slider-content {
-  width: 100%;
-  height: 100%;
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+}
+
+.albamn-grid-child img {
+  object-fit: cover;
 }
