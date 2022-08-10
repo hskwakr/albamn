@@ -42,6 +42,8 @@ class Albamn_Hskwakr_Ig_Media_Repository
     /**
      * Download Instagram media
      *
+     * This method contains Wordpress API
+     *
      * @since    1.0.0
      * @param    string    $url     The remote location to download
      * @param    string    $path    The path to store media file
@@ -77,9 +79,47 @@ class Albamn_Hskwakr_Ig_Media_Repository
     }
 
     /**
+     * Get all name of media files in medias directory
+     *
+     * @since    1.0.0
+     * @return   array      The list of file names
+     */
+    public function get_all_medias(
+    ): array {
+        $r = array();
+
+        /**
+         * All name of files in medias directory
+         * it contains not media files
+         */
+        $files = glob($this->base_dir . '*');
+        if ($files == false) {
+            return array();
+        }
+
+        /**
+         * Ignore not media files
+         */
+        foreach ($files as $f) {
+            $path_parts = pathinfo($f);
+            if (
+                isset($path_parts['extension']) &&
+                $path_parts['extension'] == 'php'
+            ) {
+                continue;
+            }
+
+            $r[] = $f;
+        }
+
+        return $r;
+    }
+
+    /**
      * Delete a file
      *
      * This method contains Wordpress API
+     * @psalm-suppress MixedMethodCall
      *
      * @since    1.0.0
      * @param    string    $path    The path to delete a file
@@ -96,7 +136,7 @@ class Albamn_Hskwakr_Ig_Media_Repository
         WP_Filesystem();
 
         if ($wp_filesystem->exists($path)) {
-            $success = $wp_filesystem->delete($path);
+            $success = (bool)$wp_filesystem->delete($path);
         }
 
         return $success;
