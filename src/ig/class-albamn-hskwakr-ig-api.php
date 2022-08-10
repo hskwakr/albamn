@@ -275,6 +275,8 @@ class Albamn_Hskwakr_Ig_Api
      * Filter the list of medias
      * only contains VIDEO or IMAGE or CAROUSEL_ALBUM media
      *
+     * This method contains Wordpress API
+     *
      * @since     1.0.0
      * @param     array     $medias
      * @return    array     The list of filtered medias
@@ -330,14 +332,12 @@ class Albamn_Hskwakr_Ig_Api
                         break;
                     }
 
+                    $filename = (string)$m->id . '.mp4';
+                    $path = $this->media_repository->base_dir . $filename;
+
                     /**
                      * Download media file
-                     */
-                    $path =
-                        $this->media_repository->base_dir .
-                        (string)$m->id .
-                        '.mp4';
-                    /**
+                     *
                      * @var bool $success
                      */
                     $success = $this->media_repository->download(
@@ -347,6 +347,12 @@ class Albamn_Hskwakr_Ig_Api
                     if (!$success) {
                         break;
                     }
+
+                    /**
+                     * The location to access via url
+                     */
+                    $base_url = (string)plugin_dir_url(dirname(__FILE__));
+                    $url = $base_url . 'medias/' . $filename;
 
                     /**
                      * Create Instagram post
