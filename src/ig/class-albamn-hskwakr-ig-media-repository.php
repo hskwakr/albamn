@@ -75,4 +75,30 @@ class Albamn_Hskwakr_Ig_Media_Repository
             return false;
         }
     }
+
+    /**
+     * Delete a file
+     *
+     * This method contains Wordpress API
+     *
+     * @since    1.0.0
+     * @param    string    $path    The path to delete a file
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function delete(
+        string $path
+    ): bool {
+        $success = false;
+
+        global $wp_filesystem;
+        WP_Filesystem();
+
+        if ($wp_filesystem->exists($path)) {
+            $success = $wp_filesystem->delete($path);
+        }
+
+        return $success;
+    }
 }
