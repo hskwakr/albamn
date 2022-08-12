@@ -332,27 +332,17 @@ class Albamn_Hskwakr_Ig_Api
                         break;
                     }
 
-                    $filename = (string)$m->id . '.mp4';
-                    $path = $this->media_repository->base_dir . $filename;
-
                     /**
-                     * Download media file
-                     *
-                     * @var bool $success
+                     * Download a media file.
                      */
-                    $success = $this->media_repository->download(
-                        (string)$m->media_url,
-                        $path
+                    $filename = (string)$m->id . '.mp4';
+                    $url = $this->download_ig_media(
+                        $filename,
+                        (string)$m->media_url
                     );
-                    if (!$success) {
+                    if (empty($url)) {
                         break;
                     }
-
-                    /**
-                     * The location to access via url
-                     */
-                    $base_url = (string)plugin_dir_url(dirname(__FILE__));
-                    $url = $base_url . 'medias/' . $filename;
 
                     /**
                      * Create Instagram post
@@ -510,6 +500,41 @@ class Albamn_Hskwakr_Ig_Api
         }
 
         return true;
+    }
+
+    /**
+     * Download an Instagram media file.
+     *
+     * @since     1.0.0
+     * @param     string     $filename   The filename to store.
+     * @param     string     $media_url  The url to download.
+     * @return    string     The url to stored media file.
+     *                       It returns empty if failed to download.
+     */
+    public function download_ig_media(
+        string $filename,
+        string $media_url
+    ): string {
+        $path = $this->media_repository->base_dir . $filename;
+
+        /**
+         * Download media file
+         *
+         * @var bool $success
+         */
+        $success = $this->media_repository->download(
+            $media_url,
+            $path
+        );
+        if (!$success) {
+            return '';
+        }
+
+        /**
+         * The url to the media file
+         */
+        $base_url = (string)plugin_dir_url(dirname(__FILE__));
+        return $base_url . 'medias/' . $filename;
     }
 
     /**
