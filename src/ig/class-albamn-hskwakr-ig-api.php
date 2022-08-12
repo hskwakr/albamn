@@ -29,6 +29,15 @@ class Albamn_Hskwakr_Ig_Api
     private $ctx;
 
     /**
+     * The data access for media file.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Media_Repository    $media_repository
+     */
+    private $media_repository;
+
+    /**
      * The base url of the API.
      *
      * @since    1.0.0
@@ -78,9 +87,11 @@ class Albamn_Hskwakr_Ig_Api
      *
      * @since     1.0.0
      */
-    public function __construct()
-    {
+    public function __construct(
+        Albamn_Hskwakr_Ig_Media_Repository $media_repository
+    ) {
         $this->ctx = null;
+        $this->media_repository = $media_repository;
     }
 
     /**
@@ -264,6 +275,8 @@ class Albamn_Hskwakr_Ig_Api
      * Filter the list of medias
      * only contains VIDEO or IMAGE or CAROUSEL_ALBUM media
      *
+     * This method contains Wordpress API
+     *
      * @since     1.0.0
      * @param     array     $medias
      * @return    array     The list of filtered medias
@@ -296,8 +309,38 @@ class Albamn_Hskwakr_Ig_Api
 
             switch ((string)$m->media_type) {
                 case 'IMAGE':
+                    if (!isset($m->media_url)) {
+                        break;
+                    }
+
+                    /**
+                     * Create Instagram post
+                     */
+                    $r[] = $this->create_ig_post(
+                        (string)$m->id,
+                        (string)$m->media_type,
+                        array(),
+                        (string)$m->media_url,
+                        array(),
+                        (string)$m->permalink,
+                        false
+                    );
+                    break;
+
                 case 'VIDEO':
                     if (!isset($m->media_url)) {
+                        break;
+                    }
+
+                    /**
+                     * Download a media file.
+                     */
+                    $filename = (string)$m->id . '.mp4';
+                    $url = $this->download_ig_media(
+                        $filename,
+                        (string)$m->media_url
+                    );
+                    if (empty($url)) {
                         break;
                     }
 
@@ -457,6 +500,41 @@ class Albamn_Hskwakr_Ig_Api
         }
 
         return true;
+    }
+
+    /**
+     * Download an Instagram media file.
+     *
+     * @since     1.0.0
+     * @param     string     $filename   The filename to store.
+     * @param     string     $media_url  The url to download.
+     * @return    string     The url to stored media file.
+     *                       It returns empty if failed to download.
+     */
+    public function download_ig_media(
+        string $filename,
+        string $media_url
+    ): string {
+        $path = $this->media_repository->base_dir . $filename;
+
+        /**
+         * Download media file
+         *
+         * @var bool $success
+         */
+        $success = $this->media_repository->download(
+            $media_url,
+            $path
+        );
+        if (!$success) {
+            return '';
+        }
+
+        /**
+         * The url to the media file
+         */
+        $base_url = (string)plugin_dir_url(dirname(__FILE__));
+        return $base_url . 'medias/' . $filename;
     }
 
     /**

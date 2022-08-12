@@ -1,1 +1,3 @@
 .php-cs-fixer.cache
+src/medias/*
+!src/medias/index.php

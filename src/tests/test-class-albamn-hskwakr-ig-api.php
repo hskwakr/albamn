@@ -19,6 +19,7 @@
 class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
 {
     private $ctx;
+    private $repository;
 
     private $token = 'token1234';
     private $pages_id = 'pages1234';
@@ -34,6 +35,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          */
         $this->ctx = $this->createMock(
             Albamn_Hskwakr_Ig_Api_Context::class
+        );
+        $this->repository = $this->createMock(
+            Albamn_Hskwakr_Ig_Media_Repository::class
         );
 
         /**
@@ -99,7 +103,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -123,7 +129,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -220,7 +228,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Execute
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -272,7 +282,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          * Prepare to test
          */
         $method = 'top';
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -323,7 +335,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          * Prepare to test
          */
         $method = 'recent';
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -357,7 +371,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         $data_1 = new Albamn_Hskwakr_Ig_Post(
             $this->medias[0]->id,
@@ -414,7 +430,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -431,7 +449,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -449,7 +469,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -475,7 +497,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -503,7 +527,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -534,7 +560,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
         /**
          * Prepare to test
          */
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -569,7 +597,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          * Prepare to test
          */
         $method = 'top';
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -605,7 +635,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
          * Prepare to test
          */
         $method = 'recent';
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert
@@ -631,7 +663,9 @@ class Albamn_Hskwakr_Ig_Api_Test extends WP_UnitTestCase
 
         $media_wrong = '';
 
-        $api = new Albamn_Hskwakr_Ig_Api();
+        $api = new Albamn_Hskwakr_Ig_Api(
+            $this->repository
+        );
 
         /**
          * Assert

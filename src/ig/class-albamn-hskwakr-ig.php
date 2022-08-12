@@ -65,6 +65,15 @@ class Albamn_Hskwakr_Ig
     public $post_repository;
 
     /**
+     * The media file access
+     *
+     * @since    1.0.0
+     * @access   public
+     * @var      Albamn_Hskwakr_Ig_Media_Repository    $media_repository
+     */
+    public $media_repository;
+
+    /**
      * The formatter to display html
      *
      * @since    1.0.0
@@ -157,6 +166,12 @@ class Albamn_Hskwakr_Ig
           . 'class-albamn-hskwakr-ig-post.php';
 
         /**
+         * The data access for Instagram media file
+         */
+        require_once $path
+          . 'class-albamn-hskwakr-ig-media-repository.php';
+
+        /**
          * The DB access for Instagram posts
          */
         require_once $path
@@ -199,7 +214,7 @@ class Albamn_Hskwakr_Ig
         /**
          * Public instance
          */
-        $this->api = new Albamn_Hskwakr_Ig_Api();
+        $this->media_repository = new Albamn_Hskwakr_Ig_Media_Repository();
         $this->post_formatter = new Albamn_Hskwakr_Admin_Ig_Formatter();
         $this->post_repository = new Albamn_Hskwakr_Ig_Post_Repository(
             $db
@@ -207,6 +222,9 @@ class Albamn_Hskwakr_Ig
         $this->shortcode = new Albamn_Hskwakr_Ig_Shortcode(
             $this->post_repository,
             $this->post_formatter
+        );
+        $this->api = new Albamn_Hskwakr_Ig_Api(
+            $this->media_repository
         );
     }
 }

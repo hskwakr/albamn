@@ -132,21 +132,60 @@ class Albamn_Hskwakr_Ig_Post_Db_Provider
          */
         foreach ($posts as $post) {
             /**
+             * Initialize properties
+             */
+            if (!isset($post->ID)) {
+                continue;
+            }
+            $post_id = (int)$post->ID;
+            $post_title =
+                isset($post->post_title) ?
+                (string)$post->post_title : '';
+            $post_type =
+                isset($post->post_type) ?
+                (string)$post->post_type : '';
+            $post_status =
+                isset($post->post_status) ?
+                (string)$post->post_status : '';
+
+            $media_id =
+                isset($post->media_id) ?
+                (string)$post->media_id : '';
+            $media_type =
+                isset($post->media_type) ?
+                (string)$post->media_type : '';
+            $media_type_list =
+                isset($post->media_type_list) ?
+                (array)$post->media_type_list : array();
+            $media_url =
+                isset($post->media_url) ?
+                (string)$post->media_url : '';
+            $media_url_list =
+                isset($post->media_url_list) ?
+                (array)$post->media_url_list : array();
+            $media_permalink =
+                isset($post->permalink) ?
+                (string)$post->permalink : '';
+            $media_visibility =
+                isset($post->visibility) ?
+                (bool)$post->visibility : false;
+
+            /**
              * Create Entry
              */
             $r[] = new Albamn_Hskwakr_Ig_Post_Db_Entry(
-                (int)$post->ID,
-                (string)$post->post_title,
-                (string)$post->post_type,
-                (string)$post->post_status,
+                $post_id,
+                $post_title,
+                $post_type,
+                $post_status,
                 new Albamn_Hskwakr_Ig_Post(
-                    (string)$post->media_id,
-                    (string)$post->media_type,
-                    (array)$post->media_type_list,
-                    (string)$post->media_url,
-                    (array)$post->media_url_list,
-                    (string)$post->permalink,
-                    (bool)$post->visibility
+                    $media_id,
+                    $media_type,
+                    $media_type_list,
+                    $media_url,
+                    $media_url_list,
+                    $media_permalink,
+                    $media_visibility
                 )
             );
         }
