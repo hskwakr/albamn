@@ -33,9 +33,9 @@ class Albamn_Hskwakr_Admin_Settings_Pager extends Albamn_Hskwakr_Admin_Pager
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Ig_Post_Repository    $ig_repository
+     * @var      Albamn_Hskwakr_Ig_Post_Repository    $ig_post_repository
      */
-    private $ig_repository;
+    private $ig_post_repository;
 
     /**
      * Initialize the class and set its properties.
@@ -45,10 +45,10 @@ class Albamn_Hskwakr_Admin_Settings_Pager extends Albamn_Hskwakr_Admin_Pager
      */
     public function __construct(
         Albamn_Hskwakr_Settings $settings,
-        Albamn_Hskwakr_Ig_Post_Repository $ig_repository
+        Albamn_Hskwakr_Ig_Post_Repository $ig_post_repository
     ) {
         $this->settings = $settings;
-        $this->ig_repository = $ig_repository;
+        $this->ig_post_repository = $ig_post_repository;
     }
 
     /**
@@ -120,7 +120,7 @@ class Albamn_Hskwakr_Admin_Settings_Pager extends Albamn_Hskwakr_Admin_Pager
      */
     public function remove_all_ig_posts(): string
     {
-        if ($this->ig_repository->remove_all()) {
+        if ($this->ig_post_repository->remove_all()) {
             return $this->display_alert_green(
                 'Successed to remove all posts'
             );
