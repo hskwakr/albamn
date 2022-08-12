@@ -38,6 +38,15 @@ class Albamn_Hskwakr_Admin_Settings_Pager extends Albamn_Hskwakr_Admin_Pager
     private $ig_post_repository;
 
     /**
+     * The access for Instagram media files
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Media_Repository    $ig_media_repository
+     */
+    private $ig_media_repository;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -45,10 +54,12 @@ class Albamn_Hskwakr_Admin_Settings_Pager extends Albamn_Hskwakr_Admin_Pager
      */
     public function __construct(
         Albamn_Hskwakr_Settings $settings,
-        Albamn_Hskwakr_Ig_Post_Repository $ig_post_repository
+        Albamn_Hskwakr_Ig_Post_Repository $ig_post_repository,
+        Albamn_Hskwakr_Ig_Media_Repository $ig_media_repository
     ) {
         $this->settings = $settings;
         $this->ig_post_repository = $ig_post_repository;
+        $this->ig_media_repository = $ig_media_repository;
     }
 
     /**

@@ -215,7 +215,8 @@ class Albamn_Hskwakr_Admin
          */
         $general = new Albamn_Hskwakr_Admin_Settings_Pager(
             $this->settings,
-            $this->ig->post_repository
+            $this->ig->post_repository,
+            $this->ig->media_repository
         );
 
         /**
