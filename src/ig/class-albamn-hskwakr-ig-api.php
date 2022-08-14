@@ -314,6 +314,18 @@ class Albamn_Hskwakr_Ig_Api
                     }
 
                     /**
+                     * Download a media file.
+                     */
+                    $filename = (string)$m->id . '.jpg';
+                    $url = $this->download_ig_media(
+                        $filename,
+                        (string)$m->media_url
+                    );
+                    if (empty($url)) {
+                        break;
+                    }
+
+                    /**
                      * Create Instagram post
                      */
                     $r[] = $this->create_ig_post(
