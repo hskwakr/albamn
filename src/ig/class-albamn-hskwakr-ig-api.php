@@ -332,7 +332,7 @@ class Albamn_Hskwakr_Ig_Api
                         (string)$m->id,
                         (string)$m->media_type,
                         array(),
-                        (string)$m->media_url,
+                        $url,
                         array(),
                         (string)$m->permalink,
                         false
@@ -363,7 +363,7 @@ class Albamn_Hskwakr_Ig_Api
                         (string)$m->id,
                         (string)$m->media_type,
                         array(),
-                        (string)$m->media_url,
+                        $url,
                         array(),
                         (string)$m->permalink,
                         false
