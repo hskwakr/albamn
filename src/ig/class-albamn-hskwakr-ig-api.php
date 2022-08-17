@@ -407,11 +407,59 @@ class Albamn_Hskwakr_Ig_Api
                         if (!is_string($v->id)) {
                             break;
                         }
-                        if (is_string($v->media_type)) {
-                            $media_type_list[$v->id] = $v->media_type;
+                        if (!is_string($v->media_type)) {
+                            break;
                         }
-                        if (is_string($v->media_url)) {
-                            $media_url_list[$v->id] = $v->media_url;
+                        if (!is_string($v->media_url)) {
+                            break;
+                        }
+
+                        switch ($v->media_type) {
+                            case 'IMAGE':
+                                /**
+                                 * Download a media file.
+                                 */
+                                $filename = $v->id . '.jpg';
+                                $url = $this->download_ig_media(
+                                    $filename,
+                                    $v->media_url
+                                );
+                                if (empty($url)) {
+                                    break;
+                                }
+
+                                /**
+                                 * Add new element
+                                 */
+                                $media_type_list[$v->id] = $v->media_type;
+                                $media_url_list[$v->id] = $url;
+
+                                break;
+
+                            case 'VIDEO':
+                                /**
+                                 * Download a media file.
+                                 */
+                                $filename = $v->id . '.mp4';
+                                $url = $this->download_ig_media(
+                                    $filename,
+                                    $v->media_url
+                                );
+                                if (empty($url)) {
+                                    break;
+                                }
+
+                                /**
+                                 * Add new element
+                                 */
+                                $media_type_list[$v->id] = $v->media_type;
+                                $media_url_list[$v->id] = $url;
+
+                                break;
+
+                            default:
+
+                                break;
                         }
                     }
 
