@@ -234,6 +234,7 @@ class Albamn_Hskwakr_Admin
          */
         $editor = new Albamn_Hskwakr_Admin_Editor_Pager(
             $this->ig->post_repository,
+            $this->ig->media_repository,
             $this->ig->post_formatter
         );
 

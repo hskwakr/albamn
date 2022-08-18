@@ -29,6 +29,15 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
     private $ig_post_repository;
 
     /**
+     * The media file access for Instagram medias
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Media_Repository    $ig_media_repository
+     */
+    private $ig_media_repository;
+
+    /**
      * The formatter for Instagram medias
      *
      * @since    1.0.0
@@ -41,14 +50,14 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Admin_Settings            $settings
-     * @param    Albamn_Hskwakr_Admin_Ig_Formatter        $ig_formatter
      */
     public function __construct(
         Albamn_Hskwakr_Ig_Post_Repository $ig_post_repository,
+        Albamn_Hskwakr_Ig_Media_Repository $ig_media_repository,
         Albamn_Hskwakr_Admin_Ig_Formatter $ig_formatter
     ) {
         $this->ig_post_repository = $ig_post_repository;
+        $this->ig_media_repository = $ig_media_repository;
         $this->ig_formatter = $ig_formatter;
     }
 
