@@ -24,9 +24,9 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Ig_Post_Repository    $ig_repository
+     * @var      Albamn_Hskwakr_Ig_Post_Repository    $ig_post_repository
      */
-    private $ig_repository;
+    private $ig_post_repository;
 
     /**
      * The formatter for Instagram medias
@@ -45,10 +45,10 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
      * @param    Albamn_Hskwakr_Admin_Ig_Formatter        $ig_formatter
      */
     public function __construct(
-        Albamn_Hskwakr_Ig_Post_Repository $ig_repository,
+        Albamn_Hskwakr_Ig_Post_Repository $ig_post_repository,
         Albamn_Hskwakr_Admin_Ig_Formatter $ig_formatter
     ) {
-        $this->ig_repository = $ig_repository;
+        $this->ig_post_repository = $ig_post_repository;
         $this->ig_formatter = $ig_formatter;
     }
 
@@ -310,7 +310,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
     public function find_ig_post(
         string $ig_post_id
     ) {
-        return $this->ig_repository->find_by($ig_post_id);
+        return $this->ig_post_repository->find_by($ig_post_id);
     }
 
     /**
@@ -325,7 +325,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
     public function remove_ig_post(
         string $ig_post_id
     ): bool {
-        return $this->ig_repository->remove($ig_post_id);
+        return $this->ig_post_repository->remove($ig_post_id);
     }
 
     /**
@@ -342,7 +342,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
         string $ig_post_id,
         Albamn_Hskwakr_Ig_Post $new
     ): bool {
-        return $this->ig_repository->update(
+        return $this->ig_post_repository->update(
             $ig_post_id,
             $new
         );
@@ -361,7 +361,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
          *
          * @var array<Albamn_Hskwakr_Ig_Post> $r
          */
-        return $this->ig_repository->get(-1);
+        return $this->ig_post_repository->get(-1);
     }
 
     /**
