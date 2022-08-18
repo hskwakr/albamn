@@ -215,6 +215,17 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
          * @var array<string> $id_list
          */
         foreach ($id_list as $id) {
+            /**
+             * Remove the media by ID
+             */
+            $result = $this->remove_ig_media($id);
+            if (!$result) {
+                $success = false;
+            }
+
+            /**
+             * Remove the post by ID
+             */
             $result = $this->remove_ig_post($id);
             if (!$result) {
                 $success = false;
@@ -320,6 +331,47 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
         string $ig_post_id
     ) {
         return $this->ig_post_repository->find_by($ig_post_id);
+    }
+
+    /**
+     * Remove an Instagram media file
+     *
+     * @since    1.0.0
+     * @param    string    $ig_post_id
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function remove_ig_media(
+        string $ig_post_id
+    ): bool {
+        /**
+         * Whether success or failure
+         */
+        $success = false;
+
+        /**
+         * Get all media file names
+         *
+         * @var array $all_media_files
+         */
+        $all_media_files = $this->ig_media_repository->get_all_medias();
+
+        /**
+         * Find the file for the post id
+         *
+         * @var string $file
+         */
+        foreach ($all_media_files as $file) {
+            $pattern = '/' . $ig_post_id . '/';
+            $found = preg_match($pattern, $file);
+
+            if ($found) {
+                $success = $this->ig_media_repository->delete($file);
+            }
+        }
+
+        return $success;
     }
 
     /**
