@@ -92,6 +92,11 @@ class Albamn_Hskwakr_Admin_Settings_Pager extends Albamn_Hskwakr_Admin_Pager
 
         if ($status == 1) {
             /**
+             * Remove all media files
+             */
+            echo $this->remove_all_ig_medias();
+
+            /**
              * Remove all posts
              */
             echo $this->remove_all_ig_posts();
@@ -131,15 +136,76 @@ class Albamn_Hskwakr_Admin_Settings_Pager extends Albamn_Hskwakr_Admin_Pager
      */
     public function remove_all_ig_posts(): string
     {
+        /**
+         * The html
+         *
+         * @var string $r
+         */
+        $r = '';
+
+        /**
+         * Remove Instagram posts
+         */
         if ($this->ig_post_repository->remove_all()) {
-            return $this->display_alert_green(
+            $r .= $this->display_alert_green(
                 'Successed to remove all posts'
             );
         } else {
-            return $this->display_alert_red(
+            $r .= $this->display_alert_red(
                 'Failed to remove all posts'
             );
         }
+
+        return $r;
+    }
+
+    /**
+     * Remove all Instagram media file from medias directory
+     *
+     * @since    1.0.0
+     * @return   string      The html
+     */
+    public function remove_all_ig_medias(): string
+    {
+        /**
+         * The html
+         *
+         * @var string $r
+         */
+        $r = '';
+
+        /**
+         * Whether success or fail
+         *
+         * @var bool $success
+         */
+        $success = true;
+
+        /**
+         * Remove Instagram medias
+         *
+         * @var string $media
+         */
+        foreach (
+            $this->ig_media_repository->get_all_medias() as $media
+        ) {
+            $result = $this->ig_media_repository->delete($media);
+            if (!$result) {
+                $success = false;
+            }
+        }
+
+        if ($success) {
+            $r .= $this->display_alert_green(
+                'Successed to remove all media files'
+            );
+        } else {
+            $r .= $this->display_alert_red(
+                'Failed to remove media files'
+            );
+        }
+
+        return $r;
     }
 
     /**

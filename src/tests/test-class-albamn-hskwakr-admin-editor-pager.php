@@ -25,8 +25,11 @@ class Albamn_Hskwakr_Admin_Editor_Pager_Test extends WP_UnitTestCase
         /**
          * Create mock
          */
-        $repository = $this->createMock(
+        $post_repository = $this->createMock(
             Albamn_Hskwakr_Ig_Post_Repository::class
+        );
+        $media_repository = $this->createMock(
+            Albamn_Hskwakr_Ig_Media_Repository::class
         );
         $formatter = $this->createMock(
             Albamn_Hskwakr_Admin_Ig_Formatter::class
@@ -36,7 +39,8 @@ class Albamn_Hskwakr_Admin_Editor_Pager_Test extends WP_UnitTestCase
          * Instantiate
          */
         $this->pager = new Albamn_Hskwakr_Admin_Editor_Pager(
-            $repository,
+            $post_repository,
+            $media_repository,
             $formatter
         );
     }

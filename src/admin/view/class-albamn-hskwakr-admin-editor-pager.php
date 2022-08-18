@@ -24,9 +24,18 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
      *
      * @since    1.0.0
      * @access   private
-     * @var      Albamn_Hskwakr_Ig_Post_Repository    $ig_repository
+     * @var      Albamn_Hskwakr_Ig_Post_Repository    $ig_post_repository
      */
-    private $ig_repository;
+    private $ig_post_repository;
+
+    /**
+     * The media file access for Instagram medias
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      Albamn_Hskwakr_Ig_Media_Repository    $ig_media_repository
+     */
+    private $ig_media_repository;
 
     /**
      * The formatter for Instagram medias
@@ -41,14 +50,14 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
-     * @param    Albamn_Hskwakr_Admin_Settings            $settings
-     * @param    Albamn_Hskwakr_Admin_Ig_Formatter        $ig_formatter
      */
     public function __construct(
-        Albamn_Hskwakr_Ig_Post_Repository $ig_repository,
+        Albamn_Hskwakr_Ig_Post_Repository $ig_post_repository,
+        Albamn_Hskwakr_Ig_Media_Repository $ig_media_repository,
         Albamn_Hskwakr_Admin_Ig_Formatter $ig_formatter
     ) {
-        $this->ig_repository = $ig_repository;
+        $this->ig_post_repository = $ig_post_repository;
+        $this->ig_media_repository = $ig_media_repository;
         $this->ig_formatter = $ig_formatter;
     }
 
@@ -206,6 +215,17 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
          * @var array<string> $id_list
          */
         foreach ($id_list as $id) {
+            /**
+             * Remove the media by ID
+             */
+            $result = $this->remove_ig_media($id);
+            if (!$result) {
+                $success = false;
+            }
+
+            /**
+             * Remove the post by ID
+             */
             $result = $this->remove_ig_post($id);
             if (!$result) {
                 $success = false;
@@ -310,7 +330,48 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
     public function find_ig_post(
         string $ig_post_id
     ) {
-        return $this->ig_repository->find_by($ig_post_id);
+        return $this->ig_post_repository->find_by($ig_post_id);
+    }
+
+    /**
+     * Remove an Instagram media file
+     *
+     * @since    1.0.0
+     * @param    string    $ig_post_id
+     * @return   bool      Whether success or failure
+     *                     true:  success
+     *                     false: failure
+     */
+    public function remove_ig_media(
+        string $ig_post_id
+    ): bool {
+        /**
+         * Whether success or failure
+         */
+        $success = false;
+
+        /**
+         * Get all media file names
+         *
+         * @var array $all_media_files
+         */
+        $all_media_files = $this->ig_media_repository->get_all_medias();
+
+        /**
+         * Find the file for the post id
+         *
+         * @var string $file
+         */
+        foreach ($all_media_files as $file) {
+            $pattern = '/' . $ig_post_id . '/';
+            $found = preg_match($pattern, $file);
+
+            if ($found) {
+                $success = $this->ig_media_repository->delete($file);
+            }
+        }
+
+        return $success;
     }
 
     /**
@@ -325,7 +386,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
     public function remove_ig_post(
         string $ig_post_id
     ): bool {
-        return $this->ig_repository->remove($ig_post_id);
+        return $this->ig_post_repository->remove($ig_post_id);
     }
 
     /**
@@ -342,7 +403,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
         string $ig_post_id,
         Albamn_Hskwakr_Ig_Post $new
     ): bool {
-        return $this->ig_repository->update(
+        return $this->ig_post_repository->update(
             $ig_post_id,
             $new
         );
@@ -361,7 +422,7 @@ class Albamn_Hskwakr_Admin_Editor_Pager extends Albamn_Hskwakr_Admin_Pager
          *
          * @var array<Albamn_Hskwakr_Ig_Post> $r
          */
-        return $this->ig_repository->get(-1);
+        return $this->ig_post_repository->get(-1);
     }
 
     /**
