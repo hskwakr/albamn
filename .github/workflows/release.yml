@@ -27,6 +27,14 @@ jobs:
           TARGET: ./${{ env.plugin_name }}
           ARGS: -rc --exclude-from=./src/.distignore --delete --delete-excluded
 
+      - name: Change permission of medias directory
+        uses: up9cloud/action-rsync@master
+        env:
+          MODE: local
+          SOURCE: ./src/medias
+          TARGET: ./${{ env.plugin_name }}/medias
+          ARGS: -I --chmod=777
+
       - name: Compression
         uses: montudor/action-zip@v1
         with:
