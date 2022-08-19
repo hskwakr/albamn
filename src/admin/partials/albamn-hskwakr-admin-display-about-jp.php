@@ -24,7 +24,11 @@
   <ol class="albamn-px">
     <li>
       <p class="albamn-fs">
-        このプラグインフォルダ内のmediasフォルダに書き込み権限を付与してください。
+        このプラグインフォルダ内のmediasフォルダにアクセス権限を付与してください。
+      </p>
+
+      <p class="albamn-fs">
+        <code>chmod 777 albamn-hskwakr/medias</code>
       </p>
     </li>
   </ol>
