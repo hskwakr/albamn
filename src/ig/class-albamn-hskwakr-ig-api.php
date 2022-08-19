@@ -321,9 +321,6 @@ class Albamn_Hskwakr_Ig_Api
                         $filename,
                         (string)$m->media_url
                     );
-                    if (empty($url)) {
-                        break;
-                    }
 
                     /**
                      * Create Instagram post
@@ -352,9 +349,6 @@ class Albamn_Hskwakr_Ig_Api
                         $filename,
                         (string)$m->media_url
                     );
-                    if (empty($url)) {
-                        break;
-                    }
 
                     /**
                      * Create Instagram post
@@ -424,9 +418,6 @@ class Albamn_Hskwakr_Ig_Api
                                     $filename,
                                     $v->media_url
                                 );
-                                if (empty($url)) {
-                                    break;
-                                }
 
                                 /**
                                  * Add new element
@@ -445,9 +436,6 @@ class Albamn_Hskwakr_Ig_Api
                                     $filename,
                                     $v->media_url
                                 );
-                                if (empty($url)) {
-                                    break;
-                                }
 
                                 /**
                                  * Add new element
@@ -569,7 +557,7 @@ class Albamn_Hskwakr_Ig_Api
      * @param     string     $filename   The filename to store.
      * @param     string     $media_url  The url to download.
      * @return    string     The url to stored media file.
-     *                       It returns empty if failed to download.
+     *                       It returns $media_url if failed to download.
      */
     public function download_ig_media(
         string $filename,
@@ -587,7 +575,7 @@ class Albamn_Hskwakr_Ig_Api
             $path
         );
         if (!$success) {
-            return '';
+            return $media_url;
         }
 
         /**
