@@ -27,14 +27,14 @@ jobs:
           TARGET: ./${{ env.plugin_name }}
           ARGS: -rc --exclude-from=./src/.distignore --delete --delete-excluded
 
+      - name: Change permission of medias directory
+        run: |
+          chmod 777 ./${{ env.plugin_name }}/medias
+          
       - name: Compression
         uses: montudor/action-zip@v1
         with:
           args: zip -qq -r ${{ env.plugin_name }}.zip ${{ env.plugin_name }}
-
-      - name: Change permission of medias directory
-        run: |
-          chmod 777 ./src/medias
           
       - name: Create release
         uses: softprops/action-gh-release@v1
