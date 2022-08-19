@@ -45,6 +45,25 @@ EOF;
     }
 
     /**
+     * The html to display description
+     *
+     * @since    1.0.0
+     * @param    string     $msg          the message.
+     * @return   string     The html
+     */
+    protected function display_description(
+        $msg
+    ): string {
+        return <<< EOF
+
+    <p class="albamn-fs">
+      $msg
+    </p>
+
+EOF;
+    }
+
+    /**
      * The html to display footer
      *
      * @since    1.0.0
