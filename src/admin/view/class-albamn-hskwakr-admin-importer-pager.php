@@ -117,6 +117,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
          */
         $status = $this->init();
         echo $this->display_header('Albamn Post Importer');
+        echo $this->display_description('Importには５～１０分かかります。');
 
         /**
          * Contents
