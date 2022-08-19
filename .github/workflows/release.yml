@@ -33,7 +33,7 @@ jobs:
           MODE: local
           SOURCE: ./src/medias
           TARGET: ./${{ env.plugin_name }}/medias
-          ARGS: -c --chmod 777
+          ARGS: -I --chmod 777
           
       - name: Compression
         uses: montudor/action-zip@v1
