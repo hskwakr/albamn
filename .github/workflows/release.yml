@@ -32,7 +32,7 @@ jobs:
         env:
           MODE: local
           SOURCE: ./src/medias
-          TARGET: ./${{ env.plugin_name }}/medias
+          TARGET: ./${{ env.plugin_name }}
           ARGS: -Id --chmod=777
 
       - name: Compression
