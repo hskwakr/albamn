@@ -150,7 +150,34 @@ class Albamn_Hskwakr_Deactivator
     private static function clean_db(
         Albamn_Hskwakr_Ig $ig
     ): bool {
-        return $ig->post_repository->remove_all();
+        /**
+         * Whether success or failure
+         */
+        $success = true;
+
+        /**
+         * Remove media files
+         *
+         * @var string $media
+         */
+        foreach (
+            $ig->media_repository->get_all_medias() as $media
+        ) {
+            $result = $ig->media_repository->delete($media);
+            if (!$result) {
+                $success = false;
+            }
+        }
+
+        /**
+         * Remove DB Entries for Instagram posts
+         */
+        $result = $ig->post_repository->remove_all();
+        if (!$result) {
+            $success = false;
+        }
+
+        return $success;
     }
 
     /**
