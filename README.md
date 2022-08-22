@@ -6,13 +6,14 @@ A WordPress plugin allows you to make a list of Instagram posts searched by hash
 
 Download latest version from [Releases](https://github.com/hskwakr/albamn/releases "Releases · hskwakr/albamn · GitHub")
 
+Put this plugin in `wp-content/plugins/`
+
+### If you failed to download media files
 Change permission for medias directory writable.
 ```
 cd ./albamn-hskwakr
 chmod 777 ./medias
 ```
-
-Put this plugin in `wp-content/plugins/`
 
 ## Local Development Environment
 
