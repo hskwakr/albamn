@@ -18,22 +18,6 @@
   Instagramの投稿をWordPressで利用できるようにするプラグインです。
 </p>
 
-<h5>準備</h5>
-
-<div class="albamn-mt">
-  <ol class="albamn-px">
-    <li>
-      <p class="albamn-fs">
-        このプラグインフォルダ内のmediasフォルダにアクセス権限を付与してください。
-      </p>
-
-      <p class="albamn-fs">
-        <code>chmod 777 albamn-hskwakr/medias</code>
-      </p>
-    </li>
-  </ol>
-</div>
-
 <h5>使い方</h5>
 
 <div class="albamn-mt">
@@ -157,4 +141,22 @@
       </p>
     </li>
   </ol>
+</div>
+
+<h5>Q&A</h5>
+
+<div class="albamn-mt">
+  <ul class="albamn-px">
+    <li>
+      <p class="albamn-fs">
+        mediaファイルのダウンロードに失敗する場合
+        <br>
+        このプラグインフォルダ内のmediasフォルダにアクセス権限を付与してください。
+      </p>
+
+      <p class="albamn-fs">
+        <code>chmod 777 albamn-hskwakr/medias</code>
+      </p>
+    </li>
+  </ul>
 </div>
