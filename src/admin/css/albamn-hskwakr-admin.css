@@ -48,10 +48,16 @@
 }
 
 /**
- * ol
+ * ol, ul
  */
 .albamn-container ol {
   font-size: 1rem;
+}
+
+.albamn-container ul {
+  font-size: 1rem;
+  padding-left: 1rem;
+  list-style: inherit;
 }
 
 /**
