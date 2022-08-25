@@ -152,6 +152,86 @@ EOF;
     }
 
     /**
+     * The html to display a input radio tag with label
+     *
+     * @since    1.0.0
+     * @param    string     $label        the label of option.
+     * @param    string     $name         the name of option.
+     * @param    int        $amount       the amount of lists.
+     * @param    int        $checked      the number of checked element in lists (start from 0).
+     * @param    array      $labels       the list of option labels for radio.
+     * @param    array      $values       the list of option values for radio.
+     * @return   string     The html
+     */
+    protected function display_input_radio(
+        string $label,
+        string $name,
+        int $amount,
+        int $checked,
+        array $labels,
+        array $values
+    ): string {
+        $r = '';
+
+        /**
+         * Header
+         */
+        $r = $r . <<< EOF
+
+    <div class="albamn-input albamn-mb-2">
+      <label class="albamn-input-label">{$label}</label>
+      <div class="albamn-input-radio-group">
+
+EOF;
+
+        /**
+         * Content
+         */
+        for ($i = 0; $i < $amount; $i++) {
+            $r = $r . <<< EOF
+
+        <label class="albamn-input-radio-container">
+          <span class="albamn-input-radio-label">
+            {$labels[$i]}
+          </span>
+          <input
+            class="albamn-input-radio"
+            type="radio"
+            name="{$name}"
+            value="{$values[$i]}"
+
+EOF;
+
+            if ($i == $checked) {
+                $r = $r . <<< EOF
+
+            checked
+
+EOF;
+            }
+            $r = $r . <<< EOF
+
+          >
+          <span class="albamn-input-radio-button"></span>
+        </label>
+
+EOF;
+        }
+
+        /**
+         * Footer
+         */
+        $r = $r . <<< EOF
+
+      </div>
+    </div>
+
+EOF;
+
+        return $r;
+    }
+
+    /**
      * The html to display a input tag with label
      *
      * @since    1.0.0
