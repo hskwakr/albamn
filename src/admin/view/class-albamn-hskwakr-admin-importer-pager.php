@@ -65,6 +65,16 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
     private $hashtag = '';
 
     /**
+     * The method type to search for Instagram posts
+     * top or recent
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $search_method
+     */
+    private $search_method = '';
+
+    /**
      * The list of Instagram posts
      *
      * @since    1.0.0
@@ -132,6 +142,8 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
              */
             echo $this->get_ig_posts();
         } elseif ($status == 2) {
+            echo $this->display_alert_red('Filter required');
+        } elseif ($status == 3) {
             echo $this->display_alert_red('Access token required');
         }
 
@@ -152,7 +164,8 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
      * @return   int        The status
      *                      0 : ready to import posts
      *                      1 : need to set hashtag name
-     *                      2 : need to set access token
+     *                      2 : need to set filter
+     *                      3 : need to set access token
      */
     public function init(): int
     {
@@ -164,12 +177,17 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
         }
         $hashtag = (string)$_POST['ig_hashtag'];
 
+        if (empty($_POST['search_method'])) {
+            return 2;
+        }
+        $search_method = (string)$_POST['search_method'];
+
         /**
          * Get access token from option
          */
         $access_token = $this->get_access_token();
         if (empty($access_token)) {
-            return 2;
+            return 3;
         }
 
         /**
@@ -177,6 +195,7 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
          */
         $this->access_token = $access_token;
         $this->hashtag = $hashtag;
+        $this->search_method = $search_method;
 
         return 0;
     }
@@ -218,8 +237,13 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
              *
              * @var array<object> $posts
              */
-            $this->ig_api->init($this->access_token);
-            $this->ig_api->search_hashtag($this->hashtag);
+            $this->ig_api->init(
+                $this->access_token
+            );
+            $this->ig_api->search_hashtag(
+                $this->hashtag,
+                $this->search_method
+            );
             $posts = $this->ig_api->medias;
 
             /**
