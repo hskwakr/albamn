@@ -158,5 +158,13 @@
         <code>chmod 777 albamn-hskwakr/medias</code>
       </p>
     </li>
+
+    <li>
+      <p class="albamn-fs">
+        ImporterのFilterについて
+        <br>
+        Popularは人気の投稿を、Newは２４時間以内に投稿されたものを取得します。
+      </p>
+    </li>
   </ul>
 </div>
