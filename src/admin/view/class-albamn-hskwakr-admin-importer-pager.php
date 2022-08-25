@@ -365,12 +365,40 @@ class Albamn_Hskwakr_Admin_Importer_Pager extends Albamn_Hskwakr_Admin_Pager
     public function display_options(): string
     {
         $r = '';
+
+        /**
+         * Input text
+         */
         $r = $r . $this->display_input_text(
             "ig_hashtag",
             "",
             "Hashtag",
             "Don't need #"
         );
+
+        /**
+         * Input radio
+         */
+        $labels = array(
+            'Popular',
+            'New'
+        );
+        $values = array(
+            'top',
+            'recent'
+        );
+        $r = $r . $this->display_input_radio(
+            'Filter',
+            'search_method',
+            count($labels),
+            0,
+            $labels,
+            $values
+        );
+
+        /**
+         * Submit button
+         */
         $r = $r . $this->display_form_button('Import');
 
         return $r;
